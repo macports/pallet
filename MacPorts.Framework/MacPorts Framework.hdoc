@@ -1,0 +1,17 @@
+/*
+ *  MacPorts Framework.hdoc
+ *  MacPorts.Framework
+ *
+ *  Created by Randall Hansen Wood on 5/3/2008.
+ *  Copyright 2008 MacPorts Project. All rights reserved.
+ *
+ */
+
+/*!
+ @framework MacPorts Framework
+
+ @abstract	Framework for the MacPorts API
+ 
+ @discussion	The MacPorts Framework contains classes and functions that allow Application developers to
+ leverage the MacPorts Tcl API.
+ */
