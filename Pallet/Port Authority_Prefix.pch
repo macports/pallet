@@ -1,0 +1,17 @@
+//
+// Prefix header for all source files of the 'Pallet' target in the 'Pallet' project
+//
+
+#ifdef __OBJC__
+	#import <AppKit/AppKit.h>
+	#import <Cocoa/Cocoa.h>
+	#import <Foundation/Foundation.h>
+	#import <Security/Authorization.h>
+	#import <Security/AuthorizationTags.h>
+#endif
+
+/*
+#ifndef PORT_PREFIX
+	#define PORT_PREFIX /opt/local
+#endif
+ */

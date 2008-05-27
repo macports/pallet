@@ -1,0 +1,87 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = IFVerticallyExpandingTextField; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSTextField; 
+        }, 
+        {
+            ACTIONS = {
+                about = id; 
+                haltPortCommand = id; 
+                installPort = id; 
+                macPortsSite = id; 
+                portAuthoritySite = id; 
+                reinstallPort = id; 
+                removePort = id; 
+                syncPortsList = id; 
+                updateMacPorts = id; 
+                upgradeOutdated = id; 
+                upgradePort = id; 
+            }; 
+            CLASS = MPAuthority; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                portIndexController = MPPortsController; 
+                portInfo = NSTextView; 
+                portLog = NSTextView; 
+                portLogWindow = NSWindow; 
+                portsList = NSTableView; 
+                portsWindow = NSWindow; 
+                progressIndicator = NSProgressIndicator; 
+                status = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = MPPort; LANGUAGE = ObjC; SUPERCLASS = NSMutableDictionary; }, 
+        {
+            ACTIONS = {search = id; }; 
+            CLASS = MPPortsController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
+            ACTIONS = {search = id; }; 
+            CLASS = MPToolbar; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                portAuthority = MPAuthority; 
+                ports = NSWindow; 
+                searchField = NSSearchField; 
+                searchView = NSView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                about = id; 
+                haltPortCommand = id; 
+                installPort = id; 
+                macPortsSite = id; 
+                palletSite = id; 
+                reinstallPort = id; 
+                removePort = id; 
+                syncPortsList = id; 
+                updateMacPorts = id; 
+                upgradeOutdated = id; 
+                upgradePort = id; 
+            }; 
+            CLASS = PortAuthority; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                portIndexController = MPPortsController; 
+                portInfo = NSTextView; 
+                portLog = NSTextView; 
+                portLogWindow = NSWindow; 
+                portsList = NSTableView; 
+                portsListHeaderMenu = NSMenu; 
+                portsWindow = NSWindow; 
+                progressIndicator = NSProgressIndicator; 
+                status = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

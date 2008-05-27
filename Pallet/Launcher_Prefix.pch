@@ -1,0 +1,36 @@
+//
+// Prefix header for all source files of the 'Launcher' target in the 'Pallet' project
+//
+#ifdef __OBJC__
+	#import <AppKit/AppKit.h>
+	#import <Cocoa/Cocoa.h>
+	#import <Foundation/Foundation.h>
+	#import <Security/Authorization.h>
+	#import <Security/AuthorizationTags.h>
+#endif
+
+#include <sys/types.h>
+
+#include <assert.h>
+#include <crt_externs.h>
+#include <errno.h>
+#include <fnmatch.h>
+#include <mach-o/dyld.h>
+#include <math.h>
+#include <regex.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/errno.h>
+#include <sys/fcntl.h>
+#include <sys/param.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+/*
+#ifndef PORT_PREFIX
+	#define PORT_PREFIX /opt/local
+#endif
+ */
