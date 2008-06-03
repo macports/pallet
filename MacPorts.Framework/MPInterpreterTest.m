@@ -38,9 +38,20 @@
 
 @implementation MPInterpreterTest
 
+/*
+- (void)testOCsharedInterpreter {
+	MPInterpreter *interpreter = [MPInterpreter ocSharedInterpreter];
+	STAssertNotNil(interpreter, @"Should not be nil");
+	
+}
+
+
 - (void)testGetVariableArray {
 	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
-	STAssertEquals([[interpreter getVariableAsArray:@"macports::sources"] count], 0, "Empty array returned when should have at least 1 element.");
+	STAssertEquals([[interpreter getVariableAsArray:@"macports::sources"] count], 0, @"Empty array returned when should have at least 1 element.");
 }
+ 
+*/
+
 
 @end

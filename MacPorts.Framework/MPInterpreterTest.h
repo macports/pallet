@@ -39,6 +39,9 @@
 
 }
 
+/*
+- (void)testOcSharedInterpreter;
 - (void)testGetVariableArray;
+*/
 
 @end

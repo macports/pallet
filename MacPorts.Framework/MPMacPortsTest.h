@@ -4,6 +4,7 @@
  *
  *	Authors:
  * 	Randall H. Wood <rhwood@macports.org>
+ *	George Armah <armahg@macports.org>
  *
  *	Copyright (c) 2007 Randall H. Wood <rhwood@macports.org>
  *	All rights reserved.
@@ -26,48 +27,22 @@
  *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
  *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-						   *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-						   *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
-#include <tcl.h>
+#import <SenTestingKit/SenTestingKit.h>
+#import "MPMacPorts.h"
 
-#define	MPPackage			@"macports"
-#define MPPackageVersion	@"1.0"
-
-@interface MPInterpreter : NSObject {
-
-	Tcl_Interp* _interpreter;
-
+@interface MPMacPortsTest : SenTestCase {
+	MPMacPorts *testPort;
 }
 
-+ (MPInterpreter *)sharedInterpreter;
 
-/*A version of sharedInterpreter that doesn't safeguard against
- *multi-threading. Use for Unit Testing Purposes only
- */
-+ (MPInterpreter *) ocSharedInterpreter;
-
-#pragma Port Operations
-
-#pragma Port Settings
-
-#pragma Utilities
-
-- (NSString *)evaluateArrayAsString:(NSArray *)statement;
-- (NSString *)evaluateStringAsString:(NSString *)statement;
-
-- (NSArray *)arrayFromTclListAsString:(NSString *)list;
-- (NSDictionary *)dictionaryFromTclListAsString:(NSString *)list;
-- (NSMutableDictionary *)mutableDictionaryFromTclListAsString:(NSString *)list;
-
-- (NSArray *)getVariableAsArray:(NSString *)variable;
-- (NSString *)getVariableAsString:(NSString *)variable;
-
-
+-(void)testPortCreation;
+-(void) testPrefix;
 
 @end
