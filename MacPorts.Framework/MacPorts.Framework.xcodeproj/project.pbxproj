@@ -41,6 +41,8 @@
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
 		6E88D1CC0DF4B90B00684E9F /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
+		6E88D3270DF5FE3A00684E9F /* MPInterpreterAlt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D3260DF5FE3A00684E9F /* MPInterpreterAlt.m */; };
+		6E88D34C0DF6026000684E9F /* MPInterpreterAltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D34B0DF6026000684E9F /* MPInterpreterAltTest.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -86,6 +88,10 @@
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
+		6E88D3250DF5FE3A00684E9F /* MPInterpreterAlt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterAlt.h; sourceTree = "<group>"; };
+		6E88D3260DF5FE3A00684E9F /* MPInterpreterAlt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreterAlt.m; sourceTree = "<group>"; };
+		6E88D34A0DF6026000684E9F /* MPInterpreterAltTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterAltTest.h; sourceTree = "<group>"; };
+		6E88D34B0DF6026000684E9F /* MPInterpreterAltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreterAltTest.m; sourceTree = "<group>"; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +129,7 @@
 		0867D691FE84028FC02AAC07 /* MacPorts Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				6E88D3280DF5FFA000684E9F /* AlternateClasses */,
 				6E88D1760DF46A2600684E9F /* Tests */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -219,8 +226,19 @@
 				489DD92E0C94674B00595506 /* MPInterpreterTest.m */,
 				6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */,
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
+				6E88D34A0DF6026000684E9F /* MPInterpreterAltTest.h */,
+				6E88D34B0DF6026000684E9F /* MPInterpreterAltTest.m */,
 			);
 			name = Tests;
+			sourceTree = "<group>";
+		};
+		6E88D3280DF5FFA000684E9F /* AlternateClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6E88D3250DF5FE3A00684E9F /* MPInterpreterAlt.h */,
+				6E88D3260DF5FE3A00684E9F /* MPInterpreterAlt.m */,
+			);
+			name = AlternateClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +379,8 @@
 				489DD92F0C94674B00595506 /* MPInterpreterTest.m in Sources */,
 				481D04A40CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */,
 				6E88D1CC0DF4B90B00684E9F /* MPMacPortsTest.m in Sources */,
+				6E88D3270DF5FE3A00684E9F /* MPInterpreterAlt.m in Sources */,
+				6E88D34C0DF6026000684E9F /* MPInterpreterAltTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

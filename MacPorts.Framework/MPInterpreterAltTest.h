@@ -33,16 +33,19 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "MPMacPorts.h"
 
-@interface MPMacPortsTest : SenTestCase {
-	MPMacPorts *testPort;
+#import <SenTestingKit/SenTestingKit.h>
+#import "MPInterpreterAlt.h"
+
+
+@interface MPInterpreterAltTest : SenTestCase {
+	MPInterpreterAlt *interpreter;
 }
 
+- (void)testSharedInterpreter;
+
 /*
--(void)testPortCreation;
--(void) testPrefix;
-*/
+- (void)testGetVariableArray;
+ */
 
 @end

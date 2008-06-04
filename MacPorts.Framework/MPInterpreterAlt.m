@@ -3,7 +3,7 @@
  *	MacPorts.Framework
  *
  *	Authors:
- *	George Armah <armahg@macports.org>
+ * 	George Armah <armahg@macports.org>
  *
  *	Copyright (c) 2008 George Armah <armahg@macports.org>
  *	All rights reserved.
@@ -33,16 +33,37 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "MPMacPorts.h"
 
-@interface MPMacPortsTest : SenTestCase {
-	MPMacPorts *testPort;
+
+#import "MPInterpreterAlt.h"
+
+
+@implementation MPInterpreterAlt
+
+static MPInterpreterAlt *sharedInterpreter = nil;
+
++ (MPInterpreter*)sharedInterpreter {
+	//@synchronized(self) {
+		if (sharedInterpreter == nil) {
+			[[self alloc] init]; // assignment not done here
+		}
+	//}
+	return sharedInterpreter;
 }
 
-/*
--(void)testPortCreation;
--(void) testPrefix;
-*/
++ (id)allocWithZone:(NSZone*)zone {
+	//@synchronized(self) {
+		if (sharedInterpreter == nil) {
+			/*We need the super-super of this class since it is subclassing
+			 *MPInterpreter and doing just super will call an allocWithZone method
+			 *that contains the thread code we are trying to avoid
+			 */
+			sharedInterpreter = [[super superclass] allocWithZone:zone];
+			return sharedInterpreter;	// assignment and return on first allocation
+		}
+	//}
+	return nil;	// subsequent allocation attempts return nil
+}
+
 
 @end

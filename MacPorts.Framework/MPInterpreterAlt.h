@@ -3,7 +3,7 @@
  *	MacPorts.Framework
  *
  *	Authors:
- *	George Armah <armahg@macports.org>
+ * 	George Armah <armahg@macports.org>
  *
  *	Copyright (c) 2008 George Armah <armahg@macports.org>
  *	All rights reserved.
@@ -33,16 +33,20 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "MPMacPorts.h"
 
-@interface MPMacPortsTest : SenTestCase {
-	MPMacPorts *testPort;
+/*Due to issues we are having with unit testing the main MPInterpreter
+ *class, I am creating this alternate class that doesn't take different
+ *threads into account. I will suggest that the coding for multithreading
+ *be done at a level above the framework rather than within the framework.
+ *If this class does give the same issues, that is.
+ */
+ 
+
+#import <Cocoa/Cocoa.h>
+#import "MPInterpreter.h"
+
+@interface MPInterpreterAlt : MPInterpreter {
+
 }
-
-/*
--(void)testPortCreation;
--(void) testPrefix;
-*/
 
 @end
