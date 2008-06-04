@@ -42,17 +42,18 @@
 
 static MPInterpreterAlt *sharedInterpreter = nil;
 
-+ (MPInterpreter*)sharedInterpreter {
-	//@synchronized(self) {
++ (MPInterpreterAlt*)sharedInterpreter {
+	@synchronized(self) {
 		if (sharedInterpreter == nil) {
 			[[self alloc] init]; // assignment not done here
 		}
-	//}
+	}
 	return sharedInterpreter;
 }
 
 + (id)allocWithZone:(NSZone*)zone {
-	//@synchronized(self) {
+	NSLog(@"I was called");
+	@synchronized(self) {
 		if (sharedInterpreter == nil) {
 			/*We need the super-super of this class since it is subclassing
 			 *MPInterpreter and doing just super will call an allocWithZone method
@@ -61,7 +62,7 @@ static MPInterpreterAlt *sharedInterpreter = nil;
 			sharedInterpreter = [[super superclass] allocWithZone:zone];
 			return sharedInterpreter;	// assignment and return on first allocation
 		}
-	//}
+	}
 	return nil;	// subsequent allocation attempts return nil
 }
 

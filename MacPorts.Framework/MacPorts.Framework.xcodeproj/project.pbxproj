@@ -74,7 +74,7 @@
 		48906AFB0C4230B700A3ED8A /* MPInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreter.h; sourceTree = "<group>"; };
 		48906AFC0C4230B700A3ED8A /* MPInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreter.m; sourceTree = "<group>"; };
 		489DD8F40C94365F00595506 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		489DD8F50C94365F00595506 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
+		489DD8F50C94365F00595506 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		489DD92D0C94674B00595506 /* MPInterpreterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterTest.h; sourceTree = "<group>"; };
 		489DD92E0C94674B00595506 /* MPInterpreterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreterTest.m; sourceTree = "<group>"; };
 		48A866A80CD364F700B521BC /* MPReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPReceipt.h; sourceTree = "<group>"; };
@@ -472,10 +472,9 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(NATIVE_ARCH)",
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
@@ -487,10 +486,8 @@
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(NATIVE_ARCH)",
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
@@ -502,10 +499,8 @@
 		489DD8F70C94366000595506 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(NATIVE_ARCH_32_BIT)",
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPorts.framework/MacPorts";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -538,6 +533,8 @@
 		489DD8F80C94366000595506 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPorts.framework/MacPorts";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
