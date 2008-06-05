@@ -1,0 +1,85 @@
+// !$*UTF8*$!
+{
+	069188890DF8644F006D8CC1 /* MacPortsFrameworkTester */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = MacPortsFrameworkTester;
+		sourceDirectories = (
+		);
+	};
+	0691888F0DF86456006D8CC1 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	069188900DF86456006D8CC1 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 069188890DF8644F006D8CC1 /* MacPortsFrameworkTester */;
+		activeTarget = 8D1107260486CEB800E47090 /* MacPortsFrameworkTester */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* MacPortsFrameworkTester */,
+		);
+		codeSenseManager = 069188900DF86456006D8CC1 /* Code sense */;
+		executables = (
+			069188890DF8644F006D8CC1 /* MacPortsFrameworkTester */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 234382415;
+			PBXWorkspaceStateSaveDate = 234382415;
+		};
+		sourceControlManager = 0691888F0DF86456006D8CC1 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107260486CEB800E47090 /* MacPortsFrameworkTester */ = {
+		activeExec = 0;
+		executables = (
+			069188890DF8644F006D8CC1 /* MacPortsFrameworkTester */,
+		);
+	};
+}
