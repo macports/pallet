@@ -35,6 +35,20 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	069188970DF86506006D8CC1 /* MPInterpreterTest.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 616}}";
+			sepNavSelRange = "{1649, 0}";
+			sepNavVisRange = "{1114, 636}";
+		};
+	};
+	069188980DF86506006D8CC1 /* MPInterpreterTest.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 588}}";
+			sepNavSelRange = "{1671, 0}";
+			sepNavVisRange = "{1114, 631}";
+		};
+	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 069188890DF8644F006D8CC1 /* MacPortsFrameworkTester */;
