@@ -34,7 +34,7 @@
 
 // package info
 static NSString *MPPackageName = @"macports";
-//static NSString *MPPackageVersion = @"1.0";
+static NSString *MPPackageVersion = @"1.0";
 static NSString *MPPackageInit = @"mportinit";
 
 // commands

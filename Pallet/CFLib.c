@@ -1,7 +1,7 @@
 /*
  * CFLib.c
  * CFLib.dylib
- * $Id: CFLib.c 19376 2006-09-02 03:19:06Z yeled@macports.org $
+ * $Id$
  *
  * Copyright (c) 2003 Kevin Van Vechten <kevin@opendarwin.org>
  * All rights reserved.

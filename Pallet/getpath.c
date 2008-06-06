@@ -1,5 +1,5 @@
 /*
- $Id: getpath.c,v 1.1 2002/09/15 04:45:20 sburrious Exp $
+ $Id$
 
 	File:		getpath.c
 

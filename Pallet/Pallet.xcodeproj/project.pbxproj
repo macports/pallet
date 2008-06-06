@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		480062BF0B597D9A005F27E4 /* PAStatusTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 480062BE0B597D9A005F27E4 /* PAStatusTransformer.m */; };
 		481B84120BA254A4000D1385 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4854CE0F0B420D8C00950EE4 /* Security.framework */; };
-		4820065B0CF916F6009EAF35 /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 482006590CF916F6009EAF35 /* Installed.tiff */; };
-		4820065C0CF916F7009EAF35 /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 4820065A0CF916F6009EAF35 /* Outdated.tiff */; };
 		4828C6310AD7B84D002AF0DD /* TaskWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828C6300AD7B84D002AF0DD /* TaskWrapper.m */; };
 		483A5E460B57A50900712840 /* MPPortsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A5E450B57A50900712840 /* MPPortsController.m */; };
 		4844B92B0AD91F5800A4A4DB /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4844B92A0AD91F5800A4A4DB /* UserDefaults.plist */; };
@@ -46,6 +44,8 @@
 		48F00D280BD773D500F2E7D8 /* IFVerticallyExpandingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F00D270BD773D500F2E7D8 /* IFVerticallyExpandingTextField.m */; };
 		48F8D5810C0994AE0058A4EF /* MPInterp.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CD13180BBE6C24002B0D0E /* MPInterp.m */; };
 		48F8D5820C0994AE0058A4EF /* MPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CD131A0BBE6C24002B0D0E /* MPObject.m */; };
+		6E88D3190DF5BC0600684E9F /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E88D3170DF5BC0500684E9F /* Installed.tiff */; };
+		6E88D31A0DF5BC0600684E9F /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E88D3180DF5BC0600684E9F /* Outdated.tiff */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -73,8 +73,6 @@
 		32CA4F630368D1EE00C91783 /* Port Authority_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Port Authority_Prefix.pch"; sourceTree = "<group>"; };
 		480062BD0B597D9A005F27E4 /* PAStatusTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAStatusTransformer.h; sourceTree = "<group>"; };
 		480062BE0B597D9A005F27E4 /* PAStatusTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAStatusTransformer.m; sourceTree = "<group>"; };
-		482006590CF916F6009EAF35 /* Installed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Installed.tiff; path = /Users/rhwood/Developer/Pallet/Pallet/Installed.tiff; sourceTree = "<absolute>"; };
-		4820065A0CF916F6009EAF35 /* Outdated.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Outdated.tiff; path = /Users/rhwood/Developer/Pallet/Pallet/Outdated.tiff; sourceTree = "<absolute>"; };
 		4828C62F0AD7B84D002AF0DD /* TaskWrapper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TaskWrapper.h; sourceTree = "<group>"; };
 		4828C6300AD7B84D002AF0DD /* TaskWrapper.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TaskWrapper.m; sourceTree = "<group>"; };
 		482C61C90BD225F400F7AC59 /* PalletHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PalletHelper; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +122,8 @@
 		48F00D180BD7738000F2E7D8 /* IFVerticallyExpandingTextField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IFVerticallyExpandingTextField.h; sourceTree = "<group>"; };
 		48F00D270BD773D500F2E7D8 /* IFVerticallyExpandingTextField.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IFVerticallyExpandingTextField.m; sourceTree = "<group>"; };
 		48F8D5700C098C870058A4EF /* PalletHelperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PalletHelperProtocol.h; path = Helper/PalletHelperProtocol.h; sourceTree = "<group>"; };
+		6E88D3170DF5BC0500684E9F /* Installed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Installed.tiff; sourceTree = "<group>"; };
+		6E88D3180DF5BC0600684E9F /* Outdated.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Outdated.tiff; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -249,6 +249,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6E88D3170DF5BC0500684E9F /* Installed.tiff */,
+				6E88D3180DF5BC0600684E9F /* Outdated.tiff */,
 				4875A7400B468DEB00FDDC21 /* ApplicationIconBusy.icns */,
 				48D4721E0AD7B10600352CE9 /* ApplicationIcon.icns */,
 				48D471FA0AD7A99500352CE9 /* Install.tiff */,
@@ -257,8 +259,6 @@
 				48D4718C0AD73ECD00352CE9 /* Upgrade.tiff */,
 				48D470C70AD7256600352CE9 /* Remove.tiff */,
 				48D470C80AD7256700352CE9 /* Halt.tiff */,
-				482006590CF916F6009EAF35 /* Installed.tiff */,
-				4820065A0CF916F6009EAF35 /* Outdated.tiff */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				48AB404D0CEDB033000BA2E3 /* Localizable.strings */,
@@ -354,6 +354,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = NO;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pallet" */;
 			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
@@ -389,8 +392,8 @@
 				4875A9540B4839C000FDDC21 /* active.gif in Resources */,
 				4875A9560B4839D700FDDC21 /* installed.gif in Resources */,
 				48AB404E0CEDB033000BA2E3 /* Localizable.strings in Resources */,
-				4820065B0CF916F6009EAF35 /* Installed.tiff in Resources */,
-				4820065C0CF916F7009EAF35 /* Outdated.tiff in Resources */,
+				6E88D3190DF5BC0600684E9F /* Installed.tiff in Resources */,
+				6E88D31A0DF5BC0600684E9F /* Outdated.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,7 +573,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Launcher_Prefix.pch;
 				INSTALL_PATH = "$(HOME)/bin";
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_i386 = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET_ppc = "$(inherited)";
 				OTHER_LDFLAGS = "";
@@ -640,6 +643,7 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -649,10 +653,15 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(NATIVE_ARCH)",
+					ppc,
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = YES;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				VERSIONING_SYSTEM = "apple-generic";
