@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
-		481D04A40CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
 		4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4825ECC40CE61468006B0385 /* MPRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F811BF0CE4638C009630DE /* MPRegistry.m */; };
 		487679550C98C2EB00577C59 /* MPIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 487679530C98C2EB00577C59 /* MPIndex.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,7 +31,6 @@
 		4876796A0C98C55E00577C59 /* MPPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 487679680C98C55E00577C59 /* MPPort.m */; };
 		48906AFD0C4230B700A3ED8A /* MPInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 48906AFB0C4230B700A3ED8A /* MPInterpreter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48906AFE0C4230B700A3ED8A /* MPInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48906AFC0C4230B700A3ED8A /* MPInterpreter.m */; };
-		489DD92F0C94674B00595506 /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		48A866AA0CD364F700B521BC /* MPReceipt.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A866A80CD364F700B521BC /* MPReceipt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48A866AB0CD364F700B521BC /* MPReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A866A90CD364F700B521BC /* MPReceipt.m */; };
 		48E9925C0C82C45800219DDF /* MacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E9925B0C82C45800219DDF /* MacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,9 +38,8 @@
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
-		6E88D1CC0DF4B90B00684E9F /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
-		6E88D3270DF5FE3A00684E9F /* MPInterpreterAlt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D3260DF5FE3A00684E9F /* MPInterpreterAlt.m */; };
-		6E88D34C0DF6026000684E9F /* MPInterpreterAltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D34B0DF6026000684E9F /* MPInterpreterAltTest.m */; };
+		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
+		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -88,10 +85,7 @@
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
-		6E88D3250DF5FE3A00684E9F /* MPInterpreterAlt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterAlt.h; sourceTree = "<group>"; };
-		6E88D3260DF5FE3A00684E9F /* MPInterpreterAlt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreterAlt.m; sourceTree = "<group>"; };
-		6E88D34A0DF6026000684E9F /* MPInterpreterAltTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterAltTest.h; sourceTree = "<group>"; };
-		6E88D34B0DF6026000684E9F /* MPInterpreterAltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreterAltTest.m; sourceTree = "<group>"; };
+		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +132,7 @@
 				4822AAD40D7EB39200C4D4D7 /* Documentation */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				6EA0F56E0DFEB55E00C15082 /* Tcl.framework */,
 			);
 			name = "MacPorts Foundation";
 			sourceTree = "<group>";
@@ -226,8 +222,6 @@
 				489DD92E0C94674B00595506 /* MPInterpreterTest.m */,
 				6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */,
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
-				6E88D34A0DF6026000684E9F /* MPInterpreterAltTest.h */,
-				6E88D34B0DF6026000684E9F /* MPInterpreterAltTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -235,8 +229,6 @@
 		6E88D3280DF5FFA000684E9F /* AlternateClasses */ = {
 			isa = PBXGroup;
 			children = (
-				6E88D3250DF5FE3A00684E9F /* MPInterpreterAlt.h */,
-				6E88D3260DF5FE3A00684E9F /* MPInterpreterAlt.m */,
 			);
 			name = AlternateClasses;
 			sourceTree = "<group>";
@@ -289,6 +281,7 @@
 				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
+				6E49F4F40E00DD520030C3AF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -356,6 +349,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#This script is to copy the build product to a subfolder \"build\"\n#of the project directory so that whoever checks out this plugin will have\n#access to the built MacPorts.framework\n#Do I really need it since build products go to your default / project / target\n#specific Build Products path?\n\nditto $CONFIGURATION_BUILD_DIR/MacPorts.framework build/MacPorts.framework\n";
+		};
 		DFE353640CFB8F0C003BACFC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,11 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				489DD92F0C94674B00595506 /* MPInterpreterTest.m in Sources */,
-				481D04A40CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */,
-				6E88D1CC0DF4B90B00684E9F /* MPMacPortsTest.m in Sources */,
-				6E88D3270DF5FE3A00684E9F /* MPInterpreterAlt.m in Sources */,
-				6E88D34C0DF6026000684E9F /* MPInterpreterAltTest.m in Sources */,
+				6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,10 +425,6 @@
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(NATIVE_ARCH)",
-					ppc,
-				);
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -441,6 +439,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				PRODUCT_NAME = MacPorts;
+				SYMROOT = "~/Builds";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
 			};
@@ -449,10 +448,6 @@
 		1DEB91AF08733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -472,11 +467,11 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				DEBUG_INFORMATION_FORMAT = stabs;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				ZERO_LINK = NO;
@@ -501,7 +496,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPorts.framework/MacPorts";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(value)",

@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -47,7 +47,19 @@
 			NSLog(@"Error in Tcl Init: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
-		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
+		//NSString * initFile = [[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"]
+		//					   pathForResource:@"init" 
+		//					   ofType:@"tcl"];
+		NSBundle * tbun = [NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"];
+		if(tbun) {
+			NSLog(@"File found with path %@", [[NSBundle bundleForClass:[MPInterpreter class]] bundlePath]);
+		}
+		else{
+			NSLog(@"File not found with path %@", [[NSBundle bundleForClass:[MPInterpreter class]] bundlePath]);
+		}
+		
+		if( Tcl_EvalFile(_interpreter, [[tbun pathForResource:@"init"
+													   ofType:@"tcl"] UTF8String]) != TCL_OK) {
 			NSLog(@"Error in Tcl_EvalFile: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}

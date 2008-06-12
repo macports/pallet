@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -39,9 +39,9 @@
 
 }
 
-/*
-- (void)testOcSharedInterpreter;
+
+- (void)testOCsharedInterpreter;
 - (void)testGetVariableArray;
-*/
+
 
 @end

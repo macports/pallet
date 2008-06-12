@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -38,9 +38,10 @@
 
 @implementation MPInterpreterTest
 
-/*
+
 - (void)testOCsharedInterpreter {
-	MPInterpreter *interpreter = [MPInterpreter ocSharedInterpreter];
+	NSLog(@"class = %@", NSClassFromString(@"MPInterpreter"));
+	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
 	STAssertNotNil(interpreter, @"Should not be nil");
 	
 }
@@ -48,10 +49,13 @@
 
 - (void)testGetVariableArray {
 	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
-	STAssertEquals([[interpreter getVariableAsArray:@"macports::sources"] count], 0, @"Empty array returned when should have at least 1 element.");
+	//unsigned int aSize = [[interpreter getVariableAsArray:@"macports::sources"] count];
+	//NSLog(@"Size is %d", aSize);
+	unsigned int aSize = 1;
+	STAssertEquals([[interpreter getVariableAsArray:@"macports::sources"] count], aSize, @"Empty array returned when should have at least %d element.", aSize);
 }
  
-*/
+
 
 
 @end
