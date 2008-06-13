@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -37,9 +37,14 @@
 
 
 @interface SharedTextView : NSObject {
-	IBOutlet NSTextView *textView;
+	IBOutlet NSScrollView *textView;
 }
 
 + (SharedTextView*)sharedTextView;
+- (IBAction)clearText:(id)sender;
+
+- (void)appendText:(NSString *)text;
+- (void)writeText:(NSString *) text;
+
 
 @end

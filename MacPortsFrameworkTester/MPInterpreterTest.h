@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -34,10 +34,14 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <MacPorts/MacPorts.h>
 
 
 @interface MPInterpreterTest : NSObject {
-
+	MPInterpreter * interp;
 }
+
+-(IBAction)testGetVariableArray:(id)sender;
+
 
 @end

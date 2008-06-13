@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -34,8 +34,34 @@
  */
 
 #import "MPInterpreterTest.h"
+#import "SharedTextView.h"
 
 
 @implementation MPInterpreterTest
+
+- (IBAction)testGetVariableArray:(id)sender {
+	interp = [MPInterpreter sharedInterpreter];
+	
+	NSString * testOutput = @"";
+	// Check to make sure interp is not nil
+	testOutput = [testOutput stringByAppendingString:@"Testing for Creation of MSInterpreter object: \n"];
+	
+	
+	// Question ... which is more efficient?
+	// Creating a single SharedTextView object and using it ... or
+	// calling the class method [SharedTextView sharedTextView] over and
+	// over again?
+	if(interp){
+		testOutput = [testOutput stringByAppendingString:@"Interpreter object is not nil \n"];
+		[[SharedTextView sharedTextView] writeText:testOutput];
+	}
+	else {
+		testOutput = [testOutput stringByAppendingString:@"Interpreter object \
+					  is not nil\n"];
+		[[SharedTextView sharedTextView] writeText:testOutput];
+	}
+	
+}
+
 
 @end

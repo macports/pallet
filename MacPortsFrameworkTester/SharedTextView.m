@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -78,6 +78,18 @@ static SharedTextView *_sharedTextView = nil;
 
 - (id) autorelease {
 	return self;
+}
+
+- (IBAction)clearText:(id)sender {
+	[self writeText:@""];
+}
+
+- (void)writeText:(NSString *)text {
+	[[textView documentView] setString:text];
+}
+
+- (void)appendText:(NSString *)text {
+	[[textView documentView] insertText:text];
 }
 
 
