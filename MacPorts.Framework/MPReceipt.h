@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -37,10 +37,26 @@
 #import "MPInterpreter.h"
 #import "MPRegistry.h"
 
+
+/*!
+ @class MPReceipt
+ @abstract Object representation of an port's receipt
+ @discussion A receipt consists mainly of the port's name, version, revision number, variants, whether or not
+ it is an active port, and some other information on the port. All receipts on the user's MacPorts system are
+ kept in the port registry located in ${prefix}/var/macports/receipts/.
+ */
 @interface MPReceipt : MPMutableDictionary {
 
 }
 
+
+/*!
+ @brief This method initializes the MPReceipt object with a name, version, revision, variants, active state and long description.
+ @param array An NSArray object containing the values for initializing this MPReceipt.
+ @discussion DOUBLE CHECK THIS WITH RANDALL
+ The MPReceipt object contains an internal dictionary whose keys are the following strings: name, version, revision, variants,
+ active, whatIsThis. The values for these keys are provided by the initializing array parameter.
+ */
 - (id)initWithContentsOfArray:(NSArray *)array;
 
 + (Class)classForKeyedUnarchiver;

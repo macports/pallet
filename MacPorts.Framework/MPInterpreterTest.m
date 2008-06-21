@@ -34,28 +34,40 @@
  */
 
 #import "MPInterpreterTest.h"
-#import "MPInterpreter.h"
+
 
 @implementation MPInterpreterTest
 
+- (void)setUp {
+	interp = [MPInterpreter sharedInterpreter];
+}
 
-- (void)testOCsharedInterpreter {
-	NSLog(@"class = %@", NSClassFromString(@"MPInterpreter"));
-	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
-	STAssertNotNil(interpreter, @"Should not be nil");
-	
+- (void)tearDown {
+	[interp release];
+}
+
+- (void)testInitialization {
+	STAssertNotNil(interp, @"Should not be nil");	
 }
 
 
-- (void)testGetVariableArray {
-	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
+- (void)testGetVariableAsArray {
 	//unsigned int aSize = [[interpreter getVariableAsArray:@"macports::sources"] count];
-	//NSLog(@"Size is %d", aSize);
 	unsigned int aSize = 1;
-	STAssertEquals([[interpreter getVariableAsArray:@"macports::sources"] count], aSize, @"Empty array returned when should have at least %d element.", aSize);
+	STAssertEquals([[interp getVariableAsArray:@"macports::sources"] count], aSize, @"Empty array returned when should have at least %d element.", aSize);
 }
  
 
+/*
+ Having trouble coming up with test cases for the methods below. Speak to Randall
+ about that.
+ */
+- (void)testMutableDictionaryFromTclListAsString {
+	
+}
+- (void)testEvaluateStringAsString; {
+	
+}
 
 
 @end

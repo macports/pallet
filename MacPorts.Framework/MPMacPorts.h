@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -39,6 +39,13 @@
 
 #define MPPortsAll	@".+"
 
+/*!
+ @class MPMacPorts
+ @abstract Object representation of the MacPorts system
+ @discussion This class represents a single instance of the MacPorts installation system on a user's machine.
+ There is usually only one instance of this per machine, even though there might be more than one in some
+ cases.
+ */
 @interface MPMacPorts : NSObject {
 
 	MPInterpreter *interpreter;
@@ -49,22 +56,100 @@
 	
 }
 
+/*!
+ @brief Returns an MPMacPorts object that represents the MacPorts system on user's machine.
+ */
 + (MPMacPorts *)sharedInstance;
 
+/*!
+ @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
+ */
 - (void)sync;
 
+
+
+/*!
+ @brief Returns an NSDictionary of ports  
+ @param query An NSString containing name or partial name of port being searched. 
+ @discussion The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ (Double check this)
+ */
 - (NSDictionary *)search:(NSString *)query;
+/*!
+ @brief Returns an NSDictionary of ports  
+ @param query An NSString containing name (full or parital) of port being searched.
+ @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
+ @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ (Double check this)
+ */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity;
+/*!
+ @brief Returns an NSDictionary of ports  
+ @param query An NSString containing name (full or parital) of port being searched.
+ @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
+ @param style TALK TO RANDALL ABOUT WHAT THIS IS
+ @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ (Double check this)
+ */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style;
+/*!
+ @brief Returns an NSDictionary of ports  
+ @param query An NSString containing name (full or parital) of port being searched.
+ @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
+ @param style TALK TO RANDALL ABOUT WHAT THIS IS
+ @param fieldName TALK TO RANDALL ABOUT WHAT THIS IS
+ @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ (Double check this)
+ */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName;
 
-- (NSArray *)depends:(MPPort *)port;
-- (void)exec:(MPPort *)port withTarget:(NSString *)target;
-	
-- (NSString *)prefix;
-- (NSArray *)sources:(BOOL)refresh;
-- (NSArray *)sources;
-- (NSURL *)pathToPortIndex:(NSString *)source;
-- (NSString *)version;
 
+/*!
+ @brief Returns an NSArray of MPPorts that a port depends on
+ @param port The MPPort whose dependecies is being sought
+ */
+- (NSArray *)depends:(MPPort *)port;
+
+/*!
+ @brief Executes specific target of given MPPort
+ @param port The MPPort whose target will be executed
+ @param target The NSString representing a given target
+ @Discussion The various options for target are: configure, build,
+ test, destroot, install, archive, dmg, mdmg, pkg, mpkg, rpm, dpkg, srpm.
+ (Should include more notes and what each of these do). Users of -exec
+ are responsible for ensuring that execution happens in an authorized environment for 
+ various targets.
+ */
+- (void)exec:(MPPort *)port withTarget:(NSString *)target;
+
+/*!
+ @brief Returns the NSString path to the directory where ports are installed.
+ */
+- (NSString *)prefix;
+
+/*!
+ @brief Returns an NSArray of NSStrings for the paths to MacPorts sources or port trees
+ @param refresh A boolean indicating whether or not to refresh the NSArray of port trees
+ @Discussion A refresh value of YES will refresh the ports tree whilst a value of NO will not refresh
+ the tree.
+ */
+- (NSArray *)sources:(BOOL)refresh;
+/*!
+ @brief Returns an NSArray of NSStrings of paths to various port trees enabled on User's system
+ @Discussion These file paths are listed in opt/local/etc/macports/sources.conf. Each port tree
+ contains the different files for each port.
+ */
+- (NSArray *)sources;
+
+/*!
+ @brief Returns the NSURL of the portIndex file on this MacPorts system for a given ports tree
+ @param source An NSString containing the file path to the ports tree
+ @Discussion The PortIndex contains a list of descriptions ports and is where they are searched for
+ */
+- (NSURL *)pathToPortIndex:(NSString *)source;
+
+/*!
+ @brief Returns an NSString indicating the version of the currently running MacPorts system
+ */
+- (NSString *)version;
 @end

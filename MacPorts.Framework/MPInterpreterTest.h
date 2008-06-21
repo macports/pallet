@@ -34,14 +34,17 @@
  */
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "MPInterpreter.h"
 
 @interface MPInterpreterTest : SenTestCase {
-
+	MPInterpreter * interp;
 }
 
 
-- (void)testOCsharedInterpreter;
-- (void)testGetVariableArray;
+- (void)testInitialization;
+- (void)testGetVariableAsArray;
+- (void)testMutableDictionaryFromTclListAsString;
+- (void)testEvaluateStringAsString;
 
 
 @end

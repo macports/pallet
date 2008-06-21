@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -40,9 +40,5 @@
 	MPMacPorts *testPort;
 }
 
-/*
--(void)testPortCreation;
--(void) testPrefix;
-*/
 
 @end

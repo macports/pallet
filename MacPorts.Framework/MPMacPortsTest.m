@@ -18,7 +18,7 @@
 	[testPort release];
 }
 
-/*
+
 - (void) testPortCreation {
 	STAssertNotNil(testPort, @"Should not be nil");
 }
@@ -26,9 +26,9 @@
 
 - (void) testPrefix {
 	NSString *prefix = [testPort prefix];
-	STAssertNotNil(prefix, @" %@ should not be nil", prefix);
+	STAssertNil(prefix, @" %@ should not be nil", prefix);
 	[prefix release];
 }
-*/
+
  
 @end

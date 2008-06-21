@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -35,7 +35,7 @@
 
 /*!
  @class MPPort
- @abstract	A represtation of a port.
+ @abstract	A representation of a port.
  */
 
 #import <Cocoa/Cocoa.h>
@@ -59,20 +59,67 @@
 
 }
 
+/*!
+ @brief Initializes this port with a MPPortStateUnkown state
+ @discussion Calls [self initWithCapacity:15]
+ */
 - (id)init;
+/*!
+ @brief Initializes this port with a MPPortStateUnkown state
+ @param numItems The number of items to be stored with this port
+ */
 - (id)initWithCapacity:(unsigned)numItems;
+/*!
+ @brief Initializes this port with an NSString derived from a Tcl list
+ @param string The NSString object used to initialize this MPPort object
+ @discussion The Tcl list is usually obtained from doing a search query for some
+ particular port.
+ IS THIS METHOD JUST FOR INTERNAL USE? IT LOOKS LIKE IT ... ASK RANDALL ABOUT THAT
+ */
 - (id)initWithTclListAsString:(NSString *)string;
 
+/*!
+ @brief Returns the name of this port
+ */
 - (NSString *)name;
+/*!
+ @brief Returns the version of this port
+ */
 - (NSString *)version;
+
+/*!
+ @brief Returns an array of the dependencies of this port
+ @discussion This includes, libraries, build dependencies and run time dependencies
+ ASK RANDALL FOR MORE DETAILS
+ */
 - (NSArray *)depends;
+/*!
+ @brief Executes the specified target for this MPPort
+ @param target NSString target to be executed for this MPPort
+ @discussion See *add link here to MPMacPorts documentation*
+ */
 - (void)exec:(NSString *)target;
 
+/*!
+ @brief Sets the attributes of this MPPort using the given string
+ @param string An NSString object derived from a Tcl list containing this port's attributes
+ @discussion AGAIN I NEED TO EXPERIMENT WITH SOME MORE EXAMPLES
+ */
 - (void) setPortWithTclListAsString:(NSString *)string;
-- (void) addDependencyAsPortName:(NSString *)dependency;
-- (void)setState:(int)state;
-- (void)setStateFromReceipts:(NSArray *)receipts;
 
+/*!
+ @brief ASK RANDALL ABOUT THIS METHOD
+ */
+- (void) addDependencyAsPortName:(NSString *)dependency;
+
+/*!
+ @brief Sets the state of this MPPort object
+ @discussion Possible values are MPPortStateUnknown, MPPortStateLearnState, MPPortStateActive, MPPortStateInstalled,
+ MPPortStateOutdated, MPPortStateNotInstalled.
+*/
+- (void)setState:(int)state;
+
+- (void)setStateFromReceipts:(NSArray *)receipts;
 - (void)setDictionary:(NSDictionary *)otherDictionary;
 
 + (Class)classForKeyedUnarchiver;

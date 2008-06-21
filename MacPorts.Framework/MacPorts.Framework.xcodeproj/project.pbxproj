@@ -41,6 +41,7 @@
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EA293580E05C8FC00902D12 /* notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA293570E05C8FC00902D12 /* notifications.m */; };
+		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -385,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */,
 				6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -97,8 +97,8 @@
 	return [self search:query caseSensitive:YES];
 }
 
-- (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity {
-	return [self search:query caseSensitive:sensitivity matchStyle:@"regex"];
+- (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)isCasesensitive {
+	return [self search:query caseSensitive:isCasesensitive matchStyle:@"regex"];
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style {

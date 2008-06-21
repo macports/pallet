@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -97,7 +97,7 @@
 
 /*!
 @brief Adds the port to the index
- @param port The port
+@param port The port
 @discussion The default state for the port is "not installed"
  */
 - (void)setPort:(MPPort *)port;

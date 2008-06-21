@@ -47,19 +47,7 @@
 			NSLog(@"Error in Tcl Init: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
-		//NSString * initFile = [[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"]
-		//					   pathForResource:@"init" 
-		//					   ofType:@"tcl"];
-		NSBundle * tbun = [NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"];
-		if(tbun) {
-			NSLog(@"File found with path %@", [[NSBundle bundleForClass:[MPInterpreter class]] bundlePath]);
-		}
-		else{
-			NSLog(@"File not found with path %@", [[NSBundle bundleForClass:[MPInterpreter class]] bundlePath]);
-		}
-		
-		if( Tcl_EvalFile(_interpreter, [[tbun pathForResource:@"init"
-													   ofType:@"tcl"] UTF8String]) != TCL_OK) {
+		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
 			NSLog(@"Error in Tcl_EvalFile: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
@@ -75,17 +63,6 @@
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
 }
-
-+ (MPInterpreter*)ocSharedInterpreter {	
-	if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
-		[[self alloc] init]; // assignment not done here
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
-}
-
-
-
-
 
 + (id)allocWithZone:(NSZone*)zone {
 	@synchronized(self) {
@@ -152,7 +129,7 @@
 }
 
 - (NSDictionary *)dictionaryFromTclListAsString:(NSString *)list {
-	return [NSDictionary dictionaryWithDictionary:[self mutableDictionaryFromTclListAsString:list]];
+	return [NSDictionary dictionaryWithDictionary:[self  :list]];
 }
 
 - (NSMutableDictionary *)mutableDictionaryFromTclListAsString:(NSString *)list {

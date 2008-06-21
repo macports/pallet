@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -33,24 +33,36 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*!
+ @header
+ The MPInterpreter class allows access to a shared per-thread Tcl interpreter for
+ execution of MacPorts commands from upper levels in the API.
+ */
+
 #import <Cocoa/Cocoa.h>
 #include <tcl.h>
 
 #define	MPPackage			@"macports"
 #define MPPackageVersion	@"1.0"
 
+/*
+ @class MPInterpreter
+ @abstract Tcl interpreter object
+ @discussion Contains a shared per-thread instance of a Tcl interpreter. The MPInterpreter class
+ is where the Objective-C API meets the Tcl command line. It is a per-thread interpreter to allow
+ for users of the API to multi-thread their programs without relative ease.
+ */
 @interface MPInterpreter : NSObject {
 
 	Tcl_Interp* _interpreter;
 
 }
 
+/*
+ @brief Return singleton shared MPInterpreter instance
+ */
 + (MPInterpreter *)sharedInterpreter;
 
-/*A version of sharedInterpreter that doesn't safeguard against
- *multi-threading. Use for Unit Testing Purposes only
- */
-+ (MPInterpreter *) ocSharedInterpreter;
 
 #pragma Port Operations
 
@@ -58,14 +70,47 @@
 
 #pragma Utilities
 
+/*
+ @brief Returns the NSstring result of evaluating a Tcl expression
+ @param  statement An NSArray containing the Tcl expression
+ */
 - (NSString *)evaluateArrayAsString:(NSArray *)statement;
+/*
+ @brief Returns the NSString result of evaluating a Tcl expression
+ @param  statement An NSString containing the Tcl expression
+ */
 - (NSString *)evaluateStringAsString:(NSString *)statement;
 
+
+/*
+ @brief Returns an NSArray whose elements are the the elements of a Tcl list in the form of an NSString
+ @param list A Tcl list in the form of an NSString
+ */
 - (NSArray *)arrayFromTclListAsString:(NSString *)list;
+/*
+ @brief Returns an NSDictionary whose elements are the the elements of a Tcl list in the form of an NSString
+ @discussion The returned NSDictionary is of the form {k1, v1, k2, v2, ...} with ki being the keys and vi
+ the values in the dictionary. These keys and values are obtained from an NSString Tcl list of the
+ form {k1 v1 k2 v2 ...}
+ @param list A Tcl list in the form of an NSString
+ */
 - (NSDictionary *)dictionaryFromTclListAsString:(NSString *)list;
+/*
+ @brief Same as dictionaryFromTclListAsString method. Returns an NSMutableDictionary
+ rather than NSDictionary.
+ */
 - (NSMutableDictionary *)mutableDictionaryFromTclListAsString:(NSString *)list;
 
+
+/*
+ @brief Returns an NSArray whose elements are the contents of a Tcl variable
+ @param variable An NSString representation of a Tcl variable
+ */
 - (NSArray *)getVariableAsArray:(NSString *)variable;
+/*
+ @brief Returns an NSString representation of a Tcl variable
+ @param variable An NSString representtion of a Tcl variable
+ */
 - (NSString *)getVariableAsString:(NSString *)variable;
 
 

@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -56,27 +56,31 @@
 
 + (MPRegistry *)sharedRegistry;
 
-/*
+/*!
  @brief Calls [self installed:@""]
  */
 - (NSDictionary *)installed;
+
 /*
  @brief Calls [self installed:name version:@""]
  @param name Text to match the port name
  */
 - (NSDictionary *)installed:(NSString *)name;
-/*!
+
+/*
  @brief Returns an NSDictionary of MPReciepts keyed by port name
  @param name Text to match the port name
  @param version Text to match the port version
  */
 - (NSDictionary *)installed:(NSString *)name withVersion:(NSString *)version;
+
 /*!
  @brief Returns an array of installed port names
  @param name Text to match the port name
  @param version Text to march the port version
  */
 - (NSArray *)installedAsArray:(NSString *)name withVersion:(NSString *)version;
+
 /*!
  @brief Returns an array of the files in the (installed and active) port
  */
