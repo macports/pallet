@@ -33,16 +33,15 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*!
- @class MPPort
- @abstract	A representation of a port.
- */
 
 #import <Cocoa/Cocoa.h>
 #import "MPInterpreter.h"
 #import "MPMutableDictionary.h"
 #import "MPReceipt.h"
 #import "MPRegistry.h"
+
+
+
 
 #define	MPPortStateUnknown		0
 #define MPPortStateLearnState	1
@@ -54,9 +53,11 @@
 
 #define MPPortWillExecuteTarget	@"org.macports.framework.port.willExecuteTarget"
 #define MPPortDidExecuteTarget	@"org.macports.framework.port.didExecuteTarget"
-
+/*!
+ @class MPPort
+ @abstract	A representation of a port.
+ */
 @interface MPPort : MPMutableDictionary {
-
 }
 
 /*!

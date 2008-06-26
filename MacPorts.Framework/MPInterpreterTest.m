@@ -65,7 +65,7 @@
 - (void)testMutableDictionaryFromTclListAsString {
 	
 }
-- (void)testEvaluateStringAsString; {
+- (void)testEvaluateStringAsString {
 	
 }
 

@@ -33,11 +33,14 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 #import <Cocoa/Cocoa.h>
 #import "MPInterpreter.h"
 #import "MPPort.h"
 
+
 #define MPPortsAll	@".+"
+
 
 /*!
  @class MPMacPorts

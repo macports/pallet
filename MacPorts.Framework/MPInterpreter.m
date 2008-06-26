@@ -129,7 +129,7 @@
 }
 
 - (NSDictionary *)dictionaryFromTclListAsString:(NSString *)list {
-	return [NSDictionary dictionaryWithDictionary:[self  :list]];
+	return [NSDictionary dictionaryWithDictionary:[self  mutableDictionaryFromTclListAsString:list]];
 }
 
 - (NSMutableDictionary *)mutableDictionaryFromTclListAsString:(NSString *)list {
