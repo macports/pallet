@@ -1,11 +1,11 @@
 /*
- *	$Id$
+ *	$Id:$
  *	MacPorts.Framework
  *
  *	Authors:
- * 	Randall H. Wood <rhwood@macports.org>
+ *	George Armah <armahg@macports.org>
  *
- *	Copyright (c) 2007 Randall H. Wood <rhwood@macports.org>
+ *	Copyright (c) 2008 George Armah <armahg@macports.org>
  *	All rights reserved.
  *
  *	Redistribution and use in source and binary forms, with or without
@@ -26,48 +26,29 @@
  *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
  *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-						   *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-						   *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "MPInterpreterTest.h"
+#import <Cocoa/Cocoa.h>
 
+#define GLOBAL_MESSAGE @"Received global notification"
+#define LOCAL_MESSAGE @"Received local notification"
 
-@implementation MPInterpreterTest
+/*This class's main purpose is to test the implementation of
+ NSNotifications from within the MacPorts Tcl API
+ */
 
-- (void)setUp {
-	interp = [MPInterpreter sharedInterpreter];
+@interface MPNotificationsListener : NSObject {
+
 }
 
-- (void)tearDown {
-	[interp release];
-}
-
-- (void)testInitialization {
-	STAssertNotNil(interp, @"Should not be nil");	
-}
-
-
-- (void)testGetVariableAsArray {
-	//unsigned int aSize = [[interpreter getVariableAsArray:@"macports::sources"] count];
-	unsigned int aSize = 1;
-	STAssertEquals([[interp getVariableAsArray:@"macports::sources"] count], aSize, @"Empty array returned when should have at least %d element.", aSize);
-}
- 
-
-/*
- Having trouble coming up with test cases for the methods below. Speak to Randall
- about that.
- *
-- (void)testMutableDictionaryFromTclListAsString {
-	
-}
-- (void)testEvaluateStringAsString {
-	
-}
-*/
+-(void)registerForGlobalNotification;
+-(void)registerForLocalNotification;
+-(void)respondToGlobalNotification:(NSNotification*) notification;
+-(void)respondToLocalNotification:(NSNotification *) notification;
 
 @end

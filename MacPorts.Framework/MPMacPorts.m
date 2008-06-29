@@ -137,6 +137,47 @@
 - (void)exec:(MPPort *)port withTarget:(NSString *)target {
 	return [port exec:target];
 }
+-(void)configure:(MPPort *)port {
+	[port configure];
+}
+-(void)build:(MPPort *)port {
+	[port build];
+}
+-(void)test:(MPPort *)port {
+	[port test];
+}
+-(void)destroot:(MPPort *)port {
+	[port destroot];
+}
+-(void)install:(MPPort *)port {
+	[port install];
+}
+-(void)archive:(MPPort *)port {
+	[port archive];
+}
+-(void)createDmg:(MPPort *)port {
+	[port createDmg];
+}
+-(void)createMdmg:(MPPort *)port {
+	[port createMdmg];
+}
+-(void)createPkg:(MPPort *)port {
+	[port createPkg];
+}
+-(void)createMpkg:(MPPort *)port {
+	[port createMpkg];
+}
+-(void)createRpm:(MPPort *)port {
+	[port createRpm];
+}
+-(void)createDpkg:(MPPort *)port {
+	[port createDpkg];
+}
+-(void)createSrpm:(MPPort *)port {
+	[port createSrpm];
+}
+
+
 
 #pragma settings
 

@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -154,6 +154,47 @@
 		@"mportclose portHandle",
 		nil]];
 }
+
+-(void)configure {
+	[self exec:@"configure"];
+}
+-(void)build {
+	[self exec:@"build"];
+}
+-(void)test {
+	[self exec:@"test"];	
+}
+-(void)destroot {
+	[self exec:@"destroot"];
+}
+-(void)install {
+	[self exec:@"install"];
+}
+-(void)archive {
+	[self exec:@"archive"];
+}
+-(void)createDmg {
+	[self exec:@"dmg"];
+}
+-(void)createMdmg {
+	[self exec:@"mdmg"];
+}
+-(void)createPkg {
+	[self exec:@"pkg"];
+}
+-(void)createMpkg {
+	[self exec:@"mpkg"];
+}
+-(void)createRpm {
+	[self exec:@"rpm"];
+}
+-(void)createDpkg {
+	[self exec:@"dpkg"];
+}
+-(void)createSrpm {
+	[self exec:@"srpm"];
+}
+
 
 #pragma MPMutableDictionary Protocal
 

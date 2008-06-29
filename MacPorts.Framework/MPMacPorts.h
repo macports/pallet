@@ -33,6 +33,11 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*!
+ @header 
+ MPMacPorts represents an installation of the MacPorts on a user's system. A user can have 
+ multiple MacPorts installations in different locations.
+ */
 
 #import <Cocoa/Cocoa.h>
 #import "MPInterpreter.h"
@@ -124,6 +129,29 @@
  various targets.
  */
 - (void)exec:(MPPort *)port withTarget:(NSString *)target;
+
+/*Convenience methods based on the exec: withTarget: method
+ I DON'T KNOW IF SOME OF OF THESE METHODS REQUIRE EXTRA ARGUMENTS
+ CHECK THAT WITH RANDALL
+ */
+-(void)configure:(MPPort *)port;
+-(void)build:(MPPort *)port;
+-(void)test:(MPPort *)port;
+-(void)destroot:(MPPort *)port;
+-(void)install:(MPPort *)port;
+-(void)archive:(MPPort *)port;
+-(void)createDmg:(MPPort *)port;
+-(void)createMdmg:(MPPort *)port;
+-(void)createPkg:(MPPort *)port;
+-(void)createMpkg:(MPPort *)port;
+-(void)createRpm:(MPPort *)port;
+-(void)createDpkg:(MPPort *)port;
+-(void)createSrpm:(MPPort *)port;
+
+
+
+
+
 
 /*!
  @brief Returns the NSString path to the directory where ports are installed.

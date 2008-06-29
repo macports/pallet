@@ -1,5 +1,5 @@
 /*
- *	$Id:$ 
+ *	$Id$ 
  *	Authors:
  * 	Randall H. Wood <rhwood@macports.org>
  *

@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -39,3 +39,6 @@
 #import <MacPorts/MPPort.h>;
 #import <MacPorts/MPReceipt.h>;
 #import <MacPorts/MPRegistry.h>;
+
+//Including this file for testing the Notifications listener
+#import <MacPorts/MPNotificationsListener.h>;

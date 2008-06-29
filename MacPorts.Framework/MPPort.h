@@ -33,6 +33,10 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*!
+ @header
+ The MPPort class is an object representation of a port
+ */
 
 #import <Cocoa/Cocoa.h>
 #import "MPInterpreter.h"
@@ -75,6 +79,7 @@
  @param string The NSString object used to initialize this MPPort object
  @discussion The Tcl list is usually obtained from doing a search query for some
  particular port.
+ 
  IS THIS METHOD JUST FOR INTERNAL USE? IT LOOKS LIKE IT ... ASK RANDALL ABOUT THAT
  */
 - (id)initWithTclListAsString:(NSString *)string;
@@ -89,9 +94,14 @@
 - (NSString *)version;
 
 /*!
- @brief Returns an array of the dependencies of this port
- @discussion This includes, libraries, build dependencies and run time dependencies
- ASK RANDALL FOR MORE DETAILS
+ @brief Returns an array of NSString port names of dependencies of this port
+ @discussion The MPPort object has internal dictionary lists of MPPort names for
+ the following dependency types: depend_libs, depend_run and depend_build. The
+ NSArray returned contains all of these dependencies in a single Array.
+ 
+ ISN'T INFORMATION LOST BY JUST CREATING A SINGLE ARAY WITH ALL OF THESE DEPENDENCIES?
+ PERHAPS A DIFFERENT DATA STRUCTURE CAN BE USED THAT LETS US REMEMBER WHAT TYPE OF
+ DEPENDENCY EACH DEPENDENCY IS?
  */
 - (NSArray *)depends;
 /*!
@@ -101,15 +111,77 @@
  */
 - (void)exec:(NSString *)target;
 
+/*Convenience methods based on the exec: withTarget: method
+ I DON'T KNOW IF SOME OF OF THESE METHODS REQUIRE EXTRA ARGUMENTS
+ CHECK THAT WITH RANDALL
+ */
+/*!
+ @brief 
+ */
+-(void)configure;
+/*!
+ @brief 
+ */
+-(void)build;
+/*!
+ @brief 
+ */
+-(void)test;
+/*!
+ @brief 
+ */
+-(void)destroot;
+/*!
+ @brief 
+ */
+-(void)install;
+/*!
+ @brief 
+ */
+-(void)archive;
+/*!
+ @brief 
+ */
+-(void)createDmg;
+/*!
+ @brief 
+ */
+-(void)createMdmg;
+/*!
+ @brief 
+ */
+-(void)createPkg;
+/*!
+ @brief 
+ */
+-(void)createMpkg;
+/*!
+ @brief 
+ */
+-(void)createRpm;
+/*!
+ @brief 
+ */
+-(void)createDpkg;
+/*!
+ @brief 
+ */
+-(void)createSrpm;
+
 /*!
  @brief Sets the attributes of this MPPort using the given string
  @param string An NSString object derived from a Tcl list containing this port's attributes
- @discussion AGAIN I NEED TO EXPERIMENT WITH SOME MORE EXAMPLES
+ @discussion The Tcl list is obtained from the PortIndex which contains a list of serialized
+ Tcl key-value lists, one list per line. This list is then broken up into a dictionary of attributes
+ for the MPPort.
  */
 - (void) setPortWithTclListAsString:(NSString *)string;
 
 /*!
- @brief ASK RANDALL ABOUT THIS METHOD
+ @brief Adds the name of an MPPort to the list of this MPPort's dependencies
+ @param dependency The NSString name of the MPPort to be added
+ @discussion This MPPort object contains an internal list of port names for MPPorts which
+ it depends on. This list is returned by the depends method and is populated by this method.
  */
 - (void) addDependencyAsPortName:(NSString *)dependency;
 
@@ -119,10 +191,19 @@
  MPPortStateOutdated, MPPortStateNotInstalled.
 */
 - (void)setState:(int)state;
+/*!
+ @brief Sets the state of this MPPort object from its receipts
+ @param receipts An NSArray of receipts for this port
+ @discussion 
+ 
+ AGAIN NEED TO ASK RANDALL ABOUT THIS METHOD. I THINK A PORT CAN HAVE MORE THAN ONE RECEIPT
+ THAT REPRESENT ITS VARIOUS VERSIONS / VARIANTS THAT HAVE BEEN INSTALLED SINCE EACH
+ INSTALLATION HAS ITS OWN RECEIPT.
+ */
+ - (void)setStateFromReceipts:(NSArray *)receipts;
 
-- (void)setStateFromReceipts:(NSArray *)receipts;
+
 - (void)setDictionary:(NSDictionary *)otherDictionary;
-
 + (Class)classForKeyedUnarchiver;
 - (Class)classForKeyedArchiver;
 

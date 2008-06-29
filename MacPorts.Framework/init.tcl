@@ -1,13 +1,8 @@
-#catch {source \
-#	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
-
-#Trying my own MacPorts build rather than default one on the system
 catch {source \
-	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
+	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 
 package require macports
-package require notifications
 
 # ui_options accessor
 proc ui_isset {val} {
@@ -72,64 +67,6 @@ proc ui_channels {priority} {
 }
 
 
-#Modifying UI initialization to enable notifications
-proc ui_init {priority prefix channels message} {
-    # Get the list of channels.
-    try {
-        set channels [ui_channels $priority]
-    } catch * {
-        set channels [ui_channels_default $priority]
-    }
-
-    # Simplify ui_$priority.
-    set nbchans [llength $channels]
-    if {$nbchans == 0} {
-        proc ::ui_$priority {str} {
-		notifications send global testMacPortstNotification "$prefix\$str"
-		}
-    } else {
-        try {
-            set prefix [ui_prefix $priority]
-        } catch * {
-            set prefix [ui_prefix_default $priority]
-        }
-            
-		if {$nbchans == 1} {
-                set chan [lindex $channels 0]
-				
-				#Redefine ui_$priority here to also throw notifications of some sort
-				proc ::ui_$priority {str} {
-					#[subst { puts $chan "$prefix\$str" }]
-					subst { puts $chan "$prefix\$str" }
-
-					#Send notifications using NSDistributedNotificationCenter for now
-					#We need a way to name notifications based on given input, using
-					#testMacPortsNotification for now
-					notifications send global testMacPortstNotification "$prefix\$str"
-				}
-				
-				
-            } else {
-			
-			
-                proc ::ui_$priority {str} {
-					subst {
-						foreach chan \$channels {
-							puts $chan "$prefix\$str"
-						}
-					}
-					#Should we discriminate based on channel?
-					notifications send global testMacPortsNotification "$prefix\$str"
-				}
-            }
-			
-        # Call ui_$priority
-        ::ui_$priority $message
-    }
-}
-
-
-
 # Initialize dport
 # This must be done following parse of global options, as some options are
 # evaluated by dportinit.
@@ -138,3 +75,5 @@ if {[catch {mportinit ui_options global_options global_variations} result]} {
 	puts "$errorInfo"
 	fatal "Failed to initialize ports system, $result"
 }
+
+

@@ -1,21 +1,51 @@
-//
-//  MPMacPortsTest.m
-//  MacPorts.Framework
-//
-//  Created by George  Armah on 6/2/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
-//
+/*
+ *	$Id:$
+ *	MacPorts.Framework
+ *
+ *	Authors:
+ *	George Armah <armahg@macports.org>
+ *
+ *	Copyright (c) 2008 George Armah <armahg@macports.org>
+ *	All rights reserved.
+ *
+ *	Redistribution and use in source and binary forms, with or without
+ *	modification, are permitted provided that the following conditions
+ *	are met:
+ *	1.	Redistributions of source code must retain the above copyright
+ *		notice, this list of conditions and the following disclaimer.
+ *	2.	Redistributions in binary form must reproduce the above copyright
+ *		notice, this list of conditions and the following disclaimer in the
+ *		documentation and/or other materials provided with the distribution.
+ *	3.	Neither the name of the copyright owner nor the names of contributors
+ *		may be used to endorse or promote products derived from this software
+ *		without specific prior written permission.
+ * 
+ *	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *	POSSIBILITY OF SUCH DAMAGE.
+ */
 
 #import "MPMacPortsTest.h"
 
 
 @implementation MPMacPortsTest
 - (void) setUp {
-	testPort = [[MPMacPorts alloc] init];
+	testPort = [MPMacPorts sharedInstance];
+	testListener = [[MPNotificationsListener alloc] init];
+	[self listenForPortSync];
 }
 
 - (void) tearDown {
 	[testPort release];
+	[testListener release];
 }
 
 
@@ -26,9 +56,61 @@
 
 - (void) testPrefix {
 	NSString *prefix = [testPort prefix];
-	STAssertNil(prefix, @" %@ should not be nil", prefix);
-	[prefix release];
+	//Find out why prefix returns nil
+	STAssertNotNil(prefix, @" %@ should not be nil", prefix);
 }
 
- 
+
+-(void) testSources{	
+	NSArray *sourcesArray = [testPort sources];
+	STAssertNotNil(sourcesArray, @"Sources array should not be nil");
+	//NSLog(@"STUFF IS %@, %d",[sourcesArray objectAtIndex:0], [sourcesArray count]);
+}
+
+//Ask Randall about what exactly port tree path is
+-(void) testPathToPortIndex {
+	NSURL *pindex = [testPort pathToPortIndex:@"file:///Users/Armahg/macportsbuild/build1/"];
+	//NSLog(@"%@ MORE STUFF IS!", [pindex path]);
+	STAssertNotNil(pindex, @"URL for port index should not be nil");
+}
+
+-(void) testSearch {
+	NSDictionary *searchResults = [testPort search:@"Notification"];
+	STAssertNotNil(searchResults, @"This dictionary should have at least %d key value pairs", [searchResults count]);
+}
+
+-(void) testSync {
+	//The only way to test this that I know of is to listen for the posted notifications
+	//and take actions as appropriate
+	[testPort sync];
+	
+}
+
+
+-(void) listenForPortSync {
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
+														selector:@selector(actOnPortSync:) 
+															name:@"MacPortsSyncStarted"
+														  object:nil];
+	
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
+														selector:@selector(actOnPortSync:) 
+															name:@"MacPortsSyncFinished" 
+														  object:nil];
+}
+
+-(void) actOnPortSync:(NSNotification *)notification {
+	if ([[notification name] isEqualToString:@"MacPortsSyncStarted"]) 
+		NSLog(@"MacPortsSyncStarted");
+	else
+		NSLog(@"MacPortsSyncFinished"); 
+	NSLog(@"I WAZ HERE");
+}	
+
+
+-(void) testVersion {
+	NSString * version = [testPort version];
+	STAssertNotNil(version, @"%@ should not be nil", version);
+}
+
 @end

@@ -35,10 +35,24 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "MPMacPorts.h"
+#import "MPNotificationsListener.h"
 
 @interface MPMacPortsTest : SenTestCase {
 	MPMacPorts *testPort;
+	
+	//Create a Notifications Listener run tests then destroy it afterwards
+	MPNotificationsListener *testListener;
 }
 
+-(void) listenForPortSync;
+-(void) actOnPortSync:(NSNotification *)notificiation;
+-(void) testPortCreation;
+-(void) testPrefix;
+-(void) testSources;
+-(void) testPathToPortIndex;
+//-(void) testDepends;
+-(void) testSearch;
+-(void) testSync;
+-(void) testVersion;
 
 @end

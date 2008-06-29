@@ -1,11 +1,11 @@
 /*
- *	$Id$
+ *	$Id:$
  *	MacPorts.Framework
  *
  *	Authors:
- * 	Randall H. Wood <rhwood@macports.org>
+ *	George Armah <armahg@macports.org>
  *
- *	Copyright (c) 2007 Randall H. Wood <rhwood@macports.org>
+ *	Copyright (c) 2008 George Armah <armahg@macports.org>
  *	All rights reserved.
  *
  *	Redistribution and use in source and binary forms, with or without
@@ -33,57 +33,56 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*!
- @header
- MPRegistry provides a programatic interface to the registry of installed ports.
- The MPRegistry class is a wrapper around the Tcl Registry API. For interacting 
- with all available ports, see the @link MPIndex MPIndex @/link.
- */
-#import <Cocoa/Cocoa.h>
-#import "MPInterpreter.h"
-#import "MPPort.h"
-#import "MPReceipt.h"
 
-/*!
- @class MPRegistry
- @abstract The registry of installed ports.
- */
-@interface MPRegistry : NSObject {
+#import "MPNotificationsListener.h"
 
-	MPInterpreter *interpreter;
 
+@implementation MPNotificationsListener
+
+- (id)init {
+	self = [super init];
+	if (self != nil) {
+		[self registerForLocalNotification];
+		[self registerForGlobalNotification];
+	}
+	return self;
 }
 
-+ (MPRegistry *)sharedRegistry;
+- (void)dealloc {
+	[super dealloc];
+}
 
-/*!
- @brief Calls [self installed:@""]
- */
-- (NSDictionary *)installed;
+-(void) registerForLocalNotification {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"testMacPortsNotification"
+											   object:nil];
+}
 
-/*
- @brief Calls [self installed:name version:@""]
- @param name Text to match the port name
- */
-- (NSDictionary *)installed:(NSString *)name;
+-(void) registerForGlobalNotification {
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
+														selector:@selector(respondToGlobalNotification:) 
+															name:@"testMacPortsNotification" 
+														  object:nil];
+}
 
-/*
- @brief Returns an NSDictionary of MPReciepts keyed by port name
- @param name Text to match the port name
- @param version Text to match the port version
- */
-- (NSDictionary *)installed:(NSString *)name withVersion:(NSString *)version;
+-(void) respondToLocalNotification:(NSNotification *)notification {
+	id sentObject = [notification object];
+	
+	//Just NSLog it for now
+	if(sentObject == nil)
+		NSLog(@"%@", LOCAL_MESSAGE);
+	else
+		NSLog(@"%@" , NSStringFromClass([sentObject class]));
+}
 
-/*!
- @brief Returns an array of installed port names
- @param name Text to match the port name
- @param version Text to march the port version
- */
-- (NSArray *)installedAsArray:(NSString *)name withVersion:(NSString *)version;
-
-/*!
- @brief Returns an array of the files in the (installed and active) port
- */
-- (NSArray *)filesForPort:(NSString *)name;
-
+-(void) respondToGlobalNotification:(NSNotification *)notification {
+	id sentObject = [notification object];
+	
+	//Just NSLog it for now
+	if(sentObject == nil)
+		NSLog(@"%@", GLOBAL_MESSAGE);
+	else
+		NSLog(@"%@", NSStringFromClass([sentObject class]));
+}
 @end
