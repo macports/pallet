@@ -39,6 +39,13 @@
 #include <Cocoa/Cocoa.h>
 
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
+	/*/Debugging code starts here
+	NSLog(@"Inside Notifications_Send!");
+	if(*objv) {
+		NSLog(@"size of STUFF is %d", objc);
+	}
+	//Debugging code ends here*/
+	
 	NSString *name = nil;
 	NSMutableDictionary *info = nil;
 	
@@ -47,10 +54,51 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	int i;
 	const char **tclElements;
 	
+	
+	/*/Debugging code starts here
+	if(*objv) {
+		NSLog(@"*objv pointer for name is NOT NULL");
+	}
+	//Debugging code ends here*/
+	
 	name = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
 	++objv; --objc;
+	
+	/*/Debugging code starts here
+	if(*objv) {
+		NSLog(@"*objv pointer for Tcl_SplitList is NOT NULL, name is %@", name);
+	}
+	//Debugging code ends here*/
+	
 	tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
 	if (tclResult == TCL_OK) {
+		
+		/*/Debugging code starts here
+		if(*objv) {
+			NSLog(@"size of Dictionary is %d", tclCount);
+		}
+		for(i = 0; tclElements[i] != NULL; i++) {
+			NSLog(@"Element in Dictionary is %@", [NSString stringWithUTF8String:tclElements[i]]);
+		}
+		for(i = 0; i < tclCount; i++) {
+			NSLog(@"Element in Dictionary is %@", [NSString stringWithUTF8String:tclElements[i]]);
+		}
+		//Debugging code ends here*/
+		
+		
+		//For now we return a single element dictionary containing the ui_* log message
+		info = [NSMutableDictionary dictionaryWithCapacity:1];
+		[info setObject:[NSString stringWithString:@"ui_msg"] forKey:[NSString stringWithUTF8String:Tcl_GetString(*objv)]];
+		
+		if (global != 0) {
+			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
+		} else {
+			[[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
+		}
+		
+		
+		
+		/*
 		info = [NSMutableDictionary dictionaryWithCapacity:(tclCount / 2)];
 		for (i = 0; i < tclCount; i +=2) {
 			[info setObject:[NSString stringWithUTF8String:tclElements[i + 1]] forKey:[NSString stringWithUTF8String:tclElements[i]]];
@@ -59,7 +107,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
 		} else {
 			[[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
-		}
+		}*/
 	} else {
 		return TCL_ERROR;
 	}
@@ -68,6 +116,9 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 }
 
 int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, Tcl_Obj *CONST objv[]) {
+	//Debugging code starts here
+	//NSLog(@"Inside Notifications_Command!");
+	//Debugging code ends here
 	
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	NSString *action = nil;
@@ -79,6 +130,13 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		action = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
 		++objv, --objc;
 		if ([action isEqualToString:@"send"]) {
+			
+			/*/Debugging code starts here
+			//if(*objv) {
+				NSLog(@"*objv pointer in Notifications_Command is NOT NULL");
+			}
+			//Debugging code ends here*/
+			
 			if ([[NSString stringWithUTF8String:Tcl_GetString(*objv)] isEqualToString:@"global"]) {
 				++objv, --objc;
 				returnCode = Notifications_Send(objc, objv, 1, interpreter);				

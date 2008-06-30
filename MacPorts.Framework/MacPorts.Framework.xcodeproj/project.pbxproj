@@ -37,8 +37,8 @@
 		48E992980C82C98C00219DDF /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E992970C82C98C00219DDF /* Tcl.framework */; };
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
-		48E9939F0C82CEB000219DDF /* init.tcl.mod in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl.mod */; };
-		6E270BE10E1458DE00BAE687 /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6E270BE00E1458DE00BAE687 /* init.tcl */; };
+		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
+		6E270BE10E1458DE00BAE687 /* init.tcl.original in Resources */ = {isa = PBXBuildFile; fileRef = 6E270BE00E1458DE00BAE687 /* init.tcl.original */; };
 		6E270D090E158CED00BAE687 /* MPNotificationsListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotificationsListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotificationsListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotificationsListener.m */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
@@ -84,10 +84,10 @@
 		48E992970C82C98C00219DDF /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = /System/Library/Frameworks/Tcl.framework; sourceTree = "<absolute>"; };
 		48E993920C82CAAE00219DDF /* MPMacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPorts.h; sourceTree = "<group>"; };
 		48E993930C82CAAE00219DDF /* MPMacPorts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPorts.m; sourceTree = "<group>"; };
-		48E9939E0C82CEB000219DDF /* init.tcl.mod */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl.mod; sourceTree = "<group>"; };
+		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
-		6E270BE00E1458DE00BAE687 /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
+		6E270BE00E1458DE00BAE687 /* init.tcl.original */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl.original; sourceTree = "<group>"; };
 		6E270C080E148F4E00BAE687 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotificationsListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationsListener.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotificationsListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotificationsListener.m; sourceTree = "<group>"; };
@@ -158,12 +158,12 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				48E9939E0C82CEB000219DDF /* init.tcl.mod */,
+				48E9939E0C82CEB000219DDF /* init.tcl */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
 				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
-				6E270BE00E1458DE00BAE687 /* init.tcl */,
+				6E270BE00E1458DE00BAE687 /* init.tcl.original */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -345,8 +345,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
-				48E9939F0C82CEB000219DDF /* init.tcl.mod in Resources */,
-				6E270BE10E1458DE00BAE687 /* init.tcl in Resources */,
+				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
+				6E270BE10E1458DE00BAE687 /* init.tcl.original in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
