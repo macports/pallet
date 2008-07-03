@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -79,6 +79,7 @@
 	STAssertNotNil(searchResults, @"This dictionary should have at least %d key value pairs", [searchResults count]);
 }
 
+
 -(void) testSync {
 	//The only way to test this that I know of is to listen for the posted notifications
 	//and take actions as appropriate
@@ -104,7 +105,6 @@
 		NSLog(@"MacPortsSyncStarted");
 	else
 		NSLog(@"MacPortsSyncFinished"); 
-	NSLog(@"I WAZ HERE");
 }	
 
 
@@ -112,5 +112,23 @@
 	NSString * version = [testPort version];
 	STAssertNotNil(version, @"%@ should not be nil", version);
 }
+
+/*-(void) testInstall {
+	NSDictionary * result = [testPort search:@"pyt"];
+	STAssertNotNil(result, @"Search dictionary should not be null");
+	NSArray * aKeys = [result allKeys];
+	//id key = [enuma nextObject];
+	
+	
+	unsigned int a = [aKeys count];
+	NSLog(@"%d size Dictionary", a);
+	//STAssertNotNil(key , @"First object should not be null");
+	
+	/*NSEnumerator * enumerator = [result keyEnumerator];
+	id key = [enumerator nextObject];
+	MPPort * nwPort = [[MPPort alloc] initWithTclListAsString:[result objectForKey:key]];
+	[testPort install:nwPort];
+	[nwPort release];
+}*/
 
 @end

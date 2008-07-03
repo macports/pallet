@@ -88,7 +88,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		
 		//For now we return a single element dictionary containing the ui_* log message
 		info = [NSMutableDictionary dictionaryWithCapacity:1];
-		[info setObject:[NSString stringWithString:@"ui_msg"] forKey:[NSString stringWithUTF8String:Tcl_GetString(*objv)]];
+		[info setObject:[NSString stringWithUTF8String:Tcl_GetString(*objv)] forKey:[NSString stringWithString:@"ui_msg"]];
 		
 		if (global != 0) {
 			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];

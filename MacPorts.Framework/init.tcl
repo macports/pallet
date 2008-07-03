@@ -75,7 +75,8 @@ proc ui_channels {priority} {
 #Modifying UI initialization to enable notifications
 proc ui_init {priority prefix channels message} {
 
-	notifications send global testMacPortsNotification "INSIDE UI_INIT"
+	#notifications send global "MP $message Notification" "INSIDE UI_INIT"
+	#notifications send global MPpriorityNotification "INSIDE UI_INIT"
 	
     # Get the list of channels.
     try {
@@ -87,9 +88,9 @@ proc ui_init {priority prefix channels message} {
     # Simplify ui_$priority.
     set nbchans [llength $channels]
     if {$nbchans == 0} {
-        proc ::ui_$priority {str} {
-		notifications send global testMacPortstNotification "$prefix\$str"
-		}
+        proc ::ui_$priority {str} 
+		[ 
+		notifications send global "MP $priority Notification" $message ]
     } else {
         try {
             set prefix [ui_prefix $priority]
@@ -101,29 +102,27 @@ proc ui_init {priority prefix channels message} {
                 set chan [lindex $channels 0]
 				
 				#Redefine ui_$priority here to also throw notifications of some sort
-				proc ::ui_$priority {str} {
-					#[subst { puts $chan "$prefix\$str" }]
+				proc ::ui_$priority {str} [
 					subst { puts $chan "$prefix\$str" }
 
 					#Send notifications using NSDistributedNotificationCenter for now
 					#We need a way to name notifications based on given input, using
 					#testMacPortsNotification for now
-					notifications send global testMacPortstNotification "$prefix\$str"
-				}
+					notifications send global "MP $priority Notification" "$str"
+					notifications send global "MP $priority Notification" $message
+				]
 				
 				
             } else {
-			
-			
-                proc ::ui_$priority {str} {
+                proc ::ui_$priority {str} [
 					subst {
 						foreach chan \$channels {
 							puts $chan "$prefix\$str"
 						}
 					}
 					#Should we discriminate based on channel?
-					notifications send global testMacPortsNotification "$prefix\$str"
-				}
+					notifications send global "MP $priority Notification" $message
+				]
             }
 			
         # Call ui_$priority

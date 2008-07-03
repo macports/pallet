@@ -54,5 +54,6 @@
 -(void) testSearch;
 -(void) testSync;
 -(void) testVersion;
+-(void) testInstall;
 
 @end
