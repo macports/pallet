@@ -50,7 +50,7 @@
  @abstract Tcl interpreter object
  @discussion Contains a shared per-thread instance of a Tcl interpreter. The MPInterpreter class
  is where the Objective-C API meets the Tcl command line. It is a per-thread interpreter to allow
- for users of the API to multi-thread their programs without relative ease.
+ users of the API to multi-thread their programs with relative ease.
  */
 @interface MPInterpreter : NSObject {
 
@@ -73,13 +73,34 @@
 /*!
  @brief Returns the NSstring result of evaluating a Tcl expression
  @param  statement An NSArray containing the Tcl expression
+ @discussion For example, here is the header definition of a MacPorts Tcl API
+ call proc macports::getindex {source}. This is how to call this procedure
+ in Tcl: [macports::getindex $source]. Calling the macports::getindex
+ procedure from Objective-C code with -evaluateArrayAsString however takes the following form:
+ 
+ [SomeMPInterpreterObject evaluateArrayAsString:[NSArray arrayWithObjects:
+	@"return [macports::getindex",
+	[NSString stringWithString:@"SomeValidMacPortsSourcePath"],
+	@"]",
+	nil]];
+ 
+ Each element in the array is an NSString. Note the "return" in the first element of the statement
+ NSArray.
  */
 - (NSString *)evaluateArrayAsString:(NSArray *)statement;
 /*!
  @brief Returns the NSString result of evaluating a Tcl expression
  @param  statement An NSString containing the Tcl expression
+ @discussion Using the macports::getindex {source} procedure as an example (see discussion for 
+ -evaluateArrayAsString), we have the following Objective-C form for calling the macports::getindex
+ procedure:
+ 
+ [SomeMPInterpreterObject evaluateStringAsString:
+							[NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
  */
 - (NSString *)evaluateStringAsString:(NSString *)statement;
+
+
 
 
 /*!

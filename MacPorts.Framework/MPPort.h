@@ -104,6 +104,11 @@
  DEPENDENCY EACH DEPENDENCY IS?
  */
 - (NSArray *)depends;
+
+
+
+
+#pragma mark --exec: and its convenience methods--
 /*!
  @brief Executes the specified target for this MPPort
  @param target NSString target to be executed for this MPPort
@@ -112,59 +117,71 @@
 - (void)exec:(NSString *)target;
 
 /*Convenience methods based on the exec: withTarget: method
- I DON'T KNOW IF SOME OF OF THESE METHODS REQUIRE EXTRA ARGUMENTS
- CHECK THAT WITH RANDALL
+ These methods and -exec: need to be rewritten to handle variants
+ and options. 
+ Also, there is currently a bug with packaging targets (See
+ http://trac.macports.org/ticket/10881 for more information).
+ Should we run exec:@"destroot" before any of the packaging commands?"
  */
+
 /*!
- @brief 
+ @brief Runs a configure process for this port.
  */
 -(void)configure;
 /*!
- @brief 
+ @brief Builds this port.
  */
 -(void)build;
 /*!
- @brief 
+ @brief Tests this port.
  */
 -(void)test;
 /*!
- @brief 
+ @brief Installs this port to a temporary directory
  */
 -(void)destroot;
 /*!
- @brief 
+ @brief Installs this port.
  */
 -(void)install;
 /*!
- @brief 
+ @brief Archives port for later unarchving. 
+ @discussion Archive mode must be enabled for this command to work.
+ This is done by setting portarchivemode to yes in the macports.conf file
+ located in ${prefix}/etc/macports/macports.conf. With archive mode enabled,
+ binary archives are created automatically whenever an install is performed.
  */
 -(void)archive;
 /*!
- @brief 
+ @brief Creates an internet-enabled disk image containing OS X package of this
+ port
  */
 -(void)createDmg;
 /*!
- @brief 
+ @brief Create an internet-enabled disk image containing an OS X metapackage of this
+ port
  */
 -(void)createMdmg;
 /*!
- @brief 
+ @brief Creates an OS X installer package of this port
  */
 -(void)createPkg;
 /*!
- @brief 
+ @brief Creates an OS X installer metapackage of this this port and 
+ its dependencies
  */
 -(void)createMpkg;
 /*!
- @brief 
+ @brief Creates and RPM binary package of this port. This is similar to a
+ tgz "archive".
  */
 -(void)createRpm;
 /*!
- @brief 
+ @brief Creates a DEB binary package of this port.
  */
 -(void)createDpkg;
 /*!
- @brief 
+ @brief Creates an SRPM source package of this port, similar to a xar "portpkg".
  */
 -(void)createSrpm;
 
@@ -194,11 +211,8 @@
 /*!
  @brief Sets the state of this MPPort object from its receipts
  @param receipts An NSArray of receipts for this port
- @discussion 
- 
- AGAIN NEED TO ASK RANDALL ABOUT THIS METHOD. I THINK A PORT CAN HAVE MORE THAN ONE RECEIPT
- THAT REPRESENT ITS VARIOUS VERSIONS / VARIANTS THAT HAVE BEEN INSTALLED SINCE EACH
- INSTALLATION HAS ITS OWN RECEIPT.
+ @discussion It is possible for an installed port to have more than one 
+ receipt if the MacPorts system uses hardlinks to activate the port.
  */
  - (void)setStateFromReceipts:(NSArray *)receipts;
 

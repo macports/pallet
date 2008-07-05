@@ -35,7 +35,7 @@
 
 /*!
  @header 
- MPMacPorts represents an installation of the MacPorts on a user's system. A user can have 
+ MPMacPorts represents an installation of MacPorts on a user's system. A user can have 
  multiple MacPorts installations in different locations.
  */
 
@@ -77,27 +77,24 @@
 
 
 /*!
- @brief Returns an NSDictionary of ports  
+ @brief Returns an NSDictionary of ports. Calls [self search:query caseSensiitve:YES].   
  @param query An NSString containing name or partial name of port being searched. 
  @discussion The keys are NSString names of the ports whilst the values are the respective MPPort objects
- (Double check this)
  */
 - (NSDictionary *)search:(NSString *)query;
 /*!
- @brief Returns an NSDictionary of ports  
+ @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:@"regex"].  
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
  @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
- (Double check this)
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity;
 /*!
- @brief Returns an NSDictionary of ports  
+ @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:style field:@"name"].  
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
  @param style TALK TO RANDALL ABOUT WHAT THIS IS
  @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
- (Double check this)
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style;
 /*!
@@ -107,13 +104,12 @@
  @param style TALK TO RANDALL ABOUT WHAT THIS IS
  @param fieldName TALK TO RANDALL ABOUT WHAT THIS IS
  @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
- (Double check this)
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName;
 
 
 /*!
- @brief Returns an NSArray of MPPorts that a port depends on
+ @brief Returns an NSArray of NSString port names that a port depends on
  @param port The MPPort whose dependecies is being sought
  */
 - (NSArray *)depends:(MPPort *)port;
@@ -124,34 +120,10 @@
  @param target The NSString representing a given target
  @Discussion The various options for target are: configure, build,
  test, destroot, install, archive, dmg, mdmg, pkg, mpkg, rpm, dpkg, srpm.
- (Should include more notes and what each of these do). Users of -exec
- are responsible for ensuring that execution happens in an authorized environment for 
- various targets.
+ Users of -exec are responsible for ensuring that execution happens in 
+ an authorized environment for various targets.
  */
 - (void)exec:(MPPort *)port withTarget:(NSString *)target;
-
-/*Convenience methods based on the exec: withTarget: method
- I DON'T KNOW IF SOME OF OF THESE METHODS REQUIRE EXTRA ARGUMENTS
- CHECK THAT WITH RANDALL
- */
--(void)configure:(MPPort *)port;
--(void)build:(MPPort *)port;
--(void)test:(MPPort *)port;
--(void)destroot:(MPPort *)port;
--(void)install:(MPPort *)port;
--(void)archive:(MPPort *)port;
--(void)createDmg:(MPPort *)port;
--(void)createMdmg:(MPPort *)port;
--(void)createPkg:(MPPort *)port;
--(void)createMpkg:(MPPort *)port;
--(void)createRpm:(MPPort *)port;
--(void)createDpkg:(MPPort *)port;
--(void)createSrpm:(MPPort *)port;
-
-
-
-
-
 
 /*!
  @brief Returns the NSString path to the directory where ports are installed.
@@ -175,7 +147,8 @@
 /*!
  @brief Returns the NSURL of the portIndex file on this MacPorts system for a given ports tree
  @param source An NSString containing the file path to the ports tree
- @Discussion The PortIndex contains a list of descriptions ports and is where they are searched for
+ @Discussion The PortIndex is a list of serialized Tcl key-value lists, one list
+ per line. This is where ports are searched for.
  */
 - (NSURL *)pathToPortIndex:(NSString *)source;
 

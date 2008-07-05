@@ -53,7 +53,7 @@
 /*!
  @brief This method initializes the MPReceipt object with a name, version, revision, variants, active state and long description.
  @param array An NSArray object containing the values for initializing this MPReceipt.
- @discussion DOUBLE CHECK THIS WITH RANDALL
+ @discussion 
  The MPReceipt object contains an internal dictionary whose keys are the following strings: name, version, revision, variants,
  active, whatIsThis. The values for these keys are provided by the initializing array parameter.
  */
