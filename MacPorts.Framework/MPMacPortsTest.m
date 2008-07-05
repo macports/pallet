@@ -109,6 +109,9 @@
 
 
 -(void) testVersion {
+	
+	[[[NSWorkspace sharedWorkspace] notificationCenter] postNotificationName:@"Test Version" 
+																	  object:nil];
 	NSString * version = [testPort version];
 	STAssertNotNil(version, @"%@ should not be nil", version);
 }

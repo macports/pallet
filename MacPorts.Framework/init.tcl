@@ -76,7 +76,7 @@ proc ui_channels {priority} {
 proc ui_init {priority prefix channels message} {
 
 	#notifications send global "MP $message Notification" "INSIDE UI_INIT"
-	#notifications send global MPpriorityNotification "INSIDE UI_INIT"
+	notifications send MPpriorityNotification "INSIDE UI_INIT"
 	
     # Get the list of channels.
     try {
@@ -108,7 +108,6 @@ proc ui_init {priority prefix channels message} {
 					#Send notifications using NSDistributedNotificationCenter for now
 					#We need a way to name notifications based on given input, using
 					#testMacPortsNotification for now
-					notifications send global "MP $priority Notification" "$str"
 					notifications send global "MP $priority Notification" $message
 				]
 				
