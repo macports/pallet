@@ -87,7 +87,12 @@
 	
 }
 
-
+-(void) testSelfupdate {
+	//The only way to test this that I know of is to listen for the posted notifications
+	//and take actions as appropriate
+	[testPort selfUpdate];
+	
+}
 -(void) listenForPortSync {
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
 														selector:@selector(actOnPortSync:) 

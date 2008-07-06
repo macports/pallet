@@ -74,9 +74,11 @@ proc ui_channels {priority} {
 
 #Modifying UI initialization to enable notifications
 proc ui_init {priority prefix channels message} {
-
+    
+	set t "duna"
 	#notifications send global "MP $message Notification" "INSIDE UI_INIT"
-	notifications send MPpriorityNotification "INSIDE UI_INIT"
+	notifications send global "MP $priority Notification" "Channel none \
+		Prefix $prefix" $message
 	
     # Get the list of channels.
     try {
@@ -90,7 +92,8 @@ proc ui_init {priority prefix channels message} {
     if {$nbchans == 0} {
         proc ::ui_$priority {str} 
 		[ 
-		notifications send global "MP $priority Notification" $message ]
+		notifications send global "MP $priority Notification1" "Channel none \
+		Prefix $prefix" $str ]
     } else {
         try {
             set prefix [ui_prefix $priority]
@@ -108,7 +111,8 @@ proc ui_init {priority prefix channels message} {
 					#Send notifications using NSDistributedNotificationCenter for now
 					#We need a way to name notifications based on given input, using
 					#testMacPortsNotification for now
-					notifications send global "MP $priority Notification" $message
+					notifications send global "MP $priority Notification2" "Channel $chan \
+					Prefix $prefix" "$str"
 				]
 				
 				
@@ -120,7 +124,8 @@ proc ui_init {priority prefix channels message} {
 						}
 					}
 					#Should we discriminate based on channel?
-					notifications send global "MP $priority Notification" $message
+					notifications send global "MP $priority Notification3" "Channel $chan \
+					Prefix $prefix" $str
 				]
             }
 			

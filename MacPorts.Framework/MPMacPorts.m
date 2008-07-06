@@ -93,6 +93,14 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
 }
 
+- (void)selfUpdate {
+	//Also needs to throw an exception if things don't go well
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateStarted" object:nil];
+	[interpreter evaluateStringAsString:@"macports::selfupdate"];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateFinished" object:nil];
+}
+
+
 - (NSDictionary *)search:(NSString *)query {
 	return [self search:query caseSensitive:YES];
 }

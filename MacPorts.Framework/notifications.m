@@ -53,31 +53,37 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
 	if (tclResult == TCL_OK) {
 		
-		//For now we return a single element dictionary containing the ui_* log message
+		/*/For now we return a single element dictionary containing the ui_* log message
 		info = [NSMutableDictionary dictionaryWithCapacity:1];
-		[info setObject:[NSString stringWithUTF8String:Tcl_GetString(*objv)] forKey:[NSString stringWithString:@"ui_msg"]];
+		[info setObject:[NSString stringWithUTF8String:Tcl_GetString(*objv)] forKey:[NSString stringWithString:@"ui_notification"]];
 		
 		//Afaik local notifications don't work. I'm keeping code for it in case we find a work around
 		if (global != 0) {
 			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
 		} else {
 			[[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
-		}
+		}*/
 		
 		
-		/*
-		 I don't understand what Randall's original intent was for parsing the ui_msg as an NSDictionary.
-		 I'll keep this code here till further notice.
+		
+		 //I don't understand what Randall's original intent was for parsing the ui_msg as an NSDictionary.
+		 //I'll keep this code here till further notice.
 		 
 		 info = [NSMutableDictionary dictionaryWithCapacity:(tclCount / 2)];
 		 for (i = 0; i < tclCount; i +=2) {
-		 [info setObject:[NSString stringWithUTF8String:tclElements[i + 1]] forKey:[NSString stringWithUTF8String:tclElements[i]]];
+			[info setObject:[NSString stringWithUTF8String:tclElements[i + 1]] forKey:[NSString stringWithUTF8String:tclElements[i]]];
 		 }
+		
+		//Get ui_* message separately 
+		++objv; --objc;
+		if(objv != NULL)
+			[info setObject:[NSString stringWithUTF8String:Tcl_GetString(*objv)] forKey:[NSString stringWithString:@"Message"]];
+		
 		 if (global != 0) {
 		 [[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
 		 } else {
 		 [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
-		 }*/
+		 }
 	} else {
 		return TCL_ERROR;
 	}
