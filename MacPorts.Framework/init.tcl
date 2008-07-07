@@ -74,10 +74,9 @@ proc ui_channels {priority} {
 
 #Modifying UI initialization to enable notifications
 proc ui_init {priority prefix channels message} {
-    
-	set t "duna"
+
 	#notifications send global "MP $message Notification" "INSIDE UI_INIT"
-	notifications send global "MP $priority Notification" "Channel none \
+	#notifications send global "MP $priority Notification" "Channel none \
 		Prefix $prefix" $message
 	
     # Get the list of channels.
@@ -90,10 +89,12 @@ proc ui_init {priority prefix channels message} {
     # Simplify ui_$priority.
     set nbchans [llength $channels]
     if {$nbchans == 0} {
-        proc ::ui_$priority {str} 
-		[ 
-		notifications send global "MP $priority Notification1" "Channel none \
-		Prefix $prefix" $str ]
+        proc ::ui_$priority {str} [ 
+			subst {
+				notifications send global "MP $priority Notification" "Channel none \
+				Prefix $prefix" "\$str 
+			}
+		]
     } else {
         try {
             set prefix [ui_prefix $priority]
@@ -106,15 +107,16 @@ proc ui_init {priority prefix channels message} {
 				
 				#Redefine ui_$priority here to also throw notifications of some sort
 				proc ::ui_$priority {str} [
-					subst { puts $chan "$prefix\$str" }
-
+					subst { 
+					puts $chan "$prefix\$str"
+					
 					#Send notifications using NSDistributedNotificationCenter for now
 					#We need a way to name notifications based on given input, using
 					#testMacPortsNotification for now
-					notifications send global "MP $priority Notification2" "Channel $chan \
-					Prefix $prefix" "$str"
+					notifications send global "MP $priority Notification5" "Channel $chan \
+					Prefix $prefix" "\$str"
+					}
 				]
-				
 				
             } else {
                 proc ::ui_$priority {str} [
@@ -122,10 +124,9 @@ proc ui_init {priority prefix channels message} {
 						foreach chan \$channels {
 							puts $chan "$prefix\$str"
 						}
+						notifications send global "MP $priority Notification" "Channel $chan \
+						Prefix $prefix" $str
 					}
-					#Should we discriminate based on channel?
-					notifications send global "MP $priority Notification3" "Channel $chan \
-					Prefix $prefix" $str
 				]
             }
 			
