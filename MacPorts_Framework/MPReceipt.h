@@ -45,6 +45,7 @@
  it is an active port, and some other information on the port. All receipts on the user's MacPorts system are
  kept in the port registry located in ${prefix}/var/macports/receipts/.
  */
+
 @interface MPReceipt : MPMutableDictionary {
 
 }

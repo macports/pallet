@@ -155,44 +155,89 @@
 		nil]];
 }
 
--(void)configure {
-	[self exec:@"configure"];
+- (void)uninstallWithOptions:(NSArray *)options {
+	NSString *opts;
+	MPInterpreter *interpreter;
+	
+	opts = [NSString stringWithString:@" "];
+	interpreter = [MPInterpreter sharedInterpreter];
+	
+	if (options != NULL) {
+		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
+	}
+	
+	[interpreter evaluateStringAsString:
+	 [NSString stringWithFormat:
+	 //Is this the correct way to call the Tcl command?
+	 //uninstall isn't one of the target options for mportexec so I should
+	 //double check with Randall about this call. For quick reference
+	 //here is the procedure signature -> proc uninstall {portname {v ""} optionslist}
+	 //located in /registry 1.0/portuninstall.tcl 
+	 @"[portuninstall::uninstall %@ %@ %@]", 
+	  [self name], [self version], opts]];
 }
--(void)build {
-	[self exec:@"build"];
+
+-(void)exec:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	NSString *opts; 
+	NSString *vrnts;
+	MPInterpreter *interpreter;
+	opts = [NSString stringWithString:@" "];
+	vrnts = [NSString stringWithString:@" "];
+	interpreter = [MPInterpreter sharedInterpreter];
+	
+	if (options != NULL) {
+		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
+	}
+	if (variants != NULL) {
+		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
+	}
+	
+	[interpreter evaluateStringAsString:
+	 [NSString stringWithFormat:
+	  @"set portHandle [mportopen  %@  %@  %@]; \
+	  mportexec portHandle %@; \
+	  mportclose portHandle", 
+	  [self valueForKey:@"portURL"], opts, vrnts, target]];
 }
--(void)test {
-	[self exec:@"test"];	
+
+-(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants{
+	[self exec:@"configure" withOptions:options withVariants:variants];
 }
--(void)destroot {
-	[self exec:@"destroot"];
+-(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"build" withOptions:options withVariants:variants];
 }
--(void)install {
-	[self exec:@"install"];
+-(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"test" withOptions:options withVariants:variants];	
 }
--(void)archive {
-	[self exec:@"archive"];
+-(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"destroot" withOptions:options withVariants:variants];
 }
--(void)createDmg {
-	[self exec:@"dmg"];
+-(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"install" withOptions:options withVariants:variants];
 }
--(void)createMdmg {
-	[self exec:@"mdmg"];
+-(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"archive" withOptions:options withVariants:variants];
 }
--(void)createPkg {
-	[self exec:@"pkg"];
+-(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"dmg" withOptions:options withVariants:variants];
 }
--(void)createMpkg {
-	[self exec:@"mpkg"];
+-(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"mdmg" withOptions:options withVariants:variants];
 }
--(void)createRpm {
-	[self exec:@"rpm"];
+-(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"pkg" withOptions:options withVariants:variants];
 }
--(void)createDpkg {
-	[self exec:@"dpkg"];
+-(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"mpkg" withOptions:options withVariants:variants];
 }
--(void)createSrpm {
-	[self exec:@"srpm"];
+-(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"rpm" withOptions:options withVariants:variants];
+}
+-(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"dpkg" withOptions:options withVariants:variants];
+}
+-(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self exec:@"srpm" withOptions:options withVariants:variants];
 }
 
 

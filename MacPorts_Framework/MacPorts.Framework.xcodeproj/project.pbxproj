@@ -38,7 +38,6 @@
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
-		6E270BE10E1458DE00BAE687 /* init.tcl.original in Resources */ = {isa = PBXBuildFile; fileRef = 6E270BE00E1458DE00BAE687 /* init.tcl.original */; };
 		6E270D090E158CED00BAE687 /* MPNotificationsListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotificationsListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotificationsListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotificationsListener.m */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
@@ -49,7 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		489DD8F90C9437AA00595506 /* PBXContainerItemProxy */ = {
+		6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
@@ -87,7 +86,6 @@
 		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
-		6E270BE00E1458DE00BAE687 /* init.tcl.original */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl.original; sourceTree = "<group>"; };
 		6E270C080E148F4E00BAE687 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotificationsListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationsListener.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotificationsListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotificationsListener.m; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
 				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
-				6E270BE00E1458DE00BAE687 /* init.tcl.original */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -281,7 +278,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				489DD8FA0C9437AA00595506 /* PBXTargetDependency */,
+				6E1AE8470E232D0700F6D7BC /* PBXTargetDependency */,
 			);
 			name = Test;
 			productName = "Test Cases";
@@ -346,7 +343,6 @@
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
-				6E270BE10E1458DE00BAE687 /* init.tcl.original in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#sudo make install";
+			shellScript = "if [ -e notifications.dylib ]\n\tthen echo \"Notifications library exists\"\nelse\n\tmake\nfi";
 		};
 		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -435,10 +431,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		489DD8FA0C9437AA00595506 /* PBXTargetDependency */ = {
+		6E1AE8470E232D0700F6D7BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
-			targetProxy = 489DD8F90C9437AA00595506 /* PBXContainerItemProxy */;
+			targetProxy = 6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -470,6 +466,11 @@
 				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				PRODUCT_NAME = MacPorts;
 				SYMROOT = "~/Builds";
 				WRAPPER_EXTENSION = framework;
@@ -490,6 +491,11 @@
 				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				PRODUCT_NAME = MacPorts;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
@@ -526,8 +532,7 @@
 		489DD8F70C94366000595506 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(value)",

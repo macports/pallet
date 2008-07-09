@@ -143,7 +143,11 @@
 }
 
 - (void)exec:(MPPort *)port withTarget:(NSString *)target {
-	return [port exec:target];
+	[port exec:target];
+}
+
+- (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[port exec:target withOptions:options withVariants:variants];
 }
 
 #pragma settings

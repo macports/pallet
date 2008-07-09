@@ -106,6 +106,8 @@
 /*!
  @brief Returns an NSArray whose elements are the the elements of a Tcl list in the form of an NSString
  @param list A Tcl list in the form of an NSString
+ @discussion This method usually takes the result of a call to the evaluateStringAsString and 
+ evaluateArrayAsString methods which is a Tcl list and parses it into an NSArray.
  */
 - (NSArray *)arrayFromTclListAsString:(NSString *)list;
 /*!

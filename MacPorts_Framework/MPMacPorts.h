@@ -119,16 +119,21 @@
  */
 - (NSArray *)depends:(MPPort *)port;
 
+/*
+ PRIVATE METHOD USED AS DEFAULT FOR METHOD BELOW
+ */
+- (void)exec:(MPPort *)port withTarget:(NSString *)target;
+
 /*!
  @brief Executes specific target of given MPPort
  @param port The MPPort whose target will be executed
  @param target The NSString representing a given target
- @Discussion The various options for target are: configure, build,
- test, destroot, install, archive, dmg, mdmg, pkg, mpkg, rpm, dpkg, srpm.
- Users of -exec are responsible for ensuring that execution happens in 
- an authorized environment for various targets.
+ @param options An NSArray of NSStrings of options for executing this target
+ @param variants An NSArray of NSStrings of variants for executing this target 
+ @Discussion See -exec: withOptions: withVariants: in @link MPPort MPPort @\link for discussion
+ of this method.
  */
-- (void)exec:(MPPort *)port withTarget:(NSString *)target;
+- (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants;
 
 /*!
  @brief Returns the NSString path to the directory where ports are installed.

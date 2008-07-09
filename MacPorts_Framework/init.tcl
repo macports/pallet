@@ -6,8 +6,12 @@ catch {source \
 	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 
+load notifications.dylib
+
+
 package require macports
 package require notifications
+package require portuninstall 1.0
 
 # ui_options accessor
 proc ui_isset {val} {
@@ -125,7 +129,7 @@ proc ui_init {priority prefix channels message} {
 							puts $chan "$prefix\$str"
 						}
 						notifications send global "MP $priority Notification" "Channel $chan \
-						Prefix $prefix" $str
+						Prefix $prefix" "\$str"
 					}
 				]
             }
