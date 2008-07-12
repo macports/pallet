@@ -1,0 +1,8 @@
+# $Id$
+
+SUBDIR=	@REPLACEMENT_PROGS@ @EXTRA_PROGS@
+
+include ../../Mk/macports.subdir.mk
+
+distclean::
+	rm -f Makefile

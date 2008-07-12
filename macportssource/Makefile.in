@@ -1,0 +1,21 @@
+TCLPKG=		@OUR_INCLUDED_PACKAGES@ \
+			cregistry \
+			macports1.0 \
+			port1.0 \
+			package1.0 \
+			pextlib1.0 \
+			registry1.0 \
+			registry2.0 \
+			darwintracelib1.0 \
+			tclobjc1.0
+SUBDIR=		${TCLPKG} @PATHCONF@ port programs
+
+all::
+
+distclean::
+	rm -f config.h
+	rm -f Makefile
+
+test::
+
+include ../Mk/macports.subdir.mk
