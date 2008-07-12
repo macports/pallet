@@ -75,7 +75,7 @@
 }
 
 -(void) testSearch {
-	NSDictionary *searchResults = [testPort search:@"Notification"];
+	NSDictionary *searchResults = [testPort search:@"/Users/Armahg"];
 	STAssertNotNil(searchResults, @"This dictionary should have at least %d key value pairs", [searchResults count]);
 }
 
@@ -85,14 +85,19 @@
 	//and take actions as appropriate
 	[testPort sync];
 	
+	
 }
 
+/*
 -(void) testSelfupdate {
 	//The only way to test this that I know of is to listen for the posted notifications
 	//and take actions as appropriate
 	[testPort selfUpdate];
 	
 }
+*/
+
+
 -(void) listenForPortSync {
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
 														selector:@selector(actOnPortSync:) 

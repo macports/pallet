@@ -109,19 +109,37 @@
  */
 - (NSArray *)depends;
 
+//Wrapper method for the 3 functions below
+- (void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version;
+//Even more generic method to execute a Tcl command with any given number of args
+- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params;
+
+
 /*!
  @brief Deactivates and uninstalls this MPPort from the MacPorts system
  @param options An NSArray of NSStrings of options for this uninstallation execution
+ @param version An NSString indicating which version of this port to uninstall
+ @discussion version should NOT be nil
  */
-- (void)uninstallWithOptions:(NSArray *)options;
+- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version;
 /*!
  @brief Activates an installed MPPort.
+ @param options An NSArray of NSStrings of options for port activation
+ @param version An NSString indicating which version of this port to activate
+ @discussion version should NOT be nil. The activated port should have been
+ already installed. This happens automatically during a default installation
+ of a port. This means activation of a port should occur only if the port
+ had been previously deactivated after a default installation.
  */
-- (void)activate;
+- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version;
 /*!
  @brief Deactivates an installed  MPPort.
+ @param options An NSArray of NSStrings of options for port deactivation
+ @param version An NSString indicating which version of this port to deactivate
+ @discussion version should NOT be nil. Only installed and active ports
+ should be deactivated
 */
-- (void)deactivate;
+- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version;
 
 
 #pragma mark --exec: and its convenience methods--

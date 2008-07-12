@@ -11,7 +11,6 @@ load notifications.dylib
 
 package require macports
 package require notifications
-package require portuninstall 1.0
 
 # ui_options accessor
 proc ui_isset {val} {
@@ -77,12 +76,10 @@ proc ui_channels {priority} {
 
 
 #Modifying UI initialization to enable notifications
+#Redefine ui_$pritority to throw global notifications
+#This is currently under works ... a reasonable solution
+#should be coming up soon
 proc ui_init {priority prefix channels message} {
-
-	#notifications send global "MP $message Notification" "INSIDE UI_INIT"
-	#notifications send global "MP $priority Notification" "Channel none \
-		Prefix $prefix" $message
-	
     # Get the list of channels.
     try {
         set channels [ui_channels $priority]
@@ -93,52 +90,78 @@ proc ui_init {priority prefix channels message} {
     # Simplify ui_$priority.
     set nbchans [llength $channels]
     if {$nbchans == 0} {
-        proc ::ui_$priority {str} [ 
-			subst {
-				notifications send global "MP $priority Notification" "Channel none \
-				Prefix $prefix" "\$str 
-			}
-		]
+        proc ::ui_$priority {str} [subst {
+        		notifications send global "MP $priority Notification" "Channel1 none \
+        		Prefix $prefix" "\$str"
+        }]
     } else {
         try {
             set prefix [ui_prefix $priority]
         } catch * {
             set prefix [ui_prefix_default $priority]
         }
-            
-		if {$nbchans == 1} {
+
+        try {
+            ::ui_init $priority $prefix $channels $message
+        } catch * {
+            if {$nbchans == 1} {
                 set chan [lindex $channels 0]
-				
-				#Redefine ui_$priority here to also throw notifications of some sort
-				proc ::ui_$priority {str} [
-					subst { 
-					puts $chan "$prefix\$str"
-					
-					#Send notifications using NSDistributedNotificationCenter for now
-					#We need a way to name notifications based on given input, using
-					#testMacPortsNotification for now
-					notifications send global "MP $priority Notification5" "Channel $chan \
-					Prefix $prefix" "\$str"
-					}
-				]
-				
+                
+                proc ::ui_$priority {str} [subst { 
+                	puts $chan "$prefix\$str"
+                	notifications send global "MP $priority Notifications" "Channel2 $chan \
+                	Prefix $prefix" "\$str" 
+                }]
             } else {
-                proc ::ui_$priority {str} [
-					subst {
-						foreach chan \$channels {
-							puts $chan "$prefix\$str"
-						}
-						notifications send global "MP $priority Notification" "Channel $chan \
-						Prefix $prefix" "\$str"
-					}
-				]
+            		
+                proc ::ui_$priority {str} [subst {
+                    foreach chan \$channels {
+                        puts $chan "$prefix\$str"
+                    }
+                    notifications send global "MP $priority Notifications" "Channel3 $chan \
+                    Prefix $prefix" "\$str"
+                }]
             }
-			
+        }
+
         # Call ui_$priority
         ::ui_$priority $message
     }
 }
 
+
+#Wrapping the following API routines to catch errors
+#and log error Information in a similar fashion to code
+#in macports.tcl.
+proc mportuninstall {portname {v ""} optionslist} {
+	if {[catch {portuninstall::uninstall $portname $v $optionslist} result]} {
+		
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Uninstall $portname $v failed: $result"
+			return 1
+	}
+}
+
+proc mportactivate {portname v optionslist} {
+	if {[catch {portimage::activate $portname $v $optionslist} result]} {
+			
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Activate $portname $v failed: $result"
+			return 1
+	}
+}
+
+proc mportdeactivate {portname v optionslist} {
+	if {[catch {portimage::deactivate $portname $v $optionslist} result]} {
+			
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Deactivate $portname $v failed: $result"
+			return 1
+	}
+}
 
 
 # Initialize dport

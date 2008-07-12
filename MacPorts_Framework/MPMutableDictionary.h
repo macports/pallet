@@ -6,6 +6,12 @@
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 
+/*!
+ @header
+ MPMutableDictionary is a customized NSMutableDictionary object that
+ serves as the base of most MacPort Framework objects.
+ */
+
 #import <Cocoa/Cocoa.h>
 
 /*!

@@ -51,9 +51,9 @@
 -(void) testSources;
 -(void) testPathToPortIndex;
 //-(void) testDepends;
--(void) testSearch;
+//-(void) testSearch;
 -(void) testSync;
 -(void) testVersion;
--(void) testInstall;
+//-(void) testInstall;
 
 @end

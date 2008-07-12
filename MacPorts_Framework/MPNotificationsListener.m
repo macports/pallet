@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -39,11 +39,53 @@
 
 @implementation MPNotificationsListener
 
+static MPNotificationsListener *sharedMPListener = nil;
+static NSString *infoString;
+
++ (MPNotificationsListener *)sharedListener {
+	@synchronized(self) {
+		if (sharedMPListener == nil) {
+			[[self alloc] init];
+		}
+	}
+	return sharedMPListener;
+}
+
++ (id)allocWithZone:(NSZone *)zone {
+	@synchronized(self) {
+		if (sharedMPListener == nil) {
+			sharedMPListener = [super allocWithZone:zone];
+			return sharedMPListener;
+		}
+	}
+	return nil;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+	return self;
+}
+
+- (id)retain {
+	return self;
+}
+
+- (unsigned)retainCount {
+	return UINT_MAX;
+}
+
+-(void) release {
+	//do nothing
+}
+
+- (id) autorelease {
+	return self;
+}
+
 - (id)init {
-	self = [super init];
-	if (self != nil) {
-		[self registerForLocalNotification];
-		[self registerForGlobalNotification];
+	if (self = [super init]) {
+		//[self registerForLocalNotification];
+		//[self registerForGlobalNotification];
+		//[self observeInfoString];
 	}
 	return self;
 }
@@ -51,6 +93,45 @@
 - (void)dealloc {
 	[super dealloc];
 }
+
+- (void) setInfoString:(NSString *) string {
+	infoString = [NSString stringWithString:string];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"testMacPortsNotification" 
+													   object:self];
+	//NSLog(@"infoString has been set to %@", infoString);
+}
+
+- (NSString *) infoString {
+	return infoString;
+}
+
+/*
+-(void) observeInfoString {
+	[self addObserver:self 
+		   forKeyPath:@"infoString" 
+			  options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) 
+			  context:NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+					  ofObject:(id)object 
+						change:(NSDictionary *)change 
+					   context:(void *)context {
+	
+	if ([keyPath isEqual:@"infoString"]) {
+			NSLog(@"InfoString changed from \n \
+				  %@ \n \
+				  to \n \
+				  %@ ", [change objectForKey:NSKeyValueChangeOldKey] ,
+				  [change objectForKey:NSKeyValueChangeNewKey]);
+	}
+	else 
+		NSLog (@"HOW DID INFOSTRING CHANGE WITHOUT CHANGING AN INFOSTRING?!");
+	
+	//There's no super implementation AFAIK
+}
+
 
 -(void) registerForLocalNotification {
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -85,4 +166,5 @@
 	else
 		NSLog(@"%@", NSStringFromClass([sentObject class]));
 }
+*/
 @end

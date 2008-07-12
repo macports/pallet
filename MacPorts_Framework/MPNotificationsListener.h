@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -43,12 +43,18 @@
  */
 
 @interface MPNotificationsListener : NSObject {
-
+	
 }
 
+//Testing Key Value Compliance
+-(void)setInfoString:(NSString *)string;
+-(NSString *)infoString;
+
+/*/This same class will observe its infoString key value
+//- (void) observeInfoString;
 -(void)registerForGlobalNotification;
 -(void)registerForLocalNotification;
 -(void)respondToGlobalNotification:(NSNotification*) notification;
 -(void)respondToLocalNotification:(NSNotification *) notification;
-
+*/
 @end

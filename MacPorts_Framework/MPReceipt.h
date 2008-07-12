@@ -33,6 +33,11 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*!
+ @header
+ MPReceipt provides a programatic interface to the receipt(s) for installed ports.
+ */
+
 #import <Cocoa/Cocoa.h>
 #import "MPInterpreter.h"
 #import "MPRegistry.h"

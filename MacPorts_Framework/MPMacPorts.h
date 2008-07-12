@@ -75,7 +75,7 @@
 - (void)sync;
 /*!
  @brief Synchronizes the ports tree and checks for upgrades to MacPorts base.
- @discussion The selfupdate port command is available only on Mac OS X systems.s
+ @discussion The selfupdate port command is available only on Mac OS X systems.
  */
 - (void)selfUpdate;
 
@@ -88,17 +88,17 @@
  */
 - (NSDictionary *)search:(NSString *)query;
 /*!
- @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:@"regex"].  
+ @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:\@"regex"].  
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
  @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity;
 /*!
- @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:style field:@"name"].  
+ @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:style field:\@"name"].  
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
- @param style TALK TO RANDALL ABOUT WHAT THIS IS
+ @param style Search style for query
  @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style;
@@ -106,8 +106,8 @@
  @brief Returns an NSDictionary of ports  
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
- @param style TALK TO RANDALL ABOUT WHAT THIS IS
- @param fieldName TALK TO RANDALL ABOUT WHAT THIS IS
+ @param style Search style for query
+ @param fieldName Field for port query
  @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName;
@@ -119,9 +119,7 @@
  */
 - (NSArray *)depends:(MPPort *)port;
 
-/*
- PRIVATE METHOD USED AS DEFAULT FOR METHOD BELOW
- */
+
 - (void)exec:(MPPort *)port withTarget:(NSString *)target;
 
 /*!
@@ -130,7 +128,7 @@
  @param target The NSString representing a given target
  @param options An NSArray of NSStrings of options for executing this target
  @param variants An NSArray of NSStrings of variants for executing this target 
- @Discussion See -exec: withOptions: withVariants: in @link MPPort MPPort @\link for discussion
+ @Discussion See -exec: withOptions: withVariants: in @link //apple_ref/doc/header/MPPort.h MPPort @/link for discussion
  of this method.
  */
 - (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants;
@@ -166,4 +164,10 @@
  @brief Returns an NSString indicating the version of the currently running MacPorts system
  */
 - (NSString *)version;
+
+
+//Notifications stuff
+-(void)registerForLocalNotification;
+-(void)respondToLocalNotification:(NSNotification *) notification;
+
 @end

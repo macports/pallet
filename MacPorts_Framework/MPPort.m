@@ -155,26 +155,65 @@
 		nil]];
 }
 
-- (void)uninstallWithOptions:(NSArray *)options {
-	NSString *opts;
+
+-(void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version {
+	NSString *opts, *v;
 	MPInterpreter *interpreter;
-	
 	opts = [NSString stringWithString:@" "];
+	v = [NSString stringWithString:[self name]];
 	interpreter = [MPInterpreter sharedInterpreter];
 	
-	if (options != NULL) {
-		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
-	}
+	if (version != NULL)
+		v = [NSString stringWithString:version];
+	else 
+		v = [NSString stringWithString:[self version]];
+	
+	if (options != NULL) 
+		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
 	
 	[interpreter evaluateStringAsString:
 	 [NSString stringWithFormat:
-	 //Is this the correct way to call the Tcl command?
-	 //uninstall isn't one of the target options for mportexec so I should
-	 //double check with Randall about this call. For quick reference
-	 //here is the procedure signature -> proc uninstall {portname {v ""} optionslist}
-	 //located in /registry 1.0/portuninstall.tcl 
-	 @"[portuninstall::uninstall %@ %@ %@]", 
-	  [self name], [self version], opts]];
+	  @"[%@ %@ %@ %@]" ,
+	  procedure, [self name], v, opts]];
+}
+
+
+- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params {
+	//params can contain either NSStrings or NSArrays
+	NSString * sparams = [NSString stringWithString:@" "];
+	NSEnumerator * penums = [params objectEnumerator];
+	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
+	
+	id elem;
+	
+	while (elem = [penums nextObject]) {
+		if ([elem isMemberOfClass:[NSString class]]) {
+			sparams = [sparams stringByAppendingString:elem];
+			sparams = [sparams stringByAppendingString:@" "];
+		}
+		
+		else if ([elem isKindOfClass:[NSArray class]]) {
+			//Maybe I should be more careful in the above if statement and
+			//explicitly check for the classes i'm interested in?
+			sparams = [sparams stringByAppendingString:[elem componentsJoinedByString:@" "]];
+			sparams = [sparams stringByAppendingString:@" "];
+		}
+	}
+	
+	[interpreter evaluateStringAsString:
+	 [NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]];
+}
+
+- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version {
+	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version];
+}
+
+- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version {
+	[self execPortProc:@"mportactivate" withOptions:options withVersion:version];
+}
+
+- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version {
+	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version];
 }
 
 -(void)exec:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {

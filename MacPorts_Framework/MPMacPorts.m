@@ -41,6 +41,7 @@
 - (id) init {
 	if (self = [super init]) {
 		interpreter = [MPInterpreter sharedInterpreter];
+		[self registerForLocalNotification];
 	}
 	return self;
 }
@@ -186,6 +187,24 @@
 		version = [interpreter evaluateStringAsString:@"return [macports::version]"];
 	}
 	return version;
+}
+
+
+-(void) registerForLocalNotification {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"testMacPortsNotification"
+											   object:nil];
+}
+
+-(void) respondToLocalNotification:(NSNotification *)notification {
+	id sentObject = [notification object];
+	
+	//Just NSLog it for now
+	if(sentObject == nil)
+		NSLog(@"Looooo caaaaal");
+	else
+		NSLog(@"%@" , NSStringFromClass([sentObject class]));
 }
 
 @end
