@@ -175,12 +175,20 @@
 }
 
 - (NSURL *)pathToPortIndex:(NSString *)source {
-	return [NSURL fileURLWithPath:[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
-		@"return [macports::getindex",
-		source,
-		@"]",
-		nil]]];
+	return [NSURL fileURLWithPath:
+			[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
+												@"return [macports::getindex",
+												source,
+												@"]",
+												nil]]];
 }
+
+- (NSURL *)pathToPortIndex:(NSString *)source {
+	return [NSURL fileURLWithPath:
+			[interpreter evaluateStringAsString:
+			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]]];
+}
+
 
 - (NSString *)version {
 	if (version == Nil) {
