@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>Methods</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style>
+</head>
+<body bgcolor="#ffffff">
+<a name="top"></a><a name="HeaderDoc_methods"></a><dl>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/evaluateArrayAsString:" target="doc">-evaluateArrayAsString: </a></tt></dt>
+<dd>Returns the NSstring result of evaluating a Tcl expression</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/evaluateStringAsString:" target="doc">-evaluateStringAsString: </a></tt></dt>
+<dd>Returns the NSString result of evaluating a Tcl expression</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/arrayFromTclListAsString:" target="doc">-arrayFromTclListAsString: </a></tt></dt>
+<dd>Returns an NSArray whose elements are the the elements of a Tcl list in the form of an NSString</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/dictionaryFromTclListAsString:" target="doc">-dictionaryFromTclListAsString: </a></tt></dt>
+<dd>Returns an NSDictionary whose elements are the the elements of a Tcl list in the form of an NSString</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/mutableDictionaryFromTclListAsString:" target="doc">-mutableDictionaryFromTclListAsString: </a></tt></dt>
+<dd>Same as dictionaryFromTclListAsString method. Returns an NSMutableDictionary</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/getVariableAsArray:" target="doc">-getVariableAsArray: </a></tt></dt>
+<dd>Returns an NSArray whose elements are the contents of a Tcl variable</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPInterpreter/getVariableAsString:" target="doc">-getVariableAsString: </a></tt></dt>
+<dd>Returns an NSString representation of a Tcl variable</dd>
+</dl>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/evaluateArrayAsString:;  name=MPInterpreter::evaluateArrayAsString: --><a name="//apple_ref/occ/instm/MPInterpreter/evaluateArrayAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="evaluateArrayAsString:">evaluateArrayAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the NSstring result of evaluating a Tcl expression<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/evaluateArrayAsString //apple_ref/occ/clm/evaluateArrayAsString //apple_ref/occ/intfcm/evaluateArrayAsString //apple_ref/occ/intfm/evaluateArrayAsString //apple_ref/occ/func/evaluateArrayAsString //apple_ref/occ/ftmplt/evaluateArrayAsString //apple_ref/occ/defn/evaluateArrayAsString //apple_ref/occ/macro/evaluateArrayAsString" --><span class="function">evaluateArrayAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">statement</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>statement </code></dt>
+<dd>An NSArray containing the Tcl expression</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->For example, here is the header definition of a MacPorts Tcl API
+call proc macports::getindex {source}. This is how to call this procedure
+in Tcl: [macports::getindex $source]. Calling the macports::getindex
+procedure from Objective-C code with -evaluateArrayAsString however takes the following form:
+<br><br>
+[SomeMPInterpreterObject evaluateArrayAsString:[NSArray arrayWithObjects:
+@"return [macports::getindex",
+[NSString stringWithString:@"SomeValidMacPortsSourcePath"],
+@"]",
+nil]];
+<br><br>
+Each element in the array is an NSString. Note the "return" in the first element of the statement
+NSArray.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/evaluateStringAsString:;  name=MPInterpreter::evaluateStringAsString: --><a name="//apple_ref/occ/instm/MPInterpreter/evaluateStringAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="evaluateStringAsString:">evaluateStringAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the NSString result of evaluating a Tcl expression<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/evaluateStringAsString //apple_ref/occ/clm/evaluateStringAsString //apple_ref/occ/intfcm/evaluateStringAsString //apple_ref/occ/intfm/evaluateStringAsString //apple_ref/occ/func/evaluateStringAsString //apple_ref/occ/ftmplt/evaluateStringAsString //apple_ref/occ/defn/evaluateStringAsString //apple_ref/occ/macro/evaluateStringAsString" --><span class="function">evaluateStringAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">statement</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>statement </code></dt>
+<dd>An NSString containing the Tcl expression</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->Using the macports::getindex {source} procedure as an example (see discussion for 
+-evaluateArrayAsString), we have the following Objective-C form for calling the macports::getindex
+procedure:
+<br><br>
+[SomeMPInterpreterObject evaluateStringAsString:
+[NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/arrayFromTclListAsString:;  name=MPInterpreter::arrayFromTclListAsString: --><a name="//apple_ref/occ/instm/MPInterpreter/arrayFromTclListAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="arrayFromTclListAsString:">arrayFromTclListAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSArray whose elements are the the elements of a Tcl list in the form of an NSString<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/arrayFromTclListAsString //apple_ref/occ/clm/arrayFromTclListAsString //apple_ref/occ/intfcm/arrayFromTclListAsString //apple_ref/occ/intfm/arrayFromTclListAsString //apple_ref/occ/func/arrayFromTclListAsString //apple_ref/occ/ftmplt/arrayFromTclListAsString //apple_ref/occ/defn/arrayFromTclListAsString //apple_ref/occ/macro/arrayFromTclListAsString" --><span class="function">arrayFromTclListAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">list</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>list </code></dt>
+<dd>A Tcl list in the form of an NSString</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->This method usually takes the result of a call to the evaluateStringAsString and 
+evaluateArrayAsString methods which is a Tcl list and parses it into an NSArray.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/dictionaryFromTclListAsString:;  name=MPInterpreter::dictionaryFromTclListAsString: --><a name="//apple_ref/occ/instm/MPInterpreter/dictionaryFromTclListAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="dictionaryFromTclListAsString:">dictionaryFromTclListAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSDictionary whose elements are the the elements of a Tcl list in the form of an NSString<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSDictionary //apple_ref/occ/tdef/NSDictionary //apple_ref/occ/tag/NSDictionary //apple_ref/occ/econst/NSDictionary //apple_ref/occ/struct/NSDictionary //apple_ref/occ/clconst/NSDictionary //apple_ref/occ/intf/NSDictionary" --><span class="type">NSDictionary</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/dictionaryFromTclListAsString //apple_ref/occ/clm/dictionaryFromTclListAsString //apple_ref/occ/intfcm/dictionaryFromTclListAsString //apple_ref/occ/intfm/dictionaryFromTclListAsString //apple_ref/occ/func/dictionaryFromTclListAsString //apple_ref/occ/ftmplt/dictionaryFromTclListAsString //apple_ref/occ/defn/dictionaryFromTclListAsString //apple_ref/occ/macro/dictionaryFromTclListAsString" --><span class="function">dictionaryFromTclListAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">list</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>list </code></dt>
+<dd>A Tcl list in the form of an NSString</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The returned NSDictionary is of the form {k1, v1, k2, v2, ...} with ki being the keys and vi
+the values in the dictionary. These keys and values are obtained from an NSString Tcl list of the
+form {k1 v1 k2 v2 ...}
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/mutableDictionaryFromTclListAsString:;  name=MPInterpreter::mutableDictionaryFromTclListAsString: --><a name="//apple_ref/occ/instm/MPInterpreter/mutableDictionaryFromTclListAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="mutableDictionaryFromTclListAsString:">mutableDictionaryFromTclListAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Same as dictionaryFromTclListAsString method. Returns an NSMutableDictionary<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSMutableDictionary //apple_ref/occ/tdef/NSMutableDictionary //apple_ref/occ/tag/NSMutableDictionary //apple_ref/occ/econst/NSMutableDictionary //apple_ref/occ/struct/NSMutableDictionary //apple_ref/occ/clconst/NSMutableDictionary //apple_ref/occ/intf/NSMutableDictionary" --><span class="type">NSMutableDictionary</span><!-- /a --> <span class="type">*</span>)
+        <!-- a logicalPath="//apple_ref/occ/instm/mutableDictionaryFromTclListAsString //apple_ref/occ/clm/mutableDictionaryFromTclListAsString //apple_ref/occ/intfcm/mutableDictionaryFromTclListAsString //apple_ref/occ/intfm/mutableDictionaryFromTclListAsString //apple_ref/occ/func/mutableDictionaryFromTclListAsString //apple_ref/occ/ftmplt/mutableDictionaryFromTclListAsString //apple_ref/occ/defn/mutableDictionaryFromTclListAsString //apple_ref/occ/macro/mutableDictionaryFromTclListAsString" --><span class="function">mutableDictionaryFromTclListAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">list</span>; </pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->rather than NSDictionary.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/getVariableAsArray:;  name=MPInterpreter::getVariableAsArray: --><a name="//apple_ref/occ/instm/MPInterpreter/getVariableAsArray:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="getVariableAsArray:">getVariableAsArray: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSArray whose elements are the contents of a Tcl variable<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/getVariableAsArray //apple_ref/occ/clm/getVariableAsArray //apple_ref/occ/intfcm/getVariableAsArray //apple_ref/occ/intfm/getVariableAsArray //apple_ref/occ/func/getVariableAsArray //apple_ref/occ/ftmplt/getVariableAsArray //apple_ref/occ/defn/getVariableAsArray //apple_ref/occ/macro/getVariableAsArray" --><span class="function">getVariableAsArray</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">variable</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>variable </code></dt>
+<dd>An NSString representation of a Tcl variable</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPInterpreter/getVariableAsString:;  name=MPInterpreter::getVariableAsString: --><a name="//apple_ref/occ/instm/MPInterpreter/getVariableAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="getVariableAsString:">getVariableAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSString representation of a Tcl variable<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/getVariableAsString //apple_ref/occ/clm/getVariableAsString //apple_ref/occ/intfcm/getVariableAsString //apple_ref/occ/intfm/getVariableAsString //apple_ref/occ/func/getVariableAsString //apple_ref/occ/ftmplt/getVariableAsString //apple_ref/occ/defn/getVariableAsString //apple_ref/occ/macro/getVariableAsString" --><span class="function">getVariableAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">variable</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>variable </code></dt>
+<dd>An NSString representtion of a Tcl variable</dd>
+</dl>
+<p></p>
+<p>Last Updated: Sunday, July 13, 2008
+</p>
+</body>
+</html>

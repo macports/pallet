@@ -1,0 +1,563 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>Methods</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style>
+</head>
+<body bgcolor="#ffffff">
+<a name="top"></a><a name="HeaderDoc_methods"></a><dl>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/init" target="doc">-init </a></tt></dt>
+<dd>Initializes this port with a MPPortStateUnkown state</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/initWithCapacity:" target="doc">-initWithCapacity: </a></tt></dt>
+<dd>Initializes this port with a MPPortStateUnkown state</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/initWithTclListAsString:" target="doc">-initWithTclListAsString: </a></tt></dt>
+<dd>Initializes this port with an NSString derived from a Tcl list</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/name" target="doc">-name </a></tt></dt>
+<dd>Returns the name of this port</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/version" target="doc">-version </a></tt></dt>
+<dd>Returns the version of this port</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/depends" target="doc">-depends </a></tt></dt>
+<dd>Returns an array of NSString port names of dependencies of this port</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/uninstallWithOptions:withVersion:" target="doc">-uninstallWithOptions:withVersion: </a></tt></dt>
+<dd>Deactivates and uninstalls this MPPort from the MacPorts system</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/activateWithOptions:withVersion:" target="doc">-activateWithOptions:withVersion: </a></tt></dt>
+<dd>Activates an installed MPPort.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/deactivateWithOptions:withVersion:" target="doc">-deactivateWithOptions:withVersion: </a></tt></dt>
+<dd>Deactivates an installed MPPort.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/exec:withOptions:withVariants:" target="doc">-exec:withOptions:withVariants: </a></tt></dt>
+<dd>Executes the specified target for this MPPort</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/configureWithOptions:withVariants:" target="doc">-configureWithOptions:withVariants: </a></tt></dt>
+<dd>Runs a configure process for this port.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/buildWithOptions:withVariants:" target="doc">-buildWithOptions:withVariants: </a></tt></dt>
+<dd>Builds this port.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/testWithOptions:withVariants:" target="doc">-testWithOptions:withVariants: </a></tt></dt>
+<dd>Tests this port.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/destrootWithOptions:withVariants:" target="doc">-destrootWithOptions:withVariants: </a></tt></dt>
+<dd>Installs this port to a temporary directory</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/installWithOptions:withVariants:" target="doc">-installWithOptions:withVariants: </a></tt></dt>
+<dd>Installs this port.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/archiveWithOptions:withVariants:" target="doc">-archiveWithOptions:withVariants: </a></tt></dt>
+<dd>Archives port for later unarchving. </dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createDmgWithOptions:withVariants:" target="doc">-createDmgWithOptions:withVariants: </a></tt></dt>
+<dd>Creates an internet-enabled disk image containing OS X package of this</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createMdmgWithOptions:withVariants:" target="doc">-createMdmgWithOptions:withVariants: </a></tt></dt>
+<dd>Create an internet-enabled disk image containing an OS X metapackage of this</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createPkgWithOptions:withVariants:" target="doc">-createPkgWithOptions:withVariants: </a></tt></dt>
+<dd>Creates an OS X installer package of this port</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createMpkgWithOptions:withVariants:" target="doc">-createMpkgWithOptions:withVariants: </a></tt></dt>
+<dd>Creates an OS X installer metapackage of this this port and </dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createRpmWithOptions:withVariants:" target="doc">-createRpmWithOptions:withVariants: </a></tt></dt>
+<dd>Creates and RPM binary package of this port. This is similar to a</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createDpkgWithOptions:withVariants:" target="doc">-createDpkgWithOptions:withVariants: </a></tt></dt>
+<dd>Creates a DEB binary package of this port.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/createSrpmWithOptions:withVariants:" target="doc">-createSrpmWithOptions:withVariants: </a></tt></dt>
+<dd>Creates an SRPM source package of this port, similar to a xar "portpkg".</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/setPortWithTclListAsString:" target="doc">-setPortWithTclListAsString: </a></tt></dt>
+<dd>Sets the attributes of this MPPort using the given string</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/addDependencyAsPortName:" target="doc">-addDependencyAsPortName: </a></tt></dt>
+<dd>Adds the name of an MPPort to the list of this MPPort's dependencies</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/setState:" target="doc">-setState: </a></tt></dt>
+<dd>Sets the state of this MPPort object</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPPort/setStateFromReceipts:" target="doc">-setStateFromReceipts: </a></tt></dt>
+<dd>Sets the state of this MPPort object from its receipts</dd>
+</dl>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/init;  name=MPPort::init --><a name="//apple_ref/occ/instm/MPPort/init"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="init">init </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Initializes this port with a MPPortStateUnkown state<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/econst/id //apple_ref/occ/struct/id //apple_ref/occ/clconst/id //apple_ref/occ/intf/id" --><span class="type">id</span><!-- /a -->)<span class="var">init</span>;</pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->Calls [self initWithCapacity:15]
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/initWithCapacity:;  name=MPPort::initWithCapacity: --><a name="//apple_ref/occ/instm/MPPort/initWithCapacity:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="initWithCapacity:">initWithCapacity: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Initializes this port with a MPPortStateUnkown state<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/econst/id //apple_ref/occ/struct/id //apple_ref/occ/clconst/id //apple_ref/occ/intf/id" --><span class="type">id</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/initWithCapacity //apple_ref/occ/clm/initWithCapacity //apple_ref/occ/intfcm/initWithCapacity //apple_ref/occ/intfm/initWithCapacity //apple_ref/occ/func/initWithCapacity //apple_ref/occ/ftmplt/initWithCapacity //apple_ref/occ/defn/initWithCapacity //apple_ref/occ/macro/initWithCapacity" --><span class="function">initWithCapacity</span><!-- /a -->:(<span class="keyword">unsigned</span>)<span class="var">numItems</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>numItems </code></dt>
+<dd>The number of items to be stored with this port</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/initWithTclListAsString:;  name=MPPort::initWithTclListAsString: --><a name="//apple_ref/occ/instm/MPPort/initWithTclListAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="initWithTclListAsString:">initWithTclListAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Initializes this port with an NSString derived from a Tcl list<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/econst/id //apple_ref/occ/struct/id //apple_ref/occ/clconst/id //apple_ref/occ/intf/id" --><span class="type">id</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/initWithTclListAsString //apple_ref/occ/clm/initWithTclListAsString //apple_ref/occ/intfcm/initWithTclListAsString //apple_ref/occ/intfm/initWithTclListAsString //apple_ref/occ/func/initWithTclListAsString //apple_ref/occ/ftmplt/initWithTclListAsString //apple_ref/occ/defn/initWithTclListAsString //apple_ref/occ/macro/initWithTclListAsString" --><span class="function">initWithTclListAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">string</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>string </code></dt>
+<dd>The NSString object used to initialize this MPPort object</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The Tcl list is usually obtained from doing a search query for some
+particular port.
+<br><br>
+IS THIS METHOD JUST FOR INTERNAL USE? IT LOOKS LIKE IT ... ASK RANDALL ABOUT THAT
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/name;  name=MPPort::name --><a name="//apple_ref/occ/instm/MPPort/name"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="name">name </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the name of this port<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">name</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/version;  name=MPPort::version --><a name="//apple_ref/occ/instm/MPPort/version"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="version">version </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the version of this port<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">version</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/depends;  name=MPPort::depends --><a name="//apple_ref/occ/instm/MPPort/depends"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="depends">depends </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an array of NSString port names of dependencies of this port<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">depends</span>; </pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The MPPort object has internal dictionary lists of MPPort names for
+the following dependency types: depend_libs, depend_run and depend_build. The
+NSArray returned contains all of these dependencies in a single Array.
+<br><br>
+ISN'T INFORMATION LOST BY JUST CREATING A SINGLE ARAY WITH ALL OF THESE DEPENDENCIES?
+PERHAPS A DIFFERENT DATA STRUCTURE CAN BE USED THAT LETS US REMEMBER WHAT TYPE OF
+DEPENDENCY EACH DEPENDENCY IS?
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/uninstallWithOptions:withVersion:;  name=MPPort::uninstallWithOptions:withVersion: --><a name="//apple_ref/occ/instm/MPPort/uninstallWithOptions:withVersion:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="uninstallWithOptions:withVersion:">uninstallWithOptions:withVersion: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Deactivates and uninstalls this MPPort from the MacPorts system<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/uninstallWithOptions //apple_ref/occ/clm/uninstallWithOptions //apple_ref/occ/intfcm/uninstallWithOptions //apple_ref/occ/intfm/uninstallWithOptions //apple_ref/occ/func/uninstallWithOptions //apple_ref/occ/ftmplt/uninstallWithOptions //apple_ref/occ/defn/uninstallWithOptions //apple_ref/occ/macro/uninstallWithOptions" --><span class="function">uninstallWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVersion //apple_ref/occ/clm/withVersion //apple_ref/occ/intfcm/withVersion //apple_ref/occ/intfm/withVersion //apple_ref/occ/func/withVersion //apple_ref/occ/ftmplt/withVersion //apple_ref/occ/defn/withVersion //apple_ref/occ/macro/withVersion" --><span class="function">withVersion</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">version</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of options for this uninstallation execution</dd>
+<dt><code>version </code></dt>
+<dd>An NSString indicating which version of this port to uninstall</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->version should NOT be nil
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/activateWithOptions:withVersion:;  name=MPPort::activateWithOptions:withVersion: --><a name="//apple_ref/occ/instm/MPPort/activateWithOptions:withVersion:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="activateWithOptions:withVersion:">activateWithOptions:withVersion: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Activates an installed MPPort.<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/activateWithOptions //apple_ref/occ/clm/activateWithOptions //apple_ref/occ/intfcm/activateWithOptions //apple_ref/occ/intfm/activateWithOptions //apple_ref/occ/func/activateWithOptions //apple_ref/occ/ftmplt/activateWithOptions //apple_ref/occ/defn/activateWithOptions //apple_ref/occ/macro/activateWithOptions" --><span class="function">activateWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVersion //apple_ref/occ/clm/withVersion //apple_ref/occ/intfcm/withVersion //apple_ref/occ/intfm/withVersion //apple_ref/occ/func/withVersion //apple_ref/occ/ftmplt/withVersion //apple_ref/occ/defn/withVersion //apple_ref/occ/macro/withVersion" --><span class="function">withVersion</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">version</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of options for port activation</dd>
+<dt><code>version </code></dt>
+<dd>An NSString indicating which version of this port to activate</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->version should NOT be nil. The activated port should have been
+already installed. This happens automatically during a default installation
+of a port. This means activation of a port should occur only if the port
+had been previously deactivated after a default installation.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/deactivateWithOptions:withVersion:;  name=MPPort::deactivateWithOptions:withVersion: --><a name="//apple_ref/occ/instm/MPPort/deactivateWithOptions:withVersion:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="deactivateWithOptions:withVersion:">deactivateWithOptions:withVersion: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Deactivates an installed MPPort.<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/deactivateWithOptions //apple_ref/occ/clm/deactivateWithOptions //apple_ref/occ/intfcm/deactivateWithOptions //apple_ref/occ/intfm/deactivateWithOptions //apple_ref/occ/func/deactivateWithOptions //apple_ref/occ/ftmplt/deactivateWithOptions //apple_ref/occ/defn/deactivateWithOptions //apple_ref/occ/macro/deactivateWithOptions" --><span class="function">deactivateWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVersion //apple_ref/occ/clm/withVersion //apple_ref/occ/intfcm/withVersion //apple_ref/occ/intfm/withVersion //apple_ref/occ/func/withVersion //apple_ref/occ/ftmplt/withVersion //apple_ref/occ/defn/withVersion //apple_ref/occ/macro/withVersion" --><span class="function">withVersion</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">version</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of options for port deactivation</dd>
+<dt><code>version </code></dt>
+<dd>An NSString indicating which version of this port to deactivate</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->version should NOT be nil. Only installed and active ports
+should be deactivated
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/exec:withOptions:withVariants:;  name=MPPort::exec:withOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/exec:withOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="exec:withOptions:withVariants:">exec:withOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Executes the specified target for this MPPort<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/exec //apple_ref/occ/clm/exec //apple_ref/occ/intfcm/exec //apple_ref/occ/intfm/exec //apple_ref/occ/func/exec //apple_ref/occ/ftmplt/exec //apple_ref/occ/defn/exec //apple_ref/occ/macro/exec" --><span class="function">exec</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">target</span> <!-- a logicalPath="//apple_ref/occ/instm/withOptions //apple_ref/occ/clm/withOptions //apple_ref/occ/intfcm/withOptions //apple_ref/occ/intfm/withOptions //apple_ref/occ/func/withOptions //apple_ref/occ/ftmplt/withOptions //apple_ref/occ/defn/withOptions //apple_ref/occ/macro/withOptions" --><span class="function">withOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> 
+        <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>target </code></dt>
+<dd>NSString target to be executed for this MPPort</dd>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings for the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings for the various variants for this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The various options for target are: configure, build,
+test, destroot, install, archive, dmg, mdmg, pkg, mpkg, rpm, dpkg, srpm.
+Users of -exec are responsible for ensuring that execution happens in 
+an authorized environment for various targets.
+<br><br>
+ADD SOMETHING HERE ABOUT VARIANTS AND OPTIONS
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/configureWithOptions:withVariants:;  name=MPPort::configureWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/configureWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="configureWithOptions:withVariants:">configureWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Runs a configure process for this port.<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/configureWithOptions //apple_ref/occ/clm/configureWithOptions //apple_ref/occ/intfcm/configureWithOptions //apple_ref/occ/intfm/configureWithOptions //apple_ref/occ/func/configureWithOptions //apple_ref/occ/ftmplt/configureWithOptions //apple_ref/occ/defn/configureWithOptions //apple_ref/occ/macro/configureWithOptions" --><span class="function">configureWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/buildWithOptions:withVariants:;  name=MPPort::buildWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/buildWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="buildWithOptions:withVariants:">buildWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Builds this port.<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/buildWithOptions //apple_ref/occ/clm/buildWithOptions //apple_ref/occ/intfcm/buildWithOptions //apple_ref/occ/intfm/buildWithOptions //apple_ref/occ/func/buildWithOptions //apple_ref/occ/ftmplt/buildWithOptions //apple_ref/occ/defn/buildWithOptions //apple_ref/occ/macro/buildWithOptions" --><span class="function">buildWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/testWithOptions:withVariants:;  name=MPPort::testWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/testWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="testWithOptions:withVariants:">testWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Tests this port.<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/testWithOptions //apple_ref/occ/clm/testWithOptions //apple_ref/occ/intfcm/testWithOptions //apple_ref/occ/intfm/testWithOptions //apple_ref/occ/func/testWithOptions //apple_ref/occ/ftmplt/testWithOptions //apple_ref/occ/defn/testWithOptions //apple_ref/occ/macro/testWithOptions" --><span class="function">testWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/destrootWithOptions:withVariants:;  name=MPPort::destrootWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/destrootWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="destrootWithOptions:withVariants:">destrootWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Installs this port to a temporary directory<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/destrootWithOptions //apple_ref/occ/clm/destrootWithOptions //apple_ref/occ/intfcm/destrootWithOptions //apple_ref/occ/intfm/destrootWithOptions //apple_ref/occ/func/destrootWithOptions //apple_ref/occ/ftmplt/destrootWithOptions //apple_ref/occ/defn/destrootWithOptions //apple_ref/occ/macro/destrootWithOptions" --><span class="function">destrootWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/installWithOptions:withVariants:;  name=MPPort::installWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/installWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="installWithOptions:withVariants:">installWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Installs this port.<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/installWithOptions //apple_ref/occ/clm/installWithOptions //apple_ref/occ/intfcm/installWithOptions //apple_ref/occ/intfm/installWithOptions //apple_ref/occ/func/installWithOptions //apple_ref/occ/ftmplt/installWithOptions //apple_ref/occ/defn/installWithOptions //apple_ref/occ/macro/installWithOptions" --><span class="function">installWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->Installing a port automatically activates it.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/archiveWithOptions:withVariants:;  name=MPPort::archiveWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/archiveWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="archiveWithOptions:withVariants:">archiveWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Archives port for later unarchving. <!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/archiveWithOptions //apple_ref/occ/clm/archiveWithOptions //apple_ref/occ/intfcm/archiveWithOptions //apple_ref/occ/intfm/archiveWithOptions //apple_ref/occ/func/archiveWithOptions //apple_ref/occ/ftmplt/archiveWithOptions //apple_ref/occ/defn/archiveWithOptions //apple_ref/occ/macro/archiveWithOptions" --><span class="function">archiveWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->Archive mode must be enabled for this command to work.
+This is done by setting portarchivemode to yes in the macports.conf file
+located in ${prefix}/etc/macports/macports.conf. With archive mode enabled,
+binary archives are created automatically whenever an install is performed.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createDmgWithOptions:withVariants:;  name=MPPort::createDmgWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createDmgWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createDmgWithOptions:withVariants:">createDmgWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates an internet-enabled disk image containing OS X package of this<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createDmgWithOptions //apple_ref/occ/clm/createDmgWithOptions //apple_ref/occ/intfcm/createDmgWithOptions //apple_ref/occ/intfm/createDmgWithOptions //apple_ref/occ/func/createDmgWithOptions //apple_ref/occ/ftmplt/createDmgWithOptions //apple_ref/occ/defn/createDmgWithOptions //apple_ref/occ/macro/createDmgWithOptions" --><span class="function">createDmgWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->port
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createMdmgWithOptions:withVariants:;  name=MPPort::createMdmgWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createMdmgWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createMdmgWithOptions:withVariants:">createMdmgWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Create an internet-enabled disk image containing an OS X metapackage of this<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createMdmgWithOptions //apple_ref/occ/clm/createMdmgWithOptions //apple_ref/occ/intfcm/createMdmgWithOptions //apple_ref/occ/intfm/createMdmgWithOptions //apple_ref/occ/func/createMdmgWithOptions //apple_ref/occ/ftmplt/createMdmgWithOptions //apple_ref/occ/defn/createMdmgWithOptions //apple_ref/occ/macro/createMdmgWithOptions" --><span class="function">createMdmgWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->port
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createPkgWithOptions:withVariants:;  name=MPPort::createPkgWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createPkgWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createPkgWithOptions:withVariants:">createPkgWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates an OS X installer package of this port<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createPkgWithOptions //apple_ref/occ/clm/createPkgWithOptions //apple_ref/occ/intfcm/createPkgWithOptions //apple_ref/occ/intfm/createPkgWithOptions //apple_ref/occ/func/createPkgWithOptions //apple_ref/occ/ftmplt/createPkgWithOptions //apple_ref/occ/defn/createPkgWithOptions //apple_ref/occ/macro/createPkgWithOptions" --><span class="function">createPkgWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createMpkgWithOptions:withVariants:;  name=MPPort::createMpkgWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createMpkgWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createMpkgWithOptions:withVariants:">createMpkgWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates an OS X installer metapackage of this this port and <!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createMpkgWithOptions //apple_ref/occ/clm/createMpkgWithOptions //apple_ref/occ/intfcm/createMpkgWithOptions //apple_ref/occ/intfm/createMpkgWithOptions //apple_ref/occ/func/createMpkgWithOptions //apple_ref/occ/ftmplt/createMpkgWithOptions //apple_ref/occ/defn/createMpkgWithOptions //apple_ref/occ/macro/createMpkgWithOptions" --><span class="function">createMpkgWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->its dependencies
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createRpmWithOptions:withVariants:;  name=MPPort::createRpmWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createRpmWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createRpmWithOptions:withVariants:">createRpmWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates and RPM binary package of this port. This is similar to a<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createRpmWithOptions //apple_ref/occ/clm/createRpmWithOptions //apple_ref/occ/intfcm/createRpmWithOptions //apple_ref/occ/intfm/createRpmWithOptions //apple_ref/occ/func/createRpmWithOptions //apple_ref/occ/ftmplt/createRpmWithOptions //apple_ref/occ/defn/createRpmWithOptions //apple_ref/occ/macro/createRpmWithOptions" --><span class="function">createRpmWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->tgz "archive".
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createDpkgWithOptions:withVariants:;  name=MPPort::createDpkgWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createDpkgWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createDpkgWithOptions:withVariants:">createDpkgWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates a DEB binary package of this port.<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createDpkgWithOptions //apple_ref/occ/clm/createDpkgWithOptions //apple_ref/occ/intfcm/createDpkgWithOptions //apple_ref/occ/intfm/createDpkgWithOptions //apple_ref/occ/func/createDpkgWithOptions //apple_ref/occ/ftmplt/createDpkgWithOptions //apple_ref/occ/defn/createDpkgWithOptions //apple_ref/occ/macro/createDpkgWithOptions" --><span class="function">createDpkgWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/createSrpmWithOptions:withVariants:;  name=MPPort::createSrpmWithOptions:withVariants: --><a name="//apple_ref/occ/instm/MPPort/createSrpmWithOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="createSrpmWithOptions:withVariants:">createSrpmWithOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates an SRPM source package of this port, similar to a xar "portpkg".<!-- end abstract --></p>
+<p></p>
+<pre>-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/createSrpmWithOptions //apple_ref/occ/clm/createSrpmWithOptions //apple_ref/occ/intfcm/createSrpmWithOptions //apple_ref/occ/intfm/createSrpmWithOptions //apple_ref/occ/func/createSrpmWithOptions //apple_ref/occ/ftmplt/createSrpmWithOptions //apple_ref/occ/defn/createSrpmWithOptions //apple_ref/occ/macro/createSrpmWithOptions" --><span class="function">createSrpmWithOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of the various options for this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of the various variants for this target</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/setPortWithTclListAsString:;  name=MPPort::setPortWithTclListAsString: --><a name="//apple_ref/occ/instm/MPPort/setPortWithTclListAsString:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setPortWithTclListAsString:">setPortWithTclListAsString: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Sets the attributes of this MPPort using the given string<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->) <!-- a logicalPath="//apple_ref/occ/instm/setPortWithTclListAsString //apple_ref/occ/clm/setPortWithTclListAsString //apple_ref/occ/intfcm/setPortWithTclListAsString //apple_ref/occ/intfm/setPortWithTclListAsString //apple_ref/occ/func/setPortWithTclListAsString //apple_ref/occ/ftmplt/setPortWithTclListAsString //apple_ref/occ/defn/setPortWithTclListAsString //apple_ref/occ/macro/setPortWithTclListAsString" --><span class="function">setPortWithTclListAsString</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">string</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>string </code></dt>
+<dd>An NSString object derived from a Tcl list containing this port's attributes</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The Tcl list is obtained from the PortIndex which contains a list of serialized
+Tcl key-value lists, one list per line. This list is then broken up into a dictionary of attributes
+for the MPPort.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/addDependencyAsPortName:;  name=MPPort::addDependencyAsPortName: --><a name="//apple_ref/occ/instm/MPPort/addDependencyAsPortName:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="addDependencyAsPortName:">addDependencyAsPortName: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Adds the name of an MPPort to the list of this MPPort's dependencies<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->) <!-- a logicalPath="//apple_ref/occ/instm/addDependencyAsPortName //apple_ref/occ/clm/addDependencyAsPortName //apple_ref/occ/intfcm/addDependencyAsPortName //apple_ref/occ/intfm/addDependencyAsPortName //apple_ref/occ/func/addDependencyAsPortName //apple_ref/occ/ftmplt/addDependencyAsPortName //apple_ref/occ/defn/addDependencyAsPortName //apple_ref/occ/macro/addDependencyAsPortName" --><span class="function">addDependencyAsPortName</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">dependency</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>dependency </code></dt>
+<dd>The NSString name of the MPPort to be added</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->This MPPort object contains an internal list of port names for MPPorts which
+it depends on. This list is returned by the depends method and is populated by this method.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/setState:;  name=MPPort::setState: --><a name="//apple_ref/occ/instm/MPPort/setState:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setState:">setState: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Sets the state of this MPPort object<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/setState //apple_ref/occ/clm/setState //apple_ref/occ/intfcm/setState //apple_ref/occ/intfm/setState //apple_ref/occ/func/setState //apple_ref/occ/ftmplt/setState //apple_ref/occ/defn/setState //apple_ref/occ/macro/setState" --><span class="function">setState</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/int //apple_ref/occ/tdef/int //apple_ref/occ/tag/int //apple_ref/occ/econst/int //apple_ref/occ/struct/int //apple_ref/occ/clconst/int //apple_ref/occ/intf/int" --><span class="type">int</span><!-- /a -->)<span class="var">state</span>; </pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->Possible values are MPPortStateUnknown, MPPortStateLearnState, MPPortStateActive, MPPortStateInstalled,
+MPPortStateOutdated, MPPortStateNotInstalled.
+<!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPPort/setStateFromReceipts:;  name=MPPort::setStateFromReceipts: --><a name="//apple_ref/occ/instm/MPPort/setStateFromReceipts:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setStateFromReceipts:">setStateFromReceipts: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Sets the state of this MPPort object from its receipts<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/setStateFromReceipts //apple_ref/occ/clm/setStateFromReceipts //apple_ref/occ/intfcm/setStateFromReceipts //apple_ref/occ/intfm/setStateFromReceipts //apple_ref/occ/func/setStateFromReceipts //apple_ref/occ/ftmplt/setStateFromReceipts //apple_ref/occ/defn/setStateFromReceipts //apple_ref/occ/macro/setStateFromReceipts" --><span class="function">setStateFromReceipts</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">receipts</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>receipts </code></dt>
+<dd>An NSArray of receipts for this port</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->It is possible for an installed port to have more than one 
+receipt if the MacPorts system uses hardlinks to activate the port.
+ <!-- end discussion --></p>
+<p></p>
+<p>Last Updated: Sunday, July 13, 2008
+</p>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>MPIndex </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style>
+</head>
+<body bgcolor="#ffffff">
+<a name="top"></a><a name="//apple_ref/doc/class/MPIndex" title="MPIndex "></a><hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="MPIndex">MPIndex </a></h1>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --> Index of all ports
+<!-- end abstract --></p>
+<p><b>Superclass:</b> <a href="../../../../HTML/MPMutableDictionary/Classes/MPMutableDictionary_/index.html#//apple_ref/occ/cl/MPMutableDictionary" logicalPath="//apple_ref/occ/cl/MPMutableDictionary" target="_top">MPMutableDictionary</a><br><b>Declared In:</b> <a href="../../index.html" target="_top">MPIndex.h</a><br></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion --> Maintains an in-memory cache of all available ports and their 
+install status. The MPIndex class is analogous to the PortIndex files for every 
+port collection (most users have just one collection listed in 
+/opt/local/etc/macports/sources.conf).
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<br><h2>Methods</h2>
+<a name="HeaderDoc_methods"></a><dl>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/initWithCapacity:" target="_top">-initWithCapacity: </a></tt></dt>
+<dd>Initialize a newly allocated index with enough memory for numItems ports</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/ports" target="_top">-ports </a></tt></dt>
+<dd>Returns a new array conaining of all available ports</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/portNames" target="_top">-portNames </a></tt></dt>
+<dd>Returns a new array of all port names</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/setIndex" target="_top">-setIndex </a></tt></dt>
+<dd>Loads all ports into the index from the MacPorts backend</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/port:" target="_top">-port: </a></tt></dt>
+<dd>Returns the port with the given name</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/portEnumerator" target="_top">-portEnumerator </a></tt></dt>
+<dd>Returns an enumerator of all ports</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/removePort:" target="_top">-removePort: </a></tt></dt>
+<dd>Removes the port with the given name from the index</dd>
+<dt><tt><a href="CompositePage.html#//apple_ref/doc/compositePage/occ/instm/MPIndex/setPort:" target="_top">-setPort: </a></tt></dt>
+<dd>Adds the port to the index</dd>
+</dl>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/initWithCapacity:;  name=MPIndex::initWithCapacity: --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/initWithCapacity:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="initWithCapacity:">initWithCapacity: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Initialize a newly allocated index with enough memory for numItems ports<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/econst/id //apple_ref/occ/struct/id //apple_ref/occ/clconst/id //apple_ref/occ/intf/id" --><span class="type">id</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/initWithCapacity //apple_ref/occ/clm/initWithCapacity //apple_ref/occ/intfcm/initWithCapacity //apple_ref/occ/intfm/initWithCapacity //apple_ref/occ/func/initWithCapacity //apple_ref/occ/ftmplt/initWithCapacity //apple_ref/occ/defn/initWithCapacity //apple_ref/occ/macro/initWithCapacity" --><span class="function">initWithCapacity</span><!-- /a -->:(<span class="keyword">unsigned</span>)<span class="var">numItems</span>;</pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>numItems </code></dt>
+<dd>The number of ports that the index will initially have capacity for</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/ports;  name=MPIndex::ports --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/ports"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="ports">ports </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns a new array conaining of all available ports<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">ports</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/portNames;  name=MPIndex::portNames --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/portNames"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="portNames">portNames </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns a new array of all port names<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">portNames</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/setIndex;  name=MPIndex::setIndex --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/setIndex"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setIndex">setIndex </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Loads all ports into the index from the MacPorts backend<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<span class="var">setIndex</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/port:;  name=MPIndex::port: --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/port:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="port:">port: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the port with the given name<!-- end abstract --></p>
+<p></p>
+<pre>- (<a href="../../../../HTML/MPPort/Classes/MPPort/index.html#//apple_ref/occ/cl/MPPort" logicalPath="//apple_ref/occ/cl/MPPort" target="_top"><span class="type">MPPort</span></a> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/port //apple_ref/occ/clm/port //apple_ref/occ/intfcm/port //apple_ref/occ/intfm/port //apple_ref/occ/func/port //apple_ref/occ/ftmplt/port //apple_ref/occ/defn/port //apple_ref/occ/macro/port" --><span class="function">port</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">name</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>name </code></dt>
+<dd>The name of the port</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/portEnumerator;  name=MPIndex::portEnumerator --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/portEnumerator"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="portEnumerator">portEnumerator </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an enumerator of all ports<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSEnumerator //apple_ref/occ/tdef/NSEnumerator //apple_ref/occ/tag/NSEnumerator //apple_ref/occ/econst/NSEnumerator //apple_ref/occ/struct/NSEnumerator //apple_ref/occ/clconst/NSEnumerator //apple_ref/occ/intf/NSEnumerator" --><span class="type">NSEnumerator</span><!-- /a --> <span class="type">*</span>)<span class="var">portEnumerator</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/removePort:;  name=MPIndex::removePort: --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/removePort:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="removePort:">removePort: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Removes the port with the given name from the index<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/removePort //apple_ref/occ/clm/removePort //apple_ref/occ/intfcm/removePort //apple_ref/occ/intfm/removePort //apple_ref/occ/func/removePort //apple_ref/occ/ftmplt/removePort //apple_ref/occ/defn/removePort //apple_ref/occ/macro/removePort" --><span class="function">removePort</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">name</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>name </code></dt>
+<dd>The name of the port</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/doc/compositePage/occ/instm/MPIndex/setPort:;  name=MPIndex::setPort: --><a name="//apple_ref/doc/compositePage/occ/instm/MPIndex/setPort:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setPort:">setPort: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Adds the port to the index<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/setPort //apple_ref/occ/clm/setPort //apple_ref/occ/intfcm/setPort //apple_ref/occ/intfm/setPort //apple_ref/occ/func/setPort //apple_ref/occ/ftmplt/setPort //apple_ref/occ/defn/setPort //apple_ref/occ/macro/setPort" --><span class="function">setPort</span><!-- /a -->:(<a href="../../../../HTML/MPPort/Classes/MPPort/index.html#//apple_ref/occ/cl/MPPort" logicalPath="//apple_ref/occ/cl/MPPort" target="_top"><span class="type">MPPort</span></a> <span class="type">*</span>)<span class="var">port</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>port </code></dt>
+<dd>The port</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The default state for the port is "not installed"
+ <!-- end discussion --></p>
+<p></p>
+<p>Last Updated: Sunday, July 13, 2008
+</p>
+</body>
+</html>

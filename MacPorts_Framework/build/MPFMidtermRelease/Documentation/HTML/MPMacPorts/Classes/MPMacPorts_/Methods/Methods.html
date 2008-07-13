@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>Methods</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style>
+</head>
+<body bgcolor="#ffffff">
+<a name="top"></a><a name="HeaderDoc_methods"></a><dl>
+<dt><tt><a href="Methods.html#//apple_ref/occ/clm/MPMacPorts/sharedInstance" target="doc">+sharedInstance </a></tt></dt>
+<dd>Returns an MPMacPorts object that represents the MacPorts system on user's machine.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/sync" target="doc">-sync </a></tt></dt>
+<dd>Synchronizes the ports tree without checking for upgrades to the MacPorts base.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/selfUpdate" target="doc">-selfUpdate </a></tt></dt>
+<dd>Synchronizes the ports tree and checks for upgrades to MacPorts base.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/search:" target="doc">-search: </a></tt></dt>
+<dd>Returns an NSDictionary of ports. Calls [self search:query caseSensiitve:YES]. </dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:" target="doc">-search:caseSensitive: </a></tt></dt>
+<dd>Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:@"regex"]. </dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:matchStyle:" target="doc">-search:caseSensitive:matchStyle: </a></tt></dt>
+<dd>Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:style field:@"name"]. </dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:matchStyle:field:" target="doc">-search:caseSensitive:matchStyle:field: </a></tt></dt>
+<dd>Returns an NSDictionary of ports </dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/depends:" target="doc">-depends: </a></tt></dt>
+<dd>Returns an NSArray of NSString port names that a port depends on</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/exec:withTarget:withOptions:withVariants:" target="doc">-exec:withTarget:withOptions:withVariants: </a></tt></dt>
+<dd>Executes specific target of given MPPort</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/prefix" target="doc">-prefix </a></tt></dt>
+<dd>Returns the NSString path to the directory where ports are installed.</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/sources:" target="doc">-sources: </a></tt></dt>
+<dd>Returns an NSArray of NSStrings for the paths to MacPorts sources or port trees</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/sources" target="doc">-sources </a></tt></dt>
+<dd>Returns an NSArray of NSStrings of paths to various port trees enabled on User's system</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/pathToPortIndex:" target="doc">-pathToPortIndex: </a></tt></dt>
+<dd>Returns the NSURL of the portIndex file on this MacPorts system for a given ports tree</dd>
+<dt><tt><a href="Methods.html#//apple_ref/occ/instm/MPMacPorts/version" target="doc">-version </a></tt></dt>
+<dd>Returns an NSString indicating the version of the currently running MacPorts system</dd>
+</dl>
+<hr>
+<!-- headerDoc=clm;  uid=//apple_ref/occ/clm/MPMacPorts/sharedInstance;  name=MPMacPorts::sharedInstance --><a name="//apple_ref/occ/clm/MPMacPorts/sharedInstance"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="sharedInstance">sharedInstance </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an MPMacPorts object that represents the MacPorts system on user's machine.<!-- end abstract --></p>
+<p></p>
+<pre>+ (<a href="../../../../../HTML/MPMacPorts/Classes/MPMacPorts_/index.html#//apple_ref/occ/cl/MPMacPorts" logicalPath="//apple_ref/occ/cl/MPMacPorts" target="_top"><span class="type">MPMacPorts</span></a> <span class="type">*</span>)<span class="var">sharedInstance</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/sync;  name=MPMacPorts::sync --><a name="//apple_ref/occ/instm/MPMacPorts/sync"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="sync">sync </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Synchronizes the ports tree without checking for upgrades to the MacPorts base.<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<span class="var">sync</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/selfUpdate;  name=MPMacPorts::selfUpdate --><a name="//apple_ref/occ/instm/MPMacPorts/selfUpdate"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="selfUpdate">selfUpdate </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Synchronizes the ports tree and checks for upgrades to MacPorts base.<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<span class="var">selfUpdate</span>; </pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The selfupdate port command is available only on Mac OS X systems.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/search:;  name=MPMacPorts::search: --><a name="//apple_ref/occ/instm/MPMacPorts/search:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="search:">search: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSDictionary of ports. Calls [self search:query caseSensiitve:YES]. <!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSDictionary //apple_ref/occ/tdef/NSDictionary //apple_ref/occ/tag/NSDictionary //apple_ref/occ/econst/NSDictionary //apple_ref/occ/struct/NSDictionary //apple_ref/occ/clconst/NSDictionary //apple_ref/occ/intf/NSDictionary" --><span class="type">NSDictionary</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/search //apple_ref/occ/clm/search //apple_ref/occ/intfcm/search //apple_ref/occ/intfm/search //apple_ref/occ/func/search //apple_ref/occ/ftmplt/search //apple_ref/occ/defn/search //apple_ref/occ/macro/search" --><span class="function">search</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">query</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>query </code></dt>
+<dd>An NSString containing name or partial name of port being searched.</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:;  name=MPMacPorts::search:caseSensitive: --><a name="//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="search:caseSensitive:">search:caseSensitive: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:@"regex"]. <!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSDictionary //apple_ref/occ/tdef/NSDictionary //apple_ref/occ/tag/NSDictionary //apple_ref/occ/econst/NSDictionary //apple_ref/occ/struct/NSDictionary //apple_ref/occ/clconst/NSDictionary //apple_ref/occ/intf/NSDictionary" --><span class="type">NSDictionary</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/search //apple_ref/occ/clm/search //apple_ref/occ/intfcm/search //apple_ref/occ/intfm/search //apple_ref/occ/func/search //apple_ref/occ/ftmplt/search //apple_ref/occ/defn/search //apple_ref/occ/macro/search" --><span class="function">search</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">query</span> <!-- a logicalPath="//apple_ref/occ/instm/caseSensitive //apple_ref/occ/clm/caseSensitive //apple_ref/occ/intfcm/caseSensitive //apple_ref/occ/intfm/caseSensitive //apple_ref/occ/func/caseSensitive //apple_ref/occ/ftmplt/caseSensitive //apple_ref/occ/defn/caseSensitive //apple_ref/occ/macro/caseSensitive" --><span class="function">caseSensitive</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<span class="var">sensitivity</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>query </code></dt>
+<dd>An NSString containing name (full or parital) of port being searched.</dd>
+<dt><code>sensitivity </code></dt>
+<dd>A Boolean value indicating whether or not the search should be case sensitive</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:matchStyle:;  name=MPMacPorts::search:caseSensitive:matchStyle: --><a name="//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:matchStyle:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="search:caseSensitive:matchStyle:">search:caseSensitive:matchStyle: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:style field:@"name"]. <!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSDictionary //apple_ref/occ/tdef/NSDictionary //apple_ref/occ/tag/NSDictionary //apple_ref/occ/econst/NSDictionary //apple_ref/occ/struct/NSDictionary //apple_ref/occ/clconst/NSDictionary //apple_ref/occ/intf/NSDictionary" --><span class="type">NSDictionary</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/search //apple_ref/occ/clm/search //apple_ref/occ/intfcm/search //apple_ref/occ/intfm/search //apple_ref/occ/func/search //apple_ref/occ/ftmplt/search //apple_ref/occ/defn/search //apple_ref/occ/macro/search" --><span class="function">search</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">query</span> <!-- a logicalPath="//apple_ref/occ/instm/caseSensitive //apple_ref/occ/clm/caseSensitive //apple_ref/occ/intfcm/caseSensitive //apple_ref/occ/intfm/caseSensitive //apple_ref/occ/func/caseSensitive //apple_ref/occ/ftmplt/caseSensitive //apple_ref/occ/defn/caseSensitive //apple_ref/occ/macro/caseSensitive" --><span class="function">caseSensitive</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<span class="param">sensitivity</span> 
+        <!-- a logicalPath="//apple_ref/occ/instm/matchStyle //apple_ref/occ/clm/matchStyle //apple_ref/occ/intfcm/matchStyle //apple_ref/occ/intfm/matchStyle //apple_ref/occ/func/matchStyle //apple_ref/occ/ftmplt/matchStyle //apple_ref/occ/defn/matchStyle //apple_ref/occ/macro/matchStyle" --><span class="function">matchStyle</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">style</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>query </code></dt>
+<dd>An NSString containing name (full or parital) of port being searched.</dd>
+<dt><code>sensitivity </code></dt>
+<dd>A Boolean value indicating whether or not the search should be case sensitive</dd>
+<dt><code>style </code></dt>
+<dd>Search style for query</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:matchStyle:field:;  name=MPMacPorts::search:caseSensitive:matchStyle:field: --><a name="//apple_ref/occ/instm/MPMacPorts/search:caseSensitive:matchStyle:field:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="search:caseSensitive:matchStyle:field:">search:caseSensitive:matchStyle:field: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSDictionary of ports <!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSDictionary //apple_ref/occ/tdef/NSDictionary //apple_ref/occ/tag/NSDictionary //apple_ref/occ/econst/NSDictionary //apple_ref/occ/struct/NSDictionary //apple_ref/occ/clconst/NSDictionary //apple_ref/occ/intf/NSDictionary" --><span class="type">NSDictionary</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/search //apple_ref/occ/clm/search //apple_ref/occ/intfcm/search //apple_ref/occ/intfm/search //apple_ref/occ/func/search //apple_ref/occ/ftmplt/search //apple_ref/occ/defn/search //apple_ref/occ/macro/search" --><span class="function">search</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">query</span> <!-- a logicalPath="//apple_ref/occ/instm/caseSensitive //apple_ref/occ/clm/caseSensitive //apple_ref/occ/intfcm/caseSensitive //apple_ref/occ/intfm/caseSensitive //apple_ref/occ/func/caseSensitive //apple_ref/occ/ftmplt/caseSensitive //apple_ref/occ/defn/caseSensitive //apple_ref/occ/macro/caseSensitive" --><span class="function">caseSensitive</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<span class="param">sensitivity</span> 
+        <!-- a logicalPath="//apple_ref/occ/instm/matchStyle //apple_ref/occ/clm/matchStyle //apple_ref/occ/intfcm/matchStyle //apple_ref/occ/intfm/matchStyle //apple_ref/occ/func/matchStyle //apple_ref/occ/ftmplt/matchStyle //apple_ref/occ/defn/matchStyle //apple_ref/occ/macro/matchStyle" --><span class="function">matchStyle</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">style</span> <!-- a logicalPath="//apple_ref/occ/instm/field //apple_ref/occ/clm/field //apple_ref/occ/intfcm/field //apple_ref/occ/intfm/field //apple_ref/occ/func/field //apple_ref/occ/ftmplt/field //apple_ref/occ/defn/field //apple_ref/occ/macro/field" --><span class="function">field</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">fieldName</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>query </code></dt>
+<dd>An NSString containing name (full or parital) of port being searched.</dd>
+<dt><code>sensitivity </code></dt>
+<dd>A Boolean value indicating whether or not the search should be case sensitive</dd>
+<dt><code>style </code></dt>
+<dd>Search style for query</dd>
+<dt><code>fieldName </code></dt>
+<dd>Field for port query</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/depends:;  name=MPMacPorts::depends: --><a name="//apple_ref/occ/instm/MPMacPorts/depends:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="depends:">depends: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSArray of NSString port names that a port depends on<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/depends //apple_ref/occ/clm/depends //apple_ref/occ/intfcm/depends //apple_ref/occ/intfm/depends //apple_ref/occ/func/depends //apple_ref/occ/ftmplt/depends //apple_ref/occ/defn/depends //apple_ref/occ/macro/depends" --><span class="function">depends</span><!-- /a -->:(<a href="../../../../../HTML/MPPort/Classes/MPPort/index.html#//apple_ref/occ/cl/MPPort" logicalPath="//apple_ref/occ/cl/MPPort" target="_top"><span class="type">MPPort</span></a> <span class="type">*</span>)<span class="var">port</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>port </code></dt>
+<dd>The MPPort whose dependecies is being sought</dd>
+</dl>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/exec:withTarget:withOptions:withVariants:;  name=MPMacPorts::exec:withTarget:withOptions:withVariants: --><a name="//apple_ref/occ/instm/MPMacPorts/exec:withTarget:withOptions:withVariants:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="exec:withTarget:withOptions:withVariants:">exec:withTarget:withOptions:withVariants: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Executes specific target of given MPPort<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/exec //apple_ref/occ/clm/exec //apple_ref/occ/intfcm/exec //apple_ref/occ/intfm/exec //apple_ref/occ/func/exec //apple_ref/occ/ftmplt/exec //apple_ref/occ/defn/exec //apple_ref/occ/macro/exec" --><span class="function">exec</span><!-- /a -->:(<a href="../../../../../HTML/MPPort/Classes/MPPort/index.html#//apple_ref/occ/cl/MPPort" logicalPath="//apple_ref/occ/cl/MPPort" target="_top"><span class="type">MPPort</span></a> <span class="type">*</span>)<span class="param">port</span> <!-- a logicalPath="//apple_ref/occ/instm/withTarget //apple_ref/occ/clm/withTarget //apple_ref/occ/intfcm/withTarget //apple_ref/occ/intfm/withTarget //apple_ref/occ/func/withTarget //apple_ref/occ/ftmplt/withTarget //apple_ref/occ/defn/withTarget //apple_ref/occ/macro/withTarget" --><span class="function">withTarget</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">target</span> 
+        <!-- a logicalPath="//apple_ref/occ/instm/withOptions //apple_ref/occ/clm/withOptions //apple_ref/occ/intfcm/withOptions //apple_ref/occ/intfm/withOptions //apple_ref/occ/func/withOptions //apple_ref/occ/ftmplt/withOptions //apple_ref/occ/defn/withOptions //apple_ref/occ/macro/withOptions" --><span class="function">withOptions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="param">options</span> <!-- a logicalPath="//apple_ref/occ/instm/withVariants //apple_ref/occ/clm/withVariants //apple_ref/occ/intfcm/withVariants //apple_ref/occ/intfm/withVariants //apple_ref/occ/func/withVariants //apple_ref/occ/ftmplt/withVariants //apple_ref/occ/defn/withVariants //apple_ref/occ/macro/withVariants" --><span class="function">withVariants</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">variants</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>port </code></dt>
+<dd>The MPPort whose target will be executed</dd>
+<dt><code>target </code></dt>
+<dd>The NSString representing a given target</dd>
+<dt><code>options </code></dt>
+<dd>An NSArray of NSStrings of options for executing this target</dd>
+<dt><code>variants </code></dt>
+<dd>An NSArray of NSStrings of variants for executing this target</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->See -exec: withOptions: withVariants: in <a href="../../../../../HTML/MPPort/index.html#//apple_ref/doc/header/MPPort.h" logicalPath="//apple_ref/doc/header/MPPort.h" target="_top">MPPort </a> for discussion
+of this method.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/prefix;  name=MPMacPorts::prefix --><a name="//apple_ref/occ/instm/MPMacPorts/prefix"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="prefix">prefix </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the NSString path to the directory where ports are installed.<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">prefix</span>; </pre>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/sources:;  name=MPMacPorts::sources: --><a name="//apple_ref/occ/instm/MPMacPorts/sources:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="sources:">sources: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSArray of NSStrings for the paths to MacPorts sources or port trees<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/sources //apple_ref/occ/clm/sources //apple_ref/occ/intfcm/sources //apple_ref/occ/intfm/sources //apple_ref/occ/func/sources //apple_ref/occ/ftmplt/sources //apple_ref/occ/defn/sources //apple_ref/occ/macro/sources" --><span class="function">sources</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<span class="var">refresh</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>refresh </code></dt>
+<dd>A boolean indicating whether or not to refresh the NSArray of port trees</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->A refresh value of YES will refresh the ports tree whilst a value of NO will not refresh
+the tree.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/sources;  name=MPMacPorts::sources --><a name="//apple_ref/occ/instm/MPMacPorts/sources"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="sources">sources </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSArray of NSStrings of paths to various port trees enabled on User's system<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/econst/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/clconst/NSArray //apple_ref/occ/intf/NSArray" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span>)<span class="var">sources</span>; </pre>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->These file paths are listed in opt/local/etc/macports/sources.conf. Each port tree
+contains the different files for each port.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/pathToPortIndex:;  name=MPMacPorts::pathToPortIndex: --><a name="//apple_ref/occ/instm/MPMacPorts/pathToPortIndex:"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="pathToPortIndex:">pathToPortIndex: </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns the NSURL of the portIndex file on this MacPorts system for a given ports tree<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSURL //apple_ref/occ/tdef/NSURL //apple_ref/occ/tag/NSURL //apple_ref/occ/econst/NSURL //apple_ref/occ/struct/NSURL //apple_ref/occ/clconst/NSURL //apple_ref/occ/intf/NSURL" --><span class="type">NSURL</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/pathToPortIndex //apple_ref/occ/clm/pathToPortIndex //apple_ref/occ/intfcm/pathToPortIndex //apple_ref/occ/intfm/pathToPortIndex //apple_ref/occ/func/pathToPortIndex //apple_ref/occ/ftmplt/pathToPortIndex //apple_ref/occ/defn/pathToPortIndex //apple_ref/occ/macro/pathToPortIndex" --><span class="function">pathToPortIndex</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">source</span>; </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>source </code></dt>
+<dd>An NSString containing the file path to the ports tree</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->The PortIndex is a list of serialized Tcl key-value lists, one list
+per line. This is where ports are searched for.
+ <!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/MPMacPorts/version;  name=MPMacPorts::version --><a name="//apple_ref/occ/instm/MPMacPorts/version"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="version">version </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Returns an NSString indicating the version of the currently running MacPorts system<!-- end abstract --></p>
+<p></p>
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="var">version</span>; </pre>
+<p></p>
+<p>Last Updated: Sunday, July 13, 2008
+</p>
+</body>
+</html>
