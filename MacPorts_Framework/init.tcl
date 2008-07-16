@@ -141,6 +141,7 @@ proc ui_init {priority prefix channels message} {
 		debug {
 			#For now we don't need to do anything with these?
 			#The user can scrape stdout for them
+			set "MPDebugNotification"
 			set sendNotification "false"
 		}
 		warn {
@@ -172,14 +173,14 @@ proc ui_init {priority prefix channels message} {
     set nbchans [llength $channels]
     if {$nbchans == 0} {
         proc ::ui_$priority {str} [subst {
-        		#notifications send global "MP $priority Notification" "Channel1 none \
-        		#Prefix $prefix" "\$str"
-        		#notify_system $priority $prefix "none" $message 
-				
-				if {$sendNotification == "true"} {
-					notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
-				}
-        }]
+        	#notifications send global "MP $priority Notification" "Channel1 none \
+        	#Prefix $prefix" "\$str"
+        	#notify_system $priority $prefix "none" $message 
+        	
+        	if {$sendNotification == "true"} {
+        		notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+        	}
+        	}]
     } else {
         try {
             set prefix [ui_prefix $priority]
@@ -194,29 +195,28 @@ proc ui_init {priority prefix channels message} {
                 set chan [lindex $channels 0]
                 
                 proc ::ui_$priority {str} [subst { 
+                	
                 	puts $chan "$prefix\$str"
                 	#notifications send "MP $priority Notifications" "Channel2 $chan \
                 	#Prefix $prefix" "\$str"
-					#notify_system $priority $prefix $chan "\$str"
-					
-					if {$sendNotification == "true"} {
-						notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
-					}
-                }]
+                	#notify_system $priority $prefix $chan "\$str"
+                	if {$sendNotification == "true"} {
+                		notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+                	}
+                	}]
             } else {
-            		
-                proc ::ui_$priority {str} [subst {
-                    foreach chan \$channels {
-                        puts $chan "$prefix\$str"
-                        #notify_system $priority $prefix $chan $message
-						#notifications send global "MP $priority Notifications" "Channel3 $chan \
-						#Prefix $prefix" "\$str"
-						
-						if {$sendNotification == "true"} {
-							notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
-						}
-                    }
-                }]
+            	proc ::ui_$priority {str} [subst {
+            		foreach chan \$channels {
+            			puts $chan "$prefix\$str"
+            			#notify_system $priority $prefix $chan $message
+            			#notifications send global "MP $priority Notifications" "Channel3 $chan \
+            			#Prefix $prefix" "\$str"
+            			
+            			if {$sendNotification == "true"} {
+            				notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+            				}
+            		}
+            	}]
             }
         }
         # Call ui_$priority
