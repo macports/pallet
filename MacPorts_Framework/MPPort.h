@@ -142,12 +142,11 @@
 - (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version;
 
 
-#pragma mark --exec: and its convenience methods--
 /*
  MAYBE WE SHOULD MAKE THIS METHOD PRIVATE AND USE IT AS THE DEFAULT 
  IMPLEMENTATION OF PUBLIC METHOD BELOW ??
- */
 - (void)exec:(NSString *)target;
+ */
 
 /*!
  @brief Executes the specified target for this MPPort

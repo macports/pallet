@@ -1,12 +1,11 @@
-catch {source \
-	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
+#catch {source \
+#	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 #Trying my own MacPorts build rather than default one on the system
-#catch {source \
-#	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
+catch {source \
+	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
-
-load notifications.dylib
+#load notifications.dylib
 
 
 package require macports
@@ -75,11 +74,93 @@ proc ui_channels {priority} {
 }
 
 
+#Helper function for sending notifications 
+#Action taken is based on priority
+#ui_msg - Sent as local notifications
+#ui_debug - Don't know what to do with this for now
+#ui_warn - Send as local notification ?
+#ui_error - Send as local notification ? 
+#ui_info - Also don't know what to do with this for now
+#Remember to strip possible possible preceding "--->" from message
+
+proc notify_system {priority prefix chan str} {
+	set newstr [string trimleft $str "--->"]
+	
+	#puts $newstr
+	
+	switch $priority {
+		#For now, send these as message notifications to
+		#client application. I really think we need some more
+		#granularity, how is someone suppose to know if the 
+		#message is coming from the result of a sync, selfupdate,
+		#exec call etc. ?
+		#Suggestion : We can either have user's modify a variable that
+		#indicates the current mport operation being performed or we can
+		#inquire from the interpreter and change the notification name
+		#based on that.
+		
+		msg {
+			notifications send "MPMsgNotification" \
+			"Channel $chan Prefix $prefix" $newstr 
+		}
+		debug {
+			#For now we don't need to do anything with these?
+			#The user can scrape stdout for them
+		}
+		warn {
+			notifications send "MPWarnNotification" \
+			"Channel $chan Prefix $prefix" $newstr
+		}
+		error {
+			notifications send global "MPErrorNotification" \
+			"Channel $chan Prefix $prefix" $newstr
+		}
+		info {
+			notifications send "MPInfoNotification" \
+			"Channel $chan Prefix $prefix" $newstr
+		}
+		default {
+			#Don't send anything for now
+		}			
+	}
+}
+
+
+
 #Modifying UI initialization to enable notifications
 #Redefine ui_$pritority to throw global notifications
 #This is currently under works ... a reasonable solution
 #should be coming up soon
 proc ui_init {priority prefix channels message} {
+	
+	switch $priority {
+		msg {
+			set nottype "MPMsgNotification" 
+			set sendNotification "true"
+		}
+		debug {
+			#For now we don't need to do anything with these?
+			#The user can scrape stdout for them
+			set sendNotification "false"
+		}
+		warn {
+			set nottype "MPWarnNotification"
+			set sendNotification "true"
+		}
+		error {
+			set nottype "MPErrorNotification"
+			set sendNotification "true"
+		}
+		info {
+			set nottype "MPInfoNotification"
+			set sendNotification "true"
+		}
+		default {
+			#Don't send anything for now
+			set nottype "MPDefaultNotification"
+			set sendNotification "false"
+		}	
+	}
     # Get the list of channels.
     try {
         set channels [ui_channels $priority]
@@ -91,8 +172,13 @@ proc ui_init {priority prefix channels message} {
     set nbchans [llength $channels]
     if {$nbchans == 0} {
         proc ::ui_$priority {str} [subst {
-        		notifications send global "MP $priority Notification" "Channel1 none \
-        		Prefix $prefix" "\$str"
+        		#notifications send global "MP $priority Notification" "Channel1 none \
+        		#Prefix $prefix" "\$str"
+        		#notify_system $priority $prefix "none" $message 
+				
+				if {$sendNotification == "true"} {
+					notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+				}
         }]
     } else {
         try {
@@ -109,21 +195,30 @@ proc ui_init {priority prefix channels message} {
                 
                 proc ::ui_$priority {str} [subst { 
                 	puts $chan "$prefix\$str"
-                	notifications send global "MP $priority Notifications" "Channel2 $chan \
-                	Prefix $prefix" "\$str" 
+                	#notifications send "MP $priority Notifications" "Channel2 $chan \
+                	#Prefix $prefix" "\$str"
+					#notify_system $priority $prefix $chan "\$str"
+					
+					if {$sendNotification == "true"} {
+						notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+					}
                 }]
             } else {
             		
                 proc ::ui_$priority {str} [subst {
                     foreach chan \$channels {
                         puts $chan "$prefix\$str"
+                        #notify_system $priority $prefix $chan $message
+						#notifications send global "MP $priority Notifications" "Channel3 $chan \
+						#Prefix $prefix" "\$str"
+						
+						if {$sendNotification == "true"} {
+							notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+						}
                     }
-                    notifications send global "MP $priority Notifications" "Channel3 $chan \
-                    Prefix $prefix" "\$str"
                 }]
             }
         }
-
         # Call ui_$priority
         ::ui_$priority $message
     }

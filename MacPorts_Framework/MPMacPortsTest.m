@@ -83,9 +83,8 @@
 -(void) testSync {
 	//The only way to test this that I know of is to listen for the posted notifications
 	//and take actions as appropriate
+	//NSLog(@"TESTING SYNC");
 	[testPort sync];
-	
-	
 }
 
 /*
@@ -119,9 +118,6 @@
 
 
 -(void) testVersion {
-	
-	[[[NSWorkspace sharedWorkspace] notificationCenter] postNotificationName:@"Test Version" 
-																	  object:nil];
 	NSString * version = [testPort version];
 	STAssertNotNil(version, @"%@ should not be nil", version);
 }

@@ -34,9 +34,8 @@
 
 
 
-#include <tcl.h>
-#include "MPNotificationsListener.h"
-#include <Cocoa/Cocoa.h>
+
+#import "notifications.h"
 
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
 	NSString *name , *msg;

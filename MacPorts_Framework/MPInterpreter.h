@@ -40,7 +40,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#include <tcl.h>
+#include <tcl.h>  
+#import "MPNotificationsListener.h"
 
 #define	MPPackage			@"macports"
 #define MPPackageVersion	@"1.0"

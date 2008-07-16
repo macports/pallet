@@ -41,7 +41,7 @@
 - (id) init {
 	if (self = [super init]) {
 		interpreter = [MPInterpreter sharedInterpreter];
-		[self registerForLocalNotification];
+		[self registerForLocalNotifications];
 	}
 	return self;
 }
@@ -115,7 +115,7 @@
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName {
-	NSMutableDictionary *result;
+	NSMutableDictionary *result, *newResult;
 	NSEnumerator *enumerator;
 	id key;
 	NSString *caseSensitivity;
@@ -132,21 +132,24 @@
 		fieldName,
 		@"]",
 		nil]]]];
+	
+	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];
 	while (key = [enumerator nextObject]) {
-		[result setObject:[[MPPort alloc] initWithTclListAsString:[result objectForKey:key]] forKey:key];
+		[newResult setObject:[[MPPort alloc] initWithTclListAsString:[result objectForKey:key]] forKey:key];
 	}
-	return [NSDictionary dictionaryWithDictionary:result];
+	return [NSDictionary dictionaryWithDictionary:newResult];
 }
 
 - (NSArray *)depends:(MPPort *)port {
 	return [port depends];
 }
 
+/* TO DO: Delete this method
 - (void)exec:(MPPort *)port withTarget:(NSString *)target {
 	[port exec:target];
 }
-
+*/
 - (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
 	[port exec:target withOptions:options withVariants:variants];
 }
@@ -174,14 +177,6 @@
 	return sources;
 }
 
-- (NSURL *)pathToPortIndex:(NSString *)source {
-	return [NSURL fileURLWithPath:
-			[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
-												@"return [macports::getindex",
-												source,
-												@"]",
-												nil]]];
-}
 
 - (NSURL *)pathToPortIndex:(NSString *)source {
 	return [NSURL fileURLWithPath:
@@ -197,8 +192,28 @@
 	return version;
 }
 
-
--(void) registerForLocalNotification {
+#pragma mark Testing MacPorts Notifications
+-(void) registerForLocalNotifications {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"MPInfoNotification"
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"MPMsgNotification"
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"MPErrorNotification"
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"MPWarnNotification"
+											   object:nil];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
 												 name:@"testMacPortsNotification"
@@ -206,13 +221,14 @@
 }
 
 -(void) respondToLocalNotification:(NSNotification *)notification {
-	id sentObject = [notification object];
+	id sentDict = [notification userInfo];
+	//NSLog(@" INSIDE respondToLocalNotification METHOD");
 	
 	//Just NSLog it for now
-	if(sentObject == nil)
-		NSLog(@"Looooo caaaaal");
+	if(sentDict == nil)
+		NSLog(@"Looooocaaaaal");
 	else
-		NSLog(@"%@" , NSStringFromClass([sentObject class]));
+		NSLog(@"%@" , [sentDict description]);
 }
 
 @end

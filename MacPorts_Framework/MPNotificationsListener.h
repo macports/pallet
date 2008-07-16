@@ -45,10 +45,12 @@
 @interface MPNotificationsListener : NSObject {
 	
 }
++ (MPNotificationsListener *)sharedListener;
 
 //Testing Key Value Compliance
 -(void)setInfoString:(NSString *)string;
 -(NSString *)infoString;
+-(void)doLocalNotifications;
 
 /*/This same class will observe its infoString key value
 //- (void) observeInfoString;

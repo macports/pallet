@@ -36,7 +36,76 @@
 #import "MPInterpreter.h"
 
 @implementation MPInterpreter
+#pragma mark Notifications Code 
+int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
+	//NSLog(@" INSIDE Notifications_Send METHOD");
+	NSString *name , *msg;
+	NSMutableDictionary *info = nil;
+	
+	int tclCount;
+	int tclResult;
+	int i;
+	const char **tclElements;
+	
+	name = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+	++objv; --objc;
+	
+	tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
+	if (tclResult == TCL_OK) {
+		info = [NSMutableDictionary dictionaryWithCapacity:(tclCount / 2)];
+		for (i = 0; i < tclCount; i +=2) {
+			[info setObject:[NSString stringWithUTF8String:tclElements[i + 1]] forKey:[NSString stringWithUTF8String:tclElements[i]]];
+		}
+		
+		//Get ui_* message separately 
+		++objv; --objc;
+		if(objv != NULL) {
+			msg = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+			//strip off "--->" over here
+			msg = [msg stringByReplacingOccurrencesOfString:@"--->" withString:@""];
+			[info setObject:msg forKey:[NSString stringWithString:@"Message"]];
+		}
+		
+		if (global != 0) {
+			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
+		} else {
+			[[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
+		}
+		
+		
+	} else {
+		return TCL_ERROR;
+	}
+	
+	return TCL_OK;
+}
 
+int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, Tcl_Obj *CONST objv[]) {
+	//NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	NSString *action = nil;
+	int returnCode = TCL_ERROR;
+	
+	++objv, --objc;
+	
+	if (objc) {
+		action = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+		++objv, --objc;
+		if ([action isEqualToString:@"send"]) {
+			if ([[NSString stringWithUTF8String:Tcl_GetString(*objv)] isEqualToString:@"global"]) {
+				++objv, --objc;
+				returnCode = Notifications_Send(objc, objv, 1, interpreter);				
+			} else {
+				returnCode = Notifications_Send(objc, objv, 0, interpreter);
+			}
+		}
+	}
+	
+	//[pool release];
+	return returnCode;
+}
+
+
+#pragma mark MPInterpreter Code
 - (id) init {
 	if (self = [super init]) {
 		_interpreter = Tcl_CreateInterp();
@@ -44,7 +113,21 @@
 			NSLog(@"Error in Tcl_CreateInterp, aborting.");
 		}
 		if(Tcl_Init(_interpreter) == TCL_ERROR) {
-			NSLog(@"Error in Tcl Init: %s", Tcl_GetStringResult(_interpreter));
+			NSLog(@"Error in Tcl_Init: %s", Tcl_GetStringResult(_interpreter));
+			Tcl_DeleteInterp(_interpreter);
+		}
+		
+		/*
+		//TO DO ...
+		//Use client provided .tcl file if any
+		
+		//Finally load our own init.tcl file
+		*/
+		
+		Tcl_CreateObjCommand(_interpreter, "notifications", Notifications_Command, NULL, NULL);
+		
+		if (Tcl_PkgProvide(_interpreter, "notifications", "1.0") != TCL_OK) {
+			NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
 		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
@@ -151,5 +234,4 @@
 - (NSString *)getVariableAsString:(NSString *)variable {
 	return [NSString stringWithUTF8String:Tcl_GetVar(_interpreter, [variable UTF8String], 0)];
 }
-
 @end

@@ -142,6 +142,10 @@
 			arrayByAddingObjectsFromArray:[self valueForKey:@"depends_run"]];
 }
 
+
+/*
+ TO DO : Delete this method when scrubbing code
+ 
 - (void)exec:(NSString *)target {
 	MPInterpreter *interpreter;
 	interpreter = [MPInterpreter sharedInterpreter];
@@ -154,30 +158,11 @@
 		@"mportclose portHandle",
 		nil]];
 }
+*/
 
 
--(void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version {
-	NSString *opts, *v;
-	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
-	v = [NSString stringWithString:[self name]];
-	interpreter = [MPInterpreter sharedInterpreter];
-	
-	if (version != NULL)
-		v = [NSString stringWithString:version];
-	else 
-		v = [NSString stringWithString:[self version]];
-	
-	if (options != NULL) 
-		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
-	
-	[interpreter evaluateStringAsString:
-	 [NSString stringWithFormat:
-	  @"[%@ %@ %@ %@]" ,
-	  procedure, [self name], v, opts]];
-}
 
-
+//This method is nice but really isn't used.
 - (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params {
 	//params can contain either NSStrings or NSArrays
 	NSString * sparams = [NSString stringWithString:@" "];
@@ -204,18 +189,30 @@
 	 [NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]];
 }
 
-- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version];
+
+//Used for mportactivate, mportdeactivate and mportuninstall
+-(void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version {
+	NSString *opts, *v;
+	MPInterpreter *interpreter;
+	opts = [NSString stringWithString:@" "];
+	v = [NSString stringWithString:[self name]];
+	interpreter = [MPInterpreter sharedInterpreter];
+	
+	if (version != NULL)
+		v = [NSString stringWithString:version];
+	else 
+		v = [NSString stringWithString:[self version]];
+	
+	if (options != NULL) 
+		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
+	
+	[interpreter evaluateStringAsString:
+	 [NSString stringWithFormat:
+	  @"[%@ %@ %@ %@]" ,
+	  procedure, [self name], v, opts]];
 }
 
-- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self execPortProc:@"mportactivate" withOptions:options withVersion:version];
-}
-
-- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version];
-}
-
+//Used for the rest of other exec procedures
 -(void)exec:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
 	NSString *opts; 
 	NSString *vrnts;
@@ -237,50 +234,109 @@
 	  mportexec portHandle %@; \
 	  mportclose portHandle", 
 	  [self valueForKey:@"portURL"], opts, vrnts, target]];
+	
+}
+
+-(void)sendGlobalExecNotification:(NSString *)target withStatus:(NSString *)status {
+	NSString * notificationName = [NSString stringWithString:@"MacPorts"];
+	notificationName = [notificationName stringByAppendingString:target];
+	notificationName = [notificationName stringByAppendingString:status];
+	
+	//Should I be sending self as the object? Or should I send a newly created
+	//copy? What if the listener modifies this object? 
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notificationName 
+																   object:self]; 
+}
+
+
+
+#pragma mark -
+# pragma mark Exec methods 
+- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version {
+	
+	[self sendGlobalExecNotification:@"Uninstall" withStatus:@"Started"];
+	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version];
+	[self sendGlobalExecNotification:@"Uninstall" withStatus:@"Finished"];
+}
+
+- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version {
+	[self sendGlobalExecNotification:@"Activate" withStatus:@"Started"];
+	[self execPortProc:@"mportactivate" withOptions:options withVersion:version];
+	[self sendGlobalExecNotification:@"Activate" withStatus:@"Finished"];
+}
+
+- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version {
+	[self sendGlobalExecNotification:@"Deactivate" withStatus:@"Started"];
+	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version];
+	[self sendGlobalExecNotification:@"Deactivate" withStatus:@"Finished"];
 }
 
 -(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants{
+	[self sendGlobalExecNotification:@"Configure" withStatus:@"Started"];
 	[self exec:@"configure" withOptions:options withVariants:variants];
 }
 -(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Build" withStatus:@"Started"];
 	[self exec:@"build" withOptions:options withVariants:variants];
 }
 -(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Test" withStatus:@"Started"];
 	[self exec:@"test" withOptions:options withVariants:variants];	
 }
 -(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Destroot" withStatus:@"Started"];
 	[self exec:@"destroot" withOptions:options withVariants:variants];
 }
 -(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Install" withStatus:@"Started"];
 	[self exec:@"install" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Install" withStatus:@"Finished"];
 }
 -(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Archive" withStatus:@"Started"];
 	[self exec:@"archive" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Archive" withStatus:@"Finished"];
 }
 -(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Dmg" withStatus:@"Started"];
 	[self exec:@"dmg" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Dmg" withStatus:@"Finished"];
 }
 -(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Mdmg" withStatus:@"Started"];
 	[self exec:@"mdmg" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Mdmg" withStatus:@"Finished"];
 }
 -(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Pkg" withStatus:@"Started"];
 	[self exec:@"pkg" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Pkg" withStatus:@"Finished"];
 }
 -(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Mpkg" withStatus:@"Started"];
 	[self exec:@"mpkg" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Mpkg" withStatus:@"Finished"];
 }
 -(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Rpm" withStatus:@"Started"];
 	[self exec:@"rpm" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Rpm" withStatus:@"Finished"];
 }
 -(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Dpkg" withStatus:@"Started"];
 	[self exec:@"dpkg" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Dpkg" withStatus:@"Finished"];
 }
 -(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
+	[self sendGlobalExecNotification:@"Srpm" withStatus:@"Started"];
 	[self exec:@"srpm" withOptions:options withVariants:variants];
+	[self sendGlobalExecNotification:@"Srpm" withStatus:@"Finished"];
 }
 
+# pragma mark -
 
-#pragma MPMutableDictionary Protocal
+
+#pragma mark MPMutableDictionary Protocal
 
 - (id)objectForKey:(id)aKey {
 	if ([aKey isEqualToString:@"receipts"] && ![super objectForKey:aKey]) {

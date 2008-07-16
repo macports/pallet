@@ -84,14 +84,16 @@
 /*!
  @brief Returns an NSDictionary of ports. Calls [self search:query caseSensiitve:YES].   
  @param query An NSString containing name or partial name of port being searched. 
- @discussion The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ @discussion The keys are NSString names of the ports whilst the values are the respective MPPort objects.
+ Possible search style options are are regexp, exact and glob.
  */
 - (NSDictionary *)search:(NSString *)query;
 /*!
  @brief Returns an NSDictionary of ports. Calls [self search:query caseSensitive:sensitivity matchStyle:\@"regex"].  
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
- @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects.
+ Possible search style options are are regexp, exact and glob.
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity;
 /*!
@@ -99,7 +101,8 @@
  @param query An NSString containing name (full or parital) of port being searched.
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
  @param style Search style for query
- @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects.
+ Possible search style options are are regexp, exact and glob.
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style;
 /*!
@@ -108,7 +111,8 @@
  @param sensitivity A Boolean value indicating whether or not the search should be case sensitive
  @param style Search style for query
  @param fieldName Field for port query
- @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects
+ @discussion  The keys are NSString names of the ports whilst the values are the respective MPPort objects.
+ Possible search style options are are regexp, exact and glob.
  */
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName;
 
@@ -119,8 +123,9 @@
  */
 - (NSArray *)depends:(MPPort *)port;
 
-
+/* TO DO: Delete this method
 - (void)exec:(MPPort *)port withTarget:(NSString *)target;
+*/
 
 /*!
  @brief Executes specific target of given MPPort
@@ -167,7 +172,7 @@
 
 
 //Notifications stuff
--(void)registerForLocalNotification;
+-(void)registerForLocalNotifications;
 -(void)respondToLocalNotification:(NSNotification *) notification;
 
 @end

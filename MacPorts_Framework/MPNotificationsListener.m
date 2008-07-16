@@ -106,6 +106,10 @@ static NSString *infoString;
 	return infoString;
 }
 
+- (void) doLocalNotifications {
+	
+}
+
 /*
 -(void) observeInfoString {
 	[self addObserver:self 

@@ -1,0 +1,21 @@
+TO DO LIST (because there seems to be too much to get done haha)
+
+
+
+Get feedback on Notifications idea and implementation
+
+
+
+Test Notifications Library ... how? ... use the Tester ...
+and see if the rest of the tests build
+
+Create my own branch of src ? Yes ... do that and add  your patches
+
+
+Guide like documentation
+
+Scrub Code
+
+Rearrange methods orderings in both .h and .m files
+and add appropriate pragma marks for more readablity
+
