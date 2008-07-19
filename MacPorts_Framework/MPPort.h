@@ -43,6 +43,7 @@
 #import "MPMutableDictionary.h"
 #import "MPReceipt.h"
 #import "MPRegistry.h"
+#import "MPNotifications.h"
 
 
 
@@ -141,12 +142,6 @@
 */
 - (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version;
 
-
-/*
- MAYBE WE SHOULD MAKE THIS METHOD PRIVATE AND USE IT AS THE DEFAULT 
- IMPLEMENTATION OF PUBLIC METHOD BELOW ??
-- (void)exec:(NSString *)target;
- */
 
 /*!
  @brief Executes the specified target for this MPPort

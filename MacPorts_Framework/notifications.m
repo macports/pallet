@@ -40,7 +40,7 @@
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
 	NSString *name , *msg;
 	NSMutableDictionary *info = nil;
-	MPNotificationsListener *mln = [MPNotificationsListener sharedListener];
+	//MPNotifications *mln = [MPNotifications sharedListener];
 	
 	int tclCount;
 	int tclResult;
@@ -79,8 +79,8 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		if(objv != NULL) {
 			msg = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
 			[info setObject:msg forKey:[NSString stringWithString:@"Message"]];
-			//[mln setValue:name forKey:@"infoString"];
-			[mln setInfoString:name];
+			//[mln setValue:name forKey:@"performingTclCommand"];
+			//[mln setperformingTclCommand:name];
 		}
 		
 		if (global != 0) {

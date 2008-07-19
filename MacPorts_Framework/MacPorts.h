@@ -41,4 +41,4 @@
 #import <MacPorts/MPRegistry.h>;
 
 //Including this file for testing the Notifications listener
-#import <MacPorts/MPNotificationsListener.h>;
+#import <MacPorts/MPNotifications.h>;

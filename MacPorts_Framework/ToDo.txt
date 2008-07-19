@@ -16,6 +16,10 @@ Guide like documentation
 
 Scrub Code
 
+Sanitize NSString Code
+
+Ask Randall to look at perform exec methods
+
 Rearrange methods orderings in both .h and .m files
 and add appropriate pragma marks for more readablity
 

@@ -7,7 +7,7 @@ TCLSH = /usr/bin/tclsh
 DESTDIR = 
 PREFIX = /Library/Tcl/notifications1.0
 
-OBJS = notifications.o MPNotificationsListener.o
+OBJS = notifications.o MPNotifications.o
 TARGET = notifications.dylib
 
 CC = gcc

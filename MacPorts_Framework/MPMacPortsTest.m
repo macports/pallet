@@ -39,13 +39,13 @@
 @implementation MPMacPortsTest
 - (void) setUp {
 	testPort = [MPMacPorts sharedInstance];
-	testListener = [[MPNotificationsListener alloc] init];
-	[self listenForPortSync];
+	//testListener = [[MPNotifications alloc] init];
+	//[self listenForPortSync];
 }
 
 - (void) tearDown {
 	[testPort release];
-	[testListener release];
+	//[testListener release];
 }
 
 
@@ -94,8 +94,6 @@
 	[testPort selfUpdate];
 	
 }
-*/
-
 
 -(void) listenForPortSync {
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
@@ -115,14 +113,14 @@
 	else
 		NSLog(@"MacPortsSyncFinished"); 
 }	
-
+*/
 
 -(void) testVersion {
 	NSString * version = [testPort version];
 	STAssertNotNil(version, @"%@ should not be nil", version);
 }
-
-/*-(void) testInstall {
+/*
+-(void) testInstall {
 	NSDictionary * result = [testPort search:@"pyt"];
 	STAssertNotNil(result, @"Search dictionary should not be null");
 	NSArray * aKeys = [result allKeys];

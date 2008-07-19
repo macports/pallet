@@ -35,28 +35,31 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define GLOBAL_MESSAGE @"Received global notification"
-#define LOCAL_MESSAGE @"Received local notification"
+#define MPMSG @"MPMsgNotification"
+#define MPINFO @"MPInfoNotification"
+#define MPWARN @"MPWarnNotification"
+#define MPERROR @"MPErrorNotification"
+#define MPDEBUG @"MPDebugNotification"
+#define MPALL @"MPAllNotification"
+
 
 /*This class's main purpose is to test the implementation of
  NSNotifications from within the MacPorts Tcl API
  */
 
-@interface MPNotificationsListener : NSObject {
-	
+@interface MPNotifications : NSObject {
+	NSString * performingTclCommand;
+	NSMutableDictionary * blockOptions;
 }
-+ (MPNotificationsListener *)sharedListener;
++ (MPNotifications *)sharedListener;
 
-//Testing Key Value Compliance
--(void)setInfoString:(NSString *)string;
--(NSString *)infoString;
--(void)doLocalNotifications;
+-(BOOL)checkIfNotificationBlocked:(NSString *)option;
+-(void)blockNotification:(NSString *)option;
+-(void)unblockNotification:(NSString *)option;
 
-/*/This same class will observe its infoString key value
-//- (void) observeInfoString;
--(void)registerForGlobalNotification;
--(void)registerForLocalNotification;
--(void)respondToGlobalNotification:(NSNotification*) notification;
--(void)respondToLocalNotification:(NSNotification *) notification;
-*/
+
+-(void)setPerformingTclCommand:(NSString *)string;
+-(NSString *)performingTclCommand;
+
+
 @end

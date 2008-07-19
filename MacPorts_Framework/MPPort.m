@@ -143,22 +143,16 @@
 }
 
 
-/*
- TO DO : Delete this method when scrubbing code
- 
-- (void)exec:(NSString *)target {
-	MPInterpreter *interpreter;
-	interpreter = [MPInterpreter sharedInterpreter];
-	[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
-		@"set portHandle [mportopen ",
-		[self valueForKey:@"portURL"],
-		@"]; mportexec portHandle",
-		target,
-		@";",
-		@"mportclose portHandle",
-		nil]];
+-(void)sendGlobalExecNotification:(NSString *)target withStatus:(NSString *)status {
+	NSString * notificationName = [NSString stringWithString:@"MacPorts"];
+	notificationName = [notificationName stringByAppendingString:target];
+	notificationName = [notificationName stringByAppendingString:status];
+	
+	//Should I be sending self as the object? Or should I send a newly created
+	//copy? What if the listener modifies this object? 
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notificationName 
+																   object:self]; 
 }
-*/
 
 
 
@@ -206,10 +200,18 @@
 	if (options != NULL) 
 		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
 	
+	//Send Global Notifications and update MPNotifications variable
+	[self sendGlobalExecNotification:procedure withStatus:@"Started"];
+	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
+	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
+	
 	[interpreter evaluateStringAsString:
 	 [NSString stringWithFormat:
 	  @"[%@ %@ %@ %@]" ,
 	  procedure, [self name], v, opts]];
+	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
+	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
 }
 
 //Used for the rest of other exec procedures
@@ -228,6 +230,11 @@
 		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
 	}
 	
+	//Send Global Notifications and update MPNotifications variable
+	[self sendGlobalExecNotification:target withStatus:@"Started"];
+	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
+	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
+	
 	[interpreter evaluateStringAsString:
 	 [NSString stringWithFormat:
 	  @"set portHandle [mportopen  %@  %@  %@]; \
@@ -235,102 +242,78 @@
 	  mportclose portHandle", 
 	  [self valueForKey:@"portURL"], opts, vrnts, target]];
 	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
+	[self sendGlobalExecNotification:target withStatus:@"Finished"];
+	
 }
 
--(void)sendGlobalExecNotification:(NSString *)target withStatus:(NSString *)status {
-	NSString * notificationName = [NSString stringWithString:@"MacPorts"];
-	notificationName = [notificationName stringByAppendingString:target];
-	notificationName = [notificationName stringByAppendingString:status];
-	
-	//Should I be sending self as the object? Or should I send a newly created
-	//copy? What if the listener modifies this object? 
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notificationName 
-																   object:self]; 
-}
 
 
 
 #pragma mark -
 # pragma mark Exec methods 
 - (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	
-	[self sendGlobalExecNotification:@"Uninstall" withStatus:@"Started"];
 	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version];
-	[self sendGlobalExecNotification:@"Uninstall" withStatus:@"Finished"];
 }
 
 - (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self sendGlobalExecNotification:@"Activate" withStatus:@"Started"];
 	[self execPortProc:@"mportactivate" withOptions:options withVersion:version];
-	[self sendGlobalExecNotification:@"Activate" withStatus:@"Finished"];
 }
 
 - (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self sendGlobalExecNotification:@"Deactivate" withStatus:@"Started"];
 	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version];
-	[self sendGlobalExecNotification:@"Deactivate" withStatus:@"Finished"];
 }
 
 -(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants{
-	[self sendGlobalExecNotification:@"Configure" withStatus:@"Started"];
 	[self exec:@"configure" withOptions:options withVariants:variants];
 }
+
 -(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Build" withStatus:@"Started"];
 	[self exec:@"build" withOptions:options withVariants:variants];
 }
+
 -(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Test" withStatus:@"Started"];
 	[self exec:@"test" withOptions:options withVariants:variants];	
 }
+
 -(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Destroot" withStatus:@"Started"];
 	[self exec:@"destroot" withOptions:options withVariants:variants];
 }
+
 -(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Install" withStatus:@"Started"];
 	[self exec:@"install" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Install" withStatus:@"Finished"];
 }
+
 -(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Archive" withStatus:@"Started"];
 	[self exec:@"archive" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Archive" withStatus:@"Finished"];
 }
+
 -(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Dmg" withStatus:@"Started"];
 	[self exec:@"dmg" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Dmg" withStatus:@"Finished"];
 }
+
 -(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Mdmg" withStatus:@"Started"];
 	[self exec:@"mdmg" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Mdmg" withStatus:@"Finished"];
 }
+
 -(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Pkg" withStatus:@"Started"];
 	[self exec:@"pkg" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Pkg" withStatus:@"Finished"];
 }
+
 -(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Mpkg" withStatus:@"Started"];
 	[self exec:@"mpkg" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Mpkg" withStatus:@"Finished"];
 }
+
 -(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Rpm" withStatus:@"Started"];
 	[self exec:@"rpm" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Rpm" withStatus:@"Finished"];
 }
+
 -(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Dpkg" withStatus:@"Started"];
 	[self exec:@"dpkg" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Dpkg" withStatus:@"Finished"];
 }
+
 -(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self sendGlobalExecNotification:@"Srpm" withStatus:@"Started"];
 	[self exec:@"srpm" withOptions:options withVariants:variants];
-	[self sendGlobalExecNotification:@"Srpm" withStatus:@"Finished"];
 }
 
 # pragma mark -

@@ -123,9 +123,6 @@
  */
 - (NSArray *)depends:(MPPort *)port;
 
-/* TO DO: Delete this method
-- (void)exec:(MPPort *)port withTarget:(NSString *)target;
-*/
 
 /*!
  @brief Executes specific target of given MPPort

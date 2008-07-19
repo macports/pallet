@@ -41,7 +41,7 @@
 
 #import <Cocoa/Cocoa.h>
 #include <tcl.h>  
-#import "MPNotificationsListener.h"
+#import "MPNotifications.h"
 
 #define	MPPackage			@"macports"
 #define MPPackageVersion	@"1.0"
@@ -56,10 +56,11 @@
 @interface MPInterpreter : NSObject {
 
 	Tcl_Interp* _interpreter;
-
+	
 }
 
-/*
+
+/*!
  @brief Return singleton shared MPInterpreter instance
  */
 + (MPInterpreter *)sharedInterpreter;

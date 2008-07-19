@@ -38,8 +38,8 @@
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
-		6E270D090E158CED00BAE687 /* MPNotificationsListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotificationsListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E270D0A0E158CED00BAE687 /* MPNotificationsListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotificationsListener.m */; };
+		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
@@ -89,8 +89,8 @@
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E270C080E148F4E00BAE687 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		6E270D070E158CED00BAE687 /* MPNotificationsListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationsListener.h; sourceTree = "<group>"; };
-		6E270D080E158CED00BAE687 /* MPNotificationsListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotificationsListener.m; sourceTree = "<group>"; };
+		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
+		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 			children = (
 				6E270C080E148F4E00BAE687 /* Makefile */,
 				6EA293570E05C8FC00902D12 /* notifications.m */,
-				6E270D070E158CED00BAE687 /* MPNotificationsListener.h */,
-				6E270D080E158CED00BAE687 /* MPNotificationsListener.m */,
+				6E270D070E158CED00BAE687 /* MPNotifications.h */,
+				6E270D080E158CED00BAE687 /* MPNotifications.m */,
 				6EEB12FF0E2BFA3000BFEC81 /* notifications.h */,
 			);
 			name = "Tcl Notifications ";
@@ -265,7 +265,7 @@
 				487679690C98C55E00577C59 /* MPPort.h in Headers */,
 				48A866AA0CD364F700B521BC /* MPReceipt.h in Headers */,
 				481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */,
-				6E270D090E158CED00BAE687 /* MPNotificationsListener.h in Headers */,
+				6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */,
 				6EEB13000E2BFA3000BFEC81 /* notifications.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,7 +418,7 @@
 				48A866AB0CD364F700B521BC /* MPReceipt.m in Sources */,
 				481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */,
 				4825ECC40CE61468006B0385 /* MPRegistry.m in Sources */,
-				6E270D0A0E158CED00BAE687 /* MPNotificationsListener.m in Sources */,
+				6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

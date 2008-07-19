@@ -36,11 +36,14 @@
 #import "MPInterpreter.h"
 
 @implementation MPInterpreter
+
 #pragma mark Notifications Code 
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
 	//NSLog(@" INSIDE Notifications_Send METHOD");
-	NSString *name , *msg;
+	NSString *name;
+	NSMutableString *msg;
 	NSMutableDictionary *info = nil;
+	MPNotifications *mln = [MPNotifications sharedListener];
 	
 	int tclCount;
 	int tclResult;
@@ -48,6 +51,14 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	const char **tclElements;
 	
 	name = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+	
+	//Name and Notification constants should match. Convention
+	//used is MPPriorityNotification. Is it ok to just return TCL_OK ?
+	if( [mln checkIfNotificationBlocked:name] ){
+		return TCL_OK;
+	}
+	
+	
 	++objv; --objc;
 	
 	tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
@@ -60,12 +71,28 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		//Get ui_* message separately 
 		++objv; --objc;
 		if(objv != NULL) {
-			msg = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+			msg = [NSMutableString stringWithUTF8String:Tcl_GetString(*objv)];
+			
 			//strip off "--->" over here
-			msg = [msg stringByReplacingOccurrencesOfString:@"--->" withString:@""];
-			[info setObject:msg forKey:[NSString stringWithString:@"Message"]];
+			NSArray * temp = [msg componentsSeparatedByString:@"--->"];
+			[msg setString:[temp componentsJoinedByString:@""]];
+			[info setObject:msg forKey:@"Message"];
 		}
 		
+		//Get the Tcl function that called this method
+		if (! [[mln performingTclCommand] isEqualToString:@""]) {
+			NSArray * cmd = [[mln performingTclCommand] componentsSeparatedByString:@"_"];
+			
+			//if code is working right, this value should always be YES
+			//when we are in this part of the code
+			if([cmd count] > 0) {
+				NSLog(@"Class type is %@", NSStringFromClass([[cmd objectAtIndex:0] class]));
+				
+				if( [[cmd objectAtIndex:0] isEqualToString:@"YES"]) {
+					[info setObject:[cmd objectAtIndex:1] forKey:@"Function"];
+				}
+			}
+		}		
 		if (global != 0) {
 			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
 		} else {
@@ -81,7 +108,14 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 }
 
 int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, Tcl_Obj *CONST objv[]) {
-	//NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	MPNotifications * mln = [MPNotifications sharedListener]; 
+	
+	//Should I do the filtering in Notificaitons_Send instead?
+	if( [mln checkIfNotificationBlocked:MPALL] ) {
+		NSLog(@"ALL NOTIFICATIONS BLOCKED");
+		return TCL_OK;
+	}
+	
 	NSString *action = nil;
 	int returnCode = TCL_ERROR;
 	
@@ -100,10 +134,10 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		}
 	}
 	
-	//[pool release];
 	return returnCode;
 }
 
+#pragma mark -
 
 #pragma mark MPInterpreter Code
 - (id) init {
@@ -118,11 +152,11 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		}
 		
 		/*
-		//TO DO ...
-		//Use client provided .tcl file if any
-		
-		//Finally load our own init.tcl file
-		*/
+		 //TO DO ...
+		 //Use client provided .tcl file if any
+		 
+		 //Finally load our own init.tcl file
+		 */
 		
 		Tcl_CreateObjCommand(_interpreter, "notifications", Notifications_Command, NULL, NULL);
 		
@@ -134,6 +168,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 			NSLog(@"Error in Tcl_EvalFile: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
+		
 	}
 	return self;
 }
@@ -170,7 +205,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 }
 
 - (void)release {
-    //do nothing
+	
 }
 
 - (id)autorelease {
@@ -234,4 +269,6 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 - (NSString *)getVariableAsString:(NSString *)variable {
 	return [NSString stringWithUTF8String:Tcl_GetVar(_interpreter, [variable UTF8String], 0)];
 }
+
+
 @end

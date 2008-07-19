@@ -26,8 +26,8 @@
  *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
  *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-						   *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-						   *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *	POSSIBILITY OF SUCH DAMAGE.
@@ -90,14 +90,22 @@
 - (void)sync {
 	// This needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
+	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
+	
 	[interpreter evaluateStringAsString:@"mportsync"];
+	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
 }
 
 - (void)selfUpdate {
 	//Also needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateStarted" object:nil];
+	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
+	
 	[interpreter evaluateStringAsString:@"macports::selfupdate"];
+	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateFinished" object:nil];
 }
 
@@ -115,6 +123,9 @@
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName {
+	//Should I notify for searches? Will do for now just in case
+	//[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_search"];
+	
 	NSMutableDictionary *result, *newResult;
 	NSEnumerator *enumerator;
 	id key;
@@ -124,20 +135,25 @@
 	} else {
 		caseSensitivity = @"no";
 	}
-	result = [NSMutableDictionary dictionaryWithDictionary:[interpreter dictionaryFromTclListAsString:[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
-		@"return [mportsearch",
-		query,
-		caseSensitivity,
-		style,
-		fieldName,
-		@"]",
-		nil]]]];
+	result = [NSMutableDictionary dictionaryWithDictionary:
+			  [interpreter dictionaryFromTclListAsString:
+			   [interpreter evaluateArrayAsString:
+				[NSArray arrayWithObjects:
+										  @"return [mportsearch",
+										  query,
+										  caseSensitivity,
+										  style,
+										  fieldName,
+										  @"]",
+										  nil]]]];
 	
 	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];
 	while (key = [enumerator nextObject]) {
 		[newResult setObject:[[MPPort alloc] initWithTclListAsString:[result objectForKey:key]] forKey:key];
 	}
+	
+	//[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	return [NSDictionary dictionaryWithDictionary:newResult];
 }
 
@@ -145,11 +161,7 @@
 	return [port depends];
 }
 
-/* TO DO: Delete this method
-- (void)exec:(MPPort *)port withTarget:(NSString *)target {
-	[port exec:target];
-}
-*/
+
 - (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
 	[port exec:target withOptions:options withVariants:variants];
 }
