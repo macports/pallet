@@ -49,9 +49,7 @@
  @abstract The registry of installed ports.
  */
 @interface MPRegistry : NSObject {
-
 	MPInterpreter *interpreter;
-
 }
 
 + (MPRegistry *)sharedRegistry;

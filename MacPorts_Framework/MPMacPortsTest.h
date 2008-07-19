@@ -39,13 +39,10 @@
 
 @interface MPMacPortsTest : SenTestCase {
 	MPMacPorts *testPort;
-	
-	//Create a Notifications Listener run tests then destroy it afterwards
-	//MPNotifications *testListener;
+
 }
 
-//-(void) listenForPortSync;
-//-(void) actOnPortSync:(NSNotification *)notificiation;
+
 -(void) testPortCreation;
 -(void) testPrefix;
 -(void) testSources;

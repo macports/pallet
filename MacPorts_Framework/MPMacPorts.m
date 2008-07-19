@@ -234,7 +234,6 @@
 
 -(void) respondToLocalNotification:(NSNotification *)notification {
 	id sentDict = [notification userInfo];
-	//NSLog(@" INSIDE respondToLocalNotification METHOD");
 	
 	//Just NSLog it for now
 	if(sentDict == nil)

@@ -33,6 +33,27 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*!
+ @header
+ The MPNotifications class aids in handling notifications of port activity that are to be
+ sent to Framework clients. The following constants MPMSG, MPINFO, MPWARN, MPERROR, MPDEBUG
+ define the names of notifications that Framework clients can register for.
+ 
+ THERE IS A REASON I'M NOT INCLUDING MPALL AS ONE OF THE POSSIBLE NOTIFICATIONS TO REGISTER FOR.
+ HOW IS THE FRAMEWORK SUPPOSE TO KNOW THAT SOMEONE HAS REGISTERED FOR ALL NOTIFICATIONS? THE ONLY
+ WAY TO DO THAT THAT I CAN SEE IS FORCING CLIENTS TO USE A CUSTOM METHOD (THAT UPDATES SOME
+ INTERNAL VARIABLE) OTHER THAN THE COCOA NSNOTIFICATION METHODS FOR REGISTERING ... I DON'T
+ WANT TO DO THAT.
+ 
+ SO CLIENTS CAN BOTH REGISTER FOR AND BLOCK CERTAIN NOTIFICATIONS FROM BEING SENT ... IS THIS
+ TOO MUCH FLEXIBILITY? WILL THIS GET CONFUSING? IF I WAS A FRAMEWORK USER I WOULD JUST
+ REGISTER FOR THE NOTIFICATIONS I'M INTERESTED IN AND NOT CARE ABOUT THE REST. BUT ON THE
+ FRAMEWORK SIDE I DON'T WANT TO GO THROUGH OVERHEAD OF SENDING A NOTIFICATION OF THE CLIENT
+ IS DEFINITELY NOT GOING TO USE IT ....
+ 
+ OK DISCUSS WITH RANDALL.
+ */
+
 #import <Cocoa/Cocoa.h>
 
 #define MPMSG @"MPMsgNotification"
@@ -43,21 +64,57 @@
 #define MPALL @"MPAllNotification"
 
 
-/*This class's main purpose is to test the implementation of
- NSNotifications from within the MacPorts Tcl API
+/*!
+ @class MPNotifications
+ @abstract A class to handle notifying Framework clients of port activity
+ @discussion This class aids in sending NSNotifications to Framework clients for various messages
+ that would usually be logged to stdout. It also allows for filtering of messages based on
+ message priority.
  */
 
 @interface MPNotifications : NSObject {
 	NSString * performingTclCommand;
 	NSMutableDictionary * blockOptions;
 }
+
+/*!
+ @brief Return singleton shared MPNotifications instance
+ @discussion Should I make this per thread as Randall did with MPInterpreter
+ and MPMacPorts?
+ */
 + (MPNotifications *)sharedListener;
 
+/*!
+ @brief Returns YES if notification has been blocked and NO if it has not.
+ @param option The priority level of the checked notification. Can be one of MPMSG, MPINFO, MPWARN, MPERROR, MPDEBUG OR MPALL.
+ @discussion The above constants for option correspond to msg, info, warn, error, debug
+ and all console messages respectively. If calling this function with MPALL
+ returns true then all notifications will be blocked. 
+ 
+ SHOULD I ALLOW FOR CUSTOM PRIOTIRITIES?
+ */
 -(BOOL)checkIfNotificationBlocked:(NSString *)option;
+
+/*!
+ @brief Blocks notifications having priority corresponding to option from being sent
+ @param option The priority level of the notification to be blocked. Can be one of MPMSG, MPINFO, MPWARN, MPERROR, MPDEBUG OR MPALL.
+ @discussion This method does nothing if notification has already been blocked.
+ 
+ SHOULD I RETURN SOME SORT OF VALUE FOR A SUCCESSFUL BLOCKING ... OR OTHERWISE?
+ */
 -(void)blockNotification:(NSString *)option;
+
+/*!
+ @brief Unblocks notifications having priority corresponding to option parameter.
+ @param option The priority level of the notification to be unblocked. Can be one of MPMSG, MPINFO, MPWARN, MPERROR, MPDEBUG OR MPALL.
+ @discussion This method does nothing if notification has not been already blocked.
+ 
+ SHOULD I RETURN SOME SORT OF VALUE FOR A SUCCESSFUL BLOCKING ... OR OTHERWISE?
+ */
 -(void)unblockNotification:(NSString *)option;
 
 
+//These methods aren't for the public ... yet ...
 -(void)setPerformingTclCommand:(NSString *)string;
 -(NSString *)performingTclCommand;
 

@@ -39,7 +39,7 @@
 
 #pragma mark Notifications Code 
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
-	//NSLog(@" INSIDE Notifications_Send METHOD");
+
 	NSString *name;
 	NSMutableString *msg;
 	NSMutableDictionary *info = nil;

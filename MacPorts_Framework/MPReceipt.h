@@ -61,7 +61,8 @@
  @param array An NSArray object containing the values for initializing this MPReceipt.
  @discussion 
  The MPReceipt object contains an internal dictionary whose keys are the following strings: name, version, revision, variants,
- active, whatIsThis. The values for these keys are provided by the initializing array parameter.
+ active, whatIsThis (the long description of the corresponding port). 
+ The values for these keys are provided by the initializing array parameter.
  */
 - (id)initWithContentsOfArray:(NSArray *)array;
 

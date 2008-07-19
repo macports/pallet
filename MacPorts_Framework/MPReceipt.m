@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -72,11 +72,11 @@
 }
 
 - (Class)classForKeyedArchiver {
-	return [MPPort class];
+	return [MPReceipt class];
 }
 
 + (Class)classForKeyedUnarchiver {
-	return [MPPort class];
+	return [MPReceipt class];
 }
 
 @end

@@ -43,8 +43,8 @@
 
 - (void)testInitialization;
 - (void)testGetVariableAsArray;
-- (void)testMutableDictionaryFromTclListAsString;
-- (void)testEvaluateStringAsString;
+//- (void)testMutableDictionaryFromTclListAsString;
+//- (void)testEvaluateStringAsString;
 
 
 @end

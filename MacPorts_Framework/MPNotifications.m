@@ -39,24 +39,20 @@
 
 @implementation MPNotifications
 
-static MPNotifications *sharedMPListener = nil;
-
-
-
 + (MPNotifications *)sharedListener {
 	@synchronized(self) {
-		if (sharedMPListener == nil) {
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPListener"] == nil) {
 			[[self alloc] init];
 		}
 	}
-	return sharedMPListener;
+	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPListener"];
 }
 
 + (id)allocWithZone:(NSZone *)zone {
 	@synchronized(self) {
-		if (sharedMPListener == nil) {
-			sharedMPListener = [super allocWithZone:zone];
-			return sharedMPListener;
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPListener"] == nil) {
+			[[[NSThread currentThread] threadDictionary] setObject:[super allocWithZone:zone] forKey:@"sharedMPListener"];
+			return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPListener"];
 		}
 	}
 	return nil;
@@ -105,9 +101,7 @@ static MPNotifications *sharedMPListener = nil;
 		[performingTclCommand release];
 		performingTclCommand = [tclString copy];
 	}
-	
-	//[[NSNotificationCenter defaultCenter] postNotificationName:@"testMacPortsNotification" 
-	//												   object:self];
+
 }
 
 - (NSString *) performingTclCommand {

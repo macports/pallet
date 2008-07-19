@@ -39,13 +39,10 @@
 @implementation MPMacPortsTest
 - (void) setUp {
 	testPort = [MPMacPorts sharedInstance];
-	//testListener = [[MPNotifications alloc] init];
-	//[self listenForPortSync];
 }
 
 - (void) tearDown {
 	[testPort release];
-	//[testListener release];
 }
 
 
@@ -64,13 +61,11 @@
 -(void) testSources{	
 	NSArray *sourcesArray = [testPort sources];
 	STAssertNotNil(sourcesArray, @"Sources array should not be nil");
-	//NSLog(@"STUFF IS %@, %d",[sourcesArray objectAtIndex:0], [sourcesArray count]);
 }
 
 //Ask Randall about what exactly port tree path is
 -(void) testPathToPortIndex {
 	NSURL *pindex = [testPort pathToPortIndex:@"file:///Users/Armahg/macportsbuild/build1/"];
-	//NSLog(@"%@ MORE STUFF IS!", [pindex path]);
 	STAssertNotNil(pindex, @"URL for port index should not be nil");
 }
 
@@ -81,9 +76,6 @@
 
 
 -(void) testSync {
-	//The only way to test this that I know of is to listen for the posted notifications
-	//and take actions as appropriate
-	//NSLog(@"TESTING SYNC");
 	[testPort sync];
 }
 
@@ -94,25 +86,6 @@
 	[testPort selfUpdate];
 	
 }
-
--(void) listenForPortSync {
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
-														selector:@selector(actOnPortSync:) 
-															name:@"MacPortsSyncStarted"
-														  object:nil];
-	
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(actOnPortSync:) 
-															name:@"MacPortsSyncFinished" 
-														  object:nil];
-}
-
--(void) actOnPortSync:(NSNotification *)notification {
-	if ([[notification name] isEqualToString:@"MacPortsSyncStarted"]) 
-		NSLog(@"MacPortsSyncStarted");
-	else
-		NSLog(@"MacPortsSyncFinished"); 
-}	
 */
 
 -(void) testVersion {
