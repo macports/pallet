@@ -69,6 +69,10 @@
  */
 + (MPMacPorts *)sharedInstance;
 
++ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path;
+- (id) initWithTclPkgPath:(NSString *)path;
+
+
 /*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
  */

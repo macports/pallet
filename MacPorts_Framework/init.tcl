@@ -2,8 +2,8 @@
 #	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 #Trying my own MacPorts build rather than default one on the system
-catch {source \
-	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
+#catch {source \
+#	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 
 
