@@ -2,8 +2,8 @@
 #	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 #Trying my own MacPorts build rather than default one on the system
-#catch {source \
-#	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
+catch {source \
+	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 
 
@@ -121,27 +121,24 @@ proc ui_init {priority prefix channels message} {
             set prefix [ui_prefix_default $priority]
         }
 
-        try {
-            ::ui_init $priority $prefix $channels $message
-        } catch * {
-            if {$nbchans == 1} {
-                set chan [lindex $channels 0]
-                
-                proc ::ui_$priority {str} [subst { 
-                	puts $chan "$prefix\$str"
-                	notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
-                }]
-            } else {
-            	proc ::ui_$priority {str} [subst {
-            		foreach chan \$channels {
-            			puts $chan "$prefix\$str"
-            			notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
-            		}
-            	}]
-            }
+        if {$nbchans == 1} {
+            set chan [lindex $channels 0]
+            
+            proc ::ui_$priority {str} [subst { 
+            	puts $chan "$prefix\$str"
+            	notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+            }]
+        } else {
+        	proc ::ui_$priority {str} [subst {
+        		foreach chan \$channels {
+        			puts $chan "$prefix\$str"
+        			notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+        		}
+        	}]
         }
-        # Call ui_$priority
-        ::ui_$priority $message
+        
+    # Call ui_$priority
+	#::ui_$priority $message
     }
 }
 

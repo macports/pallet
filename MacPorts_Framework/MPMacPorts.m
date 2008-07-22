@@ -46,28 +46,10 @@
 	return self;
 }
 
-- (id) initWithTclPkgPath:(NSString *)path {
-	if (self = [super init]) {
-		interpreter = [MPInterpreter sharedInterpreterWithPkgPath:path];
-		[self registerForLocalNotifications];
-	}
-	return self;
-}
-
-
-+ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithTclPkgPath:path]; // assignment not done here
-		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
-}
-
 + (MPMacPorts *)sharedInstance {
 	@synchronized(self) {
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithTclPkgPath:@"\"/Users/Armahg/macportsbuild/build1/Library/Tcl\""]; // assignment not done here
+			[[self alloc] init]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];

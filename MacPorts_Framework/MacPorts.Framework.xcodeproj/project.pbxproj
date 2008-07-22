@@ -44,6 +44,7 @@
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
+		6EEB13000E2BFA3000BFEC81 /* notifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EEB12FF0E2BFA3000BFEC81 /* notifications.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -87,13 +88,16 @@
 		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
+		6E270C080E148F4E00BAE687 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
+		6EA293570E05C8FC00902D12 /* notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = notifications.m; sourceTree = "<group>"; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
+		6EEB12FF0E2BFA3000BFEC81 /* notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notifications.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -237,8 +241,11 @@
 		6EA293540E05C8C600902D12 /* Tcl Notifications  */ = {
 			isa = PBXGroup;
 			children = (
+				6E270C080E148F4E00BAE687 /* Makefile */,
+				6EA293570E05C8FC00902D12 /* notifications.m */,
 				6E270D070E158CED00BAE687 /* MPNotifications.h */,
 				6E270D080E158CED00BAE687 /* MPNotifications.m */,
+				6EEB12FF0E2BFA3000BFEC81 /* notifications.h */,
 			);
 			name = "Tcl Notifications ";
 			sourceTree = "<group>";
@@ -259,6 +266,7 @@
 				48A866AA0CD364F700B521BC /* MPReceipt.h in Headers */,
 				481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */,
 				6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */,
+				6EEB13000E2BFA3000BFEC81 /* notifications.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
