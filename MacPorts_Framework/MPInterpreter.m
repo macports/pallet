@@ -140,7 +140,13 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 #pragma mark -
 
 #pragma mark MPInterpreter Code
+/*
 - (id) init {
+	return [self initWithPkgPath:@"/Users/Armahg/macportsbuild/build1/Library/Tcl"];
+}
+*/
+
+- (id) initWithPkgPath:(NSString *)path {
 	if (self = [super init]) {
 		_interpreter = Tcl_CreateInterp();
 		if(_interpreter == NULL) {
@@ -151,12 +157,14 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 			Tcl_DeleteInterp(_interpreter);
 		}
 		
-		/*
-		 //TO DO ...
-		 //Use client provided .tcl file if any
-		 
-		 //Finally load our own init.tcl file
-		 */
+		
+		NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
+									 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
+		if(Tcl_Eval(_interpreter, [mport_fastload UTF8String]) != TCL_OK) {
+			NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(_interpreter));
+			Tcl_DeleteInterp(_interpreter);
+		}
+		
 		
 		Tcl_CreateObjCommand(_interpreter, "notifications", Notifications_Command, NULL, NULL);
 		
@@ -165,7 +173,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 			Tcl_DeleteInterp(_interpreter);
 		}
 		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
-			NSLog(@"Error in Tcl_EvalFile: %s", Tcl_GetStringResult(_interpreter));
+			NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
 		
@@ -173,14 +181,25 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	return self;
 }
 
+
 + (MPInterpreter*)sharedInterpreter {
 	@synchronized(self) {
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
-			[[self alloc] init]; // assignment not done here
+			[[self alloc] initWithPkgPath:@"/Users/Armahg/macportsbuild/build1/Library/Tcl"]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
 }
+
++ (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path {
+	@synchronized(self) {
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
+			[[self alloc] initWithPkgPath:path]; // assignment not done here
+		}
+	}
+	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+}
+
 
 + (id)allocWithZone:(NSZone*)zone {
 	@synchronized(self) {

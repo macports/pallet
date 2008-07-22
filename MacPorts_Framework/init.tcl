@@ -2,8 +2,8 @@
 #	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 #Trying my own MacPorts build rather than default one on the system
-catch {source \
-	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
+#catch {source \
+#	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
 
 
 
@@ -137,8 +137,8 @@ proc ui_init {priority prefix channels message} {
         	}]
         }
         
-    # Call ui_$priority
-	#::ui_$priority $message
+    # Call ui_$priority - Is this step necessary? Consult with Randall
+    #::ui_$priority $message
     }
 }
 

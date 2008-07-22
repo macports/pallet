@@ -65,6 +65,9 @@
  */
 + (MPInterpreter *)sharedInterpreter;
 
++ (MPInterpreter *)sharedInterpreterWithPkgPath:(NSString *)path;
+- (id) initWithPkgPath:(NSString *)path;
+
 
 #pragma Port Operations
 

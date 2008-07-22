@@ -34,13 +34,24 @@
  */
 
 #import "MPMacPorts.h"
+#import "MPNotifications.h"
 
 
 @implementation MPMacPorts
 
+/*
 - (id) init {
 	if (self = [super init]) {
 		interpreter = [MPInterpreter sharedInterpreter];
+		[self registerForLocalNotifications];
+	}
+	return self;
+}
+ */
+
+- (id) initWithPkgPath:(NSString *)path {
+	if (self = [super init]) {
+		interpreter = [MPInterpreter sharedInterpreterWithPkgPath:path];
 		[self registerForLocalNotifications];
 	}
 	return self;
@@ -49,11 +60,23 @@
 + (MPMacPorts *)sharedInstance {
 	@synchronized(self) {
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] init]; // assignment not done here
+			[[self alloc] initWithPkgPath:@"/Users/Armahg/macportsbuild/build1/Library/Tcl"]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
 }
+
++ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
+	@synchronized(self) {
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
+			[[self alloc] initWithPkgPath:path]; // assignment not done here
+		}
+	}
+	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
+}
+
+
+
 
 + (id)allocWithZone:(NSZone*)zone {
 	@synchronized(self) {
@@ -208,22 +231,22 @@
 -(void) registerForLocalNotifications {
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
-												 name:@"MPInfoNotification"
+												 name:MPINFO
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
-												 name:@"MPMsgNotification"
+												 name:MPMSG
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
-												 name:@"MPErrorNotification"
+												 name:MPERROR
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
-												 name:@"MPWarnNotification"
+												 name:MPWARN
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self

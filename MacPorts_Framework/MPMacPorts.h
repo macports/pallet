@@ -69,6 +69,10 @@
  */
 + (MPMacPorts *)sharedInstance;
 
+//Names of messages below are subject to change
++ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path;
+- (id) initWithPkgPath:(NSString *)path;
+
 /*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
  */
