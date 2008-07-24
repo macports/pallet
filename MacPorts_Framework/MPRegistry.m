@@ -1,5 +1,5 @@
 /*
- *	$Id:$
+ *	$Id$
  *	MacPorts.Framework
  *
  *	Authors:
@@ -117,22 +117,23 @@
 }
 
 - (NSArray *)installedAsArray:(NSString *)name withVersion:(NSString *)version {
-	return [interpreter arrayFromTclListAsString:[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
+	return [interpreter arrayFromTclListAsString:[[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
 		@"return [registry::installed",
 		name,
 		version,
 		@"]",
 		nil
-		]]];
+		]] objectForKey:TCL_RETURN_STRING]];
 }
 
 - (NSArray *)filesForPort:(NSString *)name {
-	return [interpreter arrayFromTclListAsString:[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
-		@"return [registry::port_registered",
-		name,
-		@"]",
-		nil
-		]]];
+	return [interpreter arrayFromTclListAsString:
+			[[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
+												 @"return [registry::port_registered",
+												 name,
+												 @"]",
+												 nil]] 
+			 objectForKey:TCL_RETURN_STRING] ];
 }
 
 @end

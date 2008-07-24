@@ -106,7 +106,17 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
 	
-	[interpreter evaluateStringAsString:@"mportsync"];
+	NSDictionary * returnDict = [interpreter evaluateStringAsString:@"mportsync"];
+	
+	Tcl_Interp * interp = [interpreter sharedTclInterpreter];
+	Tcl_Obj * interpObj = Tcl_GetObjResult(interp);
+	int length, errCode;
+	NSLog(@"TclObj string is %@ with length %d", 
+		  [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)] , \
+		  length);
+	errCode = Tcl_GetErrno();
+	NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
+	NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
@@ -117,7 +127,7 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateStarted" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
 	
-	[interpreter evaluateStringAsString:@"macports::selfupdate"];
+	NSDictionary * returnDict = [interpreter evaluateStringAsString:@"macports::selfupdate"];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateFinished" object:nil];
@@ -151,7 +161,7 @@
 	}
 	result = [NSMutableDictionary dictionaryWithDictionary:
 			  [interpreter dictionaryFromTclListAsString:
-			   [interpreter evaluateArrayAsString:
+			   [[interpreter evaluateArrayAsString:
 				[NSArray arrayWithObjects:
 										  @"return [mportsearch",
 										  query,
@@ -159,7 +169,7 @@
 										  style,
 										  fieldName,
 										  @"]",
-										  nil]]]];
+				 nil]] objectForKey:TCL_RETURN_STRING] ]];
 	
 	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];
@@ -192,6 +202,7 @@
 - (NSArray *)sources:(BOOL)refresh {
 	if (refresh) {
 		[sources release];
+		sources = nil;
 	}
 	return [self sources];
 }
@@ -206,14 +217,14 @@
 
 - (NSURL *)pathToPortIndex:(NSString *)source {
 	return [NSURL fileURLWithPath:
-			[interpreter evaluateStringAsString:
-			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]]];
+			[[interpreter evaluateStringAsString:
+			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]] objectForKey:TCL_RETURN_STRING]];
 }
 
 
 - (NSString *)version {
 	if (version == nil) {
-		version = [interpreter evaluateStringAsString:@"return [macports::version]"];
+		version = [[interpreter evaluateStringAsString:@"return [macports::version]"] objectForKey:TCL_RETURN_STRING];
 	}
 	return version;
 }

@@ -181,6 +181,9 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	return self;
 }
 
+- (Tcl_Interp *) sharedTclInterpreter {
+	return _interpreter;
+}
 
 + (MPInterpreter*)sharedInterpreter {
 	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
@@ -232,14 +235,25 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 #pragma Utilities
 
-- (NSString *)evaluateArrayAsString:(NSArray *)statement {
+- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement {
 	return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
 }
 
+/*
 - (NSString *)evaluateStringAsString:(NSString *)statement {
 	Tcl_Eval(_interpreter, [statement UTF8String]);
 	return [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)];
 }
+*/
+
+
+- (NSDictionary *)evaluateStringAsString:(NSString *)statement {
+	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInt:return_code], TCL_RETURN_CODE, 
+			[NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)], TCL_RETURN_STRING, nil];
+}
+
 
 - (NSArray *)arrayFromTclListAsString:(NSString *)list {
 	NSMutableArray *array;

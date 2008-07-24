@@ -46,6 +46,8 @@
 #define	MPPackage			@"macports"
 #define MPPackageVersion	@"1.0"
 #define MP_DEFAULT_PKG_PATH @"/Users/Armahg/macportsbuild/build1/Library/Tcl"
+#define TCL_RETURN_CODE @"return code"
+#define TCL_RETURN_STRING @"return string"
 
 /*!
  @class MPInterpreter
@@ -65,6 +67,9 @@
  @brief Return singleton shared MPInterpreter instance
  */
 + (MPInterpreter *)sharedInterpreter;
+
+- (Tcl_Interp *) sharedTclInterpreter;
+
 
 + (MPInterpreter *)sharedInterpreterWithPkgPath:(NSString *)path;
 - (id) initWithPkgPath:(NSString *)path;
@@ -93,7 +98,7 @@
  Each element in the array is an NSString. Note the "return" in the first element of the statement
  NSArray.
  */
-- (NSString *)evaluateArrayAsString:(NSArray *)statement;
+//- (NSString *)evaluateArrayAsString:(NSArray *)statement;
 /*!
  @brief Returns the NSString result of evaluating a Tcl expression
  @param  statement An NSString containing the Tcl expression
@@ -104,8 +109,18 @@
  [SomeMPInterpreterObject evaluateStringAsString:
 							[NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
  */
-- (NSString *)evaluateStringAsString:(NSString *)statement;
+//- (NSString *)evaluateStringAsString:(NSString *)statement;
 
+
+//Redoing evaluateStringAsString and evaluateArrayAsString to return a two element NSDictionary.
+//First element will have key TCL_RETURN_CODE and be an NSNumber with int value of TCL_OK,
+//TCL_RETURN , TCL_ERROR etc. The second key will be TCL_RETURN_STRING and have the same NSString
+//value as is being currently returned. This is going to require a lot of refactoring and changing
+//stuff so i'm only going to document and remove old code after new code is working and i've done
+//a commit. Obtaining the return code will make error handling in the framework much less
+//cumbersome
+- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement;
+- (NSDictionary *)evaluateStringAsString:(NSString *)statement;
 
 
 

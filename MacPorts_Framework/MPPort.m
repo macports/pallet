@@ -179,8 +179,8 @@
 		}
 	}
 	
-	[interpreter evaluateStringAsString:
-	 [NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]];
+	NSDictionary * returnDict = [interpreter evaluateStringAsString:
+								 [NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]];
 }
 
 
@@ -205,10 +205,10 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	[interpreter evaluateStringAsString:
-	 [NSString stringWithFormat:
-	  @"[%@ %@ %@ %@]" ,
-	  procedure, [self name], v, opts]];
+	NSDictionary * returnDict = [interpreter evaluateStringAsString:
+								 [NSString stringWithFormat:
+								  @"[%@ %@ %@ %@]" ,
+								  procedure, [self name], v, opts]];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
@@ -235,12 +235,12 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	[interpreter evaluateStringAsString:
-	 [NSString stringWithFormat:
-	  @"set portHandle [mportopen  %@  %@  %@]; \
-	  mportexec portHandle %@; \
-	  mportclose portHandle", 
-	  [self valueForKey:@"portURL"], opts, vrnts, target]];
+	NSDictionary * returnDict = [interpreter evaluateStringAsString:
+								 [NSString stringWithFormat:
+								  @"set portHandle [mportopen  %@  %@  %@]; \
+								  mportexec portHandle %@; \
+								  mportclose portHandle", 
+								  [self valueForKey:@"portURL"], opts, vrnts, target]];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:target withStatus:@"Finished"];
