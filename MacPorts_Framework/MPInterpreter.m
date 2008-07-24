@@ -235,7 +235,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 #pragma Utilities
 
-- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement {
+/*- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement {
 	return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
 }
 

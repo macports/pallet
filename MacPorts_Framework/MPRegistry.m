@@ -117,16 +117,24 @@
 }
 
 - (NSArray *)installedAsArray:(NSString *)name withVersion:(NSString *)version {
-	return [interpreter arrayFromTclListAsString:[[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
-		@"return [registry::installed",
-		name,
-		version,
-		@"]",
-		nil
-		]] objectForKey:TCL_RETURN_STRING]];
+	/*
+	 return [interpreter arrayFromTclListAsString:[[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
+	 @"return [registry::installed",
+	 name,
+	 version,
+	 @"]",
+	 nil
+	 ]] objectForKey:TCL_RETURN_STRING]];
+	 */
+	
+	return [interpreter arrayFromTclListAsString:
+			[[interpreter evaluateStringAsString:
+			  [NSString stringWithFormat:@"return [registry::installed %@ %@]", name, version]] 
+			 objectForKey:TCL_RETURN_STRING]];
 }
 
 - (NSArray *)filesForPort:(NSString *)name {
+	/*
 	return [interpreter arrayFromTclListAsString:
 			[[interpreter evaluateArrayAsString:[NSArray arrayWithObjects:
 												 @"return [registry::port_registered",
@@ -134,6 +142,12 @@
 												 @"]",
 												 nil]] 
 			 objectForKey:TCL_RETURN_STRING] ];
+	 */
+	
+	return [interpreter arrayFromTclListAsString:
+			[[interpreter evaluateStringAsString:
+			   [NSString stringWithFormat:@"return [registry::port_registered %@]", name]] 
+			 objectForKey:TCL_RETURN_STRING]];
 }
 
 @end

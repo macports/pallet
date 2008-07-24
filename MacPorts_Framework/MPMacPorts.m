@@ -159,7 +159,7 @@
 	} else {
 		caseSensitivity = @"no";
 	}
-	result = [NSMutableDictionary dictionaryWithDictionary:
+	/*result = [NSMutableDictionary dictionaryWithDictionary:
 			  [interpreter dictionaryFromTclListAsString:
 			   [[interpreter evaluateArrayAsString:
 				[NSArray arrayWithObjects:
@@ -169,7 +169,13 @@
 										  style,
 										  fieldName,
 										  @"]",
-				 nil]] objectForKey:TCL_RETURN_STRING] ]];
+				 nil]] objectForKey:TCL_RETURN_STRING] ]];*/
+	
+	result = [NSMutableDictionary dictionaryWithDictionary:
+			  [interpreter dictionaryFromTclListAsString:
+			   [[interpreter evaluateStringAsString:
+				 [NSString stringWithFormat:@"return [mportsearch %@ %@ %@ %@]",
+				  query, caseSensitivity, style, fieldName]] objectForKey:TCL_RETURN_STRING]]];
 	
 	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];

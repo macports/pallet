@@ -119,7 +119,7 @@
 //stuff so i'm only going to document and remove old code after new code is working and i've done
 //a commit. Obtaining the return code will make error handling in the framework much less
 //cumbersome
-- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement;
+//- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement;
 - (NSDictionary *)evaluateStringAsString:(NSString *)statement;
 
 
