@@ -39,15 +39,11 @@
 
 @implementation MPMacPorts
 
-/*
+
 - (id) init {
-	if (self = [super init]) {
-		interpreter = [MPInterpreter sharedInterpreter];
-		[self registerForLocalNotifications];
-	}
-	return self;
+	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
- */
+
 
 - (id) initWithPkgPath:(NSString *)path {
 	if (self = [super init]) {
@@ -58,12 +54,7 @@
 }
 
 + (MPMacPorts *)sharedInstance {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithPkgPath:@"/Users/Armahg/macportsbuild/build1/Library/Tcl"]; // assignment not done here
-		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
+	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
 
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
@@ -192,7 +183,7 @@
 #pragma settings
 
 - (NSString *)prefix {
-	if (prefix == Nil) {
+	if (prefix == NULL) {
 		prefix = [interpreter getVariableAsString:@"macports::prefix_frozen"];
 	}
 	return prefix;
@@ -206,7 +197,7 @@
 }
 
 - (NSArray *)sources {
-	if (sources == Nil) {
+	if (sources == nil) {
 		sources = [interpreter getVariableAsArray:@"macports::sources"];
 	}
 	return sources;
@@ -221,7 +212,7 @@
 
 
 - (NSString *)version {
-	if (version == Nil) {
+	if (version == nil) {
 		version = [interpreter evaluateStringAsString:@"return [macports::version]"];
 	}
 	return version;

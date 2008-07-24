@@ -140,11 +140,11 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 #pragma mark -
 
 #pragma mark MPInterpreter Code
-/*
+
 - (id) init {
-	return [self initWithPkgPath:@"/Users/Armahg/macportsbuild/build1/Library/Tcl"];
+	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
-*/
+
 
 - (id) initWithPkgPath:(NSString *)path {
 	if (self = [super init]) {
@@ -183,12 +183,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 
 + (MPInterpreter*)sharedInterpreter {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
-			[[self alloc] initWithPkgPath:@"/Users/Armahg/macportsbuild/build1/Library/Tcl"]; // assignment not done here
-		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path {

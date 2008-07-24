@@ -45,6 +45,7 @@
 
 #define	MPPackage			@"macports"
 #define MPPackageVersion	@"1.0"
+#define MP_DEFAULT_PKG_PATH @"/Users/Armahg/macportsbuild/build1/Library/Tcl"
 
 /*!
  @class MPInterpreter
