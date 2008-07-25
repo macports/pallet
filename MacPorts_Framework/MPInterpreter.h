@@ -45,7 +45,7 @@
 
 #define	MPPackage			@"macports"
 #define MPPackageVersion	@"1.0"
-#define MP_DEFAULT_PKG_PATH @"/Users/Armahg/macportsbuild/build1/Library/Tcl"
+#define MP_DEFAULT_PKG_PATH @"/Library/Tcl"
 #define TCL_RETURN_CODE @"return code"
 #define TCL_RETURN_STRING @"return string"
 
