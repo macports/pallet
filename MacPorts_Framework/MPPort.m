@@ -157,7 +157,8 @@
 
 
 //This method is nice but really isn't used.
-- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params {
+- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError {
+	
 	//params can contain either NSStrings or NSArrays
 	NSString * sparams = [NSString stringWithString:@" "];
 	NSEnumerator * penums = [params objectEnumerator];
@@ -179,13 +180,19 @@
 		}
 	}
 	
-	NSDictionary * returnDict = [interpreter evaluateStringAsString:
-								 [NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]];
+	
+	[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
+								  error:execError];
+	
 }
 
 
 //Used for mportactivate, mportdeactivate and mportuninstall
--(void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version {
+-(void)execPortProc:(NSString *)procedure 
+		withOptions:(NSArray *)options 
+		withVersion:(NSString *)version
+			  error:(NSError **)execError {
+	
 	NSString *opts, *v;
 	MPInterpreter *interpreter;
 	opts = [NSString stringWithString:@" "];
@@ -205,17 +212,22 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	NSDictionary * returnDict = [interpreter evaluateStringAsString:
-								 [NSString stringWithFormat:
-								  @"[%@ %@ %@ %@]" ,
-								  procedure, [self name], v, opts]];
+	[interpreter evaluateStringAsString:
+	 [NSString stringWithFormat:
+	  @"[%@ %@ %@ %@]" ,
+	  procedure, [self name], v, opts]
+								  error:execError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
 }
 
 //Used for the rest of other exec procedures
--(void)exec:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
+-(void) exec:(NSString *)target 
+ withOptions:(NSArray *)options 
+withVariants:(NSArray *)variants 
+	   error:(NSError **)execError{
+	
 	NSString *opts; 
 	NSString *vrnts;
 	MPInterpreter *interpreter;
@@ -235,12 +247,13 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	NSDictionary * returnDict = [interpreter evaluateStringAsString:
-								 [NSString stringWithFormat:
-								  @"set portHandle [mportopen  %@  %@  %@]; \
-								  mportexec portHandle %@; \
-								  mportclose portHandle", 
-								  [self valueForKey:@"portURL"], opts, vrnts, target]];
+	[interpreter evaluateStringAsString:
+	 [NSString stringWithFormat:
+	  @"set portHandle [mportopen  %@  %@  %@]; \
+	  mportexec portHandle %@; \
+	  mportclose portHandle", 
+	  [self valueForKey:@"portURL"], opts, vrnts, target]
+								  error:execError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:target withStatus:@"Finished"];
@@ -252,68 +265,68 @@
 
 #pragma mark -
 # pragma mark Exec methods 
-- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version];
+- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version error:mError];
 }
 
-- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self execPortProc:@"mportactivate" withOptions:options withVersion:version];
+- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportactivate" withOptions:options withVersion:version error:mError];
 }
 
-- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version {
-	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version];
+- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version error:mError];
 }
 
--(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants{
-	[self exec:@"configure" withOptions:options withVariants:variants];
+-(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"configure" withOptions:options withVariants:variants error:mError];
 }
 
--(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"build" withOptions:options withVariants:variants];
+-(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"build" withOptions:options withVariants:variants error:mError];
 }
 
--(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"test" withOptions:options withVariants:variants];	
+-(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"test" withOptions:options withVariants:variants error:mError];	
 }
 
--(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"destroot" withOptions:options withVariants:variants];
+-(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"destroot" withOptions:options withVariants:variants error:mError];
 }
 
--(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"install" withOptions:options withVariants:variants];
+-(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"install" withOptions:options withVariants:variants error:mError];
 }
 
--(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"archive" withOptions:options withVariants:variants];
+-(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"archive" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"dmg" withOptions:options withVariants:variants];
+-(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"dmg" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"mdmg" withOptions:options withVariants:variants];
+-(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"mdmg" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"pkg" withOptions:options withVariants:variants];
+-(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"pkg" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"mpkg" withOptions:options withVariants:variants];
+-(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"mpkg" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"rpm" withOptions:options withVariants:variants];
+-(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError{
+	[self exec:@"rpm" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"dpkg" withOptions:options withVariants:variants];
+-(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError{
+	[self exec:@"dpkg" withOptions:options withVariants:variants error:mError];
 }
 
--(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[self exec:@"srpm" withOptions:options withVariants:variants];
+-(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError{
+	[self exec:@"srpm" withOptions:options withVariants:variants error:mError];
 }
 
 # pragma mark -

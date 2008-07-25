@@ -101,33 +101,23 @@
 
 #pragma MacPorts API
 
-- (void)sync {
+- (void)sync:(NSError**)sError {
 	// This needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
 	
-	NSDictionary * returnDict = [interpreter evaluateStringAsString:@"mportsync"];
-	
-	Tcl_Interp * interp = [interpreter sharedTclInterpreter];
-	Tcl_Obj * interpObj = Tcl_GetObjResult(interp);
-	int length, errCode;
-	NSLog(@"TclObj string is %@ with length %d", 
-		  [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)] , \
-		  length);
-	errCode = Tcl_GetErrno();
-	NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
-	NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
+	[interpreter evaluateStringAsString:@"mportsync" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
 }
 
-- (void)selfUpdate {
+- (void)selfUpdate:(NSError**)sError {
 	//Also needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateStarted" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
 	
-	NSDictionary * returnDict = [interpreter evaluateStringAsString:@"macports::selfupdate"];
+	[interpreter evaluateStringAsString:@"macports::selfupdate" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateFinished" object:nil];
@@ -170,12 +160,14 @@
 										  fieldName,
 										  @"]",
 				 nil]] objectForKey:TCL_RETURN_STRING] ]];*/
+	NSError * sError;
 	
 	result = [NSMutableDictionary dictionaryWithDictionary:
 			  [interpreter dictionaryFromTclListAsString:
-			   [[interpreter evaluateStringAsString:
-				 [NSString stringWithFormat:@"return [mportsearch %@ %@ %@ %@]",
-				  query, caseSensitivity, style, fieldName]] objectForKey:TCL_RETURN_STRING]]];
+			   [interpreter evaluateStringAsString:
+				[NSString stringWithFormat:@"return [mportsearch %@ %@ %@ %@]",
+				 query, caseSensitivity, style, fieldName] 
+											 error:&sError]]];
 	
 	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];
@@ -192,8 +184,13 @@
 }
 
 
-- (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants {
-	[port exec:target withOptions:options withVariants:variants];
+- (void)exec:(MPPort *)port 
+  withTarget:(NSString *)target 
+ withOptions:(NSArray *)options 
+withVariants:(NSArray *)variants
+	   error:(NSError **)execError
+{
+	[port exec:target withOptions:options withVariants:variants error:execError ];
 }
 
 #pragma settings
@@ -222,15 +219,19 @@
 
 
 - (NSURL *)pathToPortIndex:(NSString *)source {
+	NSError * pError;
 	return [NSURL fileURLWithPath:
-			[[interpreter evaluateStringAsString:
-			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]] objectForKey:TCL_RETURN_STRING]];
+			[interpreter evaluateStringAsString:
+			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]
+										  error:&pError]];
 }
 
 
 - (NSString *)version {
 	if (version == nil) {
-		version = [[interpreter evaluateStringAsString:@"return [macports::version]"] objectForKey:TCL_RETURN_STRING];
+		
+		NSError * vError;
+		version = [interpreter evaluateStringAsString:@"return [macports::version]" error:&vError];
 	}
 	return version;
 }

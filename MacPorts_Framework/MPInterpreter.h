@@ -43,11 +43,12 @@
 #include <tcl.h>  
 #import "MPNotifications.h"
 
-#define	MPPackage			@"macports"
-#define MPPackageVersion	@"1.0"
-#define MP_DEFAULT_PKG_PATH @"/Library/Tcl"
-#define TCL_RETURN_CODE @"return code"
-#define TCL_RETURN_STRING @"return string"
+#define	MPPackage				@"macports"
+#define MPPackageVersion		@"1.0"
+#define MP_DEFAULT_PKG_PATH		@"/Library/Tcl"
+#define TCL_RETURN_CODE			@"return code"
+#define TCL_RETURN_STRING		@"return string"
+#define MPFrameworkErrorDomain	@"MacPortsFrameworkErrorDomain"
 
 /*!
  @class MPInterpreter
@@ -109,7 +110,7 @@
  [SomeMPInterpreterObject evaluateStringAsString:
 							[NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
  */
-//- (NSString *)evaluateStringAsString:(NSString *)statement;
+- (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError **)mportError;
 
 
 //Redoing evaluateStringAsString and evaluateArrayAsString to return a two element NSDictionary.
@@ -120,7 +121,13 @@
 //a commit. Obtaining the return code will make error handling in the framework much less
 //cumbersome
 //- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement;
-- (NSDictionary *)evaluateStringAsString:(NSString *)statement;
+//- (NSDictionary *)evaluateStringAsString:(NSString *)statement;
+
+
+//After eliminating evaluateArrayAsString ... I'm wondering if I should take jberry's advice
+//hmm ... well this method needs to return two pieces of information ... the string
+//and an indicator of success .. oh wait ... I can jut check the returned error variable
+//for a successful method ... back to Randall's implementation with some tweaks then ... 
 
 
 

@@ -239,21 +239,55 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
 }
 
-/*
-- (NSString *)evaluateStringAsString:(NSString *)statement {
-	Tcl_Eval(_interpreter, [statement UTF8String]);
+*/
+- (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError**)mportError{
+	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
+	
+	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
+	if (return_code == TCL_ERROR) {
+		
+		Tcl_Obj * interpObj = Tcl_GetObjResult(_interpreter);
+		int length, errCode;
+		NSString * errString = [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)];
+		NSLog(@"TclObj string is %@ with length %d", errString , length);
+		errCode = Tcl_GetErrno();
+		NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
+		NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
+		
+		//Handle errors here ... Framework users can do !mportError to find out if
+		//method was successful
+		NSString *descrip = NSLocalizedString(errString, @"");
+		NSDictionary *errDict;
+		//For now all error codes are TCL_ERROR
+		
+		//Create underlying error - For now I'll create the underlying Posix Error
+		NSError *undError = [[[NSError alloc] initWithDomain:NSPOSIXErrorDomain
+														code:errCode 
+													userInfo:nil] autorelease];
+		//Create and return custom domain error
+		NSArray *objArray = [NSArray arrayWithObjects:descrip, undError, nil];
+		NSArray *keyArray = [NSArray arrayWithObjects:NSLocalizedDescriptionKey,
+							 NSUnderlyingErrorKey, nil];
+		errDict = [NSDictionary dictionaryWithObjects:objArray forKeys:keyArray];
+		if (mportError != NULL)
+			*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
+													  code:TCL_ERROR 
+												  userInfo:errDict] autorelease];
+		return nil;
+	}
+	
 	return [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)];
 }
-*/
 
 
+/*
 - (NSDictionary *)evaluateStringAsString:(NSString *)statement {
 	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
 	return [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithInt:return_code], TCL_RETURN_CODE, 
 			[NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)], TCL_RETURN_STRING, nil];
 }
-
+*/
 
 - (NSArray *)arrayFromTclListAsString:(NSString *)list {
 	NSMutableArray *array;

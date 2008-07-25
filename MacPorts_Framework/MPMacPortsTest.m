@@ -76,7 +76,8 @@
 
 
 -(void) testSync {
-	[testPort sync];
+	NSError * syncError;
+	[testPort sync:&syncError];
 }
 
 /*
