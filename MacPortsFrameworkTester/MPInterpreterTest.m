@@ -39,9 +39,42 @@
 
 @implementation MPInterpreterTest
 
-- (IBAction)testGetVariableArray:(id)sender {
+- (id) init {
 	interp = [MPInterpreter sharedInterpreter];
+	testPort = [MPMacPorts sharedInstance];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToMPNotifications:) 
+												 name:MPERROR 
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToMPNotifications:) 
+												 name:MPINFO
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToMPNotifications:) 
+												 name:MPWARN 
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToMPNotifications:) 
+												 name:MPMSG 
+											   object:nil];
+	
+	return self;
+}
+
+- (void) respondToMPNotifications:(NSNotification *) notification {
+	id sentDict = [notification userInfo];
+	[[SharedTextView sharedTextView] writeText:
+	[NSString stringWithFormat:@"Recieved notification dictionary is \n %@",
+	 [sentDict description]]];
+}
+
+
+- (IBAction)testGetVariableArray:(id)sender {
 	NSString * testOutput = @"";
 	// Check to make sure interp is not nil
 	testOutput = [testOutput stringByAppendingString:@"Testing for Creation of MSInterpreter object: \n"];
@@ -52,16 +85,27 @@
 	// calling the class method [SharedTextView sharedTextView] over and
 	// over again?
 	if(interp){
-		testOutput = [testOutput stringByAppendingString:@"Interpreter object is not nil \n"];
+		testOutput = [testOutput stringByAppendingString:
+					  [NSString stringWithFormat:
+					   @"Interpreter object is not nil \n \
+					   testGetVariableArray result is %@" ,
+		  [[interp getVariableAsArray:@"macports::user_options"] description]]];
+		
 		[[SharedTextView sharedTextView] writeText:testOutput];
 	}
 	else {
 		testOutput = [testOutput stringByAppendingString:@"Interpreter object \
-					  is not nil\n"];
+					  is nil. Uh Oh =O \n"];
 		[[SharedTextView sharedTextView] writeText:testOutput];
 	}
 	
 }
 
+
+
+-(IBAction)testSync:(id)sender {
+	NSError * syncError;
+	[testPort sync:&syncError];
+}
 
 @end

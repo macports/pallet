@@ -39,9 +39,13 @@
 
 @interface MPInterpreterTest : NSObject {
 	MPInterpreter * interp;
+	MPMacPorts * testPort;
 }
 
 -(IBAction)testGetVariableArray:(id)sender;
+-(IBAction)testSync:(id)sender;
 
+
+-(void)respondToMPNotifications:(NSNotification *) notification;
 
 @end
