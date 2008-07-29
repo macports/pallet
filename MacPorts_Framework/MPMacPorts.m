@@ -101,15 +101,19 @@
 
 #pragma MacPorts API
 
-- (void)sync:(NSError**)sError {
+- (id)sync:(NSError**)sError {
+	NSString * result = nil;
+	
 	// This needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
 	
-	[interpreter evaluateStringAsString:@"mportsync" error:sError];
+	result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
+
+	return result;
 }
 
 - (void)selfUpdate:(NSError**)sError {

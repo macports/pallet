@@ -44,6 +44,18 @@
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
+		6ED12A4F0E3E55660026773D /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED12A4E0E3E55660026773D /* MPHelperTool.m */; };
+		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
+		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
+		6ED12A5A0E3E56420026773D /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
+		6ED12AA30E3E7E7C0026773D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA20E3E7E7C0026773D /* Foundation.framework */; };
+		6ED12AA70E3E7E900026773D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA60E3E7E900026773D /* Cocoa.framework */; };
+		6ED12AC90E3E94310026773D /* MPInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48906AFC0C4230B700A3ED8A /* MPInterpreter.m */; };
+		6ED12AD20E3E9AC30026773D /* MPInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 48906AFB0C4230B700A3ED8A /* MPInterpreter.h */; };
+		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		6ED12AFB0E3E9F980026773D /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; };
+		6ED12AFC0E3E9FA60026773D /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
+		6ED12B060E3EA9E30026773D /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +67,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MacPorts;
+		};
+		6ED12A520E3E55A50026773D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ED12A490E3E552F0026773D /* MPHelperTool */;
+			remoteInfo = MPHelperTool;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,6 +113,11 @@
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
+		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ED12A4E0E3E55660026773D /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
+		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		6ED12AA20E3E7E7C0026773D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,12 +131,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6ED12A480E3E552F0026773D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */,
+				6ED12AA30E3E7E7C0026773D /* Foundation.framework in Frameworks */,
+				6ED12AA70E3E7E900026773D /* Cocoa.framework in Frameworks */,
+				6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				48E992980C82C98C00219DDF /* Tcl.framework in Frameworks */,
+				6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +160,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* MacPorts.framework */,
 				489DD8F40C94365F00595506 /* Test.octest */,
+				6ED12A4A0E3E552F0026773D /* MPHelperTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +168,7 @@
 		0867D691FE84028FC02AAC07 /* MacPorts Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				6ED12A460E3E54A80026773D /* MPHelperTool */,
 				6EA293540E05C8C600902D12 /* Tcl Notifications  */,
 				6E88D1760DF46A2600684E9F /* Tests */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
@@ -140,6 +178,8 @@
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				6EA0F56E0DFEB55E00C15082 /* Tcl.framework */,
+				6ED12AA20E3E7E7C0026773D /* Foundation.framework */,
+				6ED12AA60E3E7E900026773D /* Cocoa.framework */,
 			);
 			name = "MacPorts Foundation";
 			sourceTree = "<group>";
@@ -190,6 +230,7 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6ED12A540E3E55DF0026773D /* Security.framework */,
 				48E992970C82C98C00219DDF /* Tcl.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
@@ -243,9 +284,26 @@
 			name = "Tcl Notifications ";
 			sourceTree = "<group>";
 		};
+		6ED12A460E3E54A80026773D /* MPHelperTool */ = {
+			isa = PBXGroup;
+			children = (
+				6ED12A4E0E3E55660026773D /* MPHelperTool.m */,
+			);
+			name = MPHelperTool;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		6ED12AD30E3E9AE10026773D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED12AFB0E3E9F980026773D /* MPNotifications.h in Headers */,
+				6ED12AD20E3E9AC30026773D /* MPInterpreter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF500486A6940098B216 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,6 +342,24 @@
 			productReference = 489DD8F40C94365F00595506 /* Test.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		6ED12A490E3E552F0026773D /* MPHelperTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ED12A500E3E55660026773D /* Build configuration list for PBXNativeTarget "MPHelperTool" */;
+			buildPhases = (
+				6ED12B0B0E3EAA140026773D /* Resources */,
+				6ED12AD30E3E9AE10026773D /* Headers */,
+				6ED12A470E3E552F0026773D /* Sources */,
+				6ED12A480E3E552F0026773D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MPHelperTool;
+			productName = MPHelperTool;
+			productReference = 6ED12A4A0E3E552F0026773D /* MPHelperTool */;
+			productType = "com.apple.product-type.tool";
+		};
 		8DC2EF4F0486A6940098B216 /* MacPorts */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MacPorts" */;
@@ -297,6 +373,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6ED12A530E3E55A50026773D /* PBXTargetDependency */,
 			);
 			name = MacPorts;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -320,6 +397,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				6ED12A490E3E552F0026773D /* MPHelperTool */,
 				8DC2EF4F0486A6940098B216 /* MacPorts */,
 				489DD8F30C94365F00595506 /* Test */,
 				DFE353650CFB8F0C003BACFC /* Docs */,
@@ -335,10 +413,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6ED12B0B0E3EAA140026773D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED12B060E3EA9E30026773D /* init.tcl in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF520486A6940098B216 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED12A5A0E3E56420026773D /* MPHelperTool in Resources */,
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
@@ -399,6 +486,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6ED12A470E3E552F0026773D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED12AC90E3E94310026773D /* MPInterpreter.m in Sources */,
+				6ED12AFC0E3E9FA60026773D /* MPNotifications.m in Sources */,
+				6ED12A4F0E3E55660026773D /* MPHelperTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -421,6 +518,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
 			targetProxy = 6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */;
+		};
+		6ED12A530E3E55A50026773D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ED12A490E3E552F0026773D /* MPHelperTool */;
+			targetProxy = 6ED12A520E3E55A50026773D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -581,6 +683,36 @@
 			};
 			name = Release;
 		};
+		6ED12A4C0E3E55300026773D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperTool;
+			};
+			name = Debug;
+		};
+		6ED12A4D0E3E55300026773D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperTool;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		DFE353660CFB8F0C003BACFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -628,6 +760,15 @@
 			buildConfigurations = (
 				489DD8F70C94366000595506 /* Debug */,
 				489DD8F80C94366000595506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ED12A500E3E55660026773D /* Build configuration list for PBXNativeTarget "MPHelperTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED12A4C0E3E55300026773D /* Debug */,
+				6ED12A4D0E3E55300026773D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

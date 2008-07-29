@@ -77,7 +77,7 @@
 /*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
  */
-- (void)sync:(NSError **)sError;
+- (id)sync:(NSError **)sError;
 /*!
  @brief Synchronizes the ports tree and checks for upgrades to MacPorts base.
  @discussion The selfupdate port command is available only on Mac OS X systems.

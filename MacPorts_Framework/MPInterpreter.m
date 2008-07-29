@@ -172,7 +172,15 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 			NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}
-		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
+		
+		/*if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
+			NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
+			Tcl_DeleteInterp(_interpreter);
+		}*/
+		
+		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleForClass:[self class]] 
+										 pathForResource:@"init" 
+										 ofType:@"tcl"] UTF8String]) != TCL_OK) {
 			NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
 		}

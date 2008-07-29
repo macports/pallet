@@ -76,8 +76,17 @@
 
 
 -(void) testSync {
-	NSError * syncError;
+	NSError * syncError = nil;
 	[testPort sync:&syncError];
+	
+	if(syncError) {
+		//Attempt to recover from error by authenticating and then
+		//running sync again. We are going to decide whether or not to
+		//do this for clients of the Framework of have them do it themselves
+		NSLog(@"Error is %@", [syncError description]);
+	}
+	
+	
 }
 
 /*
@@ -93,6 +102,25 @@
 	NSString * version = [testPort version];
 	STAssertNotNil(version, @"%@ should not be nil", version);
 }
+
+
+-(void) testMPHelperTool {
+	NSLog(@"Testing MPHelperTool");
+	NSTask *task = [[NSTask alloc] init];
+	[task setLaunchPath:[[NSBundle bundleForClass:[MPMacPorts class]] 
+						 pathForResource:@"MPHelperTool" 
+						 ofType:nil]];
+	
+	NSArray * args = [NSArray arrayWithObjects:@"return [macports::version]", nil];
+	[task setArguments:args];
+	
+	[task launch];
+	
+	[task release];
+	
+}
+
+
 /*
 -(void) testInstall {
 	NSDictionary * result = [testPort search:@"pyt"];
