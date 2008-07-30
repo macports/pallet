@@ -42,7 +42,7 @@
 
 }
 
--(void) testMPHelperTool;
+
 -(void) testPortCreation;
 -(void) testPrefix;
 -(void) testSources;
@@ -52,5 +52,6 @@
 -(void) testSync;
 -(void) testVersion;
 //-(void) testInstall;
+-(void) testMPHelperTool;
 
 @end

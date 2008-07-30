@@ -43,6 +43,11 @@
 #include <tcl.h>  
 #import "MPNotifications.h"
 
+
+//Defining some flags for MPHelperTool
+#define SELF_REPAIR @"--self-repair"
+#define REC_COUNT @"--rec-count"
+
 #define	MPPackage				@"macports"
 #define MPPackageVersion		@"1.0"
 #define MP_DEFAULT_PKG_PATH		@"/Library/Tcl"
@@ -70,7 +75,7 @@
 + (MPInterpreter *)sharedInterpreter;
 
 - (Tcl_Interp *) sharedTclInterpreter;
-
+- (int) execute:(NSString *)pathToExecutable withArgs:(NSArray*)args;
 
 + (MPInterpreter *)sharedInterpreterWithPkgPath:(NSString *)path;
 - (id) initWithPkgPath:(NSString *)path;

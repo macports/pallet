@@ -85,7 +85,7 @@
 						[NSNumber numberWithInt:0], MPMSG, [NSNumber numberWithInt:0], MPINFO, 
 						[NSNumber numberWithInt:0], MPWARN, [NSNumber numberWithInt:0], MPERROR, 
 						[NSNumber numberWithInt:1], MPDEBUG, [NSNumber numberWithInt:0], MPALL, nil];
-		NSLog(@"Dictionary is %@ ", [blockOptions description]);
+		//NSLog(@"Dictionary is %@ ", [blockOptions description]);
 	}
 	return self;
 }

@@ -111,7 +111,8 @@
 						 pathForResource:@"MPHelperTool" 
 						 ofType:nil]];
 	
-	NSArray * args = [NSArray arrayWithObjects:@"return [macports::version]", nil];
+	NSArray * args = [NSArray arrayWithObjects:SELF_REPAIR, @"no",
+					  REC_COUNT, @"0", @"return [macports::version]", nil];
 	[task setArguments:args];
 	
 	[task launch];

@@ -243,6 +243,17 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 #pragma Utilities
 
+- (int) execute:(NSString *)pathToExecutable withArgs:(NSArray *)args {
+	NSTask * task = [[NSTask alloc] init];
+	[task setLaunchPath:pathToExecutable];
+	[task setArguments:args];
+	[task launch];
+	[task waitUntilExit];
+	int status = [task terminationStatus];
+	[task release];
+	return status;
+}
+
 /*- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement {
 	return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
 }
@@ -257,10 +268,10 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		Tcl_Obj * interpObj = Tcl_GetObjResult(_interpreter);
 		int length, errCode;
 		NSString * errString = [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)];
-		NSLog(@"TclObj string is %@ with length %d", errString , length);
+		//NSLog(@"TclObj string is %@ with length %d", errString , length);
 		errCode = Tcl_GetErrno();
-		NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
-		NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
+		//NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
+		//NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
 		
 		//Handle errors here ... Framework users can do !mportError to find out if
 		//method was successful
