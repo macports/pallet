@@ -47,6 +47,7 @@
 //Defining some flags for MPHelperTool
 #define SELF_REPAIR @"--self-repair"
 #define REC_COUNT @"--rec-count"
+#define MP_HELPER @"MPHelperTool"
 
 #define	MPPackage				@"macports"
 #define MPPackageVersion		@"1.0"
@@ -65,8 +66,10 @@
 @interface MPInterpreter : NSObject {
 
 	Tcl_Interp* _interpreter;
+	NSString * helperToolInterpCommand;
 	
 }
+
 
 
 /*!
@@ -170,5 +173,6 @@
 - (NSString *)getVariableAsString:(NSString *)variable;
 
 
-
+//For testing helper tool
+-(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement;
 @end

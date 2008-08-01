@@ -58,14 +58,11 @@
 }
  
 
-/*
+
 - (void)testMPHelperTool {
 	
-	//Interesting ... we'll see who MPInterpreter belongs to
-	//at the time of execution MPHelperTool ... or MacPorts.Framework
-	[interp execute:[[NSBundle bundleForClass:MPInterpreter] pathForResource:@"MPHelperTool" ofType:nil] 
-		   withArgs:[NSArray arrayWithObjects:@"--sel-repair", @"no", @"--rec-count", 
-					 @"0", @"mportselfupdate", nil]];
+	//Here goes nothing
+	[interp evaluateStringWithMPHelperTool:@"mportsync"];
 }
 
 /*

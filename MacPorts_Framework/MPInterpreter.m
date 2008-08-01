@@ -34,6 +34,16 @@
  */
 
 #import "MPInterpreter.h"
+#include "BetterAuthorizationSampleLib.h"
+#include "MPHelperCommon.h"
+
+
+/////////////////////////////////////////////////////////////////
+#pragma mark ***** Globals
+
+static AuthorizationRef mpAuth;
+
+#pragma mark -
 
 @implementation MPInterpreter
 
@@ -138,7 +148,56 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 }
 
 #pragma mark -
+#pragma mark Authorization Code
+//Internal method for setting up Authorizatin Reference
+//Called during initialization of interpreter object
+//This is a bit weird: Since MPInterpreter is compiled twice First for the helper
+//tool and then for the Framework, we want to call this method only when it is
+//being compiled for the Framework ... hence we check that the main bundle name is
+//MacPorts.Framework before initializing authorization
+-(void) initializeAuthorization {
+	//I'll probably regret doing this later on
+	//but whatever .... 
+	char * username = "armahg";
+	char * password = "200485";
+	
+	OSStatus junk;
+	
+	//Create Environment specific to this machine for tesitng purposes
+	AuthorizationItem envItems[2];
+	envItems[0].name = kAuthorizationEnvironmentPassword;
+	envItems[0].value = password;
+	envItems[0].valueLength = strlen(password);
+	envItems[0].flags = 0;
+	
+	envItems[1].name = kAuthorizationEnvironmentUsername;
+	envItems[1].value = username;
+	envItems[1].valueLength = strlen(username);
+	envItems[1].flags = 0;
+	
+	AuthorizationItemSet env = { 2 , envItems };
+	
+	AuthorizationFlags envFlags;
+	envFlags = kAuthorizationFlagDefaults |
+				kAuthorizationFlagExtendRights |
+				kAuthorizationFlagPreAuthorize;
+	
+	
+	junk = AuthorizationCreate(NULL, &env, envFlags, &mpAuth);
+	assert(junk == noErr);
+	//assert (junk == noErr) == (mpAuth != NULL);
+	
+	NSString * bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+	
+	BASSetDefaultRules(mpAuth, 
+					   kMPHelperCommandSet, 
+					   (CFStringRef) bundleID, 
+					   NULL);
+	
+}
 
+
+#pragma mark -
 #pragma mark MPInterpreter Code
 
 - (id) init {
@@ -185,6 +244,12 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 			Tcl_DeleteInterp(_interpreter);
 		}
 		
+		//Initialize helperToolInterpCommand
+		helperToolInterpCommand = @"";
+		
+		//Initialize Authorization stuff should probably check for errors ....
+		[self initializeAuthorization];
+		
 	}
 	return self;
 }
@@ -192,6 +257,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 - (Tcl_Interp *) sharedTclInterpreter {
 	return _interpreter;
 }
+
 
 + (MPInterpreter*)sharedInterpreter {
 	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
@@ -351,5 +417,55 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	return [NSString stringWithUTF8String:Tcl_GetVar(_interpreter, [variable UTF8String], 0)];
 }
 
-
+- (NSString *) evaluateStringWithMPHelperTool:(NSString *) statement {
+	OSStatus        err;
+    BASFailCode     failCode;
+    NSString *      bundleID;
+    NSDictionary *  request;
+    CFDictionaryRef response;
+	
+	response = NULL;
+	
+	request = [NSDictionary dictionaryWithObjectsAndKeys:
+			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
+			   statement, @kTclStringToBeEvaluated, nil];
+	assert(request != NULL);
+	
+	bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+	NSLog(@" %@ ", bundleID);
+	assert(bundleID != NULL);
+	
+	
+	err = BASExecuteRequestInHelperTool(mpAuth, 
+										kMPHelperCommandSet, 
+										(CFStringRef) bundleID, 
+										(CFDictionaryRef) request, 
+										&response);
+	
+	//Try to recover
+	if ( (err != noErr) && (err != userCanceledErr) ) {
+		failCode = BASDiagnoseFailure(mpAuth, (CFStringRef) bundleID);
+		
+		err = BASFixFailure(mpAuth, 
+							(CFStringRef) bundleID, 
+							CFSTR("MPHelperInstallTool"), 
+							CFSTR("MPHelperTool"), 
+							failCode);
+		
+		if (err == noErr) {
+			err = BASExecuteRequestInHelperTool(mpAuth, 
+												kMPHelperCommandSet, 
+												(CFStringRef) bundleID, 
+												(CFDictionaryRef) request, 
+												&response);
+		}
+	}
+	else {
+		err = userCanceledErr;
+	}
+	
+	CFStringRef result = CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
+	
+	return (NSString *) result;
+}
 @end

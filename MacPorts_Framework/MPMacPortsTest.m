@@ -74,7 +74,7 @@
 	STAssertNotNil(searchResults, @"This dictionary should have at least %d key value pairs", [searchResults count]);
 }
 
-
+/*
 -(void) testSync {
 	NSError * syncError = nil;
 	[testPort sync:&syncError];
@@ -89,7 +89,7 @@
 	
 }
 
-/*
+
 -(void) testSelfupdate {
 	//The only way to test this that I know of is to listen for the posted notifications
 	//and take actions as appropriate
@@ -104,22 +104,6 @@
 }
 
 
--(void) testMPHelperTool {
-	NSLog(@"Testing MPHelperTool");
-	NSTask *task = [[NSTask alloc] init];
-	[task setLaunchPath:[[NSBundle bundleForClass:[MPMacPorts class]] 
-						 pathForResource:@"MPHelperTool" 
-						 ofType:nil]];
-	
-	NSArray * args = [NSArray arrayWithObjects:SELF_REPAIR, @"no",
-					  REC_COUNT, @"0", @"return [macports::version]", nil];
-	[task setArguments:args];
-	
-	[task launch];
-	
-	[task release];
-	
-}
 
 
 /*
