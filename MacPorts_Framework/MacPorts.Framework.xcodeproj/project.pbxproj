@@ -44,7 +44,10 @@
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
-		6EB6F7C40E432A840057962C /* MPHelperTool in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
+		6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
+		6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
+		6EB6FB270E448EE20057962C /* TestFile.test in Resources */ = {isa = PBXBuildFile; fileRef = 6EB6FB260E448EE20057962C /* TestFile.test */; };
+		6EB6FB630E44AF140057962C /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB6FB620E44AF140057962C /* MPHelperTool.m */; };
 		6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
 		6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */; };
 		6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
@@ -55,16 +58,9 @@
 		6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260960E4272D20013BC48 /* MPHelperCommon.c */; };
 		6EC2609B0E4273920013BC48 /* BetterAuthorizationSampleLibInstallTool.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */; };
 		6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */; };
-		6EC2614F0E42959B0013BC48 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA60E3E7E900026773D /* Cocoa.framework */; };
-		6ED12A4F0E3E55660026773D /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED12A4E0E3E55660026773D /* MPHelperTool.m */; };
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
-		6ED12AC90E3E94310026773D /* MPInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48906AFC0C4230B700A3ED8A /* MPInterpreter.m */; };
-		6ED12AD20E3E9AC30026773D /* MPInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 48906AFB0C4230B700A3ED8A /* MPInterpreter.h */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
-		6ED12AFB0E3E9F980026773D /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; };
-		6ED12AFC0E3E9FA60026773D /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
-		6ED12B060E3EA9E30026773D /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -92,19 +88,6 @@
 			remoteInfo = MPHelperTool;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6EB6F7B00E4326F40057962C /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-				6EB6F7C40E432A840057962C /* MPHelperTool in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -142,6 +125,8 @@
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
+		6EB6FB260E448EE20057962C /* TestFile.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestFile.test; sourceTree = "<group>"; };
+		6EB6FB620E44AF140057962C /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
 		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
 		6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
 		6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLibInstallTool.c; sourceTree = "<group>"; };
@@ -150,7 +135,7 @@
 		6EC260960E4272D20013BC48 /* MPHelperCommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MPHelperCommon.c; sourceTree = "<group>"; };
 		6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		6ED12A4E0E3E55660026773D /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
+		6ED12A4E0E3E55660026773D /* MPHelperTool.m.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPHelperTool.m.old; sourceTree = "<group>"; };
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -180,7 +165,6 @@
 				6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */,
 				6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */,
 				6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */,
-				6EC2614F0E42959B0013BC48 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +229,7 @@
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
 				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
+				6EB6FB260E448EE20057962C /* TestFile.test */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -333,9 +318,10 @@
 				6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */,
 				6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */,
 				6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */,
-				6ED12A4E0E3E55660026773D /* MPHelperTool.m */,
+				6ED12A4E0E3E55660026773D /* MPHelperTool.m.old */,
 				6EC260950E4272D20013BC48 /* MPHelperCommon.h */,
 				6EC260960E4272D20013BC48 /* MPHelperCommon.c */,
+				6EB6FB620E44AF140057962C /* MPHelperTool.m */,
 			);
 			name = MPHelperTool;
 			sourceTree = "<group>";
@@ -347,8 +333,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ED12AFB0E3E9F980026773D /* MPNotifications.h in Headers */,
-				6ED12AD20E3E9AC30026773D /* MPInterpreter.h in Headers */,
 				6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260970E4272D20013BC48 /* MPHelperCommon.h in Headers */,
 			);
@@ -437,7 +421,6 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				6E49F4F40E00DD520030C3AF /* ShellScript */,
-				6EB6F7B00E4326F40057962C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -488,7 +471,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ED12B060E3EA9E30026773D /* init.tcl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,9 +478,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */,
+				6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */,
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
+				6EB6FB270E448EE20057962C /* TestFile.test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,11 +553,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ED12AC90E3E94310026773D /* MPInterpreter.m in Sources */,
-				6ED12AFC0E3E9FA60026773D /* MPNotifications.m in Sources */,
-				6ED12A4F0E3E55660026773D /* MPHelperTool.m in Sources */,
 				6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
 				6EC260980E4272D20013BC48 /* MPHelperCommon.c in Sources */,
+				6EB6FB630E44AF140057962C /* MPHelperTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

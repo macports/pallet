@@ -1,10 +1,11 @@
-//
-//  MPHelperTool.m
-//  MacPorts.Framework
-//
-//  Created by George  Armah on 7/28/08.
-//  Copyright 2008 Lafayette College. All rights reserved.
-//
+/*
+ *  MPHelperTool.c
+ *  MacPorts.Framework
+ *
+ *  Created by George  Armah on 8/2/08.
+ *  Copyright 2008 Lafayette College. All rights reserved.
+ *
+ */
 
 //#include <netinet/in.h>
 #include <stdio.h>
@@ -12,25 +13,24 @@
 #include <unistd.h>
 
 #include <CoreServices/CoreServices.h>
+
 #include "BetterAuthorizationSampleLib.h"
+
 #include "MPHelperCommon.h"
 
-#import <Cocoa/Cocoa.h>
-#import <Security/Security.h>
-#import "MPInterpreter.h"
-
-
 static OSStatus DoEvaluateTclString (
-	AuthorizationRef			auth,
-	const void *				userData,
-	CFDictionaryRef				request,
-	CFMutableDictionaryRef		response,
-	aslclient					asl,
-	aslmsg						aslMsg
+		AuthorizationRef			auth,
+		const void *				userData,
+		CFDictionaryRef				request,
+		CFMutableDictionaryRef		response,
+		aslclient					asl,
+		aslmsg						aslMsg
 )
-
 {
+	
 	OSStatus		retval = noErr;
+	//CFStringRef result;
+	//CFAllocatorRef alloc_default = kCFAllocatorDefault; 
 	
 	//Pre conditions
 	assert(auth != NULL);
@@ -40,35 +40,40 @@ static OSStatus DoEvaluateTclString (
 	//asl may be null
 	//aslMsg may be null
 	
-	//Get the NSString that was passed in the request dictionary
-	NSString * tclCmd;
+	//Get the string that was passed in the request dictionary
 	CFStringRef  cTclCmd = (CFStringRef)CFDictionaryGetValue(request, CFSTR(kTclStringToBeEvaluated));
-	
-	if (cTclCmd != NULL) {
-		tclCmd = (NSString *) cTclCmd;
-	}
-	else {
-		//something went wrong ... do some error handling
+	//cTclCmd = CFRetain(cTclCmd);
+	if (cTclCmd == NULL) {
 		retval = coreFoundationUnknownErr;
 	}
 	
-	MPInterpreter * interp = [MPInterpreter sharedInterpreter];
-	NSError * evalError;
-	NSString * result = [interp evaluateStringAsString:tclCmd 
-												 error:&evalError];
-	CFStringRef cResult = (CFStringRef) result;
+	/*
+	//Now retrieve the pointer to the Tcl_Interp that was passed to us
+	Tcl_Interp * _userDataInterp = (Tcl_Interp *) userData;
+	if(Tcl_Eval(_userDataInterp, CFStringGetCStringPtr(cTclCmd, kCFStringEncodingUTF8)) == TCL_ERROR) {
+		//Should do some kind of error handling here
+		retval = coreFoundationUnknownErr;
+	}
+	else {
+		result = CFStringCreateWithCString(alloc_default, Tcl_GetStringResult(_userDataInterp), kCFStringEncodingUTF8);
+	}
+	*/
+
 	
-	if( result != nil && evalError != nil) {
-		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), cResult); 
+	if( retval == noErr) {
+		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), cTclCmd); 
 	}
 	else{
 		//Try setting the user data pointer to the error
-		retval = coreFoundationUnknownErr;
+		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("BAAD")); 
 	}
+	
+	assert(response != NULL);
+	//I think I should release cTclCmd
+	//CFRelease(cTclCmd);
 	
 	return retval;
 }
-
 
 /////////////////////////////////////////////////////////////////
 #pragma mark ***** Tool Infrastructure
@@ -81,30 +86,21 @@ static OSStatus DoEvaluateTclString (
  */
 
 static const BASCommandProc kMPHelperCommandProcs[] = {
-	DoEvaluateTclString,
+	DoEvaluateTclString,	
 	NULL
 };
-
-
 
 
 //Should I just do stuff in main and use the above method to 
 //just retrieve the string to be evaluated as a tcl command?
 
 int main(int argc, char const * argv[]) {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	
 	// Go directly into BetterAuthorizationSampleLib code.
 	
     // IMPORTANT
     // BASHelperToolMain doesn't clean up after itself, so once it returns 
     // we must quit.
-    BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
-	
-	
-	[pool release];
-	
-    return 0;
-}
+    return BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 
+}
 

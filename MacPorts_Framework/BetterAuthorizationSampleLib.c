@@ -243,7 +243,7 @@ static int BASRead(int fd, void *buf, size_t bufSize, size_t *bytesRead)
 	if (bytesRead != NULL) {
 		*bytesRead = bufSize - bytesLeft;
 	}
-	
+	 
 	return err;
 }
 
@@ -1404,6 +1404,7 @@ extern int BASHelperToolMain(
 	int							kq;
 	struct kevent				initEvent;
 	
+	
 	// Pre-conditions
 	
 	assert(commands != NULL);
@@ -1690,6 +1691,7 @@ extern OSStatus BASExecuteRequestInHelperTool(
 )
     // See comment in header.
 {	
+	
 	OSStatus					retval = noErr;
     int                         junk;
     size_t                      commandIndex;
@@ -2335,22 +2337,42 @@ static OSStatus GetToolPath(CFStringRef bundleID, CFStringRef toolName, char *to
     CFBundleRef bundle;
     Boolean     success;
     CFURLRef    toolURL;
-    
-    assert(bundleID != NULL);
+	
+	assert(bundleID != NULL);
     assert(toolName != NULL);
     assert(toolPath != NULL);
     assert(toolPathSize > 0);
     
     toolURL = NULL;
-    
+
+	
     err = noErr;
     bundle = CFBundleGetBundleWithIdentifier(bundleID);
     if (bundle == NULL) {
         err = coreFoundationUnknownErr;
     }
+	
     if (err == noErr) {
-        toolURL = CFBundleCopyAuxiliaryExecutableURL(bundle, toolName);
-        if (toolURL == NULL) {
+		//Modify this code to load the bundle if its not already loaded
+		
+		if (CFBundleIsExecutableLoaded(bundle)) {
+			toolURL = CFBundleCopyResourceURL(bundle, toolName, NULL, NULL);  
+		}
+		else{ //We need to load the bundle first
+			Boolean loaded = CFBundleLoadExecutable(bundle);
+			
+			if (loaded && bundle != NULL) {
+				toolURL = CFBundleCopyResourceURL(bundle, toolName, NULL, NULL); 
+			}
+			else { // we couldn't load the bundle .. this IS bad
+				err = coreFoundationUnknownErr;
+			}
+		}
+		
+
+	 assert(toolURL != NULL);
+        
+		if (toolURL == NULL) {
             err = coreFoundationUnknownErr;
         }
     }

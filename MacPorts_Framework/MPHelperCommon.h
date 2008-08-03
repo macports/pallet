@@ -11,6 +11,9 @@
 #define _MPHELPERCOMMON_H
 
 #include "BetterAuthorizationSampleLib.h"
+#include <tcl.h>
+
+#define asl_NSLog(client, msg, level, format, ...) asl_log(client, msg, level, "%s", [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
 
 //We need only one command for this Tool
 
@@ -36,6 +39,9 @@
 	#define kNSErrorString				"NSErrorString"				//Am I allowed to pass in an NSError object?
 																	//Lets make it a string for now
 
+	//user Data will be a pointer  to a Tcl interpreter
+	//do I have to do some casting ? we'll see
+	//const void * _userDataInterp = NULL;
 
 extern const BASCommandSpec kMPHelperCommandSet[];
 

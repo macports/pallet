@@ -189,6 +189,9 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	NSString * bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
 	
+	//Set _userDataInterp over here
+	//kMPHelperCommandSet[0].userData =  _interpreter;
+	
 	BASSetDefaultRules(mpAuth, 
 					   kMPHelperCommandSet, 
 					   (CFStringRef) bundleID, 
@@ -248,7 +251,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		helperToolInterpCommand = @"";
 		
 		//Initialize Authorization stuff should probably check for errors ....
-		[self initializeAuthorization];
+		//[self initializeAuthorization];
 		
 	}
 	return self;
@@ -432,9 +435,13 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	assert(request != NULL);
 	
 	bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-	NSLog(@" %@ ", bundleID);
+	//NSLog(@" %@ , %@", bundleID, request);
 	assert(bundleID != NULL);
 	
+	
+	//_userDataInterp points to _interpreter after the
+	//method below
+	[self initializeAuthorization];
 	
 	err = BASExecuteRequestInHelperTool(mpAuth, 
 										kMPHelperCommandSet, 
@@ -464,8 +471,32 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		err = userCanceledErr;
 	}
 	
+	assert(response != NULL);
 	CFStringRef result = CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
-	
 	return (NSString *) result;
+	
+	
+	/*//Read from file and see if it was written to
+	NSString * testFilePath = [[NSBundle bundleForClass:[self class]]
+							   pathForResource:@"TestFile" ofType:@"test"];
+	NSError * readError = nil;
+	NSString * result = [NSString stringWithContentsOfFile:testFilePath 
+												  encoding:NSUTF8StringEncoding
+													 error:&readError];
+	if (readError) {
+		NSLog(@"Error is %@", [readError description]);
+		return @"There was an error Reading";
+	}
+	else if ([result isEqualToString:@""]) {
+		return @"An empty string was read";
+	}
+	else if (result == nil) {
+		return @"Resulting String is NIL";
+	}
+	else
+		return result;
+	
+	return @"This shouldn't happen";
+	*/
 }
 @end

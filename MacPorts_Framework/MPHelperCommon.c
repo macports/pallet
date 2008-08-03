@@ -23,7 +23,7 @@ const BASCommandSpec kMPHelperCommandSet[] = {
 		kMPHelperEvaluateTclRightsName,		//rightName
 		"default",							//rightDefaultRule	-- by default, you have to have admin credentials
 		NULL,								//rightDescriptionKey 
-		NULL								// userData ... I might use this to pass the NSError object later on
+		NULL		// userData ... I might use this to pass the NSError object later on
 	},
 
 	{	NULL,								//the array is null terminated

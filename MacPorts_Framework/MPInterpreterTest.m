@@ -62,7 +62,8 @@
 - (void)testMPHelperTool {
 	
 	//Here goes nothing
-	[interp evaluateStringWithMPHelperTool:@"mportsync"];
+	NSString * result = [interp evaluateStringWithMPHelperTool:@"mportsync"];
+	NSLog(@"Result of MPHelperTool Execution is %@", result);
 }
 
 /*
