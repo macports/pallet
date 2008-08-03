@@ -201,6 +201,36 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 
 #pragma mark -
+
+#pragma mark MPInterpreterProtocol
+
+- (BOOL) vendSelfForServer {
+	NSConnection * defaultConn;
+	defaultConn = [NSConnection defaultConnection];
+	NSLog(@"Creating connection ...");
+	
+	[defaultConn setRootObject:self];
+	
+	NSLog(@"Connection Created ... %@, %@", defaultConn, [defaultConn statistics]);
+	return [defaultConn registerName:MP_DOSERVER];
+	
+}
+
+- (bycopy NSString *) evaluateStringFromMPHelperTool:(in bycopy NSString *)statement {
+//- (NSString *) evaluateStringFromMPHelperTool:(NSString *)statement {	
+											//TO DO ->  error:(inout NSError **)evalError {
+	//NSError * evalError;
+	NSString * result = [self evaluateStringAsString:statement error:nil];
+	
+	//TO DO : WORK ON ERROR STUFF AFTER GETTING BASIC FUNCTIONALITY WORKING
+	//For now ... Perhaps I might now have to take jberry's advice on ... Oh wait
+	//I should be able to pass by reference duh!
+	//return @"returning from evaluateStringFromMPHelperTool";
+	return result;
+}
+
+#pragma mark -
+
 #pragma mark MPInterpreter Code
 
 - (id) init {
@@ -229,7 +259,6 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		
 		
 		Tcl_CreateObjCommand(_interpreter, "notifications", Notifications_Command, NULL, NULL);
-		
 		if (Tcl_PkgProvide(_interpreter, "notifications", "1.0") != TCL_OK) {
 			NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(_interpreter));
 			Tcl_DeleteInterp(_interpreter);
@@ -240,7 +269,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 			Tcl_DeleteInterp(_interpreter);
 		}*/
 		
-		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleForClass:[self class]] 
+		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
 										 pathForResource:@"init" 
 										 ofType:@"tcl"] UTF8String]) != TCL_OK) {
 			NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
@@ -250,8 +279,21 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		//Initialize helperToolInterpCommand
 		helperToolInterpCommand = @"";
 		
-		//Initialize Authorization stuff should probably check for errors ....
-		//[self initializeAuthorization];
+		//Initialize the Run Loop because we don't know if framework will be
+		//run in a Foundation Kit or App Kit. Hopefully this won't hurt if the
+		//run loop is already running. We are doing this so that our NSConnection
+		//object is able to handle Distributed Object messages
+		//NOTE: Since MPinterpreter instances are created per thread, we don't have to
+		//worry (I hope) about running loops for different threads
+		//[[NSRunLoop currentRunLoop] run];
+		
+		if (![self vendSelfForServer]) {
+			NSLog(@"Failed To initialize NSConnection server ");
+			//Should probably do some more error handling over here
+		}
+		else
+			NSLog(@"MPInterpreter Initialized ...");
+			
 		
 	}
 	return self;
@@ -329,6 +371,8 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 */
 - (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError**)mportError{
+	NSLog(@"Calling evaluateStringAsString with argument %@", statement);
+	
 	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
 	
 	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
@@ -435,7 +479,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	assert(request != NULL);
 	
 	bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-	//NSLog(@" %@ , %@", bundleID, request);
+
 	assert(bundleID != NULL);
 	
 	
@@ -443,11 +487,13 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	//method below
 	[self initializeAuthorization];
 	
+	NSLog(@"BEFORE Tool Execution request is %@ , resonse is %@ \n\n", request, response);
 	err = BASExecuteRequestInHelperTool(mpAuth, 
 										kMPHelperCommandSet, 
 										(CFStringRef) bundleID, 
 										(CFDictionaryRef) request, 
 										&response);
+	
 	
 	//Try to recover
 	if ( (err != noErr) && (err != userCanceledErr) ) {
@@ -472,11 +518,18 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	}
 	
 	assert(response != NULL);
-	CFStringRef result = CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
-	return (NSString *) result;
+	CFStringRef newresult = CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
+	
+	NSLog(@"AFTER Tool Execution request is %@ , resonse is %@ \n\n", request, response);
+	//NSLog(@"response dictionary is %@", response);
+	return (NSString *) newresult;
 	
 	
-	/*//Read from file and see if it was written to
+	/*
+	NSString * fakeResult = @"Frustrated";
+	return fakeResult;
+
+	//Read from file and see if it was written to
 	NSString * testFilePath = [[NSBundle bundleForClass:[self class]]
 							   pathForResource:@"TestFile" ofType:@"test"];
 	NSError * readError = nil;

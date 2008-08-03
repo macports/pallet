@@ -48,6 +48,9 @@
 		6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
 		6EB6FB270E448EE20057962C /* TestFile.test in Resources */ = {isa = PBXBuildFile; fileRef = 6EB6FB260E448EE20057962C /* TestFile.test */; };
 		6EB6FB630E44AF140057962C /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB6FB620E44AF140057962C /* MPHelperTool.m */; };
+		6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; };
+		6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
 		6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
 		6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */; };
 		6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
@@ -127,6 +130,8 @@
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
 		6EB6FB260E448EE20057962C /* TestFile.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestFile.test; sourceTree = "<group>"; };
 		6EB6FB620E44AF140057962C /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
+		6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterProtocol.h; sourceTree = "<group>"; };
+		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
 		6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
 		6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLibInstallTool.c; sourceTree = "<group>"; };
@@ -135,7 +140,6 @@
 		6EC260960E4272D20013BC48 /* MPHelperCommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MPHelperCommon.c; sourceTree = "<group>"; };
 		6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		6ED12A4E0E3E55660026773D /* MPHelperTool.m.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPHelperTool.m.old; sourceTree = "<group>"; };
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */,
 				6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */,
 				6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */,
+				6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +212,7 @@
 				6EA0F56E0DFEB55E00C15082 /* Tcl.framework */,
 				6ED12AA60E3E7E900026773D /* Cocoa.framework */,
 				6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */,
+				6EB6FC900E45DEA80057962C /* Foundation.framework */,
 			);
 			name = "MacPorts Foundation";
 			sourceTree = "<group>";
@@ -251,6 +257,7 @@
 				487679680C98C55E00577C59 /* MPPort.m */,
 				48F811BE0CE4636A009630DE /* MPRegistry.h */,
 				48F811BF0CE4638C009630DE /* MPRegistry.m */,
+				6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -318,7 +325,6 @@
 				6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */,
 				6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */,
 				6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */,
-				6ED12A4E0E3E55660026773D /* MPHelperTool.m.old */,
 				6EC260950E4272D20013BC48 /* MPHelperCommon.h */,
 				6EC260960E4272D20013BC48 /* MPHelperCommon.c */,
 				6EB6FB620E44AF140057962C /* MPHelperTool.m */,
@@ -335,6 +341,7 @@
 			files = (
 				6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260970E4272D20013BC48 /* MPHelperCommon.h in Headers */,
+				6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +360,7 @@
 				6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */,
 				6EC260770E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260990E4272D20013BC48 /* MPHelperCommon.h in Headers */,
+				6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib";
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\necho removing BAStuff\n\ncd ~\nsh mptooluninstall.sh\n\necho done removing BAStuff";
 		};
 		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -514,7 +522,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#This script is to copy the build product to a subfolder \"build\"\n#of the project directory so that whoever checks out this plugin will have\n#access to the built MacPorts.framework\n#Do I really need it since build products go to your default / project / target\n#specific Build Products path?\n\nditto $CONFIGURATION_BUILD_DIR/MacPorts.framework build/MacPorts.framework\n";
+			shellScript = "#This script is to copy the build product to a subfolder \"build\"\n#of the project directory so that whoever checks out this plugin will have\n#access to the built MacPorts.framework\n#Do I really need it since build products go to your default / project / target\n#specific Build Products path?\n\nditto $CONFIGURATION_BUILD_DIR/MacPorts.framework build/MacPorts.framework\n\n";
 		};
 		DFE353640CFB8F0C003BACFC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

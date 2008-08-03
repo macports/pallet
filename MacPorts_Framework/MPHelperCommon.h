@@ -36,12 +36,11 @@
 
 	//Actually hold off doing errors for now
 	//NSError object we are passing
-	#define kNSErrorString				"NSErrorString"				//Am I allowed to pass in an NSError object?
+	#define kNSError				"NSError"				//Am I allowed to pass in an NSError object?
 																	//Lets make it a string for now
 
-	//user Data will be a pointer  to a Tcl interpreter
-	//do I have to do some casting ? we'll see
-	//const void * _userDataInterp = NULL;
+	//Key for Testing Distributed Object implementation
+	#define kMPInterpreterDistObj		"MPInterpreterDistObj"
 
 extern const BASCommandSpec kMPHelperCommandSet[];
 

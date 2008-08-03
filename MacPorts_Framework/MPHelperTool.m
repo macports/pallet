@@ -12,11 +12,11 @@
 //#include <sys/socket.h>
 #include <unistd.h>
 
+#import	<Foundation/Foundation.h>
 #include <CoreServices/CoreServices.h>
-
 #include "BetterAuthorizationSampleLib.h"
-
 #include "MPHelperCommon.h"
+#import "MPInterpreterProtocol.h"
 
 static OSStatus DoEvaluateTclString (
 		AuthorizationRef			auth,
@@ -29,8 +29,7 @@ static OSStatus DoEvaluateTclString (
 {
 	
 	OSStatus		retval = noErr;
-	//CFStringRef result;
-	//CFAllocatorRef alloc_default = kCFAllocatorDefault; 
+	 
 	
 	//Pre conditions
 	assert(auth != NULL);
@@ -47,30 +46,54 @@ static OSStatus DoEvaluateTclString (
 		retval = coreFoundationUnknownErr;
 	}
 	
-	/*
-	//Now retrieve the pointer to the Tcl_Interp that was passed to us
-	Tcl_Interp * _userDataInterp = (Tcl_Interp *) userData;
-	if(Tcl_Eval(_userDataInterp, CFStringGetCStringPtr(cTclCmd, kCFStringEncodingUTF8)) == TCL_ERROR) {
-		//Should do some kind of error handling here
+	//Testing Distributed Objects Implementation
+	NSString * tclCmd = (NSString *) cTclCmd;
+	id distributedMPInterpreterObject = nil;
+	NSConnection * mpConn = [NSConnection connectionWithRegisteredName:MP_DOSERVER 
+																  host:nil];
+	distributedMPInterpreterObject = [mpConn rootProxy];
+	
+	
+	//CFDictionaryAddValue(response, CFSTR("NSConnection stats"), [[NSConnection defaultConnection] statistics]);
+	if ( distributedMPInterpreterObject == nil ) {
+		CFDictionaryAddValue(response, CFSTR(kMPInterpreterDistObj), CFSTR("NO"));
 		retval = coreFoundationUnknownErr;
 	}
-	else {
-		result = CFStringCreateWithCString(alloc_default, Tcl_GetStringResult(_userDataInterp), kCFStringEncodingUTF8);
+	else { //We successfully obtained the distObj
+		NSLog(@"IN HERE");
+		CFDictionaryAddValue(response, CFSTR(kMPInterpreterDistObj), CFSTR("YES"));
+		[distributedMPInterpreterObject setProtocolForProxy:@protocol(MPInterpreterProtocol)];
+		NSString * result = [distributedMPInterpreterObject
+							 evaluateStringFromMPHelperTool:tclCmd];
+		
+		if (result != nil) { //successful execution
+			CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("Port operation Failed not"));
+			retval = noErr;
+		}
+		else {
+			CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("Port operation Failed"));
+			retval = coreFoundationUnknownErr;
+		}
 	}
-	*/
-
 	
+	unsigned int numcon = [[NSConnection allConnections] count];
+	CFDictionaryAddValue(response, CFSTR("NSConnections"), CFStringCreateWithFormat(kCFAllocatorDefault , NULL, CFSTR("%u"),numcon) );
+	
+	CFDictionaryAddValue(response, CFSTR("NSConnection Stats"), [[NSConnection defaultConnection] statistics]);
+	/*
 	if( retval == noErr) {
+		
 		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), cTclCmd); 
 	}
 	else{
 		//Try setting the user data pointer to the error
 		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("BAAD")); 
-	}
+	}*/
 	
 	assert(response != NULL);
 	//I think I should release cTclCmd
 	//CFRelease(cTclCmd);
+	//CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("Port operation Failed not"));
 	
 	return retval;
 }
@@ -95,12 +118,17 @@ static const BASCommandProc kMPHelperCommandProcs[] = {
 //just retrieve the string to be evaluated as a tcl command?
 
 int main(int argc, char const * argv[]) {
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	[[NSRunLoop currentRunLoop] run];
 	// Go directly into BetterAuthorizationSampleLib code.
 	
     // IMPORTANT
     // BASHelperToolMain doesn't clean up after itself, so once it returns 
     // we must quit.
-    return BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
+    int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 
+	[pool release];
+	
+	return result;
 }
 

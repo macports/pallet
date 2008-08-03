@@ -40,6 +40,7 @@
 
 - (void)setUp {
 	interp = [MPInterpreter sharedInterpreter];
+	//[[NSRunLoop currentRunLoop] run];
 }
 
 - (void)tearDown {

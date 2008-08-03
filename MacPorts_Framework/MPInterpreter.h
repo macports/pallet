@@ -42,6 +42,7 @@
 #import <Cocoa/Cocoa.h>
 #include <tcl.h>  
 #import "MPNotifications.h"
+#import "MPInterpreterProtocol.h"
 
 
 //Defining some flags for MPHelperTool
@@ -56,6 +57,8 @@
 #define TCL_RETURN_STRING		@"return string"
 #define MPFrameworkErrorDomain	@"MacPortsFrameworkErrorDomain"
 
+
+
 /*!
  @class MPInterpreter
  @abstract Tcl interpreter object
@@ -63,7 +66,7 @@
  is where the Objective-C API meets the Tcl command line. It is a per-thread interpreter to allow
  users of the API to multi-thread their programs with relative ease.
  */
-@interface MPInterpreter : NSObject {
+@interface MPInterpreter : NSObject <MPInterpreterProtocol> {
 
 	Tcl_Interp* _interpreter;
 	NSString * helperToolInterpCommand;
