@@ -59,7 +59,7 @@
 }
  
 
-
+/*
 - (void)testMPHelperTool {
 	
 	//Here goes nothing

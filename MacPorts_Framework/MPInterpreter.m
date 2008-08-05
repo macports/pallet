@@ -49,18 +49,23 @@ static AuthorizationRef mpAuth;
 
 #pragma mark Notifications Code 
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
-
 	NSString *name;
 	NSMutableString *msg;
-	NSMutableDictionary *info = nil;
+	
+	//Our info dictionary is of size 4 and contains the following keys
+	//Channel - eg. stdout, stderr
+	//Prefix - prefix string for this message e.g. DEBUG:
+	//Function - the function whose operation led to this notification eg. sync, selfupdate
+	//Message - the message logged to channel
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:4];
 	MPNotifications *mln = [MPNotifications sharedListener];
 	
 	int tclCount;
 	int tclResult;
-	int i;
 	const char **tclElements;
 	
 	name = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+	NSLog(@"name is %@", name);
 	
 	//Name and Notification constants should match. Convention
 	//used is MPPriorityNotification. Is it ok to just return TCL_OK ?
@@ -68,20 +73,32 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		return TCL_OK;
 	}
 	
-	
 	++objv; --objc;
-	
 	tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
+	//NSLog(@"tclElements is %S and tclCount is %i", &tclElements, tclCount);
+	
 	if (tclResult == TCL_OK) {
-		info = [NSMutableDictionary dictionaryWithCapacity:(tclCount / 2)];
-		for (i = 0; i < tclCount; i +=2) {
-			[info setObject:[NSString stringWithUTF8String:tclElements[i + 1]] forKey:[NSString stringWithUTF8String:tclElements[i]]];
+		
+	//I have sacrificed generality for simplicity in the code below
+		if (tclElements > 0) { 
+			[info setObject:[NSString stringWithUTF8String:tclElements[0]] forKey:@"Channel"];
+			
+			if(tclElements[1])
+				[info setObject:[NSString stringWithUTF8String:tclElements[1]] forKey:@"Prefix"];
+			else
+				[info setObject:@"None" forKey:@"Prefix"];
+		}
+		else {
+			[info setObject:@"None" forKey:@"Channel"];
+			[info setObject:@"None" forKey:@"Prefix"];
 		}
 		
-		//Get ui_* message separately 
+		
+		//Get ui_* message separately Hopefully this should never be null 
 		++objv; --objc;
 		if(objv != NULL) {
 			msg = [NSMutableString stringWithUTF8String:Tcl_GetString(*objv)];
+			//NSLog(@"Message is %@", msg);
 			
 			//strip off "--->" over here
 			NSArray * temp = [msg componentsSeparatedByString:@"--->"];
@@ -96,7 +113,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 			//if code is working right, this value should always be YES
 			//when we are in this part of the code
 			if([cmd count] > 0) {
-				NSLog(@"Class type is %@", NSStringFromClass([[cmd objectAtIndex:0] class]));
+				//NSLog(@"Class type is %@", NSStringFromClass([[cmd objectAtIndex:0] class]));
 				
 				if( [[cmd objectAtIndex:0] isEqualToString:@"YES"]) {
 					[info setObject:[cmd objectAtIndex:1] forKey:@"Function"];
@@ -179,8 +196,8 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	AuthorizationFlags envFlags;
 	envFlags = kAuthorizationFlagDefaults |
-				kAuthorizationFlagExtendRights |
-				kAuthorizationFlagPreAuthorize;
+	kAuthorizationFlagExtendRights |
+	kAuthorizationFlagPreAuthorize;
 	
 	
 	junk = AuthorizationCreate(NULL, &env, envFlags, &mpAuth);
@@ -211,14 +228,14 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	[defaultConn setRootObject:self];
 	
-	NSLog(@"Connection Created ... %@, %@", defaultConn, [defaultConn statistics]);
+	NSLog(@"Connection Created ... "); //%@, %@", defaultConn, [defaultConn statistics]);
 	return [defaultConn registerName:MP_DOSERVER];
 	
 }
 
 - (bycopy NSString *) evaluateStringFromMPHelperTool:(in bycopy NSString *)statement {
-//- (NSString *) evaluateStringFromMPHelperTool:(NSString *)statement {	
-											//TO DO ->  error:(inout NSError **)evalError {
+	//- (NSString *) evaluateStringFromMPHelperTool:(NSString *)statement {	
+	//TO DO ->  error:(inout NSError **)evalError {
 	//NSError * evalError;
 	NSString * result = [self evaluateStringAsString:statement error:nil];
 	
@@ -229,6 +246,32 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	return result;
 }
 
+
+- (void) setTclCommand:(in bycopy NSString *)tclCmd {
+	if (![helperToolInterpCommand isEqualToString:tclCmd]) {
+		
+		[helperToolInterpCommand release];
+		helperToolInterpCommand = [tclCmd copy];
+	}
+	
+}
+- (bycopy NSString *)getTclCommand {
+	return helperToolInterpCommand;
+}
+
+- (void) setTclCommandResult:(in bycopy NSString *)tclCmdResult {
+	if (![helperToolCommandResult isEqualToString:tclCmdResult]) {
+		[helperToolCommandResult release];
+		helperToolCommandResult = [tclCmdResult copy];
+	}
+}
+- (bycopy NSString *) getTclCommandResult {
+	return helperToolCommandResult;
+}
+
+- (void) log :(in bycopy id) logOutput {
+	NSLog(@"MPInterpreterProtocol Logging : %@", logOutput);
+}
 #pragma mark -
 
 #pragma mark MPInterpreter Code
@@ -265,9 +308,9 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		}
 		
 		/*if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
-			NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
-			Tcl_DeleteInterp(_interpreter);
-		}*/
+		 NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
+		 Tcl_DeleteInterp(_interpreter);
+		 }*/
 		
 		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
 										 pathForResource:@"init" 
@@ -278,6 +321,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		
 		//Initialize helperToolInterpCommand
 		helperToolInterpCommand = @"";
+		helperToolCommandResult = @"";
 		
 		//Initialize the Run Loop because we don't know if framework will be
 		//run in a Foundation Kit or App Kit. Hopefully this won't hurt if the
@@ -293,7 +337,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		}
 		else
 			NSLog(@"MPInterpreter Initialized ...");
-			
+		
 		
 	}
 	return self;
@@ -366,17 +410,17 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 }
 
 /*- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement {
-	return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
-}
-
-*/
+ return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
+ }
+ 
+ */
 - (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError**)mportError{
-	NSLog(@"Calling evaluateStringAsString with argument %@", statement);
+	//NSLog(@"Calling evaluateStringAsString with argument %@", statement);
 	
 	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
 	
 	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
-	if (return_code == TCL_ERROR) {
+	if (return_code != TCL_OK) {
 		
 		Tcl_Obj * interpObj = Tcl_GetObjResult(_interpreter);
 		int length, errCode;
@@ -413,13 +457,13 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 
 /*
-- (NSDictionary *)evaluateStringAsString:(NSString *)statement {
-	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInt:return_code], TCL_RETURN_CODE, 
-			[NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)], TCL_RETURN_STRING, nil];
-}
-*/
+ - (NSDictionary *)evaluateStringAsString:(NSString *)statement {
+ int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
+ return [NSDictionary dictionaryWithObjectsAndKeys:
+ [NSNumber numberWithInt:return_code], TCL_RETURN_CODE, 
+ [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)], TCL_RETURN_STRING, nil];
+ }
+ */
 
 - (NSArray *)arrayFromTclListAsString:(NSString *)list {
 	NSMutableArray *array;
@@ -464,6 +508,8 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	return [NSString stringWithUTF8String:Tcl_GetVar(_interpreter, [variable UTF8String], 0)];
 }
 
+#pragma mark -
+#pragma mark Helper Tool(s) Code
 - (NSString *) evaluateStringWithMPHelperTool:(NSString *) statement {
 	OSStatus        err;
     BASFailCode     failCode;
@@ -479,7 +525,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	assert(request != NULL);
 	
 	bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-
+	
 	assert(bundleID != NULL);
 	
 	
@@ -526,30 +572,48 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	
 	/*
-	NSString * fakeResult = @"Frustrated";
-	return fakeResult;
-
-	//Read from file and see if it was written to
-	NSString * testFilePath = [[NSBundle bundleForClass:[self class]]
-							   pathForResource:@"TestFile" ofType:@"test"];
-	NSError * readError = nil;
-	NSString * result = [NSString stringWithContentsOfFile:testFilePath 
-												  encoding:NSUTF8StringEncoding
-													 error:&readError];
-	if (readError) {
-		NSLog(@"Error is %@", [readError description]);
-		return @"There was an error Reading";
-	}
-	else if ([result isEqualToString:@""]) {
-		return @"An empty string was read";
-	}
-	else if (result == nil) {
-		return @"Resulting String is NIL";
-	}
-	else
-		return result;
-	
-	return @"This shouldn't happen";
-	*/
+	 NSString * fakeResult = @"Frustrated";
+	 return fakeResult;
+	 
+	 //Read from file and see if it was written to
+	 NSString * testFilePath = [[NSBundle bundleForClass:[self class]]
+	 pathForResource:@"TestFile" ofType:@"test"];
+	 NSError * readError = nil;
+	 NSString * result = [NSString stringWithContentsOfFile:testFilePath 
+	 encoding:NSUTF8StringEncoding
+	 error:&readError];
+	 if (readError) {
+	 NSLog(@"Error is %@", [readError description]);
+	 return @"There was an error Reading";
+	 }
+	 else if ([result isEqualToString:@""]) {
+	 return @"An empty string was read";
+	 }
+	 else if (result == nil) {
+	 return @"Resulting String is NIL";
+	 }
+	 else
+	 return result;
+	 
+	 return @"This shouldn't happen";
+	 */
 }
+
+
+-(NSString *) evaluateStringWithSimpleMPDOPHelperTool:(NSString *)statement  {
+	NSTask * task = [[NSTask alloc] init];
+	[task setLaunchPath:[[NSBundle bundleForClass:[MPInterpreter class]] 
+						 pathForResource:@"SimpleDOMPHelperTool" 
+						 ofType:nil]];
+	[task setArguments:[NSArray arrayWithObjects:statement, nil]];
+	[task launch];
+	
+	[task waitUntilExit];
+	
+	[task terminationStatus];
+	
+	return [self getTclCommandResult];
+}
+
+
 @end

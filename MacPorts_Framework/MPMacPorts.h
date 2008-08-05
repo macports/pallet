@@ -173,7 +173,7 @@
 - (NSString *)version;
 
 
-//Notifications stuff
+//Notifications stuff for private use and testing purposes
 -(void)registerForLocalNotifications;
 -(void)respondToLocalNotification:(NSNotification *) notification;
 

@@ -1,134 +1,47 @@
 /*
- *  MPHelperTool.c
- *  MacPorts.Framework
+ *	$Id$
+ *	MacPorts.Framework
  *
- *  Created by George  Armah on 8/2/08.
- *  Copyright 2008 Lafayette College. All rights reserved.
+ *	Authors:
+ *	George Armah <armahg@macports.org>
  *
+ *	Copyright (c) 2008 George Armah <armahg@macports.org>
+ *	All rights reserved.
+ *
+ *	Redistribution and use in source and binary forms, with or without
+ *	modification, are permitted provided that the following conditions
+ *	are met:
+ *	1.	Redistributions of source code must retain the above copyright
+ *		notice, this list of conditions and the following disclaimer.
+ *	2.	Redistributions in binary form must reproduce the above copyright
+ *		notice, this list of conditions and the following disclaimer in the
+ *		documentation and/or other materials provided with the distribution.
+ *	3.	Neither the name of the copyright owner nor the names of contributors
+ *		may be used to endorse or promote products derived from this software
+ *		without specific prior written permission.
+ * 
+ *	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-//#include <netinet/in.h>
-#include <stdio.h>
-//#include <sys/socket.h>
-#include <unistd.h>
-
-#import	<Foundation/Foundation.h>
-#include <CoreServices/CoreServices.h>
-#include "BetterAuthorizationSampleLib.h"
-#include "MPHelperCommon.h"
-#import "MPInterpreterProtocol.h"
-
-static OSStatus DoEvaluateTclString (
-		AuthorizationRef			auth,
-		const void *				userData,
-		CFDictionaryRef				request,
-		CFMutableDictionaryRef		response,
-		aslclient					asl,
-		aslmsg						aslMsg
-)
-{
-	
-	OSStatus		retval = noErr;
-	 
-	
-	//Pre conditions
-	assert(auth != NULL);
-	//userData may be NULL
-	assert(request != NULL);
-	assert(response != NULL);
-	//asl may be null
-	//aslMsg may be null
-	
-	//Get the string that was passed in the request dictionary
-	CFStringRef  cTclCmd = (CFStringRef)CFDictionaryGetValue(request, CFSTR(kTclStringToBeEvaluated));
-	//cTclCmd = CFRetain(cTclCmd);
-	if (cTclCmd == NULL) {
-		retval = coreFoundationUnknownErr;
-	}
-	
-	//Testing Distributed Objects Implementation
-	NSString * tclCmd = (NSString *) cTclCmd;
-	id distributedMPInterpreterObject = nil;
-	NSConnection * mpConn = [NSConnection connectionWithRegisteredName:MP_DOSERVER 
-																  host:nil];
-	distributedMPInterpreterObject = [mpConn rootProxy];
-	
-	
-	//CFDictionaryAddValue(response, CFSTR("NSConnection stats"), [[NSConnection defaultConnection] statistics]);
-	if ( distributedMPInterpreterObject == nil ) {
-		CFDictionaryAddValue(response, CFSTR(kMPInterpreterDistObj), CFSTR("NO"));
-		retval = coreFoundationUnknownErr;
-	}
-	else { //We successfully obtained the distObj
-		NSLog(@"IN HERE");
-		CFDictionaryAddValue(response, CFSTR(kMPInterpreterDistObj), CFSTR("YES"));
-		[distributedMPInterpreterObject setProtocolForProxy:@protocol(MPInterpreterProtocol)];
-		NSString * result = [distributedMPInterpreterObject
-							 evaluateStringFromMPHelperTool:tclCmd];
-		
-		if (result != nil) { //successful execution
-			CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("Port operation Failed not"));
-			retval = noErr;
-		}
-		else {
-			CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("Port operation Failed"));
-			retval = coreFoundationUnknownErr;
-		}
-	}
-	
-	unsigned int numcon = [[NSConnection allConnections] count];
-	CFDictionaryAddValue(response, CFSTR("NSConnections"), CFStringCreateWithFormat(kCFAllocatorDefault , NULL, CFSTR("%u"),numcon) );
-	
-	CFDictionaryAddValue(response, CFSTR("NSConnection Stats"), [[NSConnection defaultConnection] statistics]);
-	/*
-	if( retval == noErr) {
-		
-		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), cTclCmd); 
-	}
-	else{
-		//Try setting the user data pointer to the error
-		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("BAAD")); 
-	}*/
-	
-	assert(response != NULL);
-	//I think I should release cTclCmd
-	//CFRelease(cTclCmd);
-	//CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), CFSTR("Port operation Failed not"));
-	
-	return retval;
-}
-
-/////////////////////////////////////////////////////////////////
-#pragma mark ***** Tool Infrastructure
-
-/*
- IMPORTANT
- ---------
- This array must be exactly parallel to the kMPHelperCommandSet array 
- in "MPHelperCommon.c".
- */
-
-static const BASCommandProc kMPHelperCommandProcs[] = {
-	DoEvaluateTclString,	
-	NULL
-};
+#import <Foundation/Foundation.h>
 
 
-//Should I just do stuff in main and use the above method to 
-//just retrieve the string to be evaluated as a tcl command?
 
 int main(int argc, char const * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	[[NSRunLoop currentRunLoop] run];
-	// Go directly into BetterAuthorizationSampleLib code.
-	
-    // IMPORTANT
-    // BASHelperToolMain doesn't clean up after itself, so once it returns 
-    // we must quit.
-    int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 
+	
 	[pool release];
 	
-	return result;
+	return 0;
 }
-

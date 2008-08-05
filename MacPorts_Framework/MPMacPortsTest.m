@@ -74,7 +74,7 @@
 	STAssertNotNil(searchResults, @"This dictionary should have at least %d key value pairs", [searchResults count]);
 }
 
-/*
+
 -(void) testSync {
 	NSError * syncError = nil;
 	[testPort sync:&syncError];
@@ -89,7 +89,7 @@
 	
 }
 
-
+/*
 -(void) testSelfupdate {
 	//The only way to test this that I know of is to listen for the posted notifications
 	//and take actions as appropriate

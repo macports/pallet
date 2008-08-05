@@ -10,6 +10,12 @@
 package require macports
 package require notifications
 
+
+#Set ui_options to log all messages to stdout and notify system
+#filtering is done on the Obj-C side of things
+set ui_options(ports_debug) "yes"
+set ui_options(ports_verbose) "yes"
+
 # ui_options accessor
 proc ui_isset {val} {
 	global ui_options
@@ -79,6 +85,7 @@ proc ui_channels {priority} {
 #This is currently under works ... a reasonable solution
 #should be coming up soon
 proc ui_init {priority prefix channels message} {
+	puts "INSIDE ui_init priority with prefix $prefix and message $message"
 	
 	switch $priority {
 		msg {
@@ -86,15 +93,18 @@ proc ui_init {priority prefix channels message} {
 		}
 		debug {
 			set "MPDebugNotification"
+			#puts "Recieved Debug"
 		}
 		warn {
 			set nottype "MPWarnNotification"
 		}
 		error {
 			set nottype "MPErrorNotification"
+			#puts "Recieved Error"
 		}
 		info {
 			set nottype "MPInfoNotification"
+			#puts "Recieved Info"
 		}
 		default {
 			set nottype "MPDefaultNotification"
@@ -107,12 +117,14 @@ proc ui_init {priority prefix channels message} {
     } catch * {
         set channels [ui_channels_default $priority]
     }
-
+    
+    #set channels [ui_channels $priority]
+    
     # Simplify ui_$priority.
     set nbchans [llength $channels]
     if {$nbchans == 0} {
         proc ::ui_$priority {str} [subst {
-        	notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+        	notifications send $nottype "$chan $prefix" "\$str"
         }]
     } else {
         try {
@@ -120,19 +132,21 @@ proc ui_init {priority prefix channels message} {
         } catch * {
             set prefix [ui_prefix_default $priority]
         }
-
+        
+        #set prefix [ui_prefix $priority]
+        
         if {$nbchans == 1} {
             set chan [lindex $channels 0]
             
             proc ::ui_$priority {str} [subst { 
             	puts $chan "$prefix\$str"
-            	notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+            	notifications send $nottype "$chan $prefix" "\$str"
             }]
         } else {
         	proc ::ui_$priority {str} [subst {
         		foreach chan \$channels {
         			puts $chan "$prefix\$str"
-        			notifications send $nottype "Channel $chan Prefix $prefix" "\$str"
+        			notifications send $nottype "$chan $prefix" "\$str"
         		}
         	}]
         }
@@ -175,6 +189,7 @@ proc mportdeactivate {portname v optionslist} {
 			return 1
 	}
 }
+
 
 
 # Initialize dport

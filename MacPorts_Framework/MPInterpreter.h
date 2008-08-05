@@ -70,6 +70,7 @@
 
 	Tcl_Interp* _interpreter;
 	NSString * helperToolInterpCommand;
+	NSString * helperToolCommandResult;
 	
 }
 
@@ -176,6 +177,7 @@
 - (NSString *)getVariableAsString:(NSString *)variable;
 
 
-//For testing helper tool
+//For testing helper tools
 -(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement;
+-(NSString *)evaluateStringWithSimpleMPDOPHelperTool:(NSString *)statement;
 @end

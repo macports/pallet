@@ -113,7 +113,10 @@
 	//result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
 	
 	//Testing DO implementation
-	result = [interpreter evaluateStringWithMPHelperTool:@"mportsync"];
+	//result = [interpreter evaluateStringWithMPHelperTool:@"mportsync"];
+	[interpreter evaluateStringWithSimpleMPDOPHelperTool:@"mportsync"];
+	
+	result = [interpreter getTclCommandResult];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
@@ -247,10 +250,10 @@ withVariants:(NSArray *)variants
 
 #pragma mark Testing MacPorts Notifications
 -(void) registerForLocalNotifications {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(respondToLocalNotification:) 
-												 name:MPINFO
-											   object:nil];
+	//[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(respondToLocalNotification:) 
+//												 name:MPINFO
+//											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
@@ -269,6 +272,16 @@ withVariants:(NSArray *)variants
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
+												 name:MPDEBUG
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPDEFAULT
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
 												 name:@"testMacPortsNotification"
 											   object:nil];
 }
@@ -278,9 +291,9 @@ withVariants:(NSArray *)variants
 	
 	//Just NSLog it for now
 	if(sentDict == nil)
-		NSLog(@"Looooocaaaaal");
+		NSLog(@"MPMacPorts received notification with empty userInfo Dictionary");
 	else
-		NSLog(@"%@" , [sentDict description]);
+		NSLog(@"MPMacPorts received notification with userInfo %@" , [sentDict description]);
 }
 
 @end

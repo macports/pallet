@@ -56,6 +56,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define MPDEFAULT @"MPDefaultNotification"
 #define MPMSG @"MPMsgNotification"
 #define MPINFO @"MPInfoNotification"
 #define MPWARN @"MPWarnNotification"
