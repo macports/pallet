@@ -68,6 +68,7 @@
 		6ECD97180E465CB300488335 /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; };
 		6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */; };
 		6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD98100E484E8400488335 /* MPHelperTool.m */; };
+		6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */; };
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
@@ -157,6 +158,8 @@
 		6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleDOMPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECD970D0E465C7800488335 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6ECD98100E484E8400488335 /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
+		6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperToolTest.h; sourceTree = "<group>"; };
+		6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolTest.m; sourceTree = "<group>"; };
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -336,6 +339,8 @@
 				489DD92E0C94674B00595506 /* MPInterpreterTest.m */,
 				6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */,
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
+				6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */,
+				6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -606,6 +611,7 @@
 			files = (
 				6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */,
 				6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */,
+				6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

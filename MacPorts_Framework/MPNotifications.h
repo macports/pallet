@@ -39,6 +39,14 @@
  sent to Framework clients. The following constants MPMSG, MPINFO, MPWARN, MPERROR, MPDEBUG
  define the names of notifications that Framework clients can register for.
  
+ The posted notificaion's userInfo dictionary contains the following keys and values
+ MPNOTIFICATION_NAME - The name of the notification e.g. MPWARN, MPDEBUG etc.
+ MPCHANNEL - The channel to which the message was logged eg. stdout, stderr
+ MPPREFIX - The prefix string for this message e.g. DEBUG:
+ MPMETHOD - The method whose execution led to this notification eg. sync, selfupdate
+ MPMESSAGE - The output message logged to channel
+ 
+ 
  THERE IS A REASON I'M NOT INCLUDING MPALL AS ONE OF THE POSSIBLE NOTIFICATIONS TO REGISTER FOR.
  HOW IS THE FRAMEWORK SUPPOSE TO KNOW THAT SOMEONE HAS REGISTERED FOR ALL NOTIFICATIONS? THE ONLY
  WAY TO DO THAT THAT I CAN SEE IS FORCING CLIENTS TO USE A CUSTOM METHOD (THAT UPDATES SOME

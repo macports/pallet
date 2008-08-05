@@ -54,6 +54,14 @@
  @discussion This class represents a single instance of the MacPorts installation system on a user's machine.
  There is usually only one instance of this per machine, even though there might be more than one in some
  cases.
+ 
+ Available Delegate methods:
+ Delegates of this class may choose to implement one of the following method
+ - (AuthorizationRef) getAuthorizationRef;
+	getAuthorizationRef should return an AuthorizationRef structure which will be used for
+	performing privileged MacPorts operations. Framework clients should do all necessary preauthorization
+	before returning the AuthorizationRef structure, in addition, Framework clients are
+	responsible for freeing the memory associated with the passed AuthorizationRef structure.
  */
 @interface MPMacPorts : NSObject {
 
@@ -62,6 +70,8 @@
 	NSString *prefix;
 	NSArray *sources;
 	NSString *version;
+	
+	id macportsDelegate;
 	
 }
 
@@ -171,6 +181,22 @@
  @brief Returns an NSString indicating the version of the currently running MacPorts system
  */
 - (NSString *)version;
+
+
+/*!
+ @brief Returns the delegate for this MPMacPorts object
+ @Discussion Delegates of MPMacPorts may opt to implement -setAuthoriztionRef: .
+ See (add link here to class discussion section) for more details.
+ */
+- (id)delegate;
+
+/*!
+ @brief Sets the delegate for this MPMacPorts object
+ @param mpDelegate The object to be set as the delegate
+ @Discussion Delegates of MPMacPorts may opt to implement -setAuthoriztionRef: .
+ See (add link here to class discussion section) for more details.
+ */
+- (void)setDelegate:(id)delegate;
 
 
 //Notifications stuff for private use and testing purposes

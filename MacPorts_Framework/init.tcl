@@ -85,7 +85,7 @@ proc ui_channels {priority} {
 #This is currently under works ... a reasonable solution
 #should be coming up soon
 proc ui_init {priority prefix channels message} {
-	puts "INSIDE ui_init priority with prefix $prefix and message $message"
+	#puts "INSIDE ui_init priority with prefix $prefix and message $message"
 	
 	switch $priority {
 		msg {
@@ -93,18 +93,18 @@ proc ui_init {priority prefix channels message} {
 		}
 		debug {
 			set "MPDebugNotification"
-			#puts "Recieved Debug"
+			puts "Recieved Debug"
 		}
 		warn {
 			set nottype "MPWarnNotification"
 		}
 		error {
 			set nottype "MPErrorNotification"
-			#puts "Recieved Error"
+			puts "Recieved Error"
 		}
 		info {
 			set nottype "MPInfoNotification"
-			#puts "Recieved Info"
+			puts "Recieved Info"
 		}
 		default {
 			set nottype "MPDefaultNotification"

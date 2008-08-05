@@ -36,12 +36,9 @@
 #import "MPInterpreter.h"
 #include "BetterAuthorizationSampleLib.h"
 #include "MPHelperCommon.h"
+static AuthorizationRef internalMacPortsAuthRef;
 
 
-/////////////////////////////////////////////////////////////////
-#pragma mark ***** Globals
-
-static AuthorizationRef mpAuth;
 
 #pragma mark -
 
@@ -52,12 +49,13 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	NSString *name;
 	NSMutableString *msg;
 	
-	//Our info dictionary is of size 4 and contains the following keys
-	//Channel - eg. stdout, stderr
-	//Prefix - prefix string for this message e.g. DEBUG:
-	//Function - the function whose operation led to this notification eg. sync, selfupdate
-	//Message - the message logged to channel
-	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:4];
+	//Our info dictionary is of size 5 and contains the following keys
+	//NOTIFICATION_NAME - e.g. MPWARN, MPDEBUG etc.
+	//CHANNEL - eg. stdout, stderr
+	//PREFIX - prefix string for this message e.g. DEBUG:
+	//METHOD - the function whose operation led to this notification eg. sync, selfupdate
+	//MESSAGE - the message logged to channel
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:5];
 	MPNotifications *mln = [MPNotifications sharedListener];
 	
 	int tclCount;
@@ -65,7 +63,8 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	const char **tclElements;
 	
 	name = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
-	NSLog(@"name is %@", name);
+	//NSLog(@"name is %@", name);
+	[info setObject:name forKey:MPNOTIFICATION_NAME];
 	
 	//Name and Notification constants should match. Convention
 	//used is MPPriorityNotification. Is it ok to just return TCL_OK ?
@@ -81,16 +80,16 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		
 	//I have sacrificed generality for simplicity in the code below
 		if (tclElements > 0) { 
-			[info setObject:[NSString stringWithUTF8String:tclElements[0]] forKey:@"Channel"];
+			[info setObject:[NSString stringWithUTF8String:tclElements[0]] forKey:MPCHANNEL];
 			
 			if(tclElements[1])
-				[info setObject:[NSString stringWithUTF8String:tclElements[1]] forKey:@"Prefix"];
+				[info setObject:[NSString stringWithUTF8String:tclElements[1]] forKey:MPPREFIX];
 			else
-				[info setObject:@"None" forKey:@"Prefix"];
+				[info setObject:@"None" forKey:MPPREFIX];
 		}
 		else {
-			[info setObject:@"None" forKey:@"Channel"];
-			[info setObject:@"None" forKey:@"Prefix"];
+			[info setObject:@"None" forKey:MPCHANNEL];
+			[info setObject:@"None" forKey:MPPREFIX];
 		}
 		
 		
@@ -103,7 +102,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 			//strip off "--->" over here
 			NSArray * temp = [msg componentsSeparatedByString:@"--->"];
 			[msg setString:[temp componentsJoinedByString:@""]];
-			[info setObject:msg forKey:@"Message"];
+			[info setObject:msg forKey:MPMESSAGE];
 		}
 		
 		//Get the Tcl function that called this method
@@ -166,55 +165,21 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 #pragma mark -
 #pragma mark Authorization Code
-//Internal method for setting up Authorizatin Reference
-//Called during initialization of interpreter object
-//This is a bit weird: Since MPInterpreter is compiled twice First for the helper
-//tool and then for the Framework, we want to call this method only when it is
-//being compiled for the Framework ... hence we check that the main bundle name is
-//MacPorts.Framework before initializing authorization
--(void) initializeAuthorization {
-	//I'll probably regret doing this later on
-	//but whatever .... 
-	char * username = "armahg";
-	char * password = "200485";
-	
-	OSStatus junk;
-	
-	//Create Environment specific to this machine for tesitng purposes
-	AuthorizationItem envItems[2];
-	envItems[0].name = kAuthorizationEnvironmentPassword;
-	envItems[0].value = password;
-	envItems[0].valueLength = strlen(password);
-	envItems[0].flags = 0;
-	
-	envItems[1].name = kAuthorizationEnvironmentUsername;
-	envItems[1].value = username;
-	envItems[1].valueLength = strlen(username);
-	envItems[1].flags = 0;
-	
-	AuthorizationItemSet env = { 2 , envItems };
-	
-	AuthorizationFlags envFlags;
-	envFlags = kAuthorizationFlagDefaults |
-	kAuthorizationFlagExtendRights |
-	kAuthorizationFlagPreAuthorize;
-	
-	
-	junk = AuthorizationCreate(NULL, &env, envFlags, &mpAuth);
-	assert(junk == noErr);
-	//assert (junk == noErr) == (mpAuth != NULL);
-	
-	NSString * bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-	
-	//Set _userDataInterp over here
-	//kMPHelperCommandSet[0].userData =  _interpreter;
-	
-	BASSetDefaultRules(mpAuth, 
-					   kMPHelperCommandSet, 
-					   (CFStringRef) bundleID, 
-					   NULL);
-	
+
+- (BOOL)checkIfAuthorized {
+	if  (internalMacPortsAuthRef == NULL ) {
+		return NO;
+	}
+	return YES;
 }
+
+-(void)setAuthorizationRef:(AuthorizationRef)authRef {
+	//I can do this since Framework client responsible
+	//for managing memory for Authorization
+	internalMacPortsAuthRef = authRef;
+}
+
+
 
 
 #pragma mark -
@@ -224,11 +189,11 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 - (BOOL) vendSelfForServer {
 	NSConnection * defaultConn;
 	defaultConn = [NSConnection defaultConnection];
-	NSLog(@"Creating connection ...");
+	//NSLog(@"Creating connection ...");
 	
 	[defaultConn setRootObject:self];
 	
-	NSLog(@"Connection Created ... "); //%@, %@", defaultConn, [defaultConn statistics]);
+	//NSLog(@"Connection Created ... "); //%@, %@", defaultConn, [defaultConn statistics]);
 	return [defaultConn registerName:MP_DOSERVER];
 	
 }
@@ -331,12 +296,12 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		//worry (I hope) about running loops for different threads
 		//[[NSRunLoop currentRunLoop] run];
 		
-		if (![self vendSelfForServer]) {
-			NSLog(@"Failed To initialize NSConnection server ");
-			//Should probably do some more error handling over here
-		}
-		else
-			NSLog(@"MPInterpreter Initialized ...");
+		//if (![self vendSelfForServer]) {
+//			NSLog(@"Failed To initialize NSConnection server ");
+//			//Should probably do some more error handling over here
+//		}
+//		else
+//			NSLog(@"MPInterpreter Initialized ...");
 		
 		
 	}
@@ -510,6 +475,10 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 #pragma mark -
 #pragma mark Helper Tool(s) Code
+//NOTE: We expect the Framework client to initialize the AuthorizationRef
+//Completely before calling any privileged operation. Perhaps we
+//should check for this and send an NSError ... rather than go
+//through the trouble of initializing the call and erroring out?
 - (NSString *) evaluateStringWithMPHelperTool:(NSString *) statement {
 	OSStatus        err;
     BASFailCode     failCode;
@@ -528,13 +497,13 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	assert(bundleID != NULL);
 	
-	
-	//_userDataInterp points to _interpreter after the
-	//method below
-	[self initializeAuthorization];
+	BASSetDefaultRules(internalMacPortsAuthRef, 
+					   kMPHelperCommandSet, 
+					   (CFStringRef) bundleID, 
+					   NULL);
 	
 	NSLog(@"BEFORE Tool Execution request is %@ , resonse is %@ \n\n", request, response);
-	err = BASExecuteRequestInHelperTool(mpAuth, 
+	err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 										kMPHelperCommandSet, 
 										(CFStringRef) bundleID, 
 										(CFDictionaryRef) request, 
@@ -543,16 +512,16 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	//Try to recover
 	if ( (err != noErr) && (err != userCanceledErr) ) {
-		failCode = BASDiagnoseFailure(mpAuth, (CFStringRef) bundleID);
+		failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (CFStringRef) bundleID);
 		
-		err = BASFixFailure(mpAuth, 
+		err = BASFixFailure(internalMacPortsAuthRef, 
 							(CFStringRef) bundleID, 
 							CFSTR("MPHelperInstallTool"), 
 							CFSTR("MPHelperTool"), 
 							failCode);
 		
 		if (err == noErr) {
-			err = BASExecuteRequestInHelperTool(mpAuth, 
+			err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 												kMPHelperCommandSet, 
 												(CFStringRef) bundleID, 
 												(CFDictionaryRef) request, 

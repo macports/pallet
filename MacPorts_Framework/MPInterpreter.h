@@ -40,6 +40,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <Security/Security.h>
 #include <tcl.h>  
 #import "MPNotifications.h"
 #import "MPInterpreterProtocol.h"
@@ -56,6 +57,18 @@
 #define TCL_RETURN_CODE			@"return code"
 #define TCL_RETURN_STRING		@"return string"
 #define MPFrameworkErrorDomain	@"MacPortsFrameworkErrorDomain"
+
+
+#define MPNOTIFICATION_NAME @"Notification"
+#define MPCHANNEL  @"Channel"
+#define MPPREFIX  @"Prefix"
+#define MPMETHOD @"Method"
+#define MPMESSAGE @"Message"
+
+
+
+/////////////////////////////////////////////////////////////////
+#pragma mark ***** Globals
 
 
 
@@ -176,6 +189,9 @@
  */
 - (NSString *)getVariableAsString:(NSString *)variable;
 
+// METHODS FOR INTERNAL USE ONLY
+-(void)setAuthorizationRef:(AuthorizationRef)authRef;
+-(BOOL)checkIfAuthorized;
 
 //For testing helper tools
 -(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement;

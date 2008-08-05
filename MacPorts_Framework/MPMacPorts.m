@@ -110,11 +110,11 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
 	
-	//result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
+	result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
 	
 	//Testing DO implementation
 	//result = [interpreter evaluateStringWithMPHelperTool:@"mportsync"];
-	[interpreter evaluateStringWithSimpleMPDOPHelperTool:@"mportsync"];
+	//[interpreter evaluateStringWithSimpleMPDOPHelperTool:@"mportsync"];
 	
 	result = [interpreter getTclCommandResult];
 	
@@ -248,12 +248,38 @@ withVariants:(NSArray *)variants
 	return version;
 }
 
+#pragma mark -
+#pragma mark Delegate Methods
+
+-(id) delegate {
+	return macportsDelegate;
+}
+
+-(void) setDelegate:(id)delegate {
+	[delegate retain];
+	[macportsDelegate release];
+	macportsDelegate = delegate;
+}
+
+//Internal Method for setting our Authorization Reference
+- (void) setAuthorizationRef { 
+	if ([[self delegate] respondsToSelector:@selector(getAuthorizationRef)]) {
+		[interpreter setAuthorizationRef:
+		 [[self delegate] performSelector:@selector(getAuthorizationRef)]];
+	}
+	//else { //I think i'll iniitalizeAuthorization lazily .. i.e. right
+	//before using helper tool
+//		[interpreter initializeAuthorization];
+//	}
+}
+
+#pragma mark -
 #pragma mark Testing MacPorts Notifications
 -(void) registerForLocalNotifications {
-	//[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(respondToLocalNotification:) 
-//												 name:MPINFO
-//											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPINFO
+											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(respondToLocalNotification:) 
