@@ -49,7 +49,7 @@
 -(void) testPathToPortIndex;
 //-(void) testDepends;
 //-(void) testSearch;
--(void) testSync;
+//-(void) testSync;
 -(void) testVersion;
 //-(void) testInstall;
 //-(void) testMPHelperTool;

@@ -635,8 +635,8 @@ extern BASFailCode BASDiagnoseFailure(
 extern OSStatus BASFixFailure(
 	AuthorizationRef			auth,
 	CFStringRef					bundleID,
-	CFStringRef					installToolName,
-	CFStringRef					helperToolName,
+	CFURLRef					installToolURL,
+	CFURLRef					helperToolURL,
 	BASFailCode					failCode
 );
 

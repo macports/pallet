@@ -29,7 +29,12 @@
 	
 	//String to be Evlauted
 	#define kTclStringToBeEvaluated		"TclString"					//CFString 
+
+	//Tcl MacPorts Package Initialization Path
+	#define kTclInterpreterInitPath		"TclInitPath"				//CFString
 	
+	//Tcl interpInit.tcl Path
+	#define kInterpInitFilePath			"InterpInitTclFilePath"		//CFString
 
 	//response keys
 	#define kTclStringEvaluationResult	"TclStringEvaluationResult"		//CFString

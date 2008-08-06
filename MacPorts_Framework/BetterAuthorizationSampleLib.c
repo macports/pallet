@@ -2329,72 +2329,74 @@ static OSStatus BASInstall(
     return retval;
 }
 
-static OSStatus GetToolPath(CFStringRef bundleID, CFStringRef toolName, char *toolPath, size_t toolPathSize)
-    // Given a bundle identifier and the name of a tool embedded within that bundle, 
-    // get a file system path to the tool.
-{
-    OSStatus    err;
-    CFBundleRef bundle;
-    Boolean     success;
-    CFURLRef    toolURL;
-	
-	assert(bundleID != NULL);
-    assert(toolName != NULL);
-    assert(toolPath != NULL);
-    assert(toolPathSize > 0);
-    
-    toolURL = NULL;
+//static OSStatus GetToolPath(CFStringRef bundleID, CFStringRef toolName, char *toolPath, size_t toolPathSize)
+//    // Given a bundle identifier and the name of a tool embedded within that bundle, 
+//    // get a file system path to the tool.
+//{
+//    OSStatus    err;
+//    CFBundleRef bundle;
+//    Boolean     success;
+//    CFURLRef    toolURL;
+//	
+//	assert(bundleID != NULL);
+//    assert(toolName != NULL);
+//    assert(toolPath != NULL);
+//    assert(toolPathSize > 0);
+//    
+//    toolURL = NULL;
+//
+//	
+//    err = noErr;
+//    bundle = CFBundleGetBundleWithIdentifier(bundleID);
+//    if (bundle == NULL) {
+//        err = coreFoundationUnknownErr;
+//    }
+//	
+//    if (err == noErr) {
+//		//Modify this code to load the bundle if its not already loaded
+//		
+//		if (CFBundleIsExecutableLoaded(bundle)) {
+//			toolURL = CFBundleCopyResourceURL(bundle, toolName, NULL, NULL);  
+//		}
+//		else{ //We need to load the bundle first
+//			Boolean loaded = CFBundleLoadExecutable(bundle);
+//			
+//			if (loaded && bundle != NULL) {
+//				toolURL = CFBundleCopyResourceURL(bundle, toolName, NULL, NULL); 
+//			}
+//			else { // we couldn't load the bundle .. this IS bad
+//				err = coreFoundationUnknownErr;
+//			}
+//		}
+//		
+//
+//	 assert(toolURL != NULL);
+//        
+//		if (toolURL == NULL) {
+//            err = coreFoundationUnknownErr;
+//        }
+//    }
+//    if (err == noErr) {
+//        success = CFURLGetFileSystemRepresentation(toolURL, true, (UInt8 *) toolPath, toolPathSize);
+//        if ( ! success ) {
+//            err = coreFoundationUnknownErr;
+//        }
+//    }
+//    
+//    if (toolURL != NULL) {
+//        CFRelease(toolURL);
+//    }
+//    
+//    return err;
+//}
 
-	
-    err = noErr;
-    bundle = CFBundleGetBundleWithIdentifier(bundleID);
-    if (bundle == NULL) {
-        err = coreFoundationUnknownErr;
-    }
-	
-    if (err == noErr) {
-		//Modify this code to load the bundle if its not already loaded
-		
-		if (CFBundleIsExecutableLoaded(bundle)) {
-			toolURL = CFBundleCopyResourceURL(bundle, toolName, NULL, NULL);  
-		}
-		else{ //We need to load the bundle first
-			Boolean loaded = CFBundleLoadExecutable(bundle);
-			
-			if (loaded && bundle != NULL) {
-				toolURL = CFBundleCopyResourceURL(bundle, toolName, NULL, NULL); 
-			}
-			else { // we couldn't load the bundle .. this IS bad
-				err = coreFoundationUnknownErr;
-			}
-		}
-		
 
-	 assert(toolURL != NULL);
-        
-		if (toolURL == NULL) {
-            err = coreFoundationUnknownErr;
-        }
-    }
-    if (err == noErr) {
-        success = CFURLGetFileSystemRepresentation(toolURL, true, (UInt8 *) toolPath, toolPathSize);
-        if ( ! success ) {
-            err = coreFoundationUnknownErr;
-        }
-    }
-    
-    if (toolURL != NULL) {
-        CFRelease(toolURL);
-    }
-    
-    return err;
-}
 
 extern OSStatus BASFixFailure(
 	AuthorizationRef			auth,
 	CFStringRef					bundleID,
-	CFStringRef					installToolName,
-	CFStringRef					helperToolName,
+	CFURLRef					installToolURL,
+	CFURLRef					helperToolURL,
 	BASFailCode					failCode
 )
     // See comment in header.
@@ -2402,15 +2404,15 @@ extern OSStatus BASFixFailure(
 	OSStatus    retval;
     Boolean     success;
     char        bundleIDC[PATH_MAX];
-    char        installToolPath[PATH_MAX];
-    char        helperToolPath[PATH_MAX];
+    char        installToolPathC[PATH_MAX];
+    char        helperToolPathC[PATH_MAX];
 
     // Pre-conditions
     
     assert(auth != NULL);
     assert(bundleID != NULL);
-    assert(installToolName != NULL);
-    assert(helperToolName  != NULL);
+    assert(installToolURL != NULL);
+    assert(helperToolURL  != NULL);
     
     // Get the bundle identifier as a UTF-8 C string.  Also, get paths for both of 
     // the tools.
@@ -2421,20 +2423,32 @@ extern OSStatus BASFixFailure(
         retval = coreFoundationUnknownErr;
     }
     if (retval == noErr) {
-        retval = GetToolPath(bundleID, installToolName, installToolPath, sizeof(installToolPath));
+		success = CFURLGetFileSystemRepresentation(installToolURL, true, (UInt8 *) installToolPathC, sizeof(installToolPathC));
+		if ( ! success )
+			retval = coreFoundationUnknownErr;
     }
-    if (retval == noErr) {
-        retval = GetToolPath(bundleID, helperToolName,  helperToolPath,  sizeof(helperToolPath));
+	if (retval == noErr) {
+		success = CFURLGetFileSystemRepresentation(helperToolURL, true, (UInt8 *) helperToolPathC, sizeof(helperToolPathC));
+		if ( ! success )
+			retval = coreFoundationUnknownErr;
     }
-    
+	
+//	if (retval == noErr) {
+//        retval = GetToolPath(bundleID, installToolURL, installToolPath, sizeof(installToolPath));
+//    }
+//    if (retval == noErr) {
+//        retval = GetToolPath(bundleID, helperToolURL,  helperToolPath,  sizeof(helperToolPath));
+//    }
+	
+	
     // Depending on the failure code, either run the enable command or the install 
     // from scratch command.
     
     if (retval == noErr) {
         if (failCode == kBASFailDisabled) {
-            retval = RunInstallToolAsRoot(auth, installToolPath, kBASInstallToolEnableCommand, bundleIDC, NULL);
+            retval = RunInstallToolAsRoot(auth, installToolPathC, kBASInstallToolEnableCommand, bundleIDC, NULL);
         } else {
-            retval = BASInstall(auth, bundleIDC, installToolPath, helperToolPath);
+            retval = BASInstall(auth, bundleIDC, installToolPathC, helperToolPathC);
         }
     }
 

@@ -237,9 +237,17 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 - (void) log :(in bycopy id) logOutput {
 	NSLog(@"MPInterpreterProtocol Logging : %@", logOutput);
 }
+
 #pragma mark -
 
 #pragma mark MPInterpreter Code
+
+//This variable is set during initialization and is
+//not changed thereafter. Is sole purpose is to enable
+//passing the path to macports1.0 package to the helper
+//tool
+static NSString * tclInterpreterPkgPath = nil;
+
 
 - (id) init {
 	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH];
@@ -288,6 +296,9 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 		helperToolInterpCommand = @"";
 		helperToolCommandResult = @"";
 		
+		//Initialize the MacPorts Tcl Package Path string
+		tclInterpreterPkgPath = [NSString stringWithString:path];
+		
 		//Initialize the Run Loop because we don't know if framework will be
 		//run in a Foundation Kit or App Kit. Hopefully this won't hurt if the
 		//run loop is already running. We are doing this so that our NSConnection
@@ -314,6 +325,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 
 
 + (MPInterpreter*)sharedInterpreter {
+	
 	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
 
@@ -488,9 +500,16 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	
 	response = NULL;
 	
+	//Retrieving the path for interpInit.tcl for our helper tool
+	NSString * interpInitPath = [[NSBundle bundleForClass:[MPInterpreter class]] 
+								 pathForResource:@"interpInit" ofType:@"tcl"];
+	
 	request = [NSDictionary dictionaryWithObjectsAndKeys:
 			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
-			   statement, @kTclStringToBeEvaluated, nil];
+			   statement, @kTclStringToBeEvaluated, 
+			   tclInterpreterPkgPath, @kTclInterpreterInitPath ,
+			   interpInitPath, @kInterpInitFilePath, nil];
+	
 	assert(request != NULL);
 	
 	bundleID = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
@@ -502,7 +521,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 					   (CFStringRef) bundleID, 
 					   NULL);
 	
-	NSLog(@"BEFORE Tool Execution request is %@ , resonse is %@ \n\n", request, response);
+	NSLog(@"BEFORE Tool Execution request is %@ , response is %@ \n\n", request, response);
 	err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 										kMPHelperCommandSet, 
 										(CFStringRef) bundleID, 
@@ -514,10 +533,25 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	if ( (err != noErr) && (err != userCanceledErr) ) {
 		failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (CFStringRef) bundleID);
 		
+		
+		//Need to pass in URL's to helper and install tools since I
+		//modified BASFixFaliure
+		NSBundle * mpBundle = [NSBundle bundleForClass:[self class]];
+		//NSLog(@"mpBundle is %@", [mpBundle description]);
+		
+		NSString * installToolPath = [mpBundle pathForResource:@"MPHelperInstallTool" ofType:nil];
+		NSURL * installToolURL = [NSURL fileURLWithPath:installToolPath];
+		
+		NSString * helperToolPath = [mpBundle pathForResource:@"MPHelperTool" ofType:nil];
+		NSURL * helperToolURL = [NSURL fileURLWithPath:helperToolPath];
+		//NSLog(@"Helper and Install tool URL's are \n %@ and \n %@ respectively",
+			//  [helperToolURL description] , [installToolURL description]);
+		
+		
 		err = BASFixFailure(internalMacPortsAuthRef, 
 							(CFStringRef) bundleID, 
-							CFSTR("MPHelperInstallTool"), 
-							CFSTR("MPHelperTool"), 
+							(CFURLRef) installToolURL,
+							(CFURLRef) helperToolURL,
 							failCode);
 		
 		if (err == noErr) {
@@ -535,7 +569,7 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 	assert(response != NULL);
 	CFStringRef newresult = CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
 	
-	NSLog(@"AFTER Tool Execution request is %@ , resonse is %@ \n\n", request, response);
+	NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
 	//NSLog(@"response dictionary is %@", response);
 	return (NSString *) newresult;
 	

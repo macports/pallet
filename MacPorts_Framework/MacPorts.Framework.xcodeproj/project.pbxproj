@@ -38,6 +38,7 @@
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
+		6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */ = {isa = PBXBuildFile; fileRef = 6E22BD410E4A30C700CA76C4 /* mycredentials */; };
 		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
@@ -72,6 +73,8 @@
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
+		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -95,7 +98,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */;
+			remoteGlobalIDString = 6ECD97040E465C0F00488335;
 			remoteInfo = SimpleDOMPHelperTool;
 		};
 		6ED12A520E3E55A50026773D /* PBXContainerItemProxy */ = {
@@ -136,6 +139,7 @@
 		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
+		6E22BD410E4A30C700CA76C4 /* mycredentials */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mycredentials; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
+		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -173,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */,
+				6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +253,7 @@
 				6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */,
 				6EB6FC900E45DEA80057962C /* Foundation.framework */,
 				6ECD970D0E465C7800488335 /* Security.framework */,
+				6EE93E780E495B3100AECE9E /* Tcl.framework */,
 			);
 			name = "MacPorts Foundation";
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
 				6EB6FB260E448EE20057962C /* TestFile.test */,
+				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
 				6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */,
 				6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */,
+				6E22BD410E4A30C700CA76C4 /* mycredentials */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -420,6 +430,7 @@
 				489DD8F00C94365F00595506 /* Sources */,
 				489DD8F10C94365F00595506 /* Frameworks */,
 				489DD8F20C94365F00595506 /* ShellScript */,
+				6E22BC280E4A06C000CA76C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -557,6 +568,8 @@
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
 				6EB6FB270E448EE20057962C /* TestFile.test in Resources */,
+				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
+				6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +577,20 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		489DD8F20C94365F00595506 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			comments = "cd ~\nif [ -f /Library/LaunchDaemons/org.macports.frameworks.macports.plist ]\nthen\n\techo removing BAStuff\n\tsh mptooluninstall.sh\n\techo done removing BAStuff\nelse\n\techo nothing to Remove\nfi";
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n\n\n";
+		};
+		6E22BC280E4A06C000CA76C4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -574,7 +601,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n\n\n\ncd ~\nif [ -f /Library/LaunchDaemons/org.macports.frameworks.macports.plist ]\nthen\n\techo removing BAStuff\n\tsh mptooluninstall.sh\n\techo done removing BAStuff\nelse\n\techo nothing to Remove\nfi";
+			shellScript = "#chmod  777 $BUILT_PRODUCTS_DIR/Test.octest \n#chmod -R 777 $BUILT_PRODUCTS_DIR/Test.octest \n#ls -lR $BUILT_PRODUCTS_DIR/Test.octest\n";
 		};
 		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
