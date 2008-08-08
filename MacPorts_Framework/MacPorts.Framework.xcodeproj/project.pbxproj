@@ -73,6 +73,7 @@
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */; };
 		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
 		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -167,6 +168,7 @@
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
 		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
 		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
 				6EB6FB260E448EE20057962C /* TestFile.test */,
 				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
+				6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				6EB6FB270E448EE20057962C /* TestFile.test in Resources */,
 				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
 				6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */,
+				6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,10 @@
 #include <tcl.h>
 
 #define asl_NSLog(client, msg, level, format, ...) asl_log(client, msg, level, "%s", [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
+#ifndef ASL_KEY_FACILITY
+#   define ASL_KEY_FACILITY "Facility"
+#endif
+
 
 //We need only one command for this Tool
 

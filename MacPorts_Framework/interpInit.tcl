@@ -8,7 +8,8 @@
 
 
 package require macports
-package require notifications
+package require simplelog
+package require mphelpertool_notify1
 
 
 #Set ui_options to log all messages to stdout and notify system
@@ -79,7 +80,9 @@ proc ui_channels {priority} {
 }
 
 
-
+set logDest [ open "/Users/Armahg/Desktop/logFile.txt" w]
+puts $logDest "SOMETHING DEY HERE"
+simplelog "SOMETHING DEY HERE"
 
 #Modifying UI initialization to enable notifications
 #Redefine ui_$pritority to throw global notifications
@@ -125,7 +128,9 @@ proc ui_init {priority prefix channels message} {
     set nbchans [llength $channels]
     if {$nbchans == 0} {
         proc ::ui_$priority {str} [subst {
-        	notifications send $nottype "$chan $prefix" "\$str"
+        	puts stdout "\$str"
+        	puts $logDest "\$str"
+        	simplelog "\$str"
         }]
     } else {
         try {
@@ -141,13 +146,15 @@ proc ui_init {priority prefix channels message} {
             
             proc ::ui_$priority {str} [subst { 
             	puts $chan "$prefix\$str"
-            	notifications send $nottype "$chan $prefix" "\$str"
+            	puts $logDest "$prefix\$str"
+            	simplelog "$prefix\$str"
             }]
         } else {
         	proc ::ui_$priority {str} [subst {
         		foreach chan \$channels {
         			puts $chan "$prefix\$str"
-        			notifications send $nottype "$chan $prefix" "\$str"
+        			puts $logDest "$prefix\$str"
+        			simplelog "$prefix\$str"
         		}
         	}]
         }

@@ -36,6 +36,14 @@
 
 #import "MPNotifications.h"
 
+@interface MPNotifications (Private)
+-(void) socketConnected:(NSNotification *)notification;
+-(void) readData:(NSNotification *)notification;
+-(void) notifyWithData:(NSNotification *)notification;
+-(BOOL) initBSDSocket;
+@end
+
+
 
 @implementation MPNotifications
 
@@ -86,9 +94,108 @@
 						[NSNumber numberWithInt:0], MPWARN, [NSNumber numberWithInt:0], MPERROR, 
 						[NSNumber numberWithInt:0], MPDEBUG, [NSNumber numberWithInt:0], MPALL, nil];
 		//NSLog(@"Dictionary is %@ ", [blockOptions description]);
+		
+		hasSetFileDescriptor = NO;
+		
+		if ([self initBSDSocket]) {
+			//should I be using the closeDealloc version instead? 
+			acceptHandle = [[NSFileHandle alloc] initWithFileDescriptor:sd1];
+			readHandle = [[NSFileHandle alloc] initWithFileDescriptor:sd1];
+			
+	
+			
+			//It would be nice if I could somehow add the fileHandle in the HelperTool as the sender
+			//this notification. That way I don't read stuff not intended for me.
+			//Perhaps I should post a distributed notification to indicate initiation of
+			//the asynchronous notification?
+			[[NSNotificationCenter defaultCenter] addObserver:self 
+													 selector:@selector(socketConnected:)
+														 name:NSFileHandleConnectionAcceptedNotification 
+													   object:nil];
+			
+			//Posts the notification above after accepting a connection
+			[acceptHandle acceptConnectionInBackgroundAndNotify];
+		}
+		
+		
 	}
 	return self;
 }
+
+//Internal methods for IPC with helper tool
+//This method should really run in a background separate
+//thread so that it doesn't black ... I'll implement
+//that after I get the basic functionality working
+- (void) socketConnected:(NSNotification *) notification {
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(readData:) 
+												 name:NSFileHandleDataAvailableNotification 
+											   object:nil];
+	
+	//Need to call this again since it is done only once in init
+	//and this is a singleton instance class
+	//acceptHandle posts the above notification
+	[acceptHandle acceptConnectionInBackgroundAndNotify];
+	
+	
+}
+
+- (void) readData:(NSNotification *) notification {
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(notifyWithData:) 
+												 name:NSFileHandleReadCompletionNotification
+											   object:nil];
+	
+	//Once data is availabl we can call this method
+	//it posts the above notification on completion
+	[readHandle readInBackgroundAndNotify];
+}
+
+- (void) notifyWithData:(NSNotification *) notification {
+	NSData * inData = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+	NSString * inString = [[NSString alloc] initWithData:inData 
+												encoding:NSUTF8StringEncoding];
+	//Just Log it for now
+	NSLog(@"Read in %@ from MPHelperTool", inString);
+	[inString release];
+	
+	//Once we have finished reading a stream of data and we are
+	//done logging ... we can start 
+	//[acceptHandle acceptConnectionInBackgroundAndNotify];
+}
+
+-(BOOL) initBSDSocket {
+	//BSD Socket Initialization (maybe I should put this in another method ?)
+	sd1 = -1;
+	serverFilePath = [[NSBundle bundleForClass:[MPNotifications class]]
+					  pathForResource:@"HelperToolServerFile" ofType:@"txt"];
+	sd1 = socket(AF_UNIX, SOCK_STREAM, 0);
+	if (sd1 < 0) {
+		NSLog(@"socket() failed");
+	}
+	
+	memset( &serveraddr, 0, sizeof(serveraddr));
+	serveraddr.sun_family = AF_UNIX;
+	strcpy(serveraddr.sun_path, [serverFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
+	
+	rc = bind(sd1, (struct sockaddr *)&serveraddr, SUN_LEN(&serveraddr));
+	if (rc < 0) {
+		NSLog(@"bind() failed");
+	}
+	else {
+		hasSetFileDescriptor = YES;
+	}
+	return hasSetFileDescriptor;
+}
+
+
+-(int) getServerFileDescriptor {
+	return sd1;
+}
+
+
 
 - (void)dealloc {
 	[super dealloc];
@@ -101,7 +208,7 @@
 		[performingTclCommand release];
 		performingTclCommand = [tclString copy];
 	}
-
+	
 }
 
 - (NSString *) performingTclCommand {

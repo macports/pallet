@@ -43,14 +43,137 @@
 
 
 
-static OSStatus DoEvaluateTclString (
-	 AuthorizationRef			auth,
-	 const void *				userData,
-	 CFDictionaryRef				request,
-	 CFMutableDictionaryRef		response,
-	 aslclient					asl,
-	 aslmsg						aslMsg
-)
+//According to the docs all I need is
+//the file descriptor that MPNotifications
+//obtained when creating the server socket
+//I'll save that here when retrieving info.
+//fromt he request dictionary
+int notificationsFileDescriptor;
+BOOL hasSetFileDescriptor = NO;
+
+
+#pragma mark Tcl Commands
+int MPHelperTool_Notifications_Command_One 
+(
+ ClientData clientData, 
+ Tcl_Interp *interpreter, 
+ int objc, 
+ Tcl_Obj *CONST objv[]
+) 
+{
+	NSString * data;
+	NSFileHandle * writeHandle;
+	int returnCode = TCL_ERROR;
+	int err;
+	
+	//asl logging stuff
+	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
+	assert(logMsg != NULL);
+	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
+	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
+	
+	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
+	assert(logClient != NULL);
+	
+	if (hasSetFileDescriptor) {
+		writeHandle = [[NSFileHandle alloc] initWithFileDescriptor:notificationsFileDescriptor];
+	}
+	else {
+		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"Attempted to initialize writeHandle");
+		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"without having set notificationsFileDescriptor value");
+	}
+	
+	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting writing to notification socket");
+	assert( err == 0);
+	
+	++objv, --objc;
+	
+	if (objc) {
+		data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+		
+		//TO DO: Don't just send in raw data ... later i'll want to send in nicely
+		//formatted string or do some processing so the full notifications dictionary
+		//is sent. For now, I just want to get something functional going first
+		
+		//This is a blocking operation. I don't mind that because I'll be doing lots
+		//of heavy lifting on the MPNotifications side to ensure that it only reads
+		//when there is no writing activity taking place etc.
+		[writeHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Wrote %@ " , data);
+		assert(err == 0);
+		
+		returnCode = TCL_OK;
+	}
+	
+	asl_close(logClient);
+	[writeHandle release];
+	return returnCode;
+}
+
+
+
+
+
+int SimpleLog_Command 
+(
+ ClientData clientData, 
+ Tcl_Interp *interpreter, 
+ int objc, 
+ Tcl_Obj *CONST objv[]
+) 
+{
+	
+	//NS writing to file stuff
+	NSString * data;
+	NSFileHandle * dHandle;
+	NSString * destination = @"/Users/Armahg/Desktop/logFile2.txt";
+	dHandle = [NSFileHandle fileHandleForWritingAtPath:destination];
+	[dHandle truncateFileAtOffset:[dHandle seekToEndOfFile]];
+	
+	int returnCode = TCL_ERROR;
+	int err;
+	
+	//asl logging stuff
+	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
+	assert(logMsg != NULL);
+	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
+	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
+	
+	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
+	assert(logClient != NULL);
+	
+	
+	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting simplelog Logging");
+	assert( err == 0);
+	
+	++objv, --objc;
+	
+	if (objc) {
+		data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+		[dHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @" %@ " , data);
+		assert(err == 0);
+		
+		returnCode = TCL_OK;
+	}
+	
+	asl_close(logClient);
+	return returnCode;
+}
+
+
+
+#pragma mark -
+
+static OSStatus DoEvaluateTclString 
+(
+ AuthorizationRef			auth,
+ const void *				userData,
+ CFDictionaryRef				request,
+ CFMutableDictionaryRef		response,
+ aslclient					asl,
+ aslmsg						aslMsg
+ )
 {
 	
 	OSStatus		retval = noErr;
@@ -101,7 +224,7 @@ static OSStatus DoEvaluateTclString (
 	else {//For Dbg.
 		CFDictionaryAddValue(response, CFSTR("TclInterpreterInit"), CFSTR("YES"));
 	}
-	 
+	
 	
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:tclPkgPath]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
@@ -117,13 +240,30 @@ static OSStatus DoEvaluateTclString (
 		CFDictionaryAddValue(response, CFSTR("MPFastload"), CFSTR("YES"));
 	}
 	
-	/*	
-	Tcl_CreateObjCommand(interpreter, "notifications", Notifications_Command, NULL, NULL);
-	if (Tcl_PkgProvide(interpreter, "notifications", "1.0") != TCL_OK) {
+	//Add simplelog tcl command
+	Tcl_CreateObjCommand(interpreter, "simplelog", SimpleLog_Command, NULL, NULL);
+	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {
 		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(interpreter));
-		Tcl_DeleteInterp(interpreter);
+		retval = coreFoundationUnknownErr;
+		//For Dbg
+		CFDictionaryAddValue(response, CFSTR("simplelog"), CFSTR("NO"));
 	}
-	*/
+	else {
+		CFDictionaryAddValue(response, CFSTR("simplelog"), CFSTR("YES"));
+	}
+	
+	//Add mphelpertool_notification_one tcl command
+	Tcl_CreateObjCommand(interpreter, "mphelpertool_notify1", MPHelperTool_Notifications_Command_One, NULL, NULL);
+	if (Tcl_PkgProvide(interpreter, "mphelpertool_notify1", "1.0") != TCL_OK) {
+		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(interpreter));
+		retval = coreFoundationUnknownErr;
+		//For Dbg
+		CFDictionaryAddValue(response, CFSTR("mphnotone"), CFSTR("NO"));
+	}
+	else {
+		CFDictionaryAddValue(response, CFSTR("mphnotone"), CFSTR("YES"));
+	}
+	
 	
 	NSString * interpInitFilePath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kInterpInitFilePath));
 	if (interpInitFilePath == nil) {
@@ -161,9 +301,9 @@ static OSStatus DoEvaluateTclString (
 		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), (CFStringRef)result);
 	}
 	
-
+	
 	assert(response != NULL);
-
+	
 	
 	return retval;
 }
@@ -179,13 +319,13 @@ static OSStatus DoEvaluateTclString (
  */
 
 static const BASCommandProc kMPHelperCommandProcs[] = {
-	DoEvaluateTclString,	
-	NULL
+DoEvaluateTclString,	
+NULL
 };
 
 int main(int argc, char const * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-
+	
 	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 	
 	[pool release];
