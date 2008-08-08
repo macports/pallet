@@ -40,6 +40,14 @@
 	//Tcl interpInit.tcl Path
 	#define kInterpInitFilePath			"InterpInitTclFilePath"		//CFString
 
+	//File Descriptor for server file
+	#define kServerFileDescriptor		"ServerFileDescriptor"		//CFNumber
+
+
+
+
+
+
 	//response keys
 	#define kTclStringEvaluationResult	"TclStringEvaluationResult"		//CFString
 

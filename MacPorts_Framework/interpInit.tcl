@@ -9,7 +9,7 @@
 
 package require macports
 package require simplelog
-package require mphelpertool_notify1
+
 
 
 #Set ui_options to log all messages to stdout and notify system
@@ -83,6 +83,7 @@ proc ui_channels {priority} {
 set logDest [ open "/Users/Armahg/Desktop/logFile.txt" w]
 puts $logDest "SOMETHING DEY HERE"
 simplelog "SOMETHING DEY HERE"
+
 
 #Modifying UI initialization to enable notifications
 #Redefine ui_$pritority to throw global notifications

@@ -80,7 +80,7 @@ int MPHelperTool_Notifications_Command_One
 	}
 	else {
 		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"Attempted to initialize writeHandle");
-		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"without having set notificationsFileDescriptor value");
+		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"without having set proper notificationsFileDescriptor value");
 	}
 	
 	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting writing to notification socket");
@@ -146,13 +146,23 @@ int SimpleLog_Command
 	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting simplelog Logging");
 	assert( err == 0);
 	
+	if (hasSetFileDescriptor) {
+		err = asl_NSLog(logClient, logMsg, ASL_LEVEL_DEBUG, @"Setting file descriptor");
+		assert(err == 0);
+		asl_add_log_file(logClient, notificationsFileDescriptor);
+	}
+	else{
+		err = asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"Unable to log to file descriptor");
+		assert(err == 0);
+	}
+	
 	++objv, --objc;
 	
 	if (objc) {
 		data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
 		[dHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
-		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @" %@ " , data);
-		assert(err == 0);
+		//err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @" %@ " , data);
+		//assert(err == 0);
 		
 		returnCode = TCL_OK;
 	}
@@ -169,7 +179,7 @@ static OSStatus DoEvaluateTclString
 (
  AuthorizationRef			auth,
  const void *				userData,
- CFDictionaryRef				request,
+ CFDictionaryRef			request,
  CFMutableDictionaryRef		response,
  aslclient					asl,
  aslmsg						aslMsg
@@ -187,6 +197,14 @@ static OSStatus DoEvaluateTclString
 	//asl may be null
 	//aslMsg may be null
 	
+	//Set the file Descriptor here
+	NSNumber * num = (NSNumber *) (CFNumberRef) CFDictionaryGetValue(request, CFSTR(kServerFileDescriptor));
+	notificationsFileDescriptor = [num intValue];
+	asl_NSLog(asl, aslMsg, ASL_LEVEL_DEBUG, @"Setting file descriptor with value %i", notificationsFileDescriptor);
+	if (notificationsFileDescriptor > 0) {
+		hasSetFileDescriptor = YES;
+	}
+	
 	//Get the string that was passed in the request dictionary
 	NSString *  tclCmd = (NSString *) (CFStringRef)CFDictionaryGetValue(request, CFSTR(kTclStringToBeEvaluated));
 	if (tclCmd == nil) {
@@ -201,6 +219,7 @@ static OSStatus DoEvaluateTclString
 	else
 		CFDictionaryAddValue(response, CFSTR("TclCommandInput"), (CFStringRef)tclCmd);
 	
+
 	//Initialize Tcl Interpreter 
 	Tcl_Interp * interpreter = Tcl_CreateInterp();
 	if(interpreter == NULL) {
@@ -240,6 +259,7 @@ static OSStatus DoEvaluateTclString
 		CFDictionaryAddValue(response, CFSTR("MPFastload"), CFSTR("YES"));
 	}
 	
+
 	//Add simplelog tcl command
 	Tcl_CreateObjCommand(interpreter, "simplelog", SimpleLog_Command, NULL, NULL);
 	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {

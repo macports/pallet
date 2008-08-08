@@ -504,11 +504,18 @@ static NSString * tclInterpreterPkgPath = nil;
 	NSString * interpInitPath = [[NSBundle bundleForClass:[MPInterpreter class]] 
 								 pathForResource:@"interpInit" ofType:@"tcl"];
 	
+	int serverFileDesc = [[MPNotifications sharedListener] getServerFileDescriptor];
+	
+	if (serverFileDesc < 0)
+		NSLog(@"Uninitialized file descriptor for HelperTool IPC");
+
+	
 	request = [NSDictionary dictionaryWithObjectsAndKeys:
 			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
 			   statement, @kTclStringToBeEvaluated, 
 			   tclInterpreterPkgPath, @kTclInterpreterInitPath ,
-			   interpInitPath, @kInterpInitFilePath, nil];
+			   interpInitPath, @kInterpInitFilePath,
+			   [NSNumber numberWithInt:serverFileDesc], @kServerFileDescriptor, nil];
 	
 	assert(request != NULL);
 	
@@ -540,12 +547,16 @@ static NSString * tclInterpreterPkgPath = nil;
 		//NSLog(@"mpBundle is %@", [mpBundle description]);
 		
 		NSString * installToolPath = [mpBundle pathForResource:@"MPHelperInstallTool" ofType:nil];
+		assert(installToolPath != nil);
 		NSURL * installToolURL = [NSURL fileURLWithPath:installToolPath];
+		assert(installToolURL != nil);
 		
 		NSString * helperToolPath = [mpBundle pathForResource:@"MPHelperTool" ofType:nil];
+		assert(helperToolPath != nil);
 		NSURL * helperToolURL = [NSURL fileURLWithPath:helperToolPath];
+		assert(helperToolURL != nil);
 		//NSLog(@"Helper and Install tool URL's are \n %@ and \n %@ respectively",
-			//  [helperToolURL description] , [installToolURL description]);
+		//	  [helperToolURL description] , [installToolURL description]);
 		
 		
 		err = BASFixFailure(internalMacPortsAuthRef, 

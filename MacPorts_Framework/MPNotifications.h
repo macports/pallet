@@ -142,7 +142,7 @@
 //These methods aren't for the public ... yet ...
 -(void)setPerformingTclCommand:(NSString *)string;
 -(NSString *)performingTclCommand;
-
+-(int) getServerFileDescriptor;
 
 
 @end
