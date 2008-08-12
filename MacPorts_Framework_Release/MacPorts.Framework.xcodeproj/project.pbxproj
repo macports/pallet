@@ -38,7 +38,6 @@
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
-		6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */ = {isa = PBXBuildFile; fileRef = 6E22BD410E4A30C700CA76C4 /* mycredentials */; };
 		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
@@ -47,7 +46,6 @@
 		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
 		6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
 		6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
-		6EB6FB270E448EE20057962C /* TestFile.test in Resources */ = {isa = PBXBuildFile; fileRef = 6EB6FB260E448EE20057962C /* TestFile.test */; };
 		6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; };
 		6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
@@ -140,7 +138,6 @@
 		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
-		6E22BD410E4A30C700CA76C4 /* mycredentials */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mycredentials; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -148,7 +145,6 @@
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
-		6EB6FB260E448EE20057962C /* TestFile.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestFile.test; sourceTree = "<group>"; };
 		6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPHelperTool.m.old2; sourceTree = "<group>"; };
 		6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterProtocol.h; sourceTree = "<group>"; };
 		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -278,7 +274,6 @@
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
 				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
-				6EB6FB260E448EE20057962C /* TestFile.test */,
 				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
 				6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */,
 			);
@@ -353,7 +348,6 @@
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
 				6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */,
 				6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */,
-				6E22BD410E4A30C700CA76C4 /* mycredentials */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -433,7 +427,6 @@
 				489DD8F00C94365F00595506 /* Sources */,
 				489DD8F10C94365F00595506 /* Frameworks */,
 				489DD8F20C94365F00595506 /* ShellScript */,
-				6E22BC280E4A06C000CA76C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -570,9 +563,7 @@
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
-				6EB6FB270E448EE20057962C /* TestFile.test in Resources */,
 				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
-				6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */,
 				6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,19 +584,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n\n\n";
-		};
-		6E22BC280E4A06C000CA76C4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#chmod  777 $BUILT_PRODUCTS_DIR/Test.octest \n#chmod -R 777 $BUILT_PRODUCTS_DIR/Test.octest \n#ls -lR $BUILT_PRODUCTS_DIR/Test.octest\n";
 		};
 		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
