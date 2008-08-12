@@ -26,8 +26,8 @@
  *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
  *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-						   *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-						   *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *	POSSIBILITY OF SUCH DAMAGE.
@@ -36,19 +36,18 @@
 /*!
  @header
  The MPInterpreter class allows access to a shared per-thread Tcl interpreter for
- execution of MacPorts commands from upper levels in the API.
+ execution of MacPorts commands from upper levels in the API. This class is intended
+ for internal use. Framework users should not have to interact with it directly in
+ order to perform port operations.
  */
 
 #import <Cocoa/Cocoa.h>
 #import <Security/Security.h>
 #include <tcl.h>  
 #import "MPNotifications.h"
-#import "MPInterpreterProtocol.h"
 
 
 //Defining some flags for MPHelperTool
-#define SELF_REPAIR @"--self-repair"
-#define REC_COUNT @"--rec-count"
 #define MP_HELPER @"MPHelperTool"
 
 #define	MPPackage				@"macports"
@@ -67,9 +66,6 @@
 
 
 
-/////////////////////////////////////////////////////////////////
-#pragma mark ***** Globals
-
 
 
 /*!
@@ -79,8 +75,8 @@
  is where the Objective-C API meets the Tcl command line. It is a per-thread interpreter to allow
  users of the API to multi-thread their programs with relative ease.
  */
-@interface MPInterpreter : NSObject <MPInterpreterProtocol> {
-
+@interface MPInterpreter : NSObject  {
+	
 	Tcl_Interp* _interpreter;
 	NSString * helperToolInterpCommand;
 	NSString * helperToolCommandResult;
@@ -94,11 +90,13 @@
  */
 + (MPInterpreter *)sharedInterpreter;
 
-- (Tcl_Interp *) sharedTclInterpreter;
-- (int) execute:(NSString *)pathToExecutable withArgs:(NSArray*)args;
 
+/*!
+ @brief Return singleton shared MPInterpreter instance for specified macports tcl package path
+ @param path An NSString specifying the absolute path for the macports tcl package
+ */
 + (MPInterpreter *)sharedInterpreterWithPkgPath:(NSString *)path;
-- (id) initWithPkgPath:(NSString *)path;
+
 
 
 #pragma Port Operations
@@ -107,53 +105,18 @@
 
 #pragma Utilities
 
-/*!
- @brief Returns the NSstring result of evaluating a Tcl expression
- @param  statement An NSArray containing the Tcl expression
- @discussion For example, here is the header definition of a MacPorts Tcl API
- call proc macports::getindex {source}. This is how to call this procedure
- in Tcl: [macports::getindex $source]. Calling the macports::getindex
- procedure from Objective-C code with -evaluateArrayAsString however takes the following form:
- 
- [SomeMPInterpreterObject evaluateArrayAsString:[NSArray arrayWithObjects:
-	@"return [macports::getindex",
-	[NSString stringWithString:@"SomeValidMacPortsSourcePath"],
-	@"]",
-	nil]];
- 
- Each element in the array is an NSString. Note the "return" in the first element of the statement
- NSArray.
- */
-//- (NSString *)evaluateArrayAsString:(NSArray *)statement;
+
 /*!
  @brief Returns the NSString result of evaluating a Tcl expression
  @param  statement An NSString containing the Tcl expression
- @discussion Using the macports::getindex {source} procedure as an example (see discussion for 
- -evaluateArrayAsString), we have the following Objective-C form for calling the macports::getindex
- procedure:
+ @param	 mportError A reference pointer to the NSError object which will be used for error handling.
+ @discussion Using the macports::getindex {source} procedure as an example we 
+ have the following Objective-C form for calling the macports::getindex procedure:
  
  [SomeMPInterpreterObject evaluateStringAsString:
-							[NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
+ [NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
  */
 - (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError **)mportError;
-
-
-//Redoing evaluateStringAsString and evaluateArrayAsString to return a two element NSDictionary.
-//First element will have key TCL_RETURN_CODE and be an NSNumber with int value of TCL_OK,
-//TCL_RETURN , TCL_ERROR etc. The second key will be TCL_RETURN_STRING and have the same NSString
-//value as is being currently returned. This is going to require a lot of refactoring and changing
-//stuff so i'm only going to document and remove old code after new code is working and i've done
-//a commit. Obtaining the return code will make error handling in the framework much less
-//cumbersome
-//- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement;
-//- (NSDictionary *)evaluateStringAsString:(NSString *)statement;
-
-
-//After eliminating evaluateArrayAsString ... I'm wondering if I should take jberry's advice
-//hmm ... well this method needs to return two pieces of information ... the string
-//and an indicator of success .. oh wait ... I can jut check the returned error variable
-//for a successful method ... back to Randall's implementation with some tweaks then ... 
-
 
 
 /*!
@@ -189,11 +152,13 @@
  */
 - (NSString *)getVariableAsString:(NSString *)variable;
 
-// METHODS FOR INTERNAL USE ONLY
--(void)setAuthorizationRef:(AuthorizationRef)authRef;
--(BOOL)checkIfAuthorized;
 
-//For testing helper tools
+// METHODS FOR INTERNAL USE ONLY
+- (id) initWithPkgPath:(NSString *)path;
+- (Tcl_Interp *) sharedInternalTclInterpreter;
+- (int) execute:(NSString *)pathToExecutable withArgs:(NSArray*)args;
+- (void)setAuthorizationRef:(AuthorizationRef)authRef;
+- (BOOL)checkIfAuthorized;
 -(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement;
--(NSString *)evaluateStringWithSimpleMPDOPHelperTool:(NSString *)statement;
+
 @end

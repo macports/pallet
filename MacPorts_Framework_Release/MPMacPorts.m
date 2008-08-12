@@ -116,7 +116,7 @@
 	//result = [interpreter evaluateStringWithMPHelperTool:@"mportsync"];
 	//[interpreter evaluateStringWithSimpleMPDOPHelperTool:@"mportsync"];
 	
-	result = [interpreter getTclCommandResult];
+	//result = [interpreter getTclCommandResult];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
@@ -264,8 +264,9 @@ withVariants:(NSArray *)variants
 //Internal Method for setting our Authorization Reference
 - (void) setAuthorizationRef { 
 	if ([[self delegate] respondsToSelector:@selector(getAuthorizationRef)]) {
-		[interpreter setAuthorizationRef:
-		 [[self delegate] performSelector:@selector(getAuthorizationRef)]];
+		
+		AuthorizationRef clientRef = (AuthorizationRef) [[self delegate] performSelector:@selector(getAuthorizationRef)];
+		[interpreter setAuthorizationRef:clientRef];
 	}
 	//else { //I think i'll iniitalizeAuthorization lazily .. i.e. right
 	//before using helper tool
