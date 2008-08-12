@@ -1,0 +1,27 @@
+TO DO LIST (because there seems to be too much to get done haha)
+
+
+
+Get feedback on Notifications idea and implementation
+
+
+Test Notifications Library ... how? ... use the Tester ...
+and see if the rest of the tests build
+
+Create my own branch of src ? Yes ... do that and add  your patches
+
+
+Guide like documentation
+
+Scrub Code
+
+Sanitize NSString Code
+
+Ask Randall to look at perform exec methods
+
+Rearrange methods orderings in both .h and .m files
+and add appropriate pragma marks for more readablity
+
+
+ASK FOR HOW TO TURN ON / OFF VARIOUS MODES FOR UI_$PRIORITY I.E.
+DEBUG, INFO ETC.
