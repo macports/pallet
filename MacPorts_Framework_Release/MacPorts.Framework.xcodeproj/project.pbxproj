@@ -59,13 +59,6 @@
 		6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260960E4272D20013BC48 /* MPHelperCommon.c */; };
 		6EC2609B0E4273920013BC48 /* BetterAuthorizationSampleLibInstallTool.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */; };
 		6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */; };
-		6ECD96FB0E465BF100488335 /* SimpleDOMPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */; };
-		6ECD97090E465C2A00488335 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
-		6ECD970E0E465C7800488335 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
-		6ECD970F0E465C7800488335 /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
-		6ECD97120E465C8500488335 /* SimpleDOMPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */; };
-		6ECD97180E465CB300488335 /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; };
-		6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */; };
 		6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD98100E484E8400488335 /* MPHelperTool.m */; };
 		6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */; };
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
@@ -92,13 +85,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6EC260860E426FF10013BC48;
 			remoteInfo = MPHelperInstallTool;
-		};
-		6ECD97400E465F7400488335 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6ECD97040E465C0F00488335;
-			remoteInfo = SimpleDOMPHelperTool;
 		};
 		6ED12A520E3E55A50026773D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -145,7 +131,6 @@
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
-		6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPHelperTool.m.old2; sourceTree = "<group>"; };
 		6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterProtocol.h; sourceTree = "<group>"; };
 		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
@@ -155,8 +140,6 @@
 		6EC260950E4272D20013BC48 /* MPHelperCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperCommon.h; sourceTree = "<group>"; };
 		6EC260960E4272D20013BC48 /* MPHelperCommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MPHelperCommon.c; sourceTree = "<group>"; };
 		6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDOMPHelperTool.m; sourceTree = "<group>"; };
-		6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleDOMPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECD970D0E465C7800488335 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6ECD98100E484E8400488335 /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
 		6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperToolTest.h; sourceTree = "<group>"; };
@@ -185,16 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6ECD97030E465C0F00488335 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6ECD97090E465C2A00488335 /* Foundation.framework in Frameworks */,
-				6ECD970E0E465C7800488335 /* Security.framework in Frameworks */,
-				6ECD970F0E465C7800488335 /* Tcl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +202,6 @@
 				489DD8F40C94365F00595506 /* Test.octest */,
 				6ED12A4A0E3E552F0026773D /* MPHelperTool */,
 				6EC260870E426FF10013BC48 /* MPHelperInstallTool */,
-				6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -369,8 +341,6 @@
 				6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */,
 				6EC260950E4272D20013BC48 /* MPHelperCommon.h */,
 				6EC260960E4272D20013BC48 /* MPHelperCommon.c */,
-				6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */,
-				6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */,
 				6ECD98100E484E8400488335 /* MPHelperTool.m */,
 			);
 			name = MPHelperTools;
@@ -379,14 +349,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6ECD97190E465CD100488335 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6ECD97180E465CB300488335 /* MPInterpreterProtocol.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6ED12AD30E3E9AE10026773D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,23 +416,6 @@
 			productReference = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */;
 			productType = "com.apple.product-type.tool";
 		};
-		6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6ECD970A0E465C4900488335 /* Build configuration list for PBXNativeTarget "SimpleDOMPHelperTool" */;
-			buildPhases = (
-				6ECD97190E465CD100488335 /* Headers */,
-				6ECD97020E465C0F00488335 /* Sources */,
-				6ECD97030E465C0F00488335 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SimpleDOMPHelperTool;
-			productName = SimpleDOMPHelperTool;
-			productReference = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */;
-			productType = "com.apple.product-type.tool";
-		};
 		6ED12A490E3E552F0026773D /* MPHelperTool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6ED12A500E3E55660026773D /* Build configuration list for PBXNativeTarget "MPHelperTool" */;
@@ -504,7 +449,6 @@
 			dependencies = (
 				6ED12A530E3E55A50026773D /* PBXTargetDependency */,
 				6EC2608C0E4270110013BC48 /* PBXTargetDependency */,
-				6ECD97410E465F7400488335 /* PBXTargetDependency */,
 			);
 			name = MacPorts;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -528,7 +472,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */,
 				6EC260860E426FF10013BC48 /* MPHelperInstallTool */,
 				6ED12A490E3E552F0026773D /* MPHelperTool */,
 				8DC2EF4F0486A6940098B216 /* MacPorts */,
@@ -557,7 +500,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */,
 				6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */,
 				6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */,
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
@@ -632,14 +574,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6ECD97020E465C0F00488335 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6ECD97120E465C8500488335 /* SimpleDOMPHelperTool.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6ED12A470E3E552F0026773D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,7 +598,6 @@
 				6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */,
 				6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
 				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
-				6ECD96FB0E465BF100488335 /* SimpleDOMPHelperTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,11 +613,6 @@
 			isa = PBXTargetDependency;
 			target = 6EC260860E426FF10013BC48 /* MPHelperInstallTool */;
 			targetProxy = 6EC2608B0E4270110013BC48 /* PBXContainerItemProxy */;
-		};
-		6ECD97410E465F7400488335 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */;
-			targetProxy = 6ECD97400E465F7400488335 /* PBXContainerItemProxy */;
 		};
 		6ED12A530E3E55A50026773D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -880,36 +808,6 @@
 			};
 			name = Release;
 		};
-		6ECD97070E465C1100488335 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = SimpleDOMPHelperTool;
-			};
-			name = Debug;
-		};
-		6ECD97080E465C1100488335 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = SimpleDOMPHelperTool;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		6ED12A4C0E3E55300026773D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -996,15 +894,6 @@
 			buildConfigurations = (
 				6EC260890E426FF30013BC48 /* Debug */,
 				6EC2608A0E426FF30013BC48 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6ECD970A0E465C4900488335 /* Build configuration list for PBXNativeTarget "SimpleDOMPHelperTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6ECD97070E465C1100488335 /* Debug */,
-				6ECD97080E465C1100488335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
