@@ -190,7 +190,7 @@
 //Used for mportactivate, mportdeactivate and mportuninstall
 -(void)execPortProc:(NSString *)procedure 
 		withOptions:(NSArray *)options 
-		withVersion:(NSString *)version
+			version:(NSString *)version
 			  error:(NSError **)execError {
 	
 	NSString *opts, *v;
@@ -265,16 +265,16 @@
 
 #pragma mark -
 # pragma mark Exec methods 
-- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version error:mError];
+- (void)uninstallWithOptions:(NSArray *)options version:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportuninstall" withOptions:options version:version error:mError];
 }
 
-- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportactivate" withOptions:options withVersion:version error:mError];
+- (void)activateWithOptions:(NSArray *)options version:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportactivate" withOptions:options version:version error:mError];
 }
 
-- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version error:mError];
+- (void)deactivateWithOptions:(NSArray *)options version:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportdeactivate" withOptions:options version:version error:mError];
 }
 
 -(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {

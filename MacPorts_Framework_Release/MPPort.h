@@ -110,11 +110,6 @@
  */
 - (NSArray *)depends;
 
-//Wrapper method for the 3 functions below
-- (void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)execError;
-//Even more generic method to execute a Tcl command with any given number of args
-- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError;
-
 
 /*!
  @brief Deactivates and uninstalls this MPPort from the MacPorts system
@@ -122,7 +117,7 @@
  @param version An NSString indicating which version of this port to uninstall
  @discussion version should NOT be nil
  */
-- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError**)mpError;
+- (void)uninstallWithOptions:(NSArray *)options version:(NSString *)version error:(NSError**)mpError;
 /*!
  @brief Activates an installed MPPort.
  @param options An NSArray of NSStrings of options for port activation
@@ -132,7 +127,7 @@
  of a port. This means activation of a port should occur only if the port
  had been previously deactivated after a default installation.
  */
-- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError**)mpError;
+- (void)activateWithOptions:(NSArray *)options version:(NSString *)version error:(NSError**)mpError;
 /*!
  @brief Deactivates an installed  MPPort.
  @param options An NSArray of NSStrings of options for port deactivation
@@ -140,7 +135,7 @@
  @discussion version should NOT be nil. Only installed and active ports
  should be deactivated
 */
-- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError**)mpError;
+- (void)deactivateWithOptions:(NSArray *)options version:(NSString *)version error:(NSError**)mpError;
 
 
 /*!
@@ -287,4 +282,9 @@
 + (Class)classForKeyedUnarchiver;
 - (Class)classForKeyedArchiver;
 
+
+//Wrapper method for activate, deactivate and uninstall operations
+- (void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options version:(NSString *)version error:(NSError **)execError;
+//Even more generic method to execute a Tcl command with any given number of args
+- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError;
 @end

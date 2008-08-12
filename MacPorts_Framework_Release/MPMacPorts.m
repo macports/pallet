@@ -107,26 +107,26 @@
 	NSString * result = nil;
 	
 	// This needs to throw an exception if things don't go well
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Started" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
 	
 	result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Finished" object:nil];
 
 	return result;
 }
 
 - (void)selfUpdate:(NSError**)sError {
 	//Also needs to throw an exception if things don't go well
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateStarted" object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Started" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
 	
 	[interpreter evaluateStringAsString:@"macports::selfupdate" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateFinished" object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Finished" object:nil];
 }
 
 
