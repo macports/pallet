@@ -155,7 +155,7 @@
  
  ADD SOMETHING HERE ABOUT VARIANTS AND OPTIONS
  */
--(void)exec:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)execError;
+-(void)exec:(NSString *)target withOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)execError;
 
 /*Convenience methods based on the exec: withTarget: method
  These methods and -exec: need to be rewritten to handle variants
@@ -170,32 +170,32 @@
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Builds this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)buildWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Tests this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)testWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Installs this port to a temporary directory
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)destrootWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Installs this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  @discussion Installing a port automatically activates it.
  */
--(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)installWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Archives port for later unarchving. 
  @discussion Archive mode must be enabled for this command to work.
@@ -203,53 +203,53 @@
  located in ${prefix}/etc/macports/macports.conf. With archive mode enabled,
  binary archives are created automatically whenever an install is performed.
  */
--(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)archiveWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an internet-enabled disk image containing OS X package of this
  port
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createDmgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Create an internet-enabled disk image containing an OS X metapackage of this
  port
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createMdmgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an OS X installer package of this port
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createPkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an OS X installer metapackage of this this port and 
  its dependencies
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createMpkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates and RPM binary package of this port. This is similar to a
  tgz "archive".
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createRpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates a DEB binary package of this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createDpkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an SRPM source package of this port, similar to a xar "portpkg".
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createSrpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 
 /*!
  @brief Sets the attributes of this MPPort using the given string

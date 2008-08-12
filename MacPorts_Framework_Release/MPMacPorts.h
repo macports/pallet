@@ -148,7 +148,7 @@
  @Discussion See -exec: withOptions: withVariants: in @link //apple_ref/doc/header/MPPort.h MPPort @/link for discussion
  of this method.
  */
-- (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)execError;
+- (void)exec:(MPPort *)port withTarget:(NSString *)target options:(NSArray *)options variants:(NSArray *)variants error:(NSError **)execError;
 
 /*!
  @brief Returns the NSString path to the directory where ports are installed.

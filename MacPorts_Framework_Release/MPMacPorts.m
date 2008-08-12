@@ -112,12 +112,6 @@
 	
 	result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
 	
-	//Testing DO implementation
-	//result = [interpreter evaluateStringWithMPHelperTool:@"mportsync"];
-	//[interpreter evaluateStringWithSimpleMPDOPHelperTool:@"mportsync"];
-	
-	//result = [interpreter getTclCommandResult];
-	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
 
@@ -149,8 +143,6 @@
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName {
-	//Should I notify for searches? Will do for now just in case
-	//[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_search"];
 	
 	NSMutableDictionary *result, *newResult;
 	NSEnumerator *enumerator;
@@ -161,17 +153,7 @@
 	} else {
 		caseSensitivity = @"no";
 	}
-	/*result = [NSMutableDictionary dictionaryWithDictionary:
-			  [interpreter dictionaryFromTclListAsString:
-			   [[interpreter evaluateArrayAsString:
-				[NSArray arrayWithObjects:
-										  @"return [mportsearch",
-										  query,
-										  caseSensitivity,
-										  style,
-										  fieldName,
-										  @"]",
-				 nil]] objectForKey:TCL_RETURN_STRING] ]];*/
+
 	NSError * sError;
 	
 	result = [NSMutableDictionary dictionaryWithDictionary:
@@ -187,7 +169,7 @@
 		[newResult setObject:[[MPPort alloc] initWithTclListAsString:[result objectForKey:key]] forKey:key];
 	}
 	
-	//[[MPNotifications sharedListener] setPerformingTclCommand:@""];
+
 	return [NSDictionary dictionaryWithDictionary:newResult];
 }
 
@@ -198,11 +180,11 @@
 
 - (void)exec:(MPPort *)port 
   withTarget:(NSString *)target 
- withOptions:(NSArray *)options 
-withVariants:(NSArray *)variants
+	 options:(NSArray *)options 
+	variants:(NSArray *)variants
 	   error:(NSError **)execError
 {
-	[port exec:target withOptions:options withVariants:variants error:execError ];
+	[port exec:target withOptions:options variants:variants error:execError ];
 }
 
 #pragma settings
@@ -231,11 +213,11 @@ withVariants:(NSArray *)variants
 
 
 - (NSURL *)pathToPortIndex:(NSString *)source {
-	NSError * pError;
+	
 	return [NSURL fileURLWithPath:
 			[interpreter evaluateStringAsString:
 			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]
-										  error:&pError]];
+										  error:nil]];
 }
 
 
