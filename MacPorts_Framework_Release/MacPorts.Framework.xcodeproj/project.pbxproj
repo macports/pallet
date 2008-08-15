@@ -40,6 +40,7 @@
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
 		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
+		6E3345350E54AF14008A2F6C /* MPPortManipulationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
@@ -124,6 +125,8 @@
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
+		6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortManipulationTest.h; sourceTree = "<group>"; };
+		6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortManipulationTest.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
 				6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */,
 				6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */,
+				6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */,
+				6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */,
 				6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */,
 				6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */,
+				6E3345350E54AF14008A2F6C /* MPPortManipulationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,67 +53,8 @@ BOOL hasSetFileDescriptor = NO;
 
 
 #pragma mark Tcl Commands
-int MPHelperTool_Notifications_Command_One 
-(
- ClientData clientData, 
- Tcl_Interp *interpreter, 
- int objc, 
- Tcl_Obj *CONST objv[]
-) 
-{
-	NSString * data;
-	NSFileHandle * writeHandle;
-	int returnCode = TCL_ERROR;
-	int err;
-	
-	//asl logging stuff
-	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
-	assert(logMsg != NULL);
-	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
-	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
-	
-	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
-	assert(logClient != NULL);
-	
-	if (hasSetFileDescriptor) {
-		writeHandle = [[NSFileHandle alloc] initWithFileDescriptor:notificationsFileDescriptor];
-	}
-	else {
-		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"Attempted to initialize writeHandle");
-		asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"without having set proper notificationsFileDescriptor value");
-	}
-	
-	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting writing to notification socket");
-	assert( err == 0);
-	
-	++objv, --objc;
-	
-	if (objc) {
-		data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
-		
-		//TO DO: Don't just send in raw data ... later i'll want to send in nicely
-		//formatted string or do some processing so the full notifications dictionary
-		//is sent. For now, I just want to get something functional going first
-		
-		//This is a blocking operation. I don't mind that because I'll be doing lots
-		//of heavy lifting on the MPNotifications side to ensure that it only reads
-		//when there is no writing activity taking place etc.
-		[writeHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
-		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Wrote %@ " , data);
-		assert(err == 0);
-		
-		returnCode = TCL_OK;
-	}
-	
-	asl_close(logClient);
-	[writeHandle release];
-	return returnCode;
-}
 
-
-
-
-
+//For now we just log to Console ... soon we will be doing fully fledged IPC
 int SimpleLog_Command 
 (
  ClientData clientData, 
@@ -122,13 +63,6 @@ int SimpleLog_Command
  Tcl_Obj *CONST objv[]
 ) 
 {
-	
-	//NS writing to file stuff
-	NSString * data;
-	NSFileHandle * dHandle;
-	NSString * destination = @"/Users/Armahg/Desktop/logFile2.txt";
-	dHandle = [NSFileHandle fileHandleForWritingAtPath:destination];
-	[dHandle truncateFileAtOffset:[dHandle seekToEndOfFile]];
 	
 	int returnCode = TCL_ERROR;
 	int err;
@@ -146,23 +80,12 @@ int SimpleLog_Command
 	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting simplelog Logging");
 	assert( err == 0);
 	
-	if (hasSetFileDescriptor) {
-		err = asl_NSLog(logClient, logMsg, ASL_LEVEL_DEBUG, @"Setting file descriptor");
-		assert(err == 0);
-		asl_add_log_file(logClient, notificationsFileDescriptor);
-	}
-	else{
-		err = asl_NSLog(logClient, logMsg, ASL_LEVEL_ERR, @"Unable to log to file descriptor");
-		assert(err == 0);
-	}
-	
 	++objv, --objc;
 	
 	if (objc) {
-		data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
-		[dHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
-		//err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @" %@ " , data);
-		//assert(err == 0);
+		NSString * data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
+		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @" %@ " , data);
+		assert(err == 0);
 		
 		returnCode = TCL_OK;
 	}
@@ -220,11 +143,10 @@ static OSStatus DoEvaluateTclString
 		CFDictionaryAddValue(response, CFSTR("TclCommandInput"), (CFStringRef)tclCmd);
 	
 
-	//Initialize Tcl Interpreter 
+	//Create Tcl Interpreter 
 	Tcl_Interp * interpreter = Tcl_CreateInterp();
 	if(interpreter == NULL) {
 		NSLog(@"Error in Tcl_CreateInterp, aborting.");
-		
 		//For Debugging
 		CFDictionaryAddValue(response, CFSTR("TclInterpreterCreate"), CFSTR("NO"));
 		retval =  coreFoundationUnknownErr;
@@ -233,6 +155,8 @@ static OSStatus DoEvaluateTclString
 		CFDictionaryAddValue(response, CFSTR("TclInterpreterCreate"), CFSTR("YES"));
 	}
 	
+	
+	//Initialize Tcl Interpreter
 	if(Tcl_Init(interpreter) == TCL_ERROR) {
 		NSLog(@"Error in Tcl_Init: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
@@ -245,6 +169,7 @@ static OSStatus DoEvaluateTclString
 	}
 	
 	
+	//Load macports1.0 package
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:tclPkgPath]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
 	if(Tcl_Eval(interpreter, [mport_fastload UTF8String]) == TCL_ERROR) {
@@ -271,20 +196,9 @@ static OSStatus DoEvaluateTclString
 	else {
 		CFDictionaryAddValue(response, CFSTR("simplelog"), CFSTR("YES"));
 	}
+		
 	
-	//Add mphelpertool_notification_one tcl command
-	Tcl_CreateObjCommand(interpreter, "mphelpertool_notify1", MPHelperTool_Notifications_Command_One, NULL, NULL);
-	if (Tcl_PkgProvide(interpreter, "mphelpertool_notify1", "1.0") != TCL_OK) {
-		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(interpreter));
-		retval = coreFoundationUnknownErr;
-		//For Dbg
-		CFDictionaryAddValue(response, CFSTR("mphnotone"), CFSTR("NO"));
-	}
-	else {
-		CFDictionaryAddValue(response, CFSTR("mphnotone"), CFSTR("YES"));
-	}
-	
-	
+	//Get path for and load interpInit.tcl file to Tcl Interpreter
 	NSString * interpInitFilePath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kInterpInitFilePath));
 	if (interpInitFilePath == nil) {
 		CFDictionaryAddValue(response, CFSTR("interpInitFilePath"), CFSTR("NO"));
@@ -292,7 +206,6 @@ static OSStatus DoEvaluateTclString
 	}
 	else
 		CFDictionaryAddValue(response, CFSTR("interpInitFilePath"), (CFStringRef)interpInitFilePath);
-	
 	if( Tcl_EvalFile(interpreter, [interpInitFilePath UTF8String]) == TCL_ERROR) {
 		NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
@@ -306,24 +219,30 @@ static OSStatus DoEvaluateTclString
 	
 	///Evaluate String and set return string value
 	NSString * result;
-	
-	if( Tcl_Eval(interpreter, [tclCmd UTF8String]) == TCL_ERROR ) {
+	int retCode = Tcl_Eval(interpreter, [tclCmd UTF8String]);
+	NSNumber * retNum = [NSNumber numberWithInt:retCode];
+	if(  retCode == TCL_ERROR ) {
 		//Do some error handling
 		retval = coreFoundationUnknownErr;
 		result = [@"TCL COMMAND EXECUTION FAILED BOO!:" 
 				  stringByAppendingString:[NSString stringWithUTF8String:Tcl_GetStringResult(interpreter)]];
 		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), (CFStringRef)result);
+		
+		//Set the Tcl return code
+		CFDictionaryAddValue(response, CFSTR(kTclReturnCode), (CFNumberRef)retNum);
 	}
 	else {
 		retval = noErr;
 		result = [@"TCL COMMAND EXECUTION SUCCEEDED YAAY!:" 
 				  stringByAppendingString:[NSString stringWithUTF8String:Tcl_GetStringResult(interpreter)]];
 		CFDictionaryAddValue(response, CFSTR(kTclStringEvaluationResult), (CFStringRef)result);
+		
+		//Set the Tcl return code
+		CFDictionaryAddValue(response, CFSTR(kTclReturnCode), (CFNumberRef)retNum);
 	}
 	
 	
 	assert(response != NULL);
-	
 	
 	return retval;
 }

@@ -43,9 +43,7 @@
 
 - (void)testInitialization;
 - (void)testGetVariableAsArray;
-//- (void)testMPHelperTool;
-//- (void)testMutableDictionaryFromTclListAsString;
 //- (void)testEvaluateStringAsString;
-
+//- (void)testGetVariableAsString;
 
 @end

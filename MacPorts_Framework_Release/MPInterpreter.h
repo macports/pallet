@@ -64,7 +64,9 @@
 #define MPMETHOD @"Method"
 #define MPMESSAGE @"Message"
 
-
+//Error codes for helper Tool
+#define MPHELPINSTFAILED	0  /*Installation of helper tool failed*/
+#define MPHELPUSERCANCELLED 1 /*User cancelled privileged operation.*/
 
 
 
@@ -109,7 +111,7 @@
 /*!
  @brief Returns the NSString result of evaluating a Tcl expression
  @param  statement An NSString containing the Tcl expression
- @param	 mportError A reference pointer to the NSError object which will be used for error handling.
+ @param	 mportError A reference pointer to the NSError object which will be used for error handling; should not be nil.
  @discussion Using the macports::getindex {source} procedure as an example we 
  have the following Objective-C form for calling the macports::getindex procedure:
  
@@ -117,6 +119,21 @@
  [NSString stringWithString:@"return [macports::getindex SomeValidMacPortsSourcePath]"]];
  */
 - (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError **)mportError;
+
+/*!
+ @brief Returns the NSString result of evaluating a Tcl expression executed as root if necessary
+ @param  statement An NSString containing the Tcl expression
+ @param	 mportError A reference pointer to the NSError object which will be used for error handling; should not be nil.
+ @discussion This method is almost identical to -evaluateStringAsString. The only difference is that
+ it re-evaluates the Tcl expression with root privileges if the first attempt at evaluation
+ returns an error due to insufficient privileges. The -sync, -selfupdate and port exec methods
+ use this method for their operations.
+ 
+ [SomeMPInterpreterObject evaluateStringAsString:
+ [NSString stringWithString:@"return [macports::mportselfupdate]"]];
+ */
+- (NSString *)evaluateStringWithPossiblePrivileges:(NSString *)statement error:(NSError **)mportError;
+
 
 
 /*!
@@ -159,6 +176,6 @@
 - (int) execute:(NSString *)pathToExecutable withArgs:(NSArray*)args;
 - (void)setAuthorizationRef:(AuthorizationRef)authRef;
 - (BOOL)checkIfAuthorized;
--(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement;
+-(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement error:(NSError **)mportError;
 
 @end
