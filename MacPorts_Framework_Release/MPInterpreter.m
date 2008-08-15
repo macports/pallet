@@ -420,6 +420,14 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	assert(bundleID != NULL);
 	
+	
+	//In order to make the framework work normally by default ... we do a bare initialization
+	//of internalMacPortsAuthRef if the delegate hasn't iniitialzed it already
+	if (internalMacPortsAuthRef == NULL) {
+		OSStatus res = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &internalMacPortsAuthRef);
+		assert(res == noErr);
+	}
+	
 	BASSetDefaultRules(internalMacPortsAuthRef, 
 					   kMPHelperCommandSet, 
 					   (CFStringRef) bundleID, 
