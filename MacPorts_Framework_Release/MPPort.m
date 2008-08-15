@@ -156,37 +156,6 @@
 
 
 
-//This method is nice but really isn't used.
-- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError {
-	
-	//params can contain either NSStrings or NSArrays
-	NSString * sparams = [NSString stringWithString:@" "];
-	NSEnumerator * penums = [params objectEnumerator];
-	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
-	
-	id elem;
-	
-	while (elem = [penums nextObject]) {
-		if ([elem isMemberOfClass:[NSString class]]) {
-			sparams = [sparams stringByAppendingString:elem];
-			sparams = [sparams stringByAppendingString:@" "];
-		}
-		
-		else if ([elem isKindOfClass:[NSArray class]]) {
-			//Maybe I should be more careful in the above if statement and
-			//explicitly check for the classes i'm interested in?
-			sparams = [sparams stringByAppendingString:[elem componentsJoinedByString:@" "]];
-			sparams = [sparams stringByAppendingString:@" "];
-		}
-	}
-	
-	
-	[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
-								  error:execError];
-	
-}
-
-
 //Used for mportactivate, mportdeactivate and mportuninstall
 -(void)execPortProc:(NSString *)procedure 
 		withOptions:(NSArray *)options 
@@ -212,7 +181,7 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	[interpreter evaluateStringAsString:
+	[interpreter evaluateStringWithPossiblePrivileges:
 	 [NSString stringWithFormat:
 	  @"[%@ %@ %@ %@]" ,
 	  procedure, [self name], v, opts]
@@ -247,7 +216,7 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	[interpreter evaluateStringAsString:
+	[interpreter evaluateStringWithPossiblePrivileges:
 	 [NSString stringWithFormat:
 	  @"set portHandle [mportopen  %@  %@  %@]; \
 	  mportexec portHandle %@; \
@@ -261,6 +230,35 @@
 }
 
 
+//This method is nice but really isn't used.
+- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError {
+	
+	//params can contain either NSStrings or NSArrays
+	NSString * sparams = [NSString stringWithString:@" "];
+	NSEnumerator * penums = [params objectEnumerator];
+	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
+	
+	id elem;
+	
+	while (elem = [penums nextObject]) {
+		if ([elem isMemberOfClass:[NSString class]]) {
+			sparams = [sparams stringByAppendingString:elem];
+			sparams = [sparams stringByAppendingString:@" "];
+		}
+		
+		else if ([elem isKindOfClass:[NSArray class]]) {
+			//Maybe I should be more careful in the above if statement and
+			//explicitly check for the classes i'm interested in?
+			sparams = [sparams stringByAppendingString:[elem componentsJoinedByString:@" "]];
+			sparams = [sparams stringByAppendingString:@" "];
+		}
+	}
+	
+	
+	[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
+								  error:execError];
+	
+}
 
 
 #pragma mark -
