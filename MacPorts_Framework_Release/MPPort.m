@@ -151,7 +151,7 @@
 	//Should I be sending self as the object? Or should I send a newly created
 	//copy? What if the listener modifies this object? 
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notificationName 
-																   object:self]; 
+																   object:nil]; 
 }
 
 
@@ -218,10 +218,8 @@
 	
 	[interpreter evaluateStringWithPossiblePrivileges:
 	 [NSString stringWithFormat:
-	  @"set portHandle [mportopen  %@  %@  %@]; \
-	  mportexec portHandle %@; \
-	  mportclose portHandle", 
-	  [self valueForKey:@"portURL"], opts, vrnts, target]
+	  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+	  [self valueForKey:@"porturl"], opts, vrnts, target]
 								  error:execError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
