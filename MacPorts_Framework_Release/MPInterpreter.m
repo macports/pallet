@@ -443,12 +443,7 @@ static NSString * tclInterpreterPkgPath = nil;
 		if( response != NULL)
 			result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
 	}
-	
-	
-	
-	
-	//Try to recover
-	if ( (err != noErr) && (err != userCanceledErr) ) {
+	else { //Try to recover error
 		failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (CFStringRef) bundleID);
 		
 		
@@ -474,7 +469,7 @@ static NSString * tclInterpreterPkgPath = nil;
 		
 		
 		//Making the following assumption in error handling. If we return
-		//a noErr then response cannot be nil since everything went ok. 
+		//a noErr then response dictionary cannot be nil since everything went ok. 
 		//Hence I'm only checking for errors WITHIN the following blocks ...
 		if (err == noErr) {
 			err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
@@ -486,10 +481,7 @@ static NSString * tclInterpreterPkgPath = nil;
 				if( response != NULL)
 					result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
 			}
-			
-			
-			//If we executed unsuccessfully
-			if (err != noErr) {
+			else { //If we executed unsuccessfully
 				if (mportError != NULL) {
 					NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
 																	 code:err 
@@ -507,7 +499,6 @@ static NSString * tclInterpreterPkgPath = nil;
 																	NSLocalizedString(@"BASExecuteRequestInHelperTool execution failed", @""),
 																	NSLocalizedFailureReasonErrorKey,
 																	nil]] autorelease];
-					
 				}
 			}
 		}
@@ -534,29 +525,6 @@ static NSString * tclInterpreterPkgPath = nil;
 			}
 		}
 	}
-	else {
-		err = userCanceledErr;
-		if (mportError != NULL) {
-			NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
-															 code:err 
-														 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																   NSLocalizedString(@"Check error code for OSStatus returned",@""), 
-																   NSLocalizedDescriptionKey,
-																   nil]] autorelease];
-			
-			*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
-													  code:MPHELPUSERCANCELLED
-												  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-															NSLocalizedString(@"MPHelperTool was not executed successfully", @""), 
-															NSLocalizedDescriptionKey,
-															undError, NSUnderlyingErrorKey,
-															NSLocalizedString(@"User cancelled the operation", @""),
-															NSLocalizedFailureReasonErrorKey,
-															nil]] autorelease];
-		}
-	}
-	
-	
 	
 	NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
 	

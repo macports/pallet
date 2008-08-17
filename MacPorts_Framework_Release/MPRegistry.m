@@ -127,9 +127,6 @@
 	}
 	
 	return [interpreter arrayFromTclListAsString:result];
-	
-	
-	
 }
 
 - (NSArray *)filesForPort:(NSString *)name {

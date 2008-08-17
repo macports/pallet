@@ -77,14 +77,14 @@ int SimpleLog_Command
 	assert(logClient != NULL);
 	
 	
-	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting simplelog Logging");
-	assert( err == 0);
+	//err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting simplelog Logging");
+	//assert( err == 0);
 	
 	++objv, --objc;
 	
 	if (objc) {
 		NSString * data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
-		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @" %@ " , data);
+		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @"MPHelperTool: %@ " , data);
 		assert(err == 0);
 		
 		returnCode = TCL_OK;
@@ -133,16 +133,10 @@ static OSStatus DoEvaluateTclString
 	if (tclCmd == nil) {
 		retval = coreFoundationUnknownErr;
 	}
-	
-	//Get the tcl Interpreter pkg path
-	NSString * tclPkgPath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kTclInterpreterInitPath));
-	if (tclCmd == nil) {
-		retval == coreFoundationUnknownErr;
-	}
 	else
 		CFDictionaryAddValue(response, CFSTR("TclCommandInput"), (CFStringRef)tclCmd);
 	
-
+	
 	//Create Tcl Interpreter 
 	Tcl_Interp * interpreter = Tcl_CreateInterp();
 	if(interpreter == NULL) {
@@ -169,6 +163,15 @@ static OSStatus DoEvaluateTclString
 	}
 	
 	
+	
+	//Get the tcl Interpreter pkg path
+	NSString * tclPkgPath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kTclInterpreterInitPath));
+	if (tclPkgPath == nil) {
+		retval == coreFoundationUnknownErr;
+	}
+	else
+		CFDictionaryAddValue(response, CFSTR("TclPkgPath"), (CFStringRef)tclPkgPath);
+		
 	//Load macports1.0 package
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:tclPkgPath]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];

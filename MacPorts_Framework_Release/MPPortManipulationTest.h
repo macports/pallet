@@ -19,5 +19,5 @@
 	MPMacPorts * mainPort;
 }
 
--(void) testSimpleSearch;
+-(void) testSimpleManipulation;
 @end
