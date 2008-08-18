@@ -1,0 +1,1082 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		DFE353650CFB8F0C003BACFC /* Docs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = DFE353690CFB8F1C003BACFC /* Build configuration list for PBXAggregateTarget "Docs" */;
+			buildPhases = (
+				DFE353640CFB8F0C003BACFC /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Docs;
+			productName = Docs;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
+		4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4825ECC40CE61468006B0385 /* MPRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F811BF0CE4638C009630DE /* MPRegistry.m */; };
+		487679550C98C2EB00577C59 /* MPIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 487679530C98C2EB00577C59 /* MPIndex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		487679560C98C2EB00577C59 /* MPIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 487679540C98C2EB00577C59 /* MPIndex.m */; };
+		487679690C98C55E00577C59 /* MPPort.h in Headers */ = {isa = PBXBuildFile; fileRef = 487679670C98C55E00577C59 /* MPPort.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4876796A0C98C55E00577C59 /* MPPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 487679680C98C55E00577C59 /* MPPort.m */; };
+		48906AFD0C4230B700A3ED8A /* MPInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 48906AFB0C4230B700A3ED8A /* MPInterpreter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48906AFE0C4230B700A3ED8A /* MPInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48906AFC0C4230B700A3ED8A /* MPInterpreter.m */; };
+		48A866AA0CD364F700B521BC /* MPReceipt.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A866A80CD364F700B521BC /* MPReceipt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48A866AB0CD364F700B521BC /* MPReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A866A90CD364F700B521BC /* MPReceipt.m */; };
+		48E9925C0C82C45800219DDF /* MacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E9925B0C82C45800219DDF /* MacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48E992980C82C98C00219DDF /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E992970C82C98C00219DDF /* Tcl.framework */; };
+		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
+		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
+		6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */ = {isa = PBXBuildFile; fileRef = 6E22BD410E4A30C700CA76C4 /* mycredentials */; };
+		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
+		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
+		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
+		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
+		6E681B410E4FBCFF00F50FF3 /* BSDSocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E681B3F0E4FBCFF00F50FF3 /* BSDSocketServer.h */; };
+		6E681B420E4FBCFF00F50FF3 /* BSDSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E681B400E4FBCFF00F50FF3 /* BSDSocketServer.m */; };
+		6E681B870E4FD12C00F50FF3 /* BSDSocketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E681B860E4FD12C00F50FF3 /* BSDSocketTest.m */; };
+		6E681CB60E5078F800F50FF3 /* BASUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E681CB40E5078F800F50FF3 /* BASUtils.h */; };
+		6E681CB70E5078F800F50FF3 /* BASUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E681CB50E5078F800F50FF3 /* BASUtils.m */; };
+		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
+		6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
+		6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
+		6EB6FB270E448EE20057962C /* TestFile.test in Resources */ = {isa = PBXBuildFile; fileRef = 6EB6FB260E448EE20057962C /* TestFile.test */; };
+		6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; };
+		6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
+		6EBE24D70E4DA13F007518A7 /* MPNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */; };
+		6EBE26120E4DFF50007518A7 /* MPHelperCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260950E4272D20013BC48 /* MPHelperCommon.h */; };
+		6EBE26530E4E037B007518A7 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; };
+		6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
+		6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */; };
+		6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
+		6EC260770E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */; };
+		6EC260970E4272D20013BC48 /* MPHelperCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260950E4272D20013BC48 /* MPHelperCommon.h */; };
+		6EC260980E4272D20013BC48 /* MPHelperCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260960E4272D20013BC48 /* MPHelperCommon.c */; };
+		6EC260990E4272D20013BC48 /* MPHelperCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260950E4272D20013BC48 /* MPHelperCommon.h */; };
+		6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260960E4272D20013BC48 /* MPHelperCommon.c */; };
+		6EC2609B0E4273920013BC48 /* BetterAuthorizationSampleLibInstallTool.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */; };
+		6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */; };
+		6ECD96FB0E465BF100488335 /* SimpleDOMPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */; };
+		6ECD97090E465C2A00488335 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
+		6ECD97120E465C8500488335 /* SimpleDOMPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */; };
+		6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */; };
+		6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD98100E484E8400488335 /* MPHelperTool.m */; };
+		6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */; };
+		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
+		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
+		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */; };
+		6ED1AE9F0E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */; };
+		6ED1AEA00E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */; };
+		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
+		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = MacPorts;
+		};
+		6EBE24CD0E4DA12E007518A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ECD97040E465C0F00488335;
+			remoteInfo = SimpleDOMPHelperTool;
+		};
+		6EC2608B0E4270110013BC48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EC260860E426FF10013BC48;
+			remoteInfo = MPHelperInstallTool;
+		};
+		6ECD97400E465F7400488335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ECD97040E465C0F00488335;
+			remoteInfo = SimpleDOMPHelperTool;
+		};
+		6ED12A520E3E55A50026773D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ED12A490E3E552F0026773D;
+			remoteInfo = MPHelperTool;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* MacPorts.Framework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPorts.Framework_Prefix.pch; sourceTree = "<group>"; };
+		481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MPMutableDictionary.h; sourceTree = "<group>"; };
+		481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MPMutableDictionary.m; sourceTree = "<group>"; };
+		4822AAD10D7EB38100C4D4D7 /* headerDoc2HTML.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = headerDoc2HTML.config; sourceTree = "<group>"; };
+		4822AAD70D7EB3C600C4D4D7 /* toctemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = toctemplate.html; path = /Users/Shared/Developer/MacPorts/Repository/users/rhwood/MacPorts.Framework/toctemplate.html; sourceTree = "<absolute>"; };
+		4822AADB0D7EB57F00C4D4D7 /* MacPorts Framework.hdoc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MacPorts Framework.hdoc"; sourceTree = "<group>"; };
+		487679530C98C2EB00577C59 /* MPIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIndex.h; sourceTree = "<group>"; };
+		487679540C98C2EB00577C59 /* MPIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIndex.m; sourceTree = "<group>"; };
+		487679670C98C55E00577C59 /* MPPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPort.h; sourceTree = "<group>"; };
+		487679680C98C55E00577C59 /* MPPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPort.m; sourceTree = "<group>"; };
+		48906AFB0C4230B700A3ED8A /* MPInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreter.h; sourceTree = "<group>"; };
+		48906AFC0C4230B700A3ED8A /* MPInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreter.m; sourceTree = "<group>"; };
+		489DD8F40C94365F00595506 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		489DD8F50C94365F00595506 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
+		489DD92D0C94674B00595506 /* MPInterpreterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterTest.h; sourceTree = "<group>"; };
+		489DD92E0C94674B00595506 /* MPInterpreterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInterpreterTest.m; sourceTree = "<group>"; };
+		48A866A80CD364F700B521BC /* MPReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPReceipt.h; sourceTree = "<group>"; };
+		48A866A90CD364F700B521BC /* MPReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPReceipt.m; sourceTree = "<group>"; };
+		48E9925B0C82C45800219DDF /* MacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPorts.h; sourceTree = "<group>"; };
+		48E992970C82C98C00219DDF /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = /System/Library/Frameworks/Tcl.framework; sourceTree = "<absolute>"; };
+		48E993920C82CAAE00219DDF /* MPMacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPorts.h; sourceTree = "<group>"; };
+		48E993930C82CAAE00219DDF /* MPMacPorts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPorts.m; sourceTree = "<group>"; };
+		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
+		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
+		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
+		6E22BD410E4A30C700CA76C4 /* mycredentials */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mycredentials; sourceTree = "<group>"; };
+		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
+		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
+		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
+		6E681B3F0E4FBCFF00F50FF3 /* BSDSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSocketServer.h; sourceTree = "<group>"; };
+		6E681B400E4FBCFF00F50FF3 /* BSDSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSocketServer.m; sourceTree = "<group>"; };
+		6E681B850E4FD12C00F50FF3 /* BSDSocketTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSocketTest.h; sourceTree = "<group>"; };
+		6E681B860E4FD12C00F50FF3 /* BSDSocketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSocketTest.m; sourceTree = "<group>"; };
+		6E681CB40E5078F800F50FF3 /* BASUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BASUtils.h; sourceTree = "<group>"; };
+		6E681CB50E5078F800F50FF3 /* BASUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BASUtils.m; sourceTree = "<group>"; };
+		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
+		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
+		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
+		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
+		6EB6FB260E448EE20057962C /* TestFile.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestFile.test; sourceTree = "<group>"; };
+		6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPHelperTool.m.old2; sourceTree = "<group>"; };
+		6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterProtocol.h; sourceTree = "<group>"; };
+		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
+		6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
+		6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLibInstallTool.c; sourceTree = "<group>"; };
+		6EC260870E426FF10013BC48 /* MPHelperInstallTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperInstallTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EC260950E4272D20013BC48 /* MPHelperCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperCommon.h; sourceTree = "<group>"; };
+		6EC260960E4272D20013BC48 /* MPHelperCommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MPHelperCommon.c; sourceTree = "<group>"; };
+		6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDOMPHelperTool.m; sourceTree = "<group>"; };
+		6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleDOMPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ECD970D0E465C7800488335 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6ECD98100E484E8400488335 /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
+		6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperToolTest.h; sourceTree = "<group>"; };
+		6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolTest.m; sourceTree = "<group>"; };
+		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
+		6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationsProtocol.h; sourceTree = "<group>"; };
+		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
+		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		489DD8F10C94365F00595506 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */,
+				6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EC260850E426FF10013BC48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ECD97030E465C0F00488335 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ECD97090E465C2A00488335 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ED12A480E3E552F0026773D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */,
+				6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */,
+				6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */,
+				6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+				48E992980C82C98C00219DDF /* Tcl.framework in Frameworks */,
+				6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* MacPorts.framework */,
+				489DD8F40C94365F00595506 /* Test.octest */,
+				6ED12A4A0E3E552F0026773D /* MPHelperTool */,
+				6EC260870E426FF10013BC48 /* MPHelperInstallTool */,
+				6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* MacPorts Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				6ED12A460E3E54A80026773D /* MPHelperTools */,
+				6EA293540E05C8C600902D12 /* Tcl Notifications  */,
+				6E88D1760DF46A2600684E9F /* Tests */,
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				4822AAD40D7EB39200C4D4D7 /* Documentation */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+				6EA0F56E0DFEB55E00C15082 /* Tcl.framework */,
+				6ED12AA60E3E7E900026773D /* Cocoa.framework */,
+				6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */,
+				6EB6FC900E45DEA80057962C /* Foundation.framework */,
+				6ECD970D0E465C7800488335 /* Security.framework */,
+				6EE93E780E495B3100AECE9E /* Tcl.framework */,
+			);
+			name = "MacPorts Foundation";
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48E9939E0C82CEB000219DDF /* init.tcl */,
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+				489DD8F50C94365F00595506 /* Test-Info.plist */,
+				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
+				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
+				6EB6FB260E448EE20057962C /* TestFile.test */,
+				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
+				6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6E681CB40E5078F800F50FF3 /* BASUtils.h */,
+				6E681CB50E5078F800F50FF3 /* BASUtils.m */,
+				487679530C98C2EB00577C59 /* MPIndex.h */,
+				487679540C98C2EB00577C59 /* MPIndex.m */,
+				48906AFB0C4230B700A3ED8A /* MPInterpreter.h */,
+				48906AFC0C4230B700A3ED8A /* MPInterpreter.m */,
+				48E993920C82CAAE00219DDF /* MPMacPorts.h */,
+				48E993930C82CAAE00219DDF /* MPMacPorts.m */,
+				481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */,
+				481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */,
+				48A866A80CD364F700B521BC /* MPReceipt.h */,
+				48A866A90CD364F700B521BC /* MPReceipt.m */,
+				487679670C98C55E00577C59 /* MPPort.h */,
+				487679680C98C55E00577C59 /* MPPort.m */,
+				48F811BE0CE4636A009630DE /* MPRegistry.h */,
+				48F811BF0CE4638C009630DE /* MPRegistry.m */,
+				6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6ED12A540E3E55DF0026773D /* Security.framework */,
+				48E992970C82C98C00219DDF /* Tcl.framework */,
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				48E9925B0C82C45800219DDF /* MacPorts.h */,
+				32DBCF5E0370ADEE00C91783 /* MacPorts.Framework_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		4822AAD40D7EB39200C4D4D7 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				4822AAD70D7EB3C600C4D4D7 /* toctemplate.html */,
+				4822AAD10D7EB38100C4D4D7 /* headerDoc2HTML.config */,
+				4822AADB0D7EB57F00C4D4D7 /* MacPorts Framework.hdoc */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+		6E88D1760DF46A2600684E9F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				489DD92D0C94674B00595506 /* MPInterpreterTest.h */,
+				489DD92E0C94674B00595506 /* MPInterpreterTest.m */,
+				6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */,
+				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
+				6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */,
+				6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */,
+				6E22BD410E4A30C700CA76C4 /* mycredentials */,
+				6E681B850E4FD12C00F50FF3 /* BSDSocketTest.h */,
+				6E681B860E4FD12C00F50FF3 /* BSDSocketTest.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		6EA293540E05C8C600902D12 /* Tcl Notifications  */ = {
+			isa = PBXGroup;
+			children = (
+				6E270D070E158CED00BAE687 /* MPNotifications.h */,
+				6E270D080E158CED00BAE687 /* MPNotifications.m */,
+				6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */,
+				6E681B3F0E4FBCFF00F50FF3 /* BSDSocketServer.h */,
+				6E681B400E4FBCFF00F50FF3 /* BSDSocketServer.m */,
+			);
+			name = "Tcl Notifications ";
+			sourceTree = "<group>";
+		};
+		6ED12A460E3E54A80026773D /* MPHelperTools */ = {
+			isa = PBXGroup;
+			children = (
+				6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */,
+				6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */,
+				6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */,
+				6EC260950E4272D20013BC48 /* MPHelperCommon.h */,
+				6EC260960E4272D20013BC48 /* MPHelperCommon.c */,
+				6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */,
+				6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */,
+				6ECD98100E484E8400488335 /* MPHelperTool.m */,
+			);
+			name = MPHelperTools;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6ECD97190E465CD100488335 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EBE26120E4DFF50007518A7 /* MPHelperCommon.h in Headers */,
+				6EBE24D70E4DA13F007518A7 /* MPNotificationsProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ED12AD30E3E9AE10026773D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EBE26530E4E037B007518A7 /* MPNotifications.h in Headers */,
+				6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
+				6EC260970E4272D20013BC48 /* MPHelperCommon.h in Headers */,
+				6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */,
+				6ED1AEA00E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E681CB60E5078F800F50FF3 /* BASUtils.h in Headers */,
+				4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */,
+				48906AFD0C4230B700A3ED8A /* MPInterpreter.h in Headers */,
+				48E9925C0C82C45800219DDF /* MacPorts.h in Headers */,
+				48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */,
+				487679550C98C2EB00577C59 /* MPIndex.h in Headers */,
+				487679690C98C55E00577C59 /* MPPort.h in Headers */,
+				48A866AA0CD364F700B521BC /* MPReceipt.h in Headers */,
+				481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */,
+				6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */,
+				6EC260770E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
+				6EC260990E4272D20013BC48 /* MPHelperCommon.h in Headers */,
+				6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */,
+				6ED1AE9F0E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */,
+				6E681B410E4FBCFF00F50FF3 /* BSDSocketServer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		489DD8F30C94365F00595506 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 489DD8F60C94366000595506 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				489DD8EF0C94365F00595506 /* Resources */,
+				489DD8F00C94365F00595506 /* Sources */,
+				489DD8F10C94365F00595506 /* Frameworks */,
+				489DD8F20C94365F00595506 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E1AE8470E232D0700F6D7BC /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = "Test Cases";
+			productReference = 489DD8F40C94365F00595506 /* Test.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		6EC260860E426FF10013BC48 /* MPHelperInstallTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EC260940E4270420013BC48 /* Build configuration list for PBXNativeTarget "MPHelperInstallTool" */;
+			buildPhases = (
+				6EC260840E426FF10013BC48 /* Sources */,
+				6EC260850E426FF10013BC48 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MPHelperInstallTool;
+			productName = MPHelperInstallTool;
+			productReference = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */;
+			productType = "com.apple.product-type.tool";
+		};
+		6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ECD970A0E465C4900488335 /* Build configuration list for PBXNativeTarget "SimpleDOMPHelperTool" */;
+			buildPhases = (
+				6ECD97190E465CD100488335 /* Headers */,
+				6ECD97020E465C0F00488335 /* Sources */,
+				6ECD97030E465C0F00488335 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleDOMPHelperTool;
+			productName = SimpleDOMPHelperTool;
+			productReference = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */;
+			productType = "com.apple.product-type.tool";
+		};
+		6ED12A490E3E552F0026773D /* MPHelperTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ED12A500E3E55660026773D /* Build configuration list for PBXNativeTarget "MPHelperTool" */;
+			buildPhases = (
+				6ED12B0B0E3EAA140026773D /* Resources */,
+				6ED12AD30E3E9AE10026773D /* Headers */,
+				6ED12A470E3E552F0026773D /* Sources */,
+				6ED12A480E3E552F0026773D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6EBE24CE0E4DA12E007518A7 /* PBXTargetDependency */,
+			);
+			name = MPHelperTool;
+			productName = MPHelperTool;
+			productReference = 6ED12A4A0E3E552F0026773D /* MPHelperTool */;
+			productType = "com.apple.product-type.tool";
+		};
+		8DC2EF4F0486A6940098B216 /* MacPorts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MacPorts" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+				6E49F4F40E00DD520030C3AF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6ED12A530E3E55A50026773D /* PBXTargetDependency */,
+				6EC2608C0E4270110013BC48 /* PBXTargetDependency */,
+				6ECD97410E465F7400488335 /* PBXTargetDependency */,
+			);
+			name = MacPorts;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = "MacPorts Foundation";
+			productReference = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = NO;
+			};
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "MacPorts.Framework" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* MacPorts Foundation */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */,
+				6EC260860E426FF10013BC48 /* MPHelperInstallTool */,
+				6ED12A490E3E552F0026773D /* MPHelperTool */,
+				8DC2EF4F0486A6940098B216 /* MacPorts */,
+				489DD8F30C94365F00595506 /* Test */,
+				DFE353650CFB8F0C003BACFC /* Docs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		489DD8EF0C94365F00595506 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ED12B0B0E3EAA140026773D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */,
+				6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */,
+				6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */,
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
+				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
+				6EB6FB270E448EE20057962C /* TestFile.test in Resources */,
+				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
+				6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */,
+				6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		489DD8F20C94365F00595506 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			comments = "cd ~\nif [ -f /Library/LaunchDaemons/org.macports.frameworks.macports.plist ]\nthen\n\techo removing BAStuff\n\tsh mptooluninstall.sh\n\techo done removing BAStuff\nelse\n\techo nothing to Remove\nfi";
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n#chmod  777 $BUILT_PRODUCTS_DIR/Test.octest \n#chmod -R 777 $BUILT_PRODUCTS_DIR/Test.octest \n#ls -lR $BUILT_PRODUCTS_DIR/Test.octest\n";
+		};
+		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#This script is to copy the build product to a subfolder \"build\"\n#of the project directory so that whoever checks out this plugin will have\n#access to the built MacPorts.framework\n#Do I really need it since build products go to your default / project / target\n#specific Build Products path?\n\nditto $CONFIGURATION_BUILD_DIR/MacPorts.framework build/MacPorts.framework\n\n";
+		};
+		DFE353640CFB8F0C003BACFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BASEDIR=`pwd`\nDOCDIR=build/Documentation\nif [ ! -d $DOCDIR ]; then\n\tmkdir $DOCDIR\nfi\ncd $DOCDIR\nheaderdoc2html -u -o HTML $BASEDIR/*.h* && gatherheaderdoc HTML index.html";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		489DD8F00C94365F00595506 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */,
+				6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */,
+				6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */,
+				6E681B870E4FD12C00F50FF3 /* BSDSocketTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EC260840E426FF10013BC48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EC2609B0E4273920013BC48 /* BetterAuthorizationSampleLibInstallTool.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ECD97020E465C0F00488335 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ECD97120E465C8500488335 /* SimpleDOMPHelperTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ED12A470E3E552F0026773D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
+				6EC260980E4272D20013BC48 /* MPHelperCommon.c in Sources */,
+				6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E681B420E4FBCFF00F50FF3 /* BSDSocketServer.m in Sources */,
+				6E681CB70E5078F800F50FF3 /* BASUtils.m in Sources */,
+				6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */,
+				48906AFE0C4230B700A3ED8A /* MPInterpreter.m in Sources */,
+				48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */,
+				487679560C98C2EB00577C59 /* MPIndex.m in Sources */,
+				4876796A0C98C55E00577C59 /* MPPort.m in Sources */,
+				48A866AB0CD364F700B521BC /* MPReceipt.m in Sources */,
+				481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */,
+				4825ECC40CE61468006B0385 /* MPRegistry.m in Sources */,
+				6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
+				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
+				6ECD96FB0E465BF100488335 /* SimpleDOMPHelperTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E1AE8470E232D0700F6D7BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
+			targetProxy = 6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */;
+		};
+		6EBE24CE0E4DA12E007518A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */;
+			targetProxy = 6EBE24CD0E4DA12E007518A7 /* PBXContainerItemProxy */;
+		};
+		6EC2608C0E4270110013BC48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EC260860E426FF10013BC48 /* MPHelperInstallTool */;
+			targetProxy = 6EC2608B0E4270110013BC48 /* PBXContainerItemProxy */;
+		};
+		6ECD97410E465F7400488335 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */;
+			targetProxy = 6ECD97400E465F7400488335 /* PBXContainerItemProxy */;
+		};
+		6ED12A530E3E55A50026773D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ED12A490E3E552F0026773D /* MPHelperTool */;
+			targetProxy = 6ED12A520E3E55A50026773D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				PRODUCT_NAME = MacPorts;
+				SYMROOT = "~/Builds";
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				PRODUCT_NAME = MacPorts;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				DEBUG_INFORMATION_FORMAT = stabs;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		489DD8F70C94366000595506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(value)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		489DD8F80C94366000595506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(value)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		6EC260890E426FF30013BC48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperInstallTool;
+			};
+			name = Debug;
+		};
+		6EC2608A0E426FF30013BC48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperInstallTool;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		6ECD97070E465C1100488335 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = SimpleDOMPHelperTool;
+			};
+			name = Debug;
+		};
+		6ECD97080E465C1100488335 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = SimpleDOMPHelperTool;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		6ED12A4C0E3E55300026773D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperTool;
+			};
+			name = Debug;
+		};
+		6ED12A4D0E3E55300026773D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperTool;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		DFE353660CFB8F0C003BACFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Docs;
+			};
+			name = Debug;
+		};
+		DFE353670CFB8F0C003BACFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Docs;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MacPorts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "MacPorts.Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		489DD8F60C94366000595506 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				489DD8F70C94366000595506 /* Debug */,
+				489DD8F80C94366000595506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EC260940E4270420013BC48 /* Build configuration list for PBXNativeTarget "MPHelperInstallTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EC260890E426FF30013BC48 /* Debug */,
+				6EC2608A0E426FF30013BC48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ECD970A0E465C4900488335 /* Build configuration list for PBXNativeTarget "SimpleDOMPHelperTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ECD97070E465C1100488335 /* Debug */,
+				6ECD97080E465C1100488335 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ED12A500E3E55660026773D /* Build configuration list for PBXNativeTarget "MPHelperTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED12A4C0E3E55300026773D /* Debug */,
+				6ED12A4D0E3E55300026773D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFE353690CFB8F1C003BACFC /* Build configuration list for PBXAggregateTarget "Docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFE353660CFB8F0C003BACFC /* Debug */,
+				DFE353670CFB8F0C003BACFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
