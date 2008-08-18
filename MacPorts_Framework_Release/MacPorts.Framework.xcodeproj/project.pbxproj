@@ -657,7 +657,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
 				PRODUCT_NAME = MacPorts;
-				SYMROOT = "~/Builds";
+				SYMROOT = "";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
 			};
