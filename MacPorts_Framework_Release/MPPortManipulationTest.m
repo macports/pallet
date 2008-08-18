@@ -106,8 +106,9 @@
 	
 	//NSDictionary * searchResult = [mainPort search:@"pngcrush"];
 //	NSArray * keyArray = [searchResult allKeys];
+//	MPPort  * p = [searchResult objectForKey:[keyArray objectAtIndex:0]];
 //		
-//	NSLog(@"\n\n Installing first result from search %@ \n\n", [searchResult objectForKey:[keyArray objectAtIndex:0]]);
+//	NSLog(@"\n\n Installing first result from search %@  with name %@\n\n", p, [p name]);
 //	NSError * iError;
 //	[[searchResult objectForKey:[keyArray objectAtIndex:0]] installWithOptions:nil variants:nil error:&iError];
 //	
@@ -129,5 +130,7 @@
 	STAssertTrue([pm installUninstallManipulation:@"pngcrush"] , @"This test should always return true on success");
 	[pm release];
 }
+
+
 
 @end

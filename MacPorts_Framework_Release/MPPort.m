@@ -165,13 +165,14 @@
 	NSString *opts, *v;
 	MPInterpreter *interpreter;
 	opts = [NSString stringWithString:@" "];
-	v = [NSString stringWithString:[self name]];
+	//v = [NSString stringWithString:[self name]];
 	interpreter = [MPInterpreter sharedInterpreter];
 	
 	if (version != NULL)
 		v = [NSString stringWithString:version];
 	else 
-		v = [NSString stringWithString:[self version]];
+		v = @"";
+		//v = [NSString stringWithString:[self version]];
 	
 	if (options != NULL) 
 		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
