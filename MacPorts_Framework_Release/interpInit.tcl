@@ -153,8 +153,7 @@ proc ui_init {priority prefix channels message} {
 #Wrapping the following API routines to catch errors
 #and log error Information in a similar fashion to code
 #in macports.tcl.
-set mp_empty_list [list]
-proc mportuninstall {portname {v ""} {optionslist {""}} } {
+proc mportuninstall {portname {v ""} optionslist} {
 	if {[catch {portuninstall::uninstall $portname $v $optionslist} result]} {
 		
 			global errorInfo
@@ -174,7 +173,7 @@ proc mportactivate {portname v optionslist} {
 	}
 }
 
-proc mportdeactivate {portname {v ""} {optionslist {""}} } {
+proc mportdeactivate {portname v optionslist} {
 	if {[catch {portimage::deactivate $portname $v $optionslist} result]} {
 			
 			global errorInfo

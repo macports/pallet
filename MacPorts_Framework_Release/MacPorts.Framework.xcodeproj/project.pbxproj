@@ -38,27 +38,16 @@
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
-		6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */ = {isa = PBXBuildFile; fileRef = 6E22BD410E4A30C700CA76C4 /* mycredentials */; };
 		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
+		6E3345350E54AF14008A2F6C /* MPPortManipulationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
-		6E681B410E4FBCFF00F50FF3 /* BSDSocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E681B3F0E4FBCFF00F50FF3 /* BSDSocketServer.h */; };
-		6E681B420E4FBCFF00F50FF3 /* BSDSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E681B400E4FBCFF00F50FF3 /* BSDSocketServer.m */; };
-		6E681B870E4FD12C00F50FF3 /* BSDSocketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E681B860E4FD12C00F50FF3 /* BSDSocketTest.m */; };
-		6E681CB60E5078F800F50FF3 /* BASUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E681CB40E5078F800F50FF3 /* BASUtils.h */; };
-		6E681CB70E5078F800F50FF3 /* BASUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E681CB50E5078F800F50FF3 /* BASUtils.m */; };
 		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
 		6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
 		6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
-		6EB6FB270E448EE20057962C /* TestFile.test in Resources */ = {isa = PBXBuildFile; fileRef = 6EB6FB260E448EE20057962C /* TestFile.test */; };
-		6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; };
-		6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
-		6EBE24D70E4DA13F007518A7 /* MPNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */; };
-		6EBE26120E4DFF50007518A7 /* MPHelperCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260950E4272D20013BC48 /* MPHelperCommon.h */; };
-		6EBE26530E4E037B007518A7 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; };
 		6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
 		6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */; };
 		6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
@@ -69,18 +58,12 @@
 		6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260960E4272D20013BC48 /* MPHelperCommon.c */; };
 		6EC2609B0E4273920013BC48 /* BetterAuthorizationSampleLibInstallTool.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */; };
 		6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */; };
-		6ECD96FB0E465BF100488335 /* SimpleDOMPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */; };
-		6ECD97090E465C2A00488335 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
-		6ECD97120E465C8500488335 /* SimpleDOMPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */; };
-		6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */; };
 		6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD98100E484E8400488335 /* MPHelperTool.m */; };
 		6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */; };
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */; };
-		6ED1AE9F0E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */; };
-		6ED1AEA00E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */; };
 		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
 		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -95,26 +78,12 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MacPorts;
 		};
-		6EBE24CD0E4DA12E007518A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6ECD97040E465C0F00488335;
-			remoteInfo = SimpleDOMPHelperTool;
-		};
 		6EC2608B0E4270110013BC48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6EC260860E426FF10013BC48;
 			remoteInfo = MPHelperInstallTool;
-		};
-		6ECD97400E465F7400488335 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6ECD97040E465C0F00488335;
-			remoteInfo = SimpleDOMPHelperTool;
 		};
 		6ED12A520E3E55A50026773D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -154,23 +123,15 @@
 		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
-		6E22BD410E4A30C700CA76C4 /* mycredentials */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mycredentials; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
+		6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortManipulationTest.h; sourceTree = "<group>"; };
+		6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortManipulationTest.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
-		6E681B3F0E4FBCFF00F50FF3 /* BSDSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSocketServer.h; sourceTree = "<group>"; };
-		6E681B400E4FBCFF00F50FF3 /* BSDSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSocketServer.m; sourceTree = "<group>"; };
-		6E681B850E4FD12C00F50FF3 /* BSDSocketTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDSocketTest.h; sourceTree = "<group>"; };
-		6E681B860E4FD12C00F50FF3 /* BSDSocketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDSocketTest.m; sourceTree = "<group>"; };
-		6E681CB40E5078F800F50FF3 /* BASUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BASUtils.h; sourceTree = "<group>"; };
-		6E681CB50E5078F800F50FF3 /* BASUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BASUtils.m; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
-		6EB6FB260E448EE20057962C /* TestFile.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestFile.test; sourceTree = "<group>"; };
-		6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPHelperTool.m.old2; sourceTree = "<group>"; };
-		6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInterpreterProtocol.h; sourceTree = "<group>"; };
 		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
 		6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
@@ -179,8 +140,6 @@
 		6EC260950E4272D20013BC48 /* MPHelperCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperCommon.h; sourceTree = "<group>"; };
 		6EC260960E4272D20013BC48 /* MPHelperCommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MPHelperCommon.c; sourceTree = "<group>"; };
 		6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDOMPHelperTool.m; sourceTree = "<group>"; };
-		6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleDOMPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECD970D0E465C7800488335 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6ECD98100E484E8400488335 /* MPHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperTool.m; sourceTree = "<group>"; };
 		6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperToolTest.h; sourceTree = "<group>"; };
@@ -189,7 +148,6 @@
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
-		6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationsProtocol.h; sourceTree = "<group>"; };
 		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
 		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -210,14 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6ECD97030E465C0F00488335 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6ECD97090E465C2A00488335 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +202,6 @@
 				489DD8F40C94365F00595506 /* Test.octest */,
 				6ED12A4A0E3E552F0026773D /* MPHelperTool */,
 				6EC260870E426FF10013BC48 /* MPHelperInstallTool */,
-				6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,7 +246,6 @@
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
 				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
-				6EB6FB260E448EE20057962C /* TestFile.test */,
 				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
 				6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */,
 			);
@@ -307,8 +255,6 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6E681CB40E5078F800F50FF3 /* BASUtils.h */,
-				6E681CB50E5078F800F50FF3 /* BASUtils.m */,
 				487679530C98C2EB00577C59 /* MPIndex.h */,
 				487679540C98C2EB00577C59 /* MPIndex.m */,
 				48906AFB0C4230B700A3ED8A /* MPInterpreter.h */,
@@ -323,7 +269,6 @@
 				487679680C98C55E00577C59 /* MPPort.m */,
 				48F811BE0CE4636A009630DE /* MPRegistry.h */,
 				48F811BF0CE4638C009630DE /* MPRegistry.m */,
-				6EB6FC690E45AC610057962C /* MPInterpreterProtocol.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -374,9 +319,8 @@
 				6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */,
 				6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */,
 				6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */,
-				6E22BD410E4A30C700CA76C4 /* mycredentials */,
-				6E681B850E4FD12C00F50FF3 /* BSDSocketTest.h */,
-				6E681B860E4FD12C00F50FF3 /* BSDSocketTest.m */,
+				6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */,
+				6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -386,9 +330,6 @@
 			children = (
 				6E270D070E158CED00BAE687 /* MPNotifications.h */,
 				6E270D080E158CED00BAE687 /* MPNotifications.m */,
-				6ED1AE9E0E4CDBFB000353B6 /* MPNotificationsProtocol.h */,
-				6E681B3F0E4FBCFF00F50FF3 /* BSDSocketServer.h */,
-				6E681B400E4FBCFF00F50FF3 /* BSDSocketServer.m */,
 			);
 			name = "Tcl Notifications ";
 			sourceTree = "<group>";
@@ -401,8 +342,6 @@
 				6EC260720E426FC80013BC48 /* BetterAuthorizationSampleLibInstallTool.c */,
 				6EC260950E4272D20013BC48 /* MPHelperCommon.h */,
 				6EC260960E4272D20013BC48 /* MPHelperCommon.c */,
-				6EB6FB620E44AF140057962C /* MPHelperTool.m.old2 */,
-				6ECD96F90E465BF100488335 /* SimpleDOMPHelperTool.m */,
 				6ECD98100E484E8400488335 /* MPHelperTool.m */,
 			);
 			name = MPHelperTools;
@@ -411,24 +350,12 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6ECD97190E465CD100488335 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6EBE26120E4DFF50007518A7 /* MPHelperCommon.h in Headers */,
-				6EBE24D70E4DA13F007518A7 /* MPNotificationsProtocol.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6ED12AD30E3E9AE10026773D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EBE26530E4E037B007518A7 /* MPNotifications.h in Headers */,
 				6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260970E4272D20013BC48 /* MPHelperCommon.h in Headers */,
-				6EB6FC6A0E45AC610057962C /* MPInterpreterProtocol.h in Headers */,
-				6ED1AEA00E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +363,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E681CB60E5078F800F50FF3 /* BASUtils.h in Headers */,
 				4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */,
 				48906AFD0C4230B700A3ED8A /* MPInterpreter.h in Headers */,
 				48E9925C0C82C45800219DDF /* MacPorts.h in Headers */,
@@ -448,9 +374,6 @@
 				6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */,
 				6EC260770E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260990E4272D20013BC48 /* MPHelperCommon.h in Headers */,
-				6EB6FC6B0E45AC610057962C /* MPInterpreterProtocol.h in Headers */,
-				6ED1AE9F0E4CDBFB000353B6 /* MPNotificationsProtocol.h in Headers */,
-				6E681B410E4FBCFF00F50FF3 /* BSDSocketServer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,23 +415,6 @@
 			productReference = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */;
 			productType = "com.apple.product-type.tool";
 		};
-		6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6ECD970A0E465C4900488335 /* Build configuration list for PBXNativeTarget "SimpleDOMPHelperTool" */;
-			buildPhases = (
-				6ECD97190E465CD100488335 /* Headers */,
-				6ECD97020E465C0F00488335 /* Sources */,
-				6ECD97030E465C0F00488335 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SimpleDOMPHelperTool;
-			productName = SimpleDOMPHelperTool;
-			productReference = 6ECD97050E465C0F00488335 /* SimpleDOMPHelperTool */;
-			productType = "com.apple.product-type.tool";
-		};
 		6ED12A490E3E552F0026773D /* MPHelperTool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6ED12A500E3E55660026773D /* Build configuration list for PBXNativeTarget "MPHelperTool" */;
@@ -521,7 +427,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				6EBE24CE0E4DA12E007518A7 /* PBXTargetDependency */,
 			);
 			name = MPHelperTool;
 			productName = MPHelperTool;
@@ -543,7 +448,6 @@
 			dependencies = (
 				6ED12A530E3E55A50026773D /* PBXTargetDependency */,
 				6EC2608C0E4270110013BC48 /* PBXTargetDependency */,
-				6ECD97410E465F7400488335 /* PBXTargetDependency */,
 			);
 			name = MacPorts;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -567,7 +471,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */,
 				6EC260860E426FF10013BC48 /* MPHelperInstallTool */,
 				6ED12A490E3E552F0026773D /* MPHelperTool */,
 				8DC2EF4F0486A6940098B216 /* MacPorts */,
@@ -596,15 +499,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ECD973F0E465F6A00488335 /* SimpleDOMPHelperTool in Resources */,
 				6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */,
 				6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */,
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
-				6EB6FB270E448EE20057962C /* TestFile.test in Resources */,
 				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
-				6E22BD420E4A30C700CA76C4 /* mycredentials in Resources */,
 				6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,7 +524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n#chmod  777 $BUILT_PRODUCTS_DIR/Test.octest \n#chmod -R 777 $BUILT_PRODUCTS_DIR/Test.octest \n#ls -lR $BUILT_PRODUCTS_DIR/Test.octest\n";
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n\n\n";
 		};
 		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -662,7 +562,7 @@
 				6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */,
 				6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */,
 				6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */,
-				6E681B870E4FD12C00F50FF3 /* BSDSocketTest.m in Sources */,
+				6E3345350E54AF14008A2F6C /* MPPortManipulationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,14 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EC2609B0E4273920013BC48 /* BetterAuthorizationSampleLibInstallTool.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6ECD97020E465C0F00488335 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6ECD97120E465C8500488335 /* SimpleDOMPHelperTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,9 +588,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E681B420E4FBCFF00F50FF3 /* BSDSocketServer.m in Sources */,
-				6E681CB70E5078F800F50FF3 /* BASUtils.m in Sources */,
-				6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */,
 				48906AFE0C4230B700A3ED8A /* MPInterpreter.m in Sources */,
 				48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */,
 				487679560C98C2EB00577C59 /* MPIndex.m in Sources */,
@@ -706,9 +595,9 @@
 				48A866AB0CD364F700B521BC /* MPReceipt.m in Sources */,
 				481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */,
 				4825ECC40CE61468006B0385 /* MPRegistry.m in Sources */,
+				6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */,
 				6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
 				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
-				6ECD96FB0E465BF100488335 /* SimpleDOMPHelperTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,20 +609,10 @@
 			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
 			targetProxy = 6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */;
 		};
-		6EBE24CE0E4DA12E007518A7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */;
-			targetProxy = 6EBE24CD0E4DA12E007518A7 /* PBXContainerItemProxy */;
-		};
 		6EC2608C0E4270110013BC48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6EC260860E426FF10013BC48 /* MPHelperInstallTool */;
 			targetProxy = 6EC2608B0E4270110013BC48 /* PBXContainerItemProxy */;
-		};
-		6ECD97410E465F7400488335 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6ECD97040E465C0F00488335 /* SimpleDOMPHelperTool */;
-			targetProxy = 6ECD97400E465F7400488335 /* PBXContainerItemProxy */;
 		};
 		6ED12A530E3E55A50026773D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -929,36 +808,6 @@
 			};
 			name = Release;
 		};
-		6ECD97070E465C1100488335 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = SimpleDOMPHelperTool;
-			};
-			name = Debug;
-		};
-		6ECD97080E465C1100488335 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = SimpleDOMPHelperTool;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		6ED12A4C0E3E55300026773D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1045,15 +894,6 @@
 			buildConfigurations = (
 				6EC260890E426FF30013BC48 /* Debug */,
 				6EC2608A0E426FF30013BC48 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6ECD970A0E465C4900488335 /* Build configuration list for PBXNativeTarget "SimpleDOMPHelperTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6ECD97070E465C1100488335 /* Debug */,
-				6ECD97080E465C1100488335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
