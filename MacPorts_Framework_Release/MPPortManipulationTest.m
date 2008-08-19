@@ -33,7 +33,7 @@
 	if (installed > 0) {
 		NSError * uError;
 		//Attempt to uninstall it
-		[foundPort uninstallWithOptions:nil version:nil error:&uError];
+		[foundPort uninstallWithVersion:nil error:&uError];
 		
 		//Check for error
 		if (uError != nil) {
