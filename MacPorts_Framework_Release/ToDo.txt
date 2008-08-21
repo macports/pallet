@@ -29,5 +29,3 @@ Also, we could throw in bindings support. How would this work? Don't know
 yet ...
 
 Fix bug in uninstall
-
-objc_exception_throw - for break points to always be added to!

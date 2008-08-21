@@ -184,7 +184,7 @@
 	
 	[interpreter evaluateStringWithPossiblePrivileges:
 	 [NSString stringWithFormat:
-	  @"[%@ %@ %@ %@]" ,
+	  @"%@ %@ %@ %@" ,
 	  procedure, [self name], v, opts]
 								  error:execError];
 	
