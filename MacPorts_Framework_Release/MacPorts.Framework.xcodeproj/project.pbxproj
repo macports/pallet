@@ -44,6 +44,12 @@
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
 		6E49F37F0DFFAFF80030C3AF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
+		6E8563B80E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E8563B50E5DDF7000C1D73C /* MPHelperNotificationsCommon.c */; };
+		6E8563B90E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8563B60E5DDF7000C1D73C /* MPHelperNotificationsCommon.h */; };
+		6E8563BA0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */; };
+		6E8563BB0E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E8563B50E5DDF7000C1D73C /* MPHelperNotificationsCommon.c */; };
+		6E8563BC0E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8563B60E5DDF7000C1D73C /* MPHelperNotificationsCommon.h */; };
+		6E8563BD0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */; };
 		6EA294590E080DEB00902D12 /* MPMacPortsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */; };
 		6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
 		6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
@@ -128,6 +134,9 @@
 		6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortManipulationTest.h; sourceTree = "<group>"; };
 		6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortManipulationTest.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
+		6E8563B50E5DDF7000C1D73C /* MPHelperNotificationsCommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MPHelperNotificationsCommon.c; sourceTree = "<group>"; };
+		6E8563B60E5DDF7000C1D73C /* MPHelperNotificationsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperNotificationsCommon.h; sourceTree = "<group>"; };
+		6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperNotificationsProtocol.h; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
@@ -328,6 +337,9 @@
 		6EA293540E05C8C600902D12 /* Tcl Notifications  */ = {
 			isa = PBXGroup;
 			children = (
+				6E8563B50E5DDF7000C1D73C /* MPHelperNotificationsCommon.c */,
+				6E8563B60E5DDF7000C1D73C /* MPHelperNotificationsCommon.h */,
+				6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */,
 				6E270D070E158CED00BAE687 /* MPNotifications.h */,
 				6E270D080E158CED00BAE687 /* MPNotifications.m */,
 			);
@@ -356,6 +368,8 @@
 			files = (
 				6EC260740E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260970E4272D20013BC48 /* MPHelperCommon.h in Headers */,
+				6E8563BC0E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */,
+				6E8563BD0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +388,8 @@
 				6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */,
 				6EC260770E426FC80013BC48 /* BetterAuthorizationSampleLib.h in Headers */,
 				6EC260990E4272D20013BC48 /* MPHelperCommon.h in Headers */,
+				6E8563B90E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */,
+				6E8563BA0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +597,7 @@
 				6EC260730E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
 				6EC260980E4272D20013BC48 /* MPHelperCommon.c in Sources */,
 				6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */,
+				6E8563BB0E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +615,7 @@
 				6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */,
 				6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
 				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
+				6E8563B80E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

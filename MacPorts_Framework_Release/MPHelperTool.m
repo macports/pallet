@@ -41,6 +41,16 @@
 #include <tcl.h>
 #include "MPHelperCommon.h"
 
+#include "MPHelperNotificationsProtocol.h"
+#include "MPHelperNotificationsCommon.h"
+
+#include <stdlib.h>
+#include <assert.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <signal.h>
+
 
 
 //According to the docs all I need is
@@ -50,6 +60,355 @@
 //fromt he request dictionary
 int notificationsFileDescriptor;
 BOOL hasSetFileDescriptor = NO;
+
+
+
+#pragma mark -
+/////////////////////////////////////////////////////////////////
+#pragma mark ***** Notifications Connection Abstraction
+
+// A ConnectionRef represents a connection from the client to the server. 
+// The internals of this are opaque to external callers.  All operations on 
+// a connection are done via the routines in this section.
+
+enum {
+    kConnectionStateMagic = 'LCCM'           // Local Client Connection Magic
+};
+
+typedef struct ConnectionState *  ConnectionRef;
+// Pseudo-opaque reference to the connection.
+
+typedef Boolean (*ConnectionCallbackProcPtr)(
+											 ConnectionRef           conn, 
+											 const PacketHeader *    packet, 
+											 void *                  refCon
+											 );
+// When the client enables listening on a connection, it supplies a 
+// function of this type as a callback.  We call this function in 
+// the context of the runloop specified by the client when they enable 
+// listening.
+//
+// conn is a reference to the connection.  It will not be NULL.
+//
+// packet is a pointer to the packet that arrived, or NULL if we've 
+// detected that the connection to the server is broken.
+//
+// refCon is a value that the client specified when it registered this 
+// callback.
+//
+// If the server sends you a bad packet, you can return false to 
+// tell the connection management system to shut down the connection.
+
+// ConnectionState is the structure used to track a single connection to 
+// the server.  All fields after fSockFD are only relevant if the client 
+// has enabled listening.
+
+struct ConnectionState {
+    OSType                      fMagic;             // kConnectionStateMagic
+    int                         fSockFD;            // UNIX domain socket to server
+    CFSocketRef                 fSockCF;            // CFSocket wrapper for the above
+    CFRunLoopSourceRef          fRunLoopSource;     // runloop source for the above
+    CFMutableDataRef            fBufferedPackets;   // buffer for incomplete packet data
+    ConnectionCallbackProcPtr   fCallback;          // client's packet callback
+    void *                      fCallbackRefCon;    // refCon for the above.
+};
+
+// Forward declarations.  See the comments associated with the function definition.
+
+static void ConnectionShutdown(ConnectionRef conn);
+static void ConnectionCloseInternal(ConnectionRef conn, Boolean sayGoodbye);
+
+enum {
+    kResultColumnWidth = 10
+};
+
+static int ConnectionSend(ConnectionRef conn, const PacketHeader *packet)
+// Send a packet to the server.  Use this when you're not expecting a 
+// reply.
+//
+// conn must be a valid connection
+// packet must be a valid, ready-to-send, packet
+// Returns an errno-style error code
+{
+    int     err;
+    
+    assert(conn != NULL);
+    assert(conn->fSockFD != -1);            // connection must not be shut down
+    // conn->fSockCF may or may not be NULL; it's OK to send a packet when listening 
+    // because there's no reply; OTOH, you can't do an RPC while listening because 
+    // an unsolicited packet might get mixed up with the RPC reply.
+    
+    assert(packet != NULL);
+    assert(packet->fMagic == kPacketMagic);
+    assert(packet->fSize >= sizeof(PacketHeader));
+    
+    // Simply send the packet down the socket.
+    
+    err = MoreUNIXWrite(conn->fSockFD, packet, packet->fSize, NULL);
+    
+    return err;
+}
+
+static int ConnectionOpen(ConnectionRef *connPtr)
+// Opens a connection to the server.
+//
+// On entry, connPtr must not be NULL
+// On entry, *connPtr must be NULL
+// Returns an errno-style error code
+// On success, *connPtr will not be NULL
+// On error, *connPtr will be NULL
+{
+    int                 err;
+    ConnectionRef       conn;
+    Boolean             sayGoodbye;
+    
+    assert( connPtr != NULL);
+    assert(*connPtr == NULL);
+    
+    sayGoodbye = false;
+    
+    // Allocate a ConnectionState structure and fill out some basic fields.
+    
+    err = 0;
+    conn = (ConnectionRef) calloc(1, sizeof(*conn));
+    if (conn == NULL) {
+        err = ENOMEM;
+    }
+    if (err == 0) {
+        conn->fMagic  = kConnectionStateMagic;
+        
+        // For clean up to work properly, we must make sure that, if 
+        // the connection record is allocated successfully, we always 
+        // set fSockFD to -1.  So, while the following line is redundant 
+        // in the current code, it's present to press home this point.
+		
+        conn->fSockFD = -1;
+    }
+    
+    // Create a UNIX domain socket and connect to the server. 
+    
+    if (err == 0) {
+        conn->fSockFD = socket(AF_UNIX, SOCK_STREAM, 0);
+        err = MoreUNIXErrno(conn->fSockFD);
+    }
+    if (err == 0) {
+        struct sockaddr_un connReq;
+		
+        connReq.sun_len    = sizeof(connReq);
+        connReq.sun_family = AF_UNIX;
+        strcpy(connReq.sun_path, kServerSocketPath);
+		
+        err = connect(conn->fSockFD, (struct sockaddr *) &connReq, SUN_LEN(&connReq));
+        err = MoreUNIXErrno(err);
+        
+        sayGoodbye = (err == 0);
+    }
+    
+    // Clean up.
+    
+    if (err != 0) {
+        ConnectionCloseInternal(conn, sayGoodbye);
+        conn = NULL;
+    }
+    *connPtr = conn;
+    
+    assert( (err == 0) == (*connPtr != NULL) );
+    
+    return err;
+}
+
+
+static void ConnectionShutdown(ConnectionRef conn)
+// This routine shuts down down the connection to the server 
+// without saying goodbye; it leaves conn valid.  This routine 
+// is primarily used internally to the connection abstraction 
+// where we notice that the connection has failed for some reason. 
+// It's also called by the client after a successful quit RPC 
+// because we know that the server has closed its end of the 
+// connection.
+//
+// It's important to nil out the fields as we close them because 
+// this routine is called if any messaging routine fails.  If it 
+// doesn't nil out the fields, two bad things might happen:
+//
+// o When the connection is eventually closed, ConnectionCloseInternal 
+//   will try to send a Goodbye, which fails triggering an assert.
+//
+// o If ConnectionShutdown is called twice on a particular connection 
+//   (which happens a lot; this is a belts and braces implementation 
+//   [that's "belts and suspenders" for the Americans reading this; 
+//   ever wonder why Monty Python's lumberjacks sing about "suspenders 
+//   and a bra"?; well look up "suspenders" in a non-American dictionary 
+//   for a quiet chuckle :-] )
+{
+    int     junk;
+    Boolean hadSockCF;
+	
+    assert(conn != NULL);
+    
+    conn->fCallback       = NULL;
+    conn->fCallbackRefCon = NULL;
+	
+    if (conn->fRunLoopSource != NULL) {
+        CFRunLoopSourceInvalidate(conn->fRunLoopSource);
+        
+        CFRelease(conn->fRunLoopSource);
+        
+        conn->fRunLoopSource = NULL;
+    }
+    
+    // CFSocket will close conn->fSockFD when we invalidate conn->fSockCF, 
+    // so we remember whether we did this so that, later on, we know 
+    // whether to close the file descriptor ourselves.  We need an extra 
+    // variable because we NULL out fSockCF as we release it, for the reason 
+    // described above.
+    
+    hadSockCF = (conn->fSockCF != NULL);
+    if (conn->fSockCF != NULL) {
+        CFSocketInvalidate(conn->fSockCF);
+        
+        CFRelease(conn->fSockCF);
+        
+        conn->fSockCF = NULL;
+    }
+	
+    if (conn->fBufferedPackets != NULL) {
+        CFRelease(conn->fBufferedPackets);
+        conn->fBufferedPackets = NULL;
+    }
+	
+    if ( (conn->fSockFD != -1) && ! hadSockCF ) {
+        junk = close(conn->fSockFD);
+        assert(junk == 0);
+    }
+    // We always set fSockFD to -1 because either we've closed it or 
+    // CFSocket has.
+    conn->fSockFD = -1;
+}
+
+
+static void ConnectionCloseInternal(ConnectionRef conn, Boolean sayGoodbye)
+// The core of ConnectionClose.  It's called by ConnectionClose 
+// and by ConnectionOpen, if it fails for some reason.  This exists 
+// as a separate routine so that we can add the sayGoodbye parameter, 
+// which controls whether we send a goodbye packet to the server.  We 
+// need this because we should always try to say goodbye if we're called 
+// from ConnectionClose, but if we're called from ConnectionOpen we 
+// should only try to say goodbye if we successfully connected the 
+// socket.
+//
+// Regardless, the bulk of the work of this routine is done by 
+// ConnectionShutdown.  This routine exists to a) say goodbye, if 
+// necessary, and b) free the memory associated with the connection.
+{
+    int     junk;
+    
+    if (conn != NULL) {
+        assert(conn->fMagic == kConnectionStateMagic);
+		
+        if ( (conn->fSockFD != -1) && sayGoodbye ) {
+            PacketGoodbye   goodbye;
+			
+            InitPacketHeader(&goodbye.fHeader, kPacketTypeGoodbye, sizeof(goodbye), false);
+            snprintf(goodbye.fMessage, sizeof(goodbye.fMessage), "Process %ld signing off", (long) getpid());
+            
+            junk = ConnectionSend(conn, &goodbye.fHeader);
+            assert(junk == 0);
+        }
+        ConnectionShutdown(conn);
+        
+        free(conn);
+    }
+}
+
+static void ConnectionClose(ConnectionRef conn)
+// Closes the connection.  It's legal to pass conn as NULL, in which 
+// case this does nothing (kinda like free'ing NULL).
+{
+    ConnectionCloseInternal(conn, true);
+}
+
+
+
+/////////////////////////////////////////////////////////////////
+#pragma mark ***** Notifications Command Utilities 
+
+static void SIGINTRunLoopCallback(const siginfo_t *sigInfo, void *refCon)
+// This routine is called in response to a SIGINT signal. 
+// It is not, however, a signal handler.  Rather, we 
+// orchestrate to have it called from the runloop (via 
+// the magic of InstallSignalToSocket).  It's purpose 
+// is to stop the runloop when the user types ^C.
+{
+#pragma unused(sigInfo)
+#pragma unused(refCon)
+    
+    // Stop the runloop.  Note that we can get a reference to the runloop by 
+	// calling CFRunLoopGetCurrent because this is called from the runloop.
+    
+    CFRunLoopStop( CFRunLoopGetCurrent() );
+    
+    // Print a bonus newline to ensure that the next command prompt isn't 
+    // printed on the same line as the echoed ^C.
+    
+    fprintf(stderr, "\n");
+}
+
+
+static void PrintResult(const char *command, int errNum, const char *arg)
+// Prints the result of a command.  command is the name of the 
+// command, errNum is the errno-style error number, and arg 
+// (if not NULL) is the command argument.
+{
+    if (errNum == 0) {
+        if (arg == NULL) {
+            fprintf(stderr, "%*s\n", kResultColumnWidth, command);
+        } else {
+            fprintf(stderr, "%*s \"%s\"\n", kResultColumnWidth, command, arg);
+        }
+    } else {
+        fprintf(stderr, "%*s failed with error %d\n", kResultColumnWidth, command, errNum);
+    }
+}
+
+
+
+
+static void DoShout(ConnectionRef conn, const char *message)
+// Implements the "shout" command by sending a shout packet to the server. 
+// Note that this is /not/ an RPC.
+//
+// The server responds to this packet by echoing it to each registered 
+// listener.
+{
+	
+	//asl logging stuff
+	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
+	assert(logMsg != NULL);
+	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
+	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
+	
+	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
+	assert(logClient != NULL);
+
+	
+    int         err;
+	NSString * shoutString = [NSString stringWithFormat:@"Do Shout is passing %@", 
+							  [NSString stringWithCString:message encoding:NSUTF8StringEncoding]];
+	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @" %@", shoutString );
+	
+	
+	
+    PacketShout request;    
+    InitPacketHeader(&request.fHeader, kPacketTypeShout, sizeof(request), false);
+    snprintf(request.fMessage, sizeof(request.fMessage), "%s", message);
+    err = ConnectionSend(conn, &request.fHeader);
+    PrintResult("shout", err, message);
+	
+	asl_close(logClient);
+}
+
+# pragma mark -
 
 
 #pragma mark Tcl Commands
@@ -96,7 +455,22 @@ int SimpleLog_Command
 
 
 
+
 #pragma mark -
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
+#pragma mark ***** Tool Infrastructure
+
+/*
+ IMPORTANT
+ ---------
+ This array must be exactly parallel to the kMPHelperCommandSet array 
+ in "MPHelperCommon.c".
+ */
 
 static OSStatus DoEvaluateTclString 
 (
@@ -171,7 +545,7 @@ static OSStatus DoEvaluateTclString
 	}
 	else
 		CFDictionaryAddValue(response, CFSTR("TclPkgPath"), (CFStringRef)tclPkgPath);
-		
+	
 	//Load macports1.0 package
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:tclPkgPath]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
@@ -187,7 +561,7 @@ static OSStatus DoEvaluateTclString
 		CFDictionaryAddValue(response, CFSTR("MPFastload"), CFSTR("YES"));
 	}
 	
-
+	
 	//Add simplelog tcl command
 	Tcl_CreateObjCommand(interpreter, "simplelog", SimpleLog_Command, NULL, NULL);
 	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {
@@ -199,7 +573,7 @@ static OSStatus DoEvaluateTclString
 	else {
 		CFDictionaryAddValue(response, CFSTR("simplelog"), CFSTR("YES"));
 	}
-		
+	
 	
 	//Get path for and load interpInit.tcl file to Tcl Interpreter
 	NSString * interpInitFilePath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kInterpInitFilePath));
@@ -250,15 +624,6 @@ static OSStatus DoEvaluateTclString
 	return retval;
 }
 
-/////////////////////////////////////////////////////////////////
-#pragma mark ***** Tool Infrastructure
-
-/*
- IMPORTANT
- ---------
- This array must be exactly parallel to the kMPHelperCommandSet array 
- in "MPHelperCommon.c".
- */
 
 static const BASCommandProc kMPHelperCommandProcs[] = {
 DoEvaluateTclString,	
@@ -267,6 +632,65 @@ NULL
 
 int main(int argc, char const * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+	
+	
+	//For Debugging
+	//asl logging stuff
+	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
+	assert(logMsg != NULL);
+	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
+	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
+	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
+	assert(logClient != NULL);
+	
+	
+	int             err;
+    ConnectionRef   conn;
+    conn = NULL;
+    
+    // SIGPIPE is evil, so tell the system not to send it to us.
+    if (err == 0) {
+        err = MoreUNIXIgnoreSIGPIPE();
+    }
+	
+    // Organise to have SIGINT delivered to a runloop callback.
+    if (err == 0) {
+        sigset_t    justSIGINT;
+        
+        (void) sigemptyset(&justSIGINT);
+        (void) sigaddset(&justSIGINT, SIGINT);
+        
+        err = InstallSignalToSocket(
+									&justSIGINT,
+									CFRunLoopGetCurrent(),
+									kCFRunLoopDefaultMode,
+									SIGINTRunLoopCallback,
+									NULL
+									);
+    }
+    
+    // Connect to the server.
+    if (err == 0) {
+        err = ConnectionOpen(&conn);
+    }
+    
+    // Process the command line arguments.  Basically the arguments are a 
+    // sequence of commands, which we process in order.  The logic is 
+    // a little convoluted because some commands have arguments and because 
+    // the "listen" command must come last.
+    
+    if (err == 0) {
+		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: calling DoShout");
+		DoShout(conn, "Testing MPHelperTool IPC");
+	}
+	else
+		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: calling DoShout");
+	asl_close(logClient);
+	
+    // Clean up.
+    ConnectionClose(conn);
+	
 	
 	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 	
