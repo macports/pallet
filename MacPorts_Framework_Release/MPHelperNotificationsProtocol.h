@@ -148,7 +148,7 @@ typedef struct PacketWhisper PacketWhisper;
 
 struct PacketShout {                    // reply: none
     PacketHeader    fHeader;            // fType is kPacketTypeShout, fID must be kPacketIDNone
-    char            fMessage[32];       // message for each of the clients
+    char            fMessage[500];       // message for each of the clients
 };
 typedef struct PacketShout PacketShout;
 
