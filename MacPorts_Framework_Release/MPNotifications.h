@@ -99,6 +99,7 @@
 	int sd1, rc;
 	struct sockaddr_un serveraddr;
 	BOOL hasSetFileDescriptor;
+	BOOL terminateBackgroundThread;
 	
 }
 

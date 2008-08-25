@@ -73,6 +73,8 @@
 		6EE6DDA40E626D4A00FB2115 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EE6DDA70E626D5A00FB2115 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
 		6EE6DDAB0E626DC900FB2115 /* MPHelperToolIPCTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */; };
+		6EE6DDCE0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */; };
+		6EE6DDCF0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */; };
 		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
 		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -169,6 +171,8 @@
 		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
 		6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = MPHelperToolIPCTester; path = build/Debug/MPHelperToolIPCTester; sourceTree = "<group>"; };
 		6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolIPCTester.m; sourceTree = "<group>"; };
+		6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPNotifications+IPCAdditions.h"; sourceTree = "<group>"; };
+		6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPNotifications+IPCAdditions.m"; sourceTree = "<group>"; };
 		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
 		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 				6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */,
 				6E270D070E158CED00BAE687 /* MPNotifications.h */,
 				6E270D080E158CED00BAE687 /* MPNotifications.m */,
+				6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */,
+				6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */,
 			);
 			name = "Tcl Notifications ";
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 				6EC260990E4272D20013BC48 /* MPHelperCommon.h in Headers */,
 				6E8563B90E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */,
 				6E8563BA0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */,
+				6EE6DDCE0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +680,7 @@
 				6EC260760E426FC80013BC48 /* BetterAuthorizationSampleLib.c in Sources */,
 				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
 				6E8563B80E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */,
+				6EE6DDCF0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

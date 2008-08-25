@@ -386,26 +386,26 @@ static NSString * tclInterpreterPkgPath = nil;
 		//I hope BAS's main method is blocking ... it should be since we obtain
 		//a return value
 		MPNotifications * notificationObject = [MPNotifications sharedListener];
-		if ([notificationObject respondsToSelector:@selector(prepareServerThread)]) {
+		//if ([notificationObject respondsToSelector:@selector(prepareIPCServerThread)]) {
 			NSLog(@"PREPARING SERVER THREAD");
-			[notificationObject prepareServerThread];
-		}
+			[notificationObject prepareIPCServerThread];
+		//}
 		
-		if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
+		//if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
 			NSThread * cThread = [NSThread currentThread];
 			NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
-		[NSThread detachNewThreadSelector:@selector(startServerThread) 
+		[NSThread detachNewThreadSelector:@selector(startIPCServerThread) 
 								 toTarget:notificationObject 
 							   withObject:nil];
 		
-		}
+		//}
 		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
 		
 		//We can stop the thread now
-		if ([notificationObject respondsToSelector:@selector(stopServerThread)]) {
+		//if ([notificationObject respondsToSelector:@selector(stopServerThread)]) {
 			NSLog(@"STOPPING SERVER THREAD");
-			[notificationObject stopServerThread];
-		}
+			[notificationObject stopIPCServerThread];
+		//}
 		return secondResult;
 	}
 	
