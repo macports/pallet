@@ -429,18 +429,13 @@ static NSString * tclInterpreterPkgPath = nil;
 	NSString * interpInitPath = [[NSBundle bundleForClass:[MPInterpreter class]] 
 								 pathForResource:@"interpInit" ofType:@"tcl"];
 	
-	int serverFileDesc = [[MPNotifications sharedListener] getServerFileDescriptor];
-	
-	if (serverFileDesc < 0)
-		NSLog(@"Uninitialized file descriptor for HelperTool IPC");
 	
 	
 	request = [NSDictionary dictionaryWithObjectsAndKeys:
 			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
 			   statement, @kTclStringToBeEvaluated, 
 			   tclInterpreterPkgPath, @kTclInterpreterInitPath ,
-			   interpInitPath, @kInterpInitFilePath,
-			   [NSNumber numberWithInt:serverFileDesc], @kServerFileDescriptor, nil];
+			   interpInitPath, @kInterpInitFilePath, nil];
 	
 	assert(request != NULL);
 	

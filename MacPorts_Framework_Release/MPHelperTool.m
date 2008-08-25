@@ -495,13 +495,6 @@ static OSStatus DoEvaluateTclString
 	//asl may be null
 	//aslMsg may be null
 	
-	//Set the file Descriptor here
-	NSNumber * num = (NSNumber *) (CFNumberRef) CFDictionaryGetValue(request, CFSTR(kServerFileDescriptor));
-	notificationsFileDescriptor = [num intValue];
-	asl_NSLog(asl, aslMsg, ASL_LEVEL_DEBUG, @"Setting file descriptor with value %i", notificationsFileDescriptor);
-	if (notificationsFileDescriptor > 0) {
-		hasSetFileDescriptor = YES;
-	}
 	
 	//Get the string that was passed in the request dictionary
 	NSString *  tclCmd = (NSString *) (CFStringRef)CFDictionaryGetValue(request, CFSTR(kTclStringToBeEvaluated));
@@ -693,13 +686,13 @@ int main(int argc, char const * argv[]) {
 		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: NOT calling DoShout");
 	asl_close(logClient);
 	
-    
+    // Clean up.
+    ConnectionClose(conn);
 	
 	
 	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 	
-	// Clean up.
-    ConnectionClose(conn);
+	
 	
 	[pool release];
 	
