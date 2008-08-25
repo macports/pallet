@@ -444,6 +444,7 @@ int SimpleLog_Command
 	if (objc) {
 		NSString * data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
 		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @"MPHelperTool: %@ " , data);
+		//DoShout(<#ConnectionRef conn#>, <#const char * message#>)
 		assert(err == 0);
 		
 		returnCode = TCL_OK;
@@ -645,13 +646,15 @@ int main(int argc, char const * argv[]) {
 	assert(logClient != NULL);
 	
 	
-	int             err;
+	int             err = 0;
     ConnectionRef   conn;
     conn = NULL;
     
     // SIGPIPE is evil, so tell the system not to send it to us.
     if (err == 0) {
         err = MoreUNIXIgnoreSIGPIPE();
+		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: err started out as ZERO %i", err);
+		
     }
 	
     // Organise to have SIGINT delivered to a runloop callback.
@@ -668,11 +671,13 @@ int main(int argc, char const * argv[]) {
 									SIGINTRunLoopCallback,
 									NULL
 									);
+		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: IgnoreSigPipe Successful");
     }
     
     // Connect to the server.
     if (err == 0) {
         err = ConnectionOpen(&conn);
+		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: Installed Signal to Socket!");
     }
     
     // Process the command line arguments.  Basically the arguments are a 
@@ -685,14 +690,16 @@ int main(int argc, char const * argv[]) {
 		DoShout(conn, "Testing MPHelperTool IPC");
 	}
 	else
-		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: calling DoShout");
+		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: NOT calling DoShout");
 	asl_close(logClient);
 	
-    // Clean up.
-    ConnectionClose(conn);
+    
 	
 	
 	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
+	
+	// Clean up.
+    ConnectionClose(conn);
 	
 	[pool release];
 	

@@ -1254,6 +1254,7 @@ static int SafeBindUnixDomainSocket(int sockFD, const char *socketPath)
         err = stat(grandParentPath, &sb);
         err = MoreUNIXErrno(err);
     }
+	
     if ( (err == 0) && ( ! (sb.st_mode & S_ISTXT) || (sb.st_uid != 0) ) ) {
         fprintf(stderr, "SafeBindUnixDomainSocket: Grandparent directory (%s) is not a sticky root-owned directory.\n", grandParentPath);
         err = EINVAL;
@@ -1351,6 +1352,9 @@ static void PrintUsage(const char *argv0)
 -(void) readData:(NSNotification *)notification;
 -(void) notifyWithData:(NSNotification *)notification;
 -(BOOL) initBSDSocket;
+-(void) startServerThread;
+-(void) prepareServerThread;
+-(void) stopServerThread;
 @end
 
 
@@ -1556,12 +1560,13 @@ BOOL terminateBackgroundThread;
 #pragma mark -
 #pragma mark MPNotifications Server Code - II
 
--(void) serverThreadStart {
+-(void) startServerThread {
 	NSAutoreleasePool * sPool = [[NSAutoreleasePool alloc] init];
 	
+	NSLog(@"INSIDE SERVER THREAD");
 	
 	//Configure runloop
-	int         err;
+	int         err = 0;
     int         listenerFD;
     CFSocketRef listenerCF;
     Boolean     didBind;
@@ -1571,11 +1576,14 @@ BOOL terminateBackgroundThread;
     listenerCF = NULL;
 	
 	
+	
+	
 	// Ignore SIGPIPE because it's a deeply annoying concept.  If you don't ignore 
 	// SIGPIPE when writing to a UNIX domain socket whose far side has been closed 
 	// will trigger a SIGPIPE, whose default action is to terminate the program.
     if (err == 0) {
         fprintf(stderr, "CFLocalServer: Starting up (pid: %ld).\n", (long) getpid());
+		NSLog(@"CFLocalServer: Starting up (pid: %ld).\n", (long) getpid());
         err = MoreUNIXIgnoreSIGPIPE();
     }
     
@@ -1600,20 +1608,24 @@ BOOL terminateBackgroundThread;
 	// Create the initial client set.
     if (err == 0) {
 		err = ClientInitialise();
+		NSLog(@"Initilalizing Client");
     }
     
 	// Create our listening socket, bind it, and then wrap it in a CFSocket.
     if (err == 0) {
         listenerFD = socket(AF_UNIX, SOCK_STREAM, 0);
         err = MoreUNIXErrno(listenerFD);
+		NSLog(@"Creating Socket");
     }
     if (err == 0) {
         err = SafeBindUnixDomainSocket(listenerFD, kServerSocketPath);
         didBind = (err == 0);
+		NSLog(@"Binding Socket %i", err);
     }
     if (err == 0) {
         err = listen(listenerFD, 5);
         err = MoreUNIXErrno(err);
+		NSLog(@"Listening Socket");
     }
     if (err == 0) {
         listenerCF = CFSocketCreateWithNative(
@@ -1622,6 +1634,8 @@ BOOL terminateBackgroundThread;
 											  kCFSocketAcceptCallBack, 
 											  ListeningSocketAcceptCallback, 
 											  NULL);
+		
+		NSLog(@"Creating Callbacks!");
         if (listenerCF == NULL) {
             err = EINVAL;
         }
@@ -1637,19 +1651,22 @@ BOOL terminateBackgroundThread;
             err = EINVAL;
         } else {
             CFRunLoopAddSource( [currentLoop getCFRunLoop], rls, kCFRunLoopDefaultMode);
-            
+            NSLog(@"Adding Source to current runloop");
+			
             // We no longer need this source, so we just release it.
             CFRelease(rls);
         }
     }
 	
 	
-	double resolution = 300.0;
+	double resolution = 30.0;
 	
 	//Add input sources to my run loop 
 	//terminateBackgroundThread is going to be set to NO before the privileged operation is called
 	//it will be set to YES after the privileged operation finishes execution. So I guess I need
 	//accessor methods?
+	NSThread * cThread = [NSThread currentThread];
+	NSLog(@"RUNNING RUN LOOP with thread %@" , [cThread threadDictionary]);
 	
 	do {
 		NSDate * nextDate = [NSDate dateWithTimeIntervalSinceNow:resolution];
@@ -1665,7 +1682,7 @@ BOOL terminateBackgroundThread;
 	terminateBackgroundThread == NO;
 }
 
--(void) serverThreadStop {
+-(void) stopServerThread {
 	terminateBackgroundThread == YES;
 }
 @end

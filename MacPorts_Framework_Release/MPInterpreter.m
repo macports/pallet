@@ -363,11 +363,15 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 - (NSString *)evaluateStringWithPossiblePrivileges:(NSString *)statement error:(NSError **)mportError {
+	
+	
+	
 	//N.B. I am going to insist that funciton users not pass in nil for the
 	//mportError parameter
 	NSString * firstResult;
 	NSString * secondResult;
 	
+	*mportError = nil;
 	firstResult = [self evaluateStringAsString:statement error:mportError];
 	
 	//Because of string results of methods like mportsync (which returns the empty string)
@@ -375,9 +379,33 @@ static NSString * tclInterpreterPkgPath = nil;
 	//If it is nil then there was no error, if not we re-evaluate with privileges using
 	//the helper tool
 	
-	if (mportError != nil) {
-		* mportError = nil; 
+	if ( *mportError != nil) {
+		*mportError = nil; 
+		
+		//We need to use the notificationsObject to set up IPC with the helper tool
+		//I hope BAS's main method is blocking ... it should be since we obtain
+		//a return value
+		MPNotifications * notificationObject = [MPNotifications sharedListener];
+		if ([notificationObject respondsToSelector:@selector(prepareServerThread)]) {
+			NSLog(@"PREPARING SERVER THREAD");
+			[notificationObject prepareServerThread];
+		}
+		
+		if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
+			NSThread * cThread = [NSThread currentThread];
+			NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
+		[NSThread detachNewThreadSelector:@selector(startServerThread) 
+								 toTarget:notificationObject 
+							   withObject:nil];
+		
+		}
 		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
+		
+		//We can stop the thread now
+		if ([notificationObject respondsToSelector:@selector(stopServerThread)]) {
+			NSLog(@"STOPPING SERVER THREAD");
+			[notificationObject stopServerThread];
+		}
 		return secondResult;
 	}
 	

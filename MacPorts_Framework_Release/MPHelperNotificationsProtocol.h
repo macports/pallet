@@ -177,6 +177,6 @@ typedef struct PacketQuit PacketQuit;
 // periodically cleaned up). See SafeBindUnixDomainSocket (in "Server.c") for 
 // the details about how I achieve this.
 
-#define kServerSocketPath "/var/run/org.macports.MacPorts.Framework.MPHelperToolIPC.socket"
+#define kServerSocketPath "/var/tmp/macports/org.macports.framework.ipc.socket"
 
 #endif
