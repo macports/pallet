@@ -70,6 +70,9 @@
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */; };
+		6EE6DDA40E626D4A00FB2115 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
+		6EE6DDA70E626D5A00FB2115 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
+		6EE6DDAB0E626DC900FB2115 /* MPHelperToolIPCTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */; };
 		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
 		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -97,6 +100,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6ED12A490E3E552F0026773D;
 			remoteInfo = MPHelperTool;
+		};
+		6EE6DDA20E626D4500FB2115 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* MacPorts */;
+			remoteInfo = MacPorts;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -157,6 +167,8 @@
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
+		6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = MPHelperToolIPCTester; path = build/Debug/MPHelperToolIPCTester; sourceTree = "<group>"; };
+		6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolIPCTester.m; sourceTree = "<group>"; };
 		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
 		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -191,6 +203,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6EE6DD9C0E626D2800FB2115 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EE6DDA40E626D4A00FB2115 /* MacPorts.framework in Frameworks */,
+				6EE6DDA70E626D5A00FB2115 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +232,7 @@
 				489DD8F40C94365F00595506 /* Test.octest */,
 				6ED12A4A0E3E552F0026773D /* MPHelperTool */,
 				6EC260870E426FF10013BC48 /* MPHelperInstallTool */,
+				6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +240,7 @@
 		0867D691FE84028FC02AAC07 /* MacPorts Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				6EE6DDA80E626D8000FB2115 /* IPCTesting */,
 				6ED12A460E3E54A80026773D /* MPHelperTools */,
 				6EA293540E05C8C600902D12 /* Tcl Notifications  */,
 				6E88D1760DF46A2600684E9F /* Tests */,
@@ -359,6 +382,14 @@
 			name = MPHelperTools;
 			sourceTree = "<group>";
 		};
+		6EE6DDA80E626D8000FB2115 /* IPCTesting */ = {
+			isa = PBXGroup;
+			children = (
+				6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */,
+			);
+			name = IPCTesting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -449,6 +480,23 @@
 			productReference = 6ED12A4A0E3E552F0026773D /* MPHelperTool */;
 			productType = "com.apple.product-type.tool";
 		};
+		6EE6DD9D0E626D2800FB2115 /* MPHelperToolIPCTester */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EE6DDA90E626D8000FB2115 /* Build configuration list for PBXNativeTarget "MPHelperToolIPCTester" */;
+			buildPhases = (
+				6EE6DD9B0E626D2800FB2115 /* Sources */,
+				6EE6DD9C0E626D2800FB2115 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6EE6DDA30E626D4500FB2115 /* PBXTargetDependency */,
+			);
+			name = MPHelperToolIPCTester;
+			productName = MPHelperToolIPCTester;
+			productReference = 6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */;
+			productType = "com.apple.product-type.tool";
+		};
 		8DC2EF4F0486A6940098B216 /* MacPorts */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MacPorts" */;
@@ -492,6 +540,7 @@
 				8DC2EF4F0486A6940098B216 /* MacPorts */,
 				489DD8F30C94365F00595506 /* Test */,
 				DFE353650CFB8F0C003BACFC /* Docs */,
+				6EE6DD9D0E626D2800FB2115 /* MPHelperToolIPCTester */,
 			);
 		};
 /* End PBXProject section */
@@ -601,6 +650,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6EE6DD9B0E626D2800FB2115 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EE6DDAB0E626DC900FB2115 /* MPHelperToolIPCTester.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -636,6 +693,11 @@
 			isa = PBXTargetDependency;
 			target = 6ED12A490E3E552F0026773D /* MPHelperTool */;
 			targetProxy = 6ED12A520E3E55A50026773D /* PBXContainerItemProxy */;
+		};
+		6EE6DDA30E626D4500FB2115 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
+			targetProxy = 6EE6DDA20E626D4500FB2115 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -856,6 +918,52 @@
 			};
 			name = Release;
 		};
+		6EE6DDA00E626D2900FB2115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperToolIPCTester;
+			};
+			name = Debug;
+		};
+		6EE6DDA10E626D2900FB2115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperToolIPCTester;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		DFE353660CFB8F0C003BACFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -921,6 +1029,15 @@
 			buildConfigurations = (
 				6ED12A4C0E3E55300026773D /* Debug */,
 				6ED12A4D0E3E55300026773D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EE6DDA90E626D8000FB2115 /* Build configuration list for PBXNativeTarget "MPHelperToolIPCTester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EE6DDA00E626D2900FB2115 /* Debug */,
+				6EE6DDA10E626D2900FB2115 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
