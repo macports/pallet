@@ -61,6 +61,37 @@
 int notificationsFileDescriptor;
 BOOL hasSetFileDescriptor = NO;
 
+#pragma mark -
+#pragma mark ASL Logging 
+@interface ASLLogger : NSObject {
+	
+}
++ (BOOL) logString:(NSString *)log;
+@end
+
+@implementation ASLLogger
+
++(BOOL) logString:(NSString *)log {
+	//Initialize asl loggin asl logging stuff
+	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
+	assert(logMsg != NULL);
+	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
+	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
+	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
+	assert(logClient != NULL);
+	
+	int res = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: %@" , log);
+	asl_close(logClient);
+	
+	if (res == 0)
+		return YES;
+	return NO;
+}
+
+@end
+
+
+
 
 
 #pragma mark -
@@ -213,6 +244,121 @@ static int ConnectionOpen(ConnectionRef *connPtr)
     *connPtr = conn;
     
     assert( (err == 0) == (*connPtr != NULL) );
+    
+    return err;
+}
+
+static int ConnectionRPC(
+						 ConnectionRef           conn, 
+						 const PacketHeader *    request, 
+						 PacketHeader *          reply, 
+						 size_t                  replySize
+)
+// Perform an RPC (Remote Procedure Call) with the server.  That is, send 
+// the server a packet and wait for a reply.  You can only use this on 
+// connections that are not in listening mode.
+//
+// conn must be a valid connection
+//
+// packet must be a valid, ready-to-send, packet
+//
+// reply and replySize specify a buffer where the reply packet is placed;
+// reply size must not be NULL; replySize must not be less that the 
+// packet header size (sizeof(PacketHeader)); if the reply packet is bigger 
+// than replySize, the data that won't fit is discarded; you can detect this 
+// by looking at reply->fSize
+//
+// Returns an errno-style error code
+// On success, the buffer specified by reply and replySize will contain the 
+// reply packet; on error, the contents of that buffer is invalid; also, 
+// if this routine errors the connection is no longer useful (conn is still 
+// valid, but you can't use it to transmit any more data)
+{
+    int     err;
+    
+    assert(conn != NULL);
+    assert(conn->fSockFD != -1);            // connection must not be shut down
+    assert(conn->fSockCF == NULL);          // RPC and listening are mutually exclusive
+	// because unsolicited packet might get mixed up 
+	// with the reply
+	
+    assert(request != NULL);
+    assert(request->fMagic == kPacketMagic);
+    assert(request->fSize >= sizeof(PacketHeader));
+	
+    assert(reply != NULL);
+    assert(replySize >= sizeof(PacketHeader));
+    
+    // Send the request.
+    
+    err = ConnectionSend(conn, request);
+    
+    // Read and validate the reply header.
+    
+    if (err == 0) {
+        err = MoreUNIXRead(conn->fSockFD, reply, sizeof(PacketHeader), NULL);
+    }
+    if ( (err == 0) && (reply->fMagic != kPacketMagic) ) {
+        fprintf(stderr, "ConnectionRPC: Bad magic (%.4s).\n", (char *) &reply->fMagic);
+        err = EINVAL;
+    }
+    if ( (err == 0) && (reply->fType != kPacketTypeReply) ) {
+        fprintf(stderr, "ConnectionRPC: Type wrong (%.4s).\n", (char *) &reply->fType);
+        err = EINVAL;
+    }
+    if ( (err == 0) && (reply->fID != request->fID) ) {
+        fprintf(stderr, "ConnectionRPC: ID mismatch (%" PRId32 ").\n", reply->fID);
+        err = EINVAL;
+    }
+    if ( (err == 0) && ( (reply->fSize < sizeof(PacketHeader)) || (reply->fSize > kPacketMaximumSize) ) ) {
+        fprintf(stderr, "ConnectionRPC: Bogus packet size (%" PRIu32 ").\n", reply->fSize);
+        err = EINVAL;
+    }
+	
+    // Read the packet payload that will fit in the reply buffer.
+    
+    if ( (err == 0) && (reply->fSize > sizeof(PacketHeader)) ) {
+        uint32_t  payloadToRead;
+        
+        if (reply->fSize > replySize) {
+            payloadToRead = replySize;
+        } else {
+            payloadToRead = reply->fSize;
+        }
+        payloadToRead -= sizeof(PacketHeader);
+        
+        err = MoreUNIXRead(conn->fSockFD, ((char *) reply) + sizeof(PacketHeader), payloadToRead, NULL);
+    }
+	
+    // Discard any remaining packet payload that will fit in the reply buffer.
+    // The addition check in the next line is necessary to avoid the undefined behaviour 
+    // of malloc(0) in the dependent block.
+	
+    if ( (err == 0) && (reply->fSize > replySize) ) {
+        uint32_t    payloadToJunk;
+        void *      junkBuf;
+        
+        payloadToJunk = reply->fSize - replySize;
+        
+        junkBuf = malloc(payloadToJunk);
+        if (junkBuf == NULL) {
+            err = ENOMEM;
+        }
+        
+        if (err == 0) { 
+            err = MoreUNIXRead(conn->fSockFD, junkBuf, payloadToJunk, NULL);
+        }
+        
+        free(junkBuf);
+    }
+	
+    // Any errors cause us to immediately shut down our connection because we 
+    // we're no longer sure of the state of the channel (that is, did we leave 
+    // half a packet stuck in the pipe).
+    
+    if (err != 0) {
+        ConnectionShutdown(conn);
+    }
     
     return err;
 }
@@ -374,29 +520,17 @@ static void PrintResult(const char *command, int errNum, const char *arg)
 
 
 
-static void DoShout(ConnectionRef conn, const char *message)
+static void DoShout(ConnectionRef conn, const char *message, int * ret)
 // Implements the "shout" command by sending a shout packet to the server. 
 // Note that this is /not/ an RPC.
 //
 // The server responds to this packet by echoing it to each registered 
 // listener.
 {
-	
-	//asl logging stuff
-	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
-	assert(logMsg != NULL);
-	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
-	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
-	
-	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
-	assert(logClient != NULL);
-
-	
     int         err;
 	NSString * shoutString = [NSString stringWithFormat:@"Do Shout is passing %@", 
 							  [NSString stringWithCString:message encoding:NSUTF8StringEncoding]];
-	err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @" %@", shoutString );
-	
+	[ASLLogger logString:shoutString];
 	
 	
     PacketShout request;    
@@ -404,15 +538,189 @@ static void DoShout(ConnectionRef conn, const char *message)
     snprintf(request.fMessage, sizeof(request.fMessage), "%s", message);
     err = ConnectionSend(conn, &request.fHeader);
     PrintResult("shout", err, message);
-	
-	asl_close(logClient);
+	*ret = err;
 }
+
+static void DoQuit(ConnectionRef conn, int * ret)
+// Implements the "quit" command by doing a quit RPC with the server. 
+// The server responds to this RPC by quitting.  Cleverly, it sends us 
+// the RPC reply right before quitting.
+{
+    int         err;
+    PacketQuit  request;
+    PacketReply reply;
+    
+    InitPacketHeader(&request.fHeader, kPacketTypeQuit, sizeof(request), true);
+    
+    err = ConnectionRPC(conn, &request.fHeader, &reply.fHeader, sizeof(reply));
+    if (err == 0) {
+        err = reply.fErr;
+		*ret = err;
+    }
+    if (err == 0) {
+        // If the quit is successful, we shut down our end of the connection 
+        // because we know that the server has shut down its end.
+        ConnectionShutdown(conn);
+    }
+    [ASLLogger logString:@"DoQuit being called"];
+	PrintResult("quit", err, NULL);
+}
+
+void initIPC (ConnectionRef iConn) {
+	
+	int             err = 0;
+    //ConnectionRef   conn;
+    iConn = NULL;
+    
+    // SIGPIPE is evil, so tell the system not to send it to us.
+    if (err == 0) {
+        err = MoreUNIXIgnoreSIGPIPE();
+		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: err started out as ZERO %i", err);
+		[ASLLogger logString:[NSString stringWithFormat:@"MPHelperTool: err started out as ZERO %i", err]];
+		
+    }
+	
+    // Organise to have SIGINT delivered to a runloop callback.
+    if (err == 0) {
+        sigset_t    justSIGINT;
+        
+        (void) sigemptyset(&justSIGINT);
+        (void) sigaddset(&justSIGINT, SIGINT);
+        
+        err = InstallSignalToSocket(
+									&justSIGINT,
+									CFRunLoopGetCurrent(),
+									kCFRunLoopDefaultMode,
+									SIGINTRunLoopCallback,
+									NULL
+									);
+		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: IgnoreSigPipe Successful");
+		[ASLLogger logString:@"MPHelperTool: IgnoreSigPipe Successful"];
+    }
+    
+    // Connect to the server.
+    if (err == 0) {
+        err = ConnectionOpen(&iConn);
+		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: Installed Signal to Socket!");
+		[ASLLogger logString:@"MPHelperTool: Installed Signal to Socket!"];
+    }
+    
+    
+    
+    if (err == 0) {
+		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: calling DoShout");
+		[ASLLogger logString:@"MPHelperTool: calling DoShout"];
+		int i;
+		DoShout(iConn, "Testing initIPC", &i);
+	}
+	else
+		[ASLLogger logString:@"MPHelperTool: NOT calling DoShout"];
+	//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: NOT calling DoShout");
+	
+}
+
+#pragma mark -
+#pragma mark Notifications Connection Abstraction
+
+@interface NotificationsClient : NSObject
+{
+	ConnectionRef nConn;
+	BOOL connected;
+}
+
+-(BOOL) initializeConnection;
+-(BOOL) doShout:(NSString *)shout;
+-(BOOL) closeConnection;
+-(BOOL) connected;
+@end
+
+@implementation NotificationsClient
+
+-(BOOL) initializeConnection {
+	int             err = 0;
+	nConn = NULL;
+	
+    // SIGPIPE is evil, so tell the system not to send it to us.
+    if (err == 0) {
+        err = MoreUNIXIgnoreSIGPIPE();
+		[ASLLogger logString:[NSString stringWithFormat:@"MPHelperTool: err started out as ZERO %i", err]];
+		
+    }
+	
+    // Organise to have SIGINT delivered to a runloop callback.
+    if (err == 0) {
+        sigset_t    justSIGINT;
+        
+        (void) sigemptyset(&justSIGINT);
+        (void) sigaddset(&justSIGINT, SIGINT);
+        
+        err = InstallSignalToSocket(
+									&justSIGINT,
+									CFRunLoopGetCurrent(),
+									kCFRunLoopDefaultMode,
+									SIGINTRunLoopCallback,
+									NULL
+									);
+		[ASLLogger logString:@"MPHelperTool: IgnoreSigPipe Successful"];
+    }
+    
+    // Connect to the server.
+    if (err == 0) {
+        err = ConnectionOpen(&nConn);
+		[ASLLogger logString:@"MPHelperTool: Installed Signal to Socket!"];
+    }
+	
+	if (err == 0)
+		connected = YES;
+	else
+		connected = NO;
+	
+	return connected;
+}
+
+-(BOOL) connected {
+	return connected;
+}
+-(BOOL) doShout:(NSString *)shout {
+	BOOL ret = YES;
+	int v;
+	
+	if(nConn != NULL) {
+		DoShout(nConn, [shout cStringUsingEncoding:NSUTF8StringEncoding], &v);
+		if (v != 0) {
+			ret = NO;
+		}
+	}
+	else 
+		ret = NO;
+	
+	return ret;
+}
+
+-(BOOL) closeConnection {
+	int v;
+	BOOL ret = YES;
+	if(nConn != NULL) {
+		DoQuit(nConn, &v);
+		if ( v != 0) {
+			ret = NO;
+		}
+	}
+	else
+		ret = NO;
+	
+	return ret;
+}
+
+
+@end
+
+
 
 # pragma mark -
 
-
 #pragma mark Tcl Commands
-
+NotificationsClient * notifier = nil;
 //For now we just log to Console ... soon we will be doing fully fledged IPC
 int SimpleLog_Command 
 (
@@ -424,33 +732,48 @@ int SimpleLog_Command
 {
 	
 	int returnCode = TCL_ERROR;
-	int err;
+	//int err;
+	//assert(logClient != NULL);
 	
-	//asl logging stuff
-	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
-	assert(logMsg != NULL);
-	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
-	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
+//	ConnectionRef iConn;
+//	initIPC(iConn);
 	
-	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
-	assert(logClient != NULL);
-	
-	
-	//err = asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"Starting simplelog Logging");
-	//assert( err == 0);
+	//if(!globalConnInitialized){
+//		initIPC(globalConn);
+//		globalConnInitialized = YES;
+//	}
+
 	
 	++objv, --objc;
 	
 	if (objc) {
-		NSString * data = [NSString stringWithUTF8String:Tcl_GetString(*objv)];
-		err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @"MPHelperTool: %@ " , data);
-		//DoShout(<#ConnectionRef conn#>, <#const char * message#>)
-		assert(err == 0);
 		
+		const char * log = Tcl_GetString(*objv);
+		NSString * data = [NSString stringWithUTF8String:log];
+		[ASLLogger logString:data];
+		if (notifier != nil && [notifier connected]) {
+			[notifier doShout:data];
+		}
+		else
+			[ASLLogger logString:[NSString stringWithFormat:@"notifier has value %@", notifier]];
+		
+		//DoShout(iConn, log);
+		
+		//err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @"MPHelperTool: %@ " , data);
+//		if (globalConn != NULL) {
+//			//DoShout(globalConn, log);
+//		}
+//		else {
+//			[ASLLogger logString:[NSString stringWithFormat:@"globalConn is NULL on message %@",log]];
+//		}
+		//assert(err == 0);
 		returnCode = TCL_OK;
 	}
 	
-	asl_close(logClient);
+	//ConnectionClose(iConn);
+	//DoQuit(iConn);
+	
+	//asl_close(logClient);
 	return returnCode;
 }
 
@@ -627,72 +950,79 @@ NULL
 int main(int argc, char const * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
+	//assert(logClient != NULL);
+	
+//	
+//	int             err = 0;
+//    ConnectionRef   conn;
+//    conn = NULL;
+//    
+//    // SIGPIPE is evil, so tell the system not to send it to us.
+//    if (err == 0) {
+//        err = MoreUNIXIgnoreSIGPIPE();
+//		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: err started out as ZERO %i", err);
+//		[ASLLogger logString:[NSString stringWithFormat:@"MPHelperTool: err started out as ZERO %i", err]];
+//		
+//    }
+//	
+//    // Organise to have SIGINT delivered to a runloop callback.
+//    if (err == 0) {
+//        sigset_t    justSIGINT;
+//        
+//        (void) sigemptyset(&justSIGINT);
+//        (void) sigaddset(&justSIGINT, SIGINT);
+//        
+//        err = InstallSignalToSocket(
+//									&justSIGINT,
+//									CFRunLoopGetCurrent(),
+//									kCFRunLoopDefaultMode,
+//									SIGINTRunLoopCallback,
+//									NULL
+//									);
+//		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: IgnoreSigPipe Successful");
+//		[ASLLogger logString:@"MPHelperTool: IgnoreSigPipe Successful"];
+//    }
+//    
+//    // Connect to the server.
+//    if (err == 0) {
+//        err = ConnectionOpen(&conn);
+//		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: Installed Signal to Socket!");
+//		[ASLLogger logString:@"MPHelperTool: Installed Signal to Socket!"];
+//    }
+//    
+//    
+//    
+//    if (err == 0) {
+//		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: calling DoShout");
+//		[ASLLogger logString:@"MPHelperTool: calling DoShout"];
+//		
+//		DoShout(conn, "Testing MPHelperTool IPC");
+//	}
+//	else
+//		[ASLLogger logString:@"MPHelperTool: NOT calling DoShout"];
+//		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: NOT calling DoShout");
 	
 	
-	//For Debugging
-	//asl logging stuff
-	aslmsg logMsg = asl_new(ASL_TYPE_MSG) ;
-	assert(logMsg != NULL);
-	asl_set(logMsg, ASL_KEY_FACILITY, "com.apple.console");
-	asl_set(logMsg, ASL_KEY_SENDER, "MPHelperTool");
-	aslclient logClient = asl_open(NULL , NULL, ASL_OPT_STDERR);
-	assert(logClient != NULL);
+	//initIPC(globalConn);
 	
+	//if(!globalConnInitialized){
+//		initIPC(globalConn);
+//		globalConnInitialized = YES;
+//	}
+//	
 	
-	int             err = 0;
-    ConnectionRef   conn;
-    conn = NULL;
-    
-    // SIGPIPE is evil, so tell the system not to send it to us.
-    if (err == 0) {
-        err = MoreUNIXIgnoreSIGPIPE();
-		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: err started out as ZERO %i", err);
-		
-    }
-	
-    // Organise to have SIGINT delivered to a runloop callback.
-    if (err == 0) {
-        sigset_t    justSIGINT;
-        
-        (void) sigemptyset(&justSIGINT);
-        (void) sigaddset(&justSIGINT, SIGINT);
-        
-        err = InstallSignalToSocket(
-									&justSIGINT,
-									CFRunLoopGetCurrent(),
-									kCFRunLoopDefaultMode,
-									SIGINTRunLoopCallback,
-									NULL
-									);
-		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: IgnoreSigPipe Successful");
-    }
-    
-    // Connect to the server.
-    if (err == 0) {
-        err = ConnectionOpen(&conn);
-		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: Installed Signal to Socket!");
-    }
-    
-    // Process the command line arguments.  Basically the arguments are a 
-    // sequence of commands, which we process in order.  The logic is 
-    // a little convoluted because some commands have arguments and because 
-    // the "listen" command must come last.
-    
-    if (err == 0) {
-		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: calling DoShout");
-		DoShout(conn, "Testing MPHelperTool IPC");
-	}
-	else
-		asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: NOT calling DoShout");
-	asl_close(logClient);
-	
-    // Clean up.
-    ConnectionClose(conn);
-	
+	notifier = [[NotificationsClient alloc] init];
+	[notifier initializeConnection];
 	
 	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 	
+	// Clean up.
+	//DoQuit(globalConn);
+   // ConnectionClose(globalConn);
+	//asl_close(logClient);
 	
+	[notifier closeConnection];
+	[notifier release];
 	
 	[pool release];
 	

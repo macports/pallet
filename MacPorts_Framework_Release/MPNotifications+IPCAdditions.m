@@ -795,11 +795,17 @@ static Boolean ClientShout(ClientState *client, PacketShout *packet)
     result = ClientCheckPacketSize(client, &packet->fHeader, sizeof(PacketShout));
     if (result) {
         result = ClientCheckPacketID(client, &packet->fHeader, kPacketIDNone);
+		NSLog(@"Packetsize is OK");
     }
+	else
+		NSLog(@"Packetsize is NOT OK");
 	
 	// The Shout packet is good.  Let's echo it to each listener.
 	
     if (result) {
+		NSLog(@"PacketID is ok");
+		
+		
         ClientState  ** allClients;
         CFIndex         clientCount;
         CFIndex         clientIndex;
@@ -899,6 +905,8 @@ static Boolean ClientQuit(ClientState *client, PacketQuit *packet)
         // the client's fault (-:
         
         result = ClientSendReply(client, &packet->fHeader, 0);
+		
+		NSLog(@"CLIENT QUIT BEING CALLED (YAAAY!!)");
     }
     
     return result;
