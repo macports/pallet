@@ -180,6 +180,78 @@ static int ConnectionSend(ConnectionRef conn, const PacketHeader *packet)
     return err;
 }
 
+static int ConnectionOpen2(ConnectionRef *connPtr, const char * sockPath)
+// Opens a connection to the server.
+//
+// On entry, connPtr must not be NULL
+// On entry, *connPtr must be NULL
+// Returns an errno-style error code
+// On success, *connPtr will not be NULL
+// On error, *connPtr will be NULL
+{
+    int                 err;
+    ConnectionRef       conn;
+    Boolean             sayGoodbye;
+    
+    assert( connPtr != NULL);
+    assert(*connPtr == NULL);
+    
+    sayGoodbye = false;
+    
+    // Allocate a ConnectionState structure and fill out some basic fields.
+    
+    err = 0;
+    conn = (ConnectionRef) calloc(1, sizeof(*conn));
+    if (conn == NULL) {
+        err = ENOMEM;
+    }
+    if (err == 0) {
+        conn->fMagic  = kConnectionStateMagic;
+        
+        // For clean up to work properly, we must make sure that, if 
+        // the connection record is allocated successfully, we always 
+        // set fSockFD to -1.  So, while the following line is redundant 
+        // in the current code, it's present to press home this point.
+		
+        conn->fSockFD = -1;
+    }
+    
+    // Create a UNIX domain socket and connect to the server. 
+    
+    if (err == 0) {
+        conn->fSockFD = socket(AF_UNIX, SOCK_STREAM, 0);
+        err = MoreUNIXErrno(conn->fSockFD);
+    }
+    if (err == 0) {
+        struct sockaddr_un connReq;
+		
+        connReq.sun_len    = sizeof(connReq);
+        connReq.sun_family = AF_UNIX;
+        //strcpy(connReq.sun_path, kServerSocketPath);
+		strcpy(connReq.sun_path, sockPath);
+		
+        err = connect(conn->fSockFD, (struct sockaddr *) &connReq, SUN_LEN(&connReq));
+        err = MoreUNIXErrno(err);
+        
+        sayGoodbye = (err == 0);
+    }
+    
+    // Clean up.
+    
+    if (err != 0) {
+        ConnectionCloseInternal(conn, sayGoodbye);
+        conn = NULL;
+    }
+    *connPtr = conn;
+    
+    assert( (err == 0) == (*connPtr != NULL) );
+    
+    return err;
+}
+
+
+
+
 static int ConnectionOpen(ConnectionRef *connPtr)
 // Opens a connection to the server.
 //
@@ -600,7 +672,7 @@ void initIPC (ConnectionRef iConn) {
     
     // Connect to the server.
     if (err == 0) {
-        err = ConnectionOpen(&iConn);
+        //err = ConnectionOpen(&iConn);
 		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: Installed Signal to Socket!");
 		[ASLLogger logString:@"MPHelperTool: Installed Signal to Socket!"];
     }
@@ -752,7 +824,11 @@ int SimpleLog_Command
 		NSString * data = [NSString stringWithUTF8String:log];
 		[ASLLogger logString:data];
 		if (notifier != nil && [notifier connected]) {
-			[notifier doShout:data];
+			if([notifier doShout:data])
+				[ASLLogger logString:@"DoShout successful"];
+			else
+				[ASLLogger logString:@"DoShout unsuccessful"];
+			
 		}
 		else
 			[ASLLogger logString:[NSString stringWithFormat:@"notifier has value %@", notifier]];

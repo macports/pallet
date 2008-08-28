@@ -884,6 +884,7 @@ static Boolean ClientListen(ClientState *client, PacketListen *packet)
     return result;
 }
 
+
 static Boolean ClientQuit(ClientState *client, PacketQuit *packet)
 // A packet handler for the Quit packet.  See the large comment above for 
 // a discussion of the general form of a packet handler.
@@ -905,11 +906,17 @@ static Boolean ClientQuit(ClientState *client, PacketQuit *packet)
         // the client's fault (-:
         
         result = ClientSendReply(client, &packet->fHeader, 0);
-		
-		NSLog(@"CLIENT QUIT BEING CALLED (YAAAY!!)");
     }
     
-    return result;
+	if (result) {
+		//This is a shared variable, the server thread uses this to keep the while
+		//loop running. For now i'm not synchronizing variable access since the
+		//worst that could happen is that the server is late in reading a chaged
+		//value update
+		clientHasQuit = 1;
+    }
+	
+	return result;
 }
 
 static void ClientGotData(ClientState *client, const void *data)
@@ -1329,6 +1336,13 @@ static void PrintUsage(const char *argv0)
 
 
 @implementation MPNotifications (IPCAdditions)
+-(BOOL) terminateBackgroundThread {
+	return terminateBackgroundThread;
+}
+
+-(void) setTerminateBackgroundThread:(BOOL)newStatus {
+	terminateBackgroundThread = newStatus;
+}
 
 -(void) startIPCServerThread {
 	NSAutoreleasePool * sPool = [[NSAutoreleasePool alloc] init];
@@ -1361,6 +1375,7 @@ static void PrintUsage(const char *argv0)
 	// SIGINT and SIGINFO to our runloop.  If either of these signals occurs, we 
 	// end up executing SignalRunLoopCallback.
     if (err == 0) {
+		if (hasInstalledSignalsToSocket == 0) {
         sigset_t    interestingSignals;
         (void) sigemptyset(&interestingSignals);
         (void) sigaddset(&interestingSignals, SIGINT);
@@ -1373,6 +1388,13 @@ static void PrintUsage(const char *argv0)
 									SignalRunLoopCallback,
 									NULL
 									);
+			if (err == 0) {
+				NSLog(@"Successfuly loaded signals to socket");
+				hasInstalledSignalsToSocket = 1;
+			}
+			else
+				NSLog(@"Attempted to unsucessfully to Install signal to socket");
+		}
     }
 	
 	// Create the initial client set.
@@ -1429,7 +1451,8 @@ static void PrintUsage(const char *argv0)
     }
 	
 	
-	double resolution = 30.0;
+	double resolution = 0.1;
+	BOOL isRunning;
 	
 	//Add input sources to my run loop 
 	//terminateBackgroundThread is going to be set to NO before the privileged operation is called
@@ -1440,10 +1463,18 @@ static void PrintUsage(const char *argv0)
 	
 	do {
 		NSDate * nextDate = [NSDate dateWithTimeIntervalSinceNow:resolution];
-		[currentLoop runMode:NSDefaultRunLoopMode beforeDate:nextDate];
+		isRunning = [currentLoop runMode:NSDefaultRunLoopMode beforeDate:nextDate];
 		
+		//NSLog(@"running runloop");
 		//might add some code here to clean up and recreate autoreleasepool
-	}	while (terminateBackgroundThread == NO);
+	//}	while (isRunning && terminateBackgroundThread == NO);
+	} while (isRunning || clientHasQuit == 0);
+		
+		
+	//Forcibly terminate runloop N.B. ClientQuit() which is invoked
+	//before this call also terminates applications main runloop ...
+	//check to ensure that that doesn't create problems
+	CFRunLoopStop([currentLoop getCFRunLoop]);
 	
 	[sPool release];
 }

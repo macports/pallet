@@ -89,6 +89,7 @@
 	NSFileHandle * readHandle;
 	
 	//BSD sockets stuff
+	id objectLock;
 	BOOL terminateBackgroundThread;
 	
 }

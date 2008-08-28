@@ -397,15 +397,12 @@ static NSString * tclInterpreterPkgPath = nil;
 		[NSThread detachNewThreadSelector:@selector(startIPCServerThread) 
 								 toTarget:notificationObject 
 							   withObject:nil];
+		//[notificationObject startIPCServerThread];
 		
 		//}
 		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
 		
-		//We can stop the thread now
-		//if ([notificationObject respondsToSelector:@selector(stopServerThread)]) {
-			NSLog(@"STOPPING SERVER THREAD");
-			[notificationObject stopIPCServerThread];
-		//}
+		
 		return secondResult;
 	}
 	
