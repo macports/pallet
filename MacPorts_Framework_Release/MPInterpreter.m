@@ -557,7 +557,7 @@ static NSString * tclInterpreterPkgPath = nil;
 		}
 	}
 	
-	NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
+	//NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
 	
 	return result;
 }

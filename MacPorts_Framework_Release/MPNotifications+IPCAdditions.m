@@ -1410,8 +1410,13 @@ static void PrintUsage(const char *argv0)
 		NSLog(@"Creating Socket");
     }
     if (err == 0) {
-        err = SafeBindUnixDomainSocket(listenerFD, kServerSocketPath);
-        didBind = (err == 0);
+        //err = SafeBindUnixDomainSocket(listenerFD, kServerSocketPath);
+		NSLog(@"Socket file path is %@", socketFilePath);
+		
+		char testPath [MAXPATHLEN];
+		strcpy(testPath, [socketFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
+        err = SafeBindUnixDomainSocket(listenerFD, [socketFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
+		didBind = (err == 0);
 		NSLog(@"Binding Socket %i", err);
     }
     if (err == 0) {

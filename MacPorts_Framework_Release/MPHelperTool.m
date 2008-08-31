@@ -49,6 +49,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <sys/param.h>
 #include <signal.h>
 
 
@@ -300,7 +301,13 @@ static int ConnectionOpen(ConnectionRef *connPtr)
 		
         connReq.sun_len    = sizeof(connReq);
         connReq.sun_family = AF_UNIX;
-        strcpy(connReq.sun_path, kServerSocketPath);
+        //strcpy(connReq.sun_path, kServerSocketPath);
+		
+//		char testPath [MAXPATHLEN];
+//		strcpy(testPath, [ipcFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
+		[ASLLogger logString:[NSString stringWithFormat:@"ipcFilePath is %@", ipcFilePath]];
+//		const char * testPath = [ipcFilePath cStringUsingEncoding:NSUTF8StringEncoding];
+		strcpy(connReq.sun_path, [ipcFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
 		
         err = connect(conn->fSockFD, (struct sockaddr *) &connReq, SUN_LEN(&connReq));
         err = MoreUNIXErrno(err);
@@ -740,7 +747,7 @@ void initIPC (ConnectionRef iConn) {
     // Connect to the server.
     if (err == 0) {
         err = ConnectionOpen(&nConn);
-		[ASLLogger logString:@"MPHelperTool: Installed Signal to Socket!"];
+		[ASLLogger logString:[NSString stringWithFormat:@"MPHelperTool: Installed Signal to Socket! %i", err]];
     }
 	
 	if (err == 0)
@@ -832,7 +839,7 @@ int SimpleLog_Command
 			
 		}
 		else
-			[ASLLogger logString:[NSString stringWithFormat:@"notifier has value %@", notifier]];
+			[ASLLogger logString:[NSString stringWithFormat:@"notifier didn't connect has value %@", notifier]];
 		
 		//DoShout(iConn, log);
 		
@@ -896,12 +903,13 @@ static OSStatus DoEvaluateTclString
 	//aslMsg may be null
 	
 	//Get the ipc file path
-	ipcFilePath = (NSString *) (CFStringRef)CFDictionaryGetValue(request, CFSTR(kServerFileSocketPath));
+	ipcFilePath = [[NSString alloc] initWithString:(NSString *) (CFStringRef)CFDictionaryGetValue(request, CFSTR(kServerFileSocketPath))];
 	if (ipcFilePath == nil) {
 		retval = coreFoundationUnknownErr;
 	}
 	else
 		CFDictionaryAddValue(response, CFSTR("SocketServerFilePath"), (CFStringRef)ipcFilePath);
+	[notifier initializeConnection];
 	
 	
 	//Get the string that was passed in the request dictionary
@@ -1097,7 +1105,7 @@ int main(int argc, char const * argv[]) {
 //	
 	
 	notifier = [[NotificationsClient alloc] init];
-	[notifier initializeConnection];
+	
 	
 	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 	
@@ -1108,6 +1116,7 @@ int main(int argc, char const * argv[]) {
 	
 	[notifier closeConnection];
 	[notifier release];
+	[ipcFilePath release];
 	
 	[pool release];
 	
