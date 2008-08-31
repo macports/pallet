@@ -43,6 +43,9 @@
 	//File Descriptor for server file
 	#define kServerFileDescriptor		"ServerFileDescriptor"		//CFNumber
 
+	//File path for IPC socket
+	#define kServerFileSocketPath		"ServerFileSocketPath"		//CFString
+
 
 
 

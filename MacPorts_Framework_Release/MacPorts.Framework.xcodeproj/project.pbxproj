@@ -107,7 +107,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* MacPorts */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MacPorts;
 		};
 /* End PBXContainerItemProxy section */
@@ -169,7 +169,7 @@
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
-		6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = MPHelperToolIPCTester; path = build/Debug/MPHelperToolIPCTester; sourceTree = "<group>"; };
+		6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperToolIPCTester; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolIPCTester.m; sourceTree = "<group>"; };
 		6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPNotifications+IPCAdditions.h"; sourceTree = "<group>"; };
 		6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPNotifications+IPCAdditions.m"; sourceTree = "<group>"; };

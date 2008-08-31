@@ -60,6 +60,7 @@
 //fromt he request dictionary
 int notificationsFileDescriptor;
 BOOL hasSetFileDescriptor = NO;
+NSString * ipcFilePath;
 
 #pragma mark -
 #pragma mark ASL Logging 
@@ -893,6 +894,14 @@ static OSStatus DoEvaluateTclString
 	assert(response != NULL);
 	//asl may be null
 	//aslMsg may be null
+	
+	//Get the ipc file path
+	ipcFilePath = (NSString *) (CFStringRef)CFDictionaryGetValue(request, CFSTR(kServerFileSocketPath));
+	if (ipcFilePath == nil) {
+		retval = coreFoundationUnknownErr;
+	}
+	else
+		CFDictionaryAddValue(response, CFSTR("SocketServerFilePath"), (CFStringRef)ipcFilePath);
 	
 	
 	//Get the string that was passed in the request dictionary

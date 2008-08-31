@@ -1344,7 +1344,7 @@ static void PrintUsage(const char *argv0)
 	terminateBackgroundThread = newStatus;
 }
 
--(void) startIPCServerThread {
+-(void) startIPCServerThread:(NSString *)socketFilePath {
 	NSAutoreleasePool * sPool = [[NSAutoreleasePool alloc] init];
 	
 	NSLog(@"INSIDE SERVER THREAD");

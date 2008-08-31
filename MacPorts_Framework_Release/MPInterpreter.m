@@ -36,6 +36,7 @@
 #import "MPInterpreter.h"
 #include "BetterAuthorizationSampleLib.h"
 #include "MPHelperCommon.h"
+#include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
 
 
@@ -381,27 +382,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	if ( *mportError != nil) {
 		*mportError = nil; 
-		
-		//We need to use the notificationsObject to set up IPC with the helper tool
-		//I hope BAS's main method is blocking ... it should be since we obtain
-		//a return value
-		MPNotifications * notificationObject = [MPNotifications sharedListener];
-		//if ([notificationObject respondsToSelector:@selector(prepareIPCServerThread)]) {
-			NSLog(@"PREPARING SERVER THREAD");
-			[notificationObject prepareIPCServerThread];
-		//}
-		
-		//if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
-			NSThread * cThread = [NSThread currentThread];
-			NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
-		[NSThread detachNewThreadSelector:@selector(startIPCServerThread) 
-								 toTarget:notificationObject 
-							   withObject:nil];
-		//[notificationObject startIPCServerThread];
-		
-		//}
 		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
-		
 		
 		return secondResult;
 	}
@@ -422,9 +403,38 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	response = NULL;
 	
+	//Creating file path for IPC with helper tool
+	NSString * ipcFilePath = [NSString stringWithFormat:@"%@_%@", @kServerSocketPath, [NSDate date]];
+	NSString * ipcFilePathCopy = [NSString stringWithString:ipcFilePath];
+	
+	
+	//We need to use the notificationsObject to set up IPC with the helper tool
+	//I hope BAS's main method is blocking ... it should be since we obtain
+	//a return value
+	MPNotifications * notificationObject = [MPNotifications sharedListener];
+	//if ([notificationObject respondsToSelector:@selector(prepareIPCServerThread)]) {
+	NSLog(@"PREPARING SERVER THREAD");
+	[notificationObject prepareIPCServerThread];
+	//}
+	
+	//if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
+	NSThread * cThread = [NSThread currentThread];
+	NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
+	[NSThread detachNewThreadSelector:@selector(startIPCServerThread:) 
+							 toTarget:notificationObject 
+						   withObject:ipcFilePathCopy];
+	//[notificationObject startIPCServerThread];
+	//}
+	
+	
+	
+	
+	
 	//Retrieving the path for interpInit.tcl for our helper tool
 	NSString * interpInitPath = [[NSBundle bundleForClass:[MPInterpreter class]] 
 								 pathForResource:@"interpInit" ofType:@"tcl"];
+	
+		
 	
 	
 	
@@ -432,7 +442,8 @@ static NSString * tclInterpreterPkgPath = nil;
 			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
 			   statement, @kTclStringToBeEvaluated, 
 			   tclInterpreterPkgPath, @kTclInterpreterInitPath ,
-			   interpInitPath, @kInterpInitFilePath, nil];
+			   interpInitPath, @kInterpInitFilePath, 
+			   ipcFilePath, @kServerFileSocketPath , nil];
 	
 	assert(request != NULL);
 	
@@ -546,7 +557,7 @@ static NSString * tclInterpreterPkgPath = nil;
 		}
 	}
 	
-	//NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
+	NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
 	
 	return result;
 }
