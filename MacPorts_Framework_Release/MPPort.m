@@ -38,10 +38,20 @@
 
 @implementation MPPort
 
+// Each of the init methods sets the parent MPMacPorts object for this MPPort object
+// if it hasn't already been set. We are assuming that this MPPort object and its
+// parent MPMacPort object would have been created in the same thread. That might
+// not have been the case. I should make a note of that in the release notes and 
+// also add some more sane changes later for a closer coupling of an MPMacPorts 
+// object and its associated MPPort objects.
+
 - (id)init {
 	self = [super initWithCapacity:15];
 	if (self != nil) {
 		[self setState:MPPortStateUnknown];
+		if (parentMacPortsInstance != nil)
+			parentMacPortsInstance = [MPMacPorts sharedInstance];
+		
 	}
 	return self;
 }
@@ -50,6 +60,8 @@
 	self = [super initWithCapacity:numItems];
 	if (self != nil) {
 		[self setState:MPPortStateUnknown];
+		if (parentMacPortsInstance != nil)
+			parentMacPortsInstance = [MPMacPorts sharedInstance];
 	}
 	return self;
 }
@@ -59,6 +71,8 @@
 	if (self != nil) {
 		[self setState:MPPortStateUnknown];
 		[self setPortWithTclListAsString:string];
+		if (parentMacPortsInstance != nil)
+			parentMacPortsInstance = [MPMacPorts sharedInstance];
 	}
 	return self;
 }
@@ -182,11 +196,21 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	[interpreter evaluateStringWithPossiblePrivileges:
-	 [NSString stringWithFormat:
-	  @"%@ %@ %@ %@" ,
-	  procedure, [self name], v, opts]
-								  error:execError];
+	if ([parentMacPortsInstance authorizationMode]) {
+		[interpreter evaluateStringWithMPHelperTool: 
+		 [NSString stringWithFormat:
+		  @"%@ %@ %@ %@" ,
+		  procedure, [self name], v, opts]
+											  error:execError];
+		
+	}
+	else {
+		[interpreter evaluateStringWithPossiblePrivileges:
+		 [NSString stringWithFormat:
+		  @"%@ %@ %@ %@" ,
+		  procedure, [self name], v, opts]
+													error:execError];		
+	}
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
@@ -217,11 +241,22 @@
 	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
 	
-	[interpreter evaluateStringWithPossiblePrivileges:
-	 [NSString stringWithFormat:
-	  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-	  [self valueForKey:@"porturl"], opts, vrnts, target]
-								  error:execError];
+	if ([parentMacPortsInstance authorizationMode]) {
+		[interpreter evaluateStringWithMPHelperTool:
+		 [NSString stringWithFormat:
+		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+		  [self valueForKey:@"porturl"], opts, vrnts, target]
+												error:execError];
+	}
+	else {
+		[interpreter evaluateStringWithPossiblePrivileges:
+		 [NSString stringWithFormat:
+		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+		  [self valueForKey:@"porturl"], opts, vrnts, target]
+													error:execError];
+	}
+	
+	
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:target withStatus:@"Finished"];
@@ -253,9 +288,15 @@
 		}
 	}
 	
+	if( [parentMacPortsInstance authorizationMode] ) {
+		[interpreter evaluateStringWithMPHelperTool:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
+									  error:execError];
+	}
+	else {
+		[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
+									  error:execError];
+	}
 	
-	[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
-								  error:execError];
 	
 }
 

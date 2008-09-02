@@ -116,8 +116,7 @@ proc ui_init {priority prefix channels message} {
     set nbchans [llength $channels]
     if {$nbchans == 0} {
         proc ::ui_$priority {str} [subst {
-        	puts stdout "\$str"
-        	simplelog "\$str"
+        	simplelog "$nottype $chan $prefix" "\$str" 
         }]
     } else {
         try {
@@ -133,13 +132,13 @@ proc ui_init {priority prefix channels message} {
             
             proc ::ui_$priority {str} [subst { 
             	puts $chan "$prefix\$str"
-            	simplelog "$prefix\$str"
+            	simplelog "$nottype $chan $prefix" "\$str" 
             }]
         } else {
         	proc ::ui_$priority {str} [subst {
         		foreach chan \$channels {
         			puts $chan "$prefix\$str"
-        			simplelog "$prefix\$str"
+        			simplelog "$nottype $chan $prefix" "\$str" 
         		}
         	}]
         }

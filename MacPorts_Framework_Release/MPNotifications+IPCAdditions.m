@@ -810,7 +810,7 @@ static Boolean ClientShout(ClientState *client, PacketShout *packet)
         CFIndex         clientCount;
         CFIndex         clientIndex;
 		
-        fprintf(stderr, "%p: Shout   \"%.*s\"\n", client, (int) sizeof(packet->fMessage), packet->fMessage);
+        //fprintf(stderr, "%p: Shout   \"%.*s\"\n", client, (int) sizeof(packet->fMessage), packet->fMessage);
 		
 		NSString * shout = [NSString stringWithCString:packet->fMessage encoding:NSUTF8StringEncoding];
 		NSLog(@"CLIENT SHOUT BEING CALLED (YAAAY!!) : %@" , shout);
@@ -913,7 +913,7 @@ static Boolean ClientQuit(ClientState *client, PacketQuit *packet)
 		//loop running. For now i'm not synchronizing variable access since the
 		//worst that could happen is that the server is late in reading a chaged
 		//value update
-		clientHasQuit = 1;
+		//clientHasQuit = 1;
     }
 	
 	return result;

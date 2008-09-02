@@ -48,6 +48,7 @@
 
 
 
+
 #define	MPPortStateUnknown		0
 #define MPPortStateLearnState	1
 
@@ -58,6 +59,9 @@
 
 #define MPPortWillExecuteTarget	@"org.macports.framework.port.willExecuteTarget"
 #define MPPortDidExecuteTarget	@"org.macports.framework.port.didExecuteTarget"
+
+@class MPMacPorts;
+
 /*!
  @class MPPort
  @abstract	A representation of a port.
@@ -67,6 +71,8 @@
 	//Maybe we should have a single MPInterpreter *interpreter and use that
 	//throughout the code? Ask Randall whether or not it was intentional
 	//to declare new variable for each method
+	
+	MPMacPorts * parentMacPortsInstance;
 }
 
 /*!

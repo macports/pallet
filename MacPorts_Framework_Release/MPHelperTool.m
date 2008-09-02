@@ -812,52 +812,71 @@ int SimpleLog_Command
 {
 	
 	int returnCode = TCL_ERROR;
-	//int err;
-	//assert(logClient != NULL);
-	
-//	ConnectionRef iConn;
-//	initIPC(iConn);
-	
-	//if(!globalConnInitialized){
-//		initIPC(globalConn);
-//		globalConnInitialized = YES;
-//	}
-
+	NSMutableString * data;
 	
 	++objv, --objc;
 	
 	if (objc) {
+		int tclCount;
+		int tclResult;
+		const char **tclElements;
 		
-		const char * log = Tcl_GetString(*objv);
-		NSString * data = [NSString stringWithUTF8String:log];
-		[ASLLogger logString:data];
-		if (notifier != nil && [notifier connected]) {
-			if([notifier doShout:data])
-				[ASLLogger logString:@"DoShout successful"];
-			else
-				[ASLLogger logString:@"DoShout unsuccessful"];
-			
+		
+		tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
+		
+		
+		if (tclResult == TCL_OK) {
+			if (tclCount > 0) {
+				data = [NSMutableString stringWithUTF8String:tclElements[0]];
+				[data appendString:MPSEPARATOR];
+				
+				if(tclCount > 1 && tclElements[1]) {
+					[data appendString:[NSString stringWithUTF8String:tclElements[1]]];
+					[data appendString:MPSEPARATOR];
+				}
+				else {
+					[data appendString:@"None"];
+					[data appendString:MPSEPARATOR];
+				}
+				
+				if(tclCount > 2 && tclElements[2]) {
+					[data appendString:[NSString stringWithUTF8String:tclElements[2]]];
+					[data appendString:MPSEPARATOR];
+				}
+				else {
+					[data appendString:@"None"];
+					[data appendString:MPSEPARATOR];
+				}
+			}
+			else {
+				data = [NSMutableString stringWithFormat:@"None%@None%@None%@", MPSEPARATOR, MPSEPARATOR, MPSEPARATOR ];
+			}
 		}
-		else
-			[ASLLogger logString:[NSString stringWithFormat:@"notifier didn't connect has value %@", notifier]];
-		
-		//DoShout(iConn, log);
-		
-		//err = asl_NSLog(logClient , logMsg, ASL_LEVEL_INFO, @"MPHelperTool: %@ " , data);
-//		if (globalConn != NULL) {
-//			//DoShout(globalConn, log);
-//		}
-//		else {
-//			[ASLLogger logString:[NSString stringWithFormat:@"globalConn is NULL on message %@",log]];
-//		}
-		//assert(err == 0);
-		returnCode = TCL_OK;
 	}
+		
+		//Now get the actual message
+		++objv; --objc;
+		if (objc) {
+			[data appendString:[NSString stringWithUTF8String:Tcl_GetString(*objv)]];
+		}
+		else {
+			[data appendString:@"None"];
+		}
+		
+		if (data != nil) {
+			//[ASLLogger logString:data];
+			if (notifier != nil && [notifier connected]) {
+				if([notifier doShout:data]) {
+					returnCode = TCL_OK;
+					[ASLLogger logString:@"DoShout successful"];
+				}
+				else
+					[ASLLogger logString:@"DoShout unsuccessful"];
+			}
+			else
+				[ASLLogger logString:[NSString stringWithFormat:@"notifier didn't connect has value %@", notifier]];
+		}
 	
-	//ConnectionClose(iConn);
-	//DoQuit(iConn);
-	
-	//asl_close(logClient);
 	return returnCode;
 }
 

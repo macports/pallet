@@ -80,7 +80,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	if (tclResult == TCL_OK) {
 		
 		//I have sacrificed generality for simplicity in the code below
-		if (tclElements > 0) { 
+		if (tclCount > 0) { 
 			[info setObject:[NSString stringWithUTF8String:tclElements[0]] forKey:MPCHANNEL];
 			
 			if(tclElements[1])
@@ -116,7 +116,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 				//NSLog(@"Class type is %@", NSStringFromClass([[cmd objectAtIndex:0] class]));
 				
 				if( [[cmd objectAtIndex:0] isEqualToString:@"YES"]) {
-					[info setObject:[cmd objectAtIndex:1] forKey:@"Function"];
+					[info setObject:[cmd objectAtIndex:1] forKey:MPMETHOD];
 				}
 			}
 		}		

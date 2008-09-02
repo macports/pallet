@@ -178,5 +178,6 @@ typedef struct PacketQuit PacketQuit;
 // the details about how I achieve this.
 
 #define kServerSocketPath "/var/tmp/macports/org.macports.framework.ipc.socket"
+#define MPSEPARATOR @"_&MP&_"
 
 #endif

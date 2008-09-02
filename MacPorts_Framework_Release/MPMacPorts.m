@@ -110,7 +110,10 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Started" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
 	
-	result = [interpreter evaluateStringWithPossiblePrivileges:@"mportsync" error:sError];
+	if ([self authorizationMode])
+		result = [interpreter evaluateStringWithMPHelperTool:@"mportsync" error:sError];
+	else
+		result = [interpreter evaluateStringWithPossiblePrivileges:@"mportsync" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Finished" object:nil];
@@ -123,7 +126,10 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Started" object:nil];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
 	
-	[interpreter evaluateStringWithPossiblePrivileges:@"macports::selfupdate" error:sError];
+	if([self authorizationMode])
+		[interpreter evaluateStringWithMPHelperTool:@"macports::selfupdate" error:sError];
+	else
+		[interpreter evaluateStringWithPossiblePrivileges:@"macports::selfupdate" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Finished" object:nil];
@@ -228,6 +234,14 @@
 		version = [interpreter evaluateStringAsString:@"return [macports::version]" error:&vError];
 	}
 	return version;
+}
+
+-(void) setAuthorizationMode:(BOOL)mode {
+	authorizationMode = mode;
+}
+
+-(BOOL) authorizationMode {
+	return authorizationMode;
 }
 
 #pragma mark -

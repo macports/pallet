@@ -17,9 +17,21 @@
 	
 }
 -(BOOL) installUninstallManipulation:(NSString *)portName;
+-(BOOL) selfUpdate;
 @end
 
 @implementation PortManipulator
+-(BOOL) selfUpdate {
+	NSError *err = nil;
+	[[MPMacPorts sharedInstance] selfUpdate:&err];
+	
+	if( err != nil) {
+		NSLog(@"%@", [err description]);
+		return NO;
+	}
+	return YES;
+}
+
 -(BOOL) installUninstallManipulation:(NSString *)portName {
 	BOOL ret = NO;
 	
@@ -92,8 +104,9 @@
 @end
 
 int main(int argc, char const * argv[]) {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	//NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
+	[[MPMacPorts sharedInstance] setAuthorizationMode:YES];
 	
 	PortManipulator * pm = [[PortManipulator alloc] init];
 	
@@ -104,12 +117,19 @@ int main(int argc, char const * argv[]) {
 		NSLog(@"pngcrush INSTALLATION UNSUCCESSFUL");
 	}
 	
+	if([pm selfUpdate]) {
+		NSLog(@"SELFUPDATE SUCCESSFUL");
+	}
+	else {
+		NSLog(@"SELFUPDATE UNSUCCESSFUL");
+	}
+	
 	
 	[pm release];
 	
 	
 	
-	[pool release];
+	//[pool release];
 	
 	return 0;
 }
