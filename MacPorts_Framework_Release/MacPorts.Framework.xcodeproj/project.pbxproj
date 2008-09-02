@@ -40,6 +40,8 @@
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
 		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
+		6E31A02D0E6CFB51002804D0 /* Notification+ThreadAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E31A02B0E6CFB51002804D0 /* Notification+ThreadAdditions.h */; };
+		6E31A02E0E6CFB51002804D0 /* Notification+ThreadAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31A02C0E6CFB51002804D0 /* Notification+ThreadAdditions.m */; };
 		6E3345350E54AF14008A2F6C /* MPPortManipulationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
@@ -143,6 +145,8 @@
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
+		6E31A02B0E6CFB51002804D0 /* Notification+ThreadAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notification+ThreadAdditions.h"; sourceTree = "<group>"; };
+		6E31A02C0E6CFB51002804D0 /* Notification+ThreadAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notification+ThreadAdditions.m"; sourceTree = "<group>"; };
 		6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortManipulationTest.h; sourceTree = "<group>"; };
 		6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortManipulationTest.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -371,6 +375,8 @@
 				6E270D080E158CED00BAE687 /* MPNotifications.m */,
 				6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */,
 				6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */,
+				6E31A02B0E6CFB51002804D0 /* Notification+ThreadAdditions.h */,
+				6E31A02C0E6CFB51002804D0 /* Notification+ThreadAdditions.m */,
 			);
 			name = "Tcl Notifications ";
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 				6E8563B90E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */,
 				6E8563BA0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */,
 				6EE6DDCE0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h in Headers */,
+				6E31A02D0E6CFB51002804D0 /* Notification+ThreadAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +688,7 @@
 				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
 				6E8563B80E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */,
 				6EE6DDCF0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m in Sources */,
+				6E31A02E0E6CFB51002804D0 /* Notification+ThreadAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
