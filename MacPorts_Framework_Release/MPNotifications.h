@@ -72,7 +72,7 @@
 #define MPDEBUG @"MPDebugNotification"
 #define MPALL @"MPAllNotification"
 
-
+#import "MPInterpreter.h"
 
 /*!
  @class MPNotifications
@@ -134,6 +134,7 @@
 //These methods aren't for the public ... yet ...
 -(void)setPerformingTclCommand:(NSString *)string;
 -(NSString *)performingTclCommand;
+-(BOOL) postNotificationOnMainThread:(NSString *) message;
 
 
 @end

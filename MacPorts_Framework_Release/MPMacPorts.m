@@ -108,7 +108,7 @@
 	
 	// This needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Started" object:nil];
-	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
+	[[MPNotifications sharedListener] setPerformingTclCommand:@"sync"];
 	
 	if ([self authorizationMode])
 		result = [interpreter evaluateStringWithMPHelperTool:@"mportsync" error:sError];
@@ -124,7 +124,7 @@
 - (void)selfUpdate:(NSError**)sError {
 	//Also needs to throw an exception if things don't go well
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Started" object:nil];
-	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
+	[[MPNotifications sharedListener] setPerformingTclCommand:@"selfUpdate"];
 	
 	if([self authorizationMode])
 		[interpreter evaluateStringWithMPHelperTool:@"macports::selfupdate" error:sError];

@@ -193,8 +193,8 @@
 	
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:procedure withStatus:@"Started"];
-	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
-	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
+	//NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
+	[[MPNotifications sharedListener] setPerformingTclCommand:procedure];
 	
 	if ([parentMacPortsInstance authorizationMode]) {
 		[interpreter evaluateStringWithMPHelperTool: 
@@ -238,8 +238,8 @@
 	
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:target withStatus:@"Started"];
-	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
-	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
+	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
+	[[MPNotifications sharedListener] setPerformingTclCommand:target];
 	
 	if ([parentMacPortsInstance authorizationMode]) {
 		[interpreter evaluateStringWithMPHelperTool:

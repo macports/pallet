@@ -99,20 +99,6 @@
 	[super dealloc];
 }
 
-
-- (void) setPerformingTclCommand:(NSString *)tclString {
-	
-	if(performingTclCommand != tclString){
-		[performingTclCommand release];
-		performingTclCommand = [tclString copy];
-	}
-	
-}
-
-- (NSString *) performingTclCommand {
-	return performingTclCommand;
-}
-
 //Should I raise an exception for invalid blockOptions that are
 //passed to this method?
 -(BOOL)checkIfNotificationBlocked:(NSString *)option {
@@ -137,6 +123,38 @@
 	}
 }
 
+#pragma mark -
+#pragma mark Private Methods
 
+-(BOOL) postNotificationOnMainThread:(NSString *) message {
+//	[[NSNotificationCenter defaultCenter] postNotificationOnMainThreadWithName:MPINFO 
+//																		object:nil 
+//																	  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:message, MPMESSAGE, nil]];
+	[[NSNotificationCenter defaultCenter] postNotificationName:MPINFO 
+															object:nil 
+														  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:message, MPMESSAGE, nil]];
+	
+	return YES;
+}
+
+
+- (void) setPerformingTclCommand:(NSString *)tclString {
+	
+	[[[NSThread currentThread] threadDictionary] setObject:tclString forKey:@"performingTclCommand"];
+	
+//	if(performingTclCommand != tclString){
+//		[performingTclCommand release];
+//		performingTclCommand = [tclString copy];
+//	}
+	
+}
+
+- (NSString *) performingTclCommand {
+//	return performingTclCommand;
+	id tclCmd = [[[NSThread currentThread] threadDictionary] objectForKey:@"performingTclCommand"];
+	if (tclCmd == nil)
+		return @"";
+	return tclCmd;
+}
 
 @end

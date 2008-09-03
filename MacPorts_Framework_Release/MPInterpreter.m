@@ -108,17 +108,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		
 		//Get the Tcl function that called this method
 		if (! [[mln performingTclCommand] isEqualToString:@""]) {
-			NSArray * cmd = [[mln performingTclCommand] componentsSeparatedByString:@"_"];
-			
-			//if code is working right, this value should always be YES
-			//when we are in this part of the code
-			if([cmd count] > 0) {
-				//NSLog(@"Class type is %@", NSStringFromClass([[cmd objectAtIndex:0] class]));
-				
-				if( [[cmd objectAtIndex:0] isEqualToString:@"YES"]) {
-					[info setObject:[cmd objectAtIndex:1] forKey:MPMETHOD];
-				}
-			}
+			[info setObject:[mln performingTclCommand] forKey:MPMETHOD];
 		}		
 		if (global != 0) {
 			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
@@ -420,14 +410,21 @@ static NSString * tclInterpreterPkgPath = nil;
 	//if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
 	NSThread * cThread = [NSThread currentThread];
 	NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
+	
+	//This is important to note ... the tcl command being executed is saved in the
+	//current thread's thread dictionary in the upper tier method that calls this one. 
+	// This means we are only going to guarantee
+	//thread saftey for Framework clients at the the level of MPMacPorts, MPPorts etc. and above
+	NSDictionary * serverInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+								 ipcFilePathCopy, @"ipcFilePath",
+								 [[MPNotifications sharedListener] performingTclCommand], @"currentMethod",
+								 nil];
+	
 	[NSThread detachNewThreadSelector:@selector(startIPCServerThread:) 
 							 toTarget:notificationObject 
-						   withObject:ipcFilePathCopy];
+						   withObject:serverInfo];
 	//[notificationObject startIPCServerThread];
 	//}
-	
-	
-	
 	
 	
 	//Retrieving the path for interpInit.tcl for our helper tool

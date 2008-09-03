@@ -18,9 +18,68 @@
 }
 -(BOOL) installUninstallManipulation:(NSString *)portName;
 -(BOOL) selfUpdate;
+-(void) registerForLocalNotifications;
+
 @end
 
 @implementation PortManipulator
+
+-(id) init {
+	self = [super init];
+	if (self != nil) {
+		//[self registerForLocalNotifications];
+	}
+	return self;
+}
+
+-(void) registerForLocalNotifications {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPINFO
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPMSG
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPERROR
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPWARN
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPDEBUG
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:MPDEFAULT
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(respondToLocalNotification:) 
+												 name:@"testMacPortsNotification"
+											   object:nil];
+}
+
+-(void) respondToLocalNotification:(NSNotification *)notification {
+	id sentDict = [notification userInfo];
+	
+	//Just NSLog it for now
+	if(sentDict == nil)
+		NSLog(@"MPMacPorts received notification with empty userInfo Dictionary");
+	else
+		NSLog(@"MPMacPorts received notification with userInfo %@" , [sentDict description]);
+}
+
+
 -(BOOL) selfUpdate {
 	NSError *err = nil;
 	[[MPMacPorts sharedInstance] selfUpdate:&err];
@@ -108,24 +167,24 @@ int main(int argc, char const * argv[]) {
 	
 	[[MPMacPorts sharedInstance] setAuthorizationMode:YES];
 	
-	PortManipulator * pm = [[PortManipulator alloc] init];
-	
-	if([pm installUninstallManipulation:@"pngcrush"]) {
-		NSLog(@"pngcrush INSTALLATION SUCCESSFUL");
-	}
-	else {
-		NSLog(@"pngcrush INSTALLATION UNSUCCESSFUL");
-	}
-	
-	if([pm selfUpdate]) {
-		NSLog(@"SELFUPDATE SUCCESSFUL");
-	}
-	else {
-		NSLog(@"SELFUPDATE UNSUCCESSFUL");
-	}
-	
-	
-	[pm release];
+//	PortManipulator * pm = [[PortManipulator alloc] init];
+//	
+//	if([pm installUninstallManipulation:@"pngcrush"]) {
+//		NSLog(@"pngcrush INSTALLATION SUCCESSFUL");
+//	}
+//	else {
+//		NSLog(@"pngcrush INSTALLATION UNSUCCESSFUL");
+//	}
+//	
+//	if([pm selfUpdate]) {
+//		NSLog(@"SELFUPDATE SUCCESSFUL");
+//	}
+//	else {
+//		NSLog(@"SELFUPDATE UNSUCCESSFUL");
+//	}
+//	
+//	
+//	[pm release];
 	
 	
 	

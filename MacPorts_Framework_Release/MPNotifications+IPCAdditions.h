@@ -14,8 +14,8 @@ static int hasInstalledSignalsToSocket = 0;
 @interface MPNotifications (IPCAdditions) 
 -(BOOL) terminateBackgroundThread;
 -(void) setTerminateBackgroundThread:(BOOL)newStatus;
--(void) startIPCServerThread:(NSString *) socketFilePath;
+-(void) startIPCServerThread:(NSDictionary *)serverInfo;
 -(void) prepareIPCServerThread;
 -(void) stopIPCServerThread;
-
+-(void) sendIPCNotification:(NSString *)message;
 @end

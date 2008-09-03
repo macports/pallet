@@ -813,8 +813,13 @@ static Boolean ClientShout(ClientState *client, PacketShout *packet)
         //fprintf(stderr, "%p: Shout   \"%.*s\"\n", client, (int) sizeof(packet->fMessage), packet->fMessage);
 		
 		NSString * shout = [NSString stringWithCString:packet->fMessage encoding:NSUTF8StringEncoding];
-		NSLog(@"CLIENT SHOUT BEING CALLED (YAAAY!!) : %@" , shout);
-        
+		//NSLog(@"CLIENT SHOUT BEING CALLED (YAAAY!!) : %@" , shout);
+		[[MPNotifications sharedListener] sendIPCNotification:shout];
+//		[[NSNotificationCenter defaultCenter] postNotificationName:MPINFO 
+//															object:nil 
+//														  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:shout, MPMESSAGE, nil]];
+		
+
         // We make a snapshot of the client list because clients might disappear 
         // as we talk to them.  That is, the act of talking to the client might 
         // cause us to notice that the client is dead.
@@ -913,7 +918,7 @@ static Boolean ClientQuit(ClientState *client, PacketQuit *packet)
 		//loop running. For now i'm not synchronizing variable access since the
 		//worst that could happen is that the server is late in reading a chaged
 		//value update
-		//clientHasQuit = 1;
+		clientHasQuit = 1;
     }
 	
 	return result;
@@ -1344,10 +1349,13 @@ static void PrintUsage(const char *argv0)
 	terminateBackgroundThread = newStatus;
 }
 
--(void) startIPCServerThread:(NSString *)socketFilePath {
+-(void) startIPCServerThread:(NSDictionary *)serverInfo {
 	NSAutoreleasePool * sPool = [[NSAutoreleasePool alloc] init];
 	
 	NSLog(@"INSIDE SERVER THREAD");
+	
+	[[MPNotifications sharedListener] 
+	 setPerformingTclCommand:[serverInfo objectForKey:@"currentMethod"]];
 	
 	//Configure runloop
 	int         err = 0;
@@ -1411,11 +1419,8 @@ static void PrintUsage(const char *argv0)
     }
     if (err == 0) {
         //err = SafeBindUnixDomainSocket(listenerFD, kServerSocketPath);
-		NSLog(@"Socket file path is %@", socketFilePath);
-		
-		char testPath [MAXPATHLEN];
-		strcpy(testPath, [socketFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
-        err = SafeBindUnixDomainSocket(listenerFD, [socketFilePath cStringUsingEncoding:NSUTF8StringEncoding]);
+		//NSLog(@"Socket file path is %@", socketFilePath);
+		err = SafeBindUnixDomainSocket(listenerFD, [[serverInfo objectForKey:@"ipcFilePath"] cStringUsingEncoding:NSUTF8StringEncoding]);
 		didBind = (err == 0);
 		NSLog(@"Binding Socket %i", err);
     }
@@ -1481,6 +1486,7 @@ static void PrintUsage(const char *argv0)
 	//check to ensure that that doesn't create problems
 	CFRunLoopStop([currentLoop getCFRunLoop]);
 	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[sPool release];
 }
 
@@ -1492,5 +1498,24 @@ static void PrintUsage(const char *argv0)
 	terminateBackgroundThread == YES;
 }
 
-
+-(void) sendIPCNotification:(NSString *)message {
+	NSArray * array = [message componentsSeparatedByString:MPSEPARATOR];
+	
+	//Strip off "--->" from message
+	NSMutableString * msg = [NSMutableString stringWithString:[array objectAtIndex:3]];
+	[msg setString:[[msg componentsSeparatedByString:@"--->"] componentsJoinedByString:@""]];
+	
+	// Array is of the form 
+    // Notification type, MPCHANNEL, MPPREFIX, MPMESSAGE
+	// e.g. MPInfoNotification_&MP&_stdout_&MP&_None_&MP&_total size is 18781178  speedup is 57.00
+	NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+									  [[MPNotifications sharedListener] performingTclCommand], MPMETHOD,
+									  [array objectAtIndex:1], MPCHANNEL,
+									  [array objectAtIndex:2], MPPREFIX,
+									  msg, MPMESSAGE,  nil];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:[array objectAtIndex:0] 
+														object:nil 
+													  userInfo:userInfo];
+}
 @end
