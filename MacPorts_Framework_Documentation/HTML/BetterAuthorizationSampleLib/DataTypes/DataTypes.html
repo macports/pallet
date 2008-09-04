@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>Defined Types</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style>
+</head>
+<body bgcolor="#ffffff">
+<a name="top"></a><hr>
+<!-- headerDoc=tdef;  uid=//apple_ref/c/tdef/BASCommandProc;  name=BASCommandProc --><a name="//apple_ref/c/tdef/BASCommandProc"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASCommandProc">BASCommandProc </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Command processing callback.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">typedef</span> <!-- a logicalPath="//apple_ref/c/cl/OSStatus //apple_ref/c/tdef/OSStatus //apple_ref/c/tag/OSStatus //apple_ref/c/econst/OSStatus //apple_ref/c/struct/OSStatus //apple_ref/c/clconst/OSStatus //apple_ref/c/intf/OSStatus" --><span class="type">OSStatus</span><!-- /a --> ( *<!-- a logicalPath="//apple_ref/c/instm/BASCommandProc //apple_ref/c/clm/BASCommandProc //apple_ref/c/intfcm/BASCommandProc //apple_ref/c/intfm/BASCommandProc //apple_ref/c/func/BASCommandProc //apple_ref/c/ftmplt/BASCommandProc //apple_ref/c/defn/BASCommandProc //apple_ref/c/macro/BASCommandProc" --><span class="function">BASCommandProc</span><!-- /a -->)( 
+    <!-- a logicalPath="//apple_ref/c/cl/AuthorizationRef //apple_ref/c/tdef/AuthorizationRef //apple_ref/c/tag/AuthorizationRef //apple_ref/c/econst/AuthorizationRef //apple_ref/c/struct/AuthorizationRef //apple_ref/c/clconst/AuthorizationRef //apple_ref/c/intf/AuthorizationRef" --><span class="type">AuthorizationRef</span><!-- /a --> <span class="param">auth</span>, 
+    <span class="keyword">const</span> <!-- a logicalPath="//apple_ref/c/cl/void //apple_ref/c/tdef/void //apple_ref/c/tag/void //apple_ref/c/econst/void //apple_ref/c/struct/void //apple_ref/c/clconst/void //apple_ref/c/intf/void" --><span class="type">void</span><!-- /a --> *<span class="param">userData</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/CFDictionaryRef //apple_ref/c/tdef/CFDictionaryRef //apple_ref/c/tag/CFDictionaryRef //apple_ref/c/econst/CFDictionaryRef //apple_ref/c/struct/CFDictionaryRef //apple_ref/c/clconst/CFDictionaryRef //apple_ref/c/intf/CFDictionaryRef" --><span class="type">CFDictionaryRef</span><!-- /a --> <span class="param">request</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/CFMutableDictionaryRef //apple_ref/c/tdef/CFMutableDictionaryRef //apple_ref/c/tag/CFMutableDictionaryRef //apple_ref/c/econst/CFMutableDictionaryRef //apple_ref/c/struct/CFMutableDictionaryRef //apple_ref/c/clconst/CFMutableDictionaryRef //apple_ref/c/intf/CFMutableDictionaryRef" --><span class="type">CFMutableDictionaryRef</span><!-- /a --> <span class="param">response</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/aslclient //apple_ref/c/tdef/aslclient //apple_ref/c/tag/aslclient //apple_ref/c/econst/aslclient //apple_ref/c/struct/aslclient //apple_ref/c/clconst/aslclient //apple_ref/c/intf/aslclient" --><span class="type">aslclient</span><!-- /a --> <span class="param">asl</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/aslmsg //apple_ref/c/tdef/aslmsg //apple_ref/c/tag/aslmsg //apple_ref/c/econst/aslmsg //apple_ref/c/struct/aslmsg //apple_ref/c/clconst/aslmsg //apple_ref/c/intf/aslmsg" --><span class="type">aslmsg</span><!-- /a --> <span class="param">aslMsg</span> );  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<blockquote>
+<dl>
+<dt><code>auth </code></dt>
+<dd>This is a reference to the authorization instance associated with the original 
+application that made the request.
+<br><br>
+This will never be NULL.
+<br><br>
+</dd>
+<dt><code>userData </code></dt>
+<dd>This is the value from the userData field of the corresponding entry in the 
+BASCommandSpec array that you passed to BASHelperToolMain.
+<br><br>
+</dd>
+<dt><code>request </code></dt>
+<dd>This dictionary contains the request.  It will have, at a bare minimum, a 
+kBASCommandKey item whose value matches one of the commands in the 
+BASCommandSpec array you passed to BASHelperToolMain.  It may also have 
+other, command-specific parameters.
+<br><br>
+This will never be NULL.
+<br><br>
+</dd>
+<dt><code>response </code></dt>
+<dd>This is a dictionary into which you can place the response.  It will start out 
+empty, and you can add any results you please to it.
+<br><br>
+If you need to return file descriptors, place them in an array and place that 
+array in the response using the kBASDescriptorArrayKey key.
+<br><br>
+There's no need to set the error result in the response.  BASHelperToolMain will 
+do that for you.  However, if you do set a value for the kBASErrorKey key, 
+that value will take precedence; in this case, the function result is ignored.
+<br><br>
+This will never be NULL.
+<br><br>
+</dd>
+<dt><code>asl </code></dt>
+<dd>A reference to the ASL client handle for logging.
+<br><br>
+This may be NULL.  However, ASL handles a NULL input, so you don't need to 
+conditionalise your code.
+<br><br>
+</dd>
+<dt><code>aslMsg </code></dt>
+<dd>A reference to a ASL message template for logging.
+<br><br>
+This may be NULL.  However, ASL handles a NULL input, so you don't need to 
+conditionalise your code.</dd>
+</dl>
+</blockquote>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->When your helper tool calls BASHelperToolMain, it passes in a pointer to an 
+array of callback functions of this type.  When BASHelperToolMain receives a 
+valid command, it calls one of these function so that your program-specific 
+code can process the request.  BAS guarantees that the effective, save and 
+real user IDs (EUID, SUID, RUID) will all be zero at this point (that is, 
+you're "running as root").
+<br><br>
+By the time this callback is called, BASHelperToolMain has already verified that 
+this is a known command.  It also acquires the authorization right associated 
+with the command, if any.  However, it does nothing to validate the other 
+parameters in the request.  These parameters come from a non-privileged source 
+and you should verify them carefully.
+<br><br>
+Your implementation should get any input parameters from the request and place 
+any output parameters in the response.  It can also put an array of file 
+descriptors into the response using the kBASDescriptorArrayKey key.
+<br><br>
+If an error occurs, you should just return an appropriate error code.  
+BASHelperToolMain will ensure that this gets placed in the response.
+<br><br>
+You should attempt to fail before adding any file descriptors to the response, 
+or remove them once you know that you're going to fail.  If you put file 
+descriptors into the response and then return an error, those descriptors will 
+still be passed back to the client.  It's likely the client isn't expecting this.
+<br><br>
+Calls to this function will be serialised; that is, once your callback is 
+running, BASHelperToolMain won't call you again until you return.  Your callback 
+should avoid blocking for long periods of time.  If you block for too long, the 
+BAS watchdog will kill the entire helper tool process.
+<br><br>
+This callback runs in a daemon context; you must avoid doing things that require the 
+user's context.  For example, launching a GUI application would be bad.  See 
+Technote 2083 "Daemons and Agents" for more information about execution contexts.
+<br><br><!-- end discussion --></p>
+<p></p>
+<p>Last Updated: Wednesday, September 03, 2008
+</p>
+</body>
+</html>

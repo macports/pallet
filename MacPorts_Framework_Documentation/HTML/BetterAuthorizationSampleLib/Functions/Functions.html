@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>Functions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}--></style>
+</head>
+<body bgcolor="#ffffff">
+<a name="top"></a><a name="HeaderDoc_functions"></a><dl>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASHelperToolMain" target="doc">BASHelperToolMain </a></tt></dt>
+<dd>Entry point for a privileged helper tool.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASSetDefaultRules" target="doc">BASSetDefaultRules </a></tt></dt>
+<dd>Creates default right specifications in the policy database.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASExecuteRequestInHelperTool" target="doc">BASExecuteRequestInHelperTool </a></tt></dt>
+<dd>Executes a request in the privileged helper tool, returning the response.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASDiagnoseFailure" target="doc">BASDiagnoseFailure </a></tt></dt>
+<dd>Determines the cause of a failed request.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASErrnoToOSStatus" target="doc">BASErrnoToOSStatus </a></tt></dt>
+<dd>Convert an errno value to an OSStatus value.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASOSStatusToErrno" target="doc">BASOSStatusToErrno </a></tt></dt>
+<dd>Convert an OSStatus value to an errno value.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASGetErrorFromResponse" target="doc">BASGetErrorFromResponse </a></tt></dt>
+<dd>Extracts the error status from a helper tool response.</dd>
+<dt><tt><a href="Functions.html#//apple_ref/c/func/BASCloseDescriptorArray" target="doc">BASCloseDescriptorArray </a></tt></dt>
+<dd>Closes all of the file descriptors referenced by a CFArray.</dd>
+</dl>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASHelperToolMain;  name=BASHelperToolMain --><a name="//apple_ref/c/func/BASHelperToolMain"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASHelperToolMain">BASHelperToolMain </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Entry point for a privileged helper tool.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/int //apple_ref/c/tdef/int //apple_ref/c/tag/int //apple_ref/c/econst/int //apple_ref/c/struct/int //apple_ref/c/clconst/int //apple_ref/c/intf/int" --><span class="type">int</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASHelperToolMain" logicalPath="//apple_ref/c/instm/BASHelperToolMain //apple_ref/c/clm/BASHelperToolMain //apple_ref/c/intfcm/BASHelperToolMain //apple_ref/c/intfm/BASHelperToolMain //apple_ref/c/func/BASHelperToolMain" target="_top"><span class="function">BASHelperToolMain</span></a>( 
+    <span class="keyword">const</span> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Structs/Structs.html#//apple_ref/c/tag/BASCommandSpec" logicalPath="//apple_ref/c/cl/BASCommandSpec //apple_ref/c/tdef/BASCommandSpec //apple_ref/c/tag/BASCommandSpec" target="_top"><span class="type">BASCommandSpec</span></a> <!-- a logicalPath="//apple_ref/c/cl/commands //apple_ref/c/tdef/commands //apple_ref/c/tag/commands //apple_ref/c/econst/commands //apple_ref/c/struct/commands //apple_ref/c/clconst/commands //apple_ref/c/intf/commands" --><span class="type">commands</span><!-- /a -->[], 
+    <span class="keyword">const</span> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?DataTypes/DataTypes.html#//apple_ref/c/tdef/BASCommandProc" logicalPath="//apple_ref/c/cl/BASCommandProc //apple_ref/c/tdef/BASCommandProc" target="_top"><span class="type">BASCommandProc</span></a> <!-- a logicalPath="//apple_ref/c/cl/commandProcs //apple_ref/c/tdef/commandProcs //apple_ref/c/tag/commandProcs //apple_ref/c/econst/commandProcs //apple_ref/c/struct/commandProcs //apple_ref/c/clconst/commandProcs //apple_ref/c/intf/commandProcs" --><span class="type">commandProcs</span><!-- /a -->[] );  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>commands </code></dt>
+<dd>An array that describes the commands that you implement, and their associated 
+rights.  The array is terminated by a command with a NULL name.  There must be 
+at least one valid command.
+<br><br>
+</dd>
+<dt><code>commandProcs </code></dt>
+<dd>An array of callback routines that are called when a valid request arrives.  The 
+array is expected to perform the operation associated with the corresponding 
+command and set up the response values, if any.  The array is terminated by a 
+NULL pointer.
+<br><br>
+IMPORTANT: The array must have exactly the same number of entries as the 
+commands array.
+<br><br>
+</dd>
+</dl>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->An integer representing EXIT_SUCCESS or EXIT_FAILURE.
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->You should call this function from the main function of your helper tool.  It takes 
+care of all of the details of receiving and processing commands.  It will call you 
+back (via one of the commandProcs callbacks) when a valid request arrives.
+<br><br>
+This function assumes acts like a replacement for main.  Thus, it assumes that 
+it owns various process-wide resources (like SIGALRM and the disposition of 
+SIGPIPE).  You should not use those resources, either in your main function or 
+in your callback function.  Also, you should not call this function on a thread, 
+or start any other threads in the process.  Finally, this function has a habit of 
+exiting the entire process if something goes wrong.  You should not expect the 
+function to always return.
+<br><br>
+This function does not clean up after itself.  When this function returns, you 
+are expected to exit.  If the function result is noErr, the command processing 
+loop quit in an expected manner (typically because of an idle timeout).  Otherwise 
+it quit because of an error.
+<br><br><!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASSetDefaultRules;  name=BASSetDefaultRules --><a name="//apple_ref/c/func/BASSetDefaultRules"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASSetDefaultRules">BASSetDefaultRules </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Creates default right specifications in the policy database.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/void //apple_ref/c/tdef/void //apple_ref/c/tag/void //apple_ref/c/econst/void //apple_ref/c/struct/void //apple_ref/c/clconst/void //apple_ref/c/intf/void" --><span class="type">void</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASSetDefaultRules" logicalPath="//apple_ref/c/instm/BASSetDefaultRules //apple_ref/c/clm/BASSetDefaultRules //apple_ref/c/intfcm/BASSetDefaultRules //apple_ref/c/intfm/BASSetDefaultRules //apple_ref/c/func/BASSetDefaultRules" target="_top"><span class="function">BASSetDefaultRules</span></a>( 
+    <!-- a logicalPath="//apple_ref/c/cl/AuthorizationRef //apple_ref/c/tdef/AuthorizationRef //apple_ref/c/tag/AuthorizationRef //apple_ref/c/econst/AuthorizationRef //apple_ref/c/struct/AuthorizationRef //apple_ref/c/clconst/AuthorizationRef //apple_ref/c/intf/AuthorizationRef" --><span class="type">AuthorizationRef</span><!-- /a --> <span class="param">auth</span>, 
+    <span class="keyword">const</span> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Structs/Structs.html#//apple_ref/c/tag/BASCommandSpec" logicalPath="//apple_ref/c/cl/BASCommandSpec //apple_ref/c/tdef/BASCommandSpec //apple_ref/c/tag/BASCommandSpec" target="_top"><span class="type">BASCommandSpec</span></a> <!-- a logicalPath="//apple_ref/c/cl/commands //apple_ref/c/tdef/commands //apple_ref/c/tag/commands //apple_ref/c/econst/commands //apple_ref/c/struct/commands //apple_ref/c/clconst/commands //apple_ref/c/intf/commands" --><span class="type">commands</span><!-- /a -->[], 
+    <!-- a logicalPath="//apple_ref/c/cl/CFStringRef //apple_ref/c/tdef/CFStringRef //apple_ref/c/tag/CFStringRef //apple_ref/c/econst/CFStringRef //apple_ref/c/struct/CFStringRef //apple_ref/c/clconst/CFStringRef //apple_ref/c/intf/CFStringRef" --><span class="type">CFStringRef</span><!-- /a --> <span class="param">bundleID</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/CFStringRef //apple_ref/c/tdef/CFStringRef //apple_ref/c/tag/CFStringRef //apple_ref/c/econst/CFStringRef //apple_ref/c/struct/CFStringRef //apple_ref/c/clconst/CFStringRef //apple_ref/c/intf/CFStringRef" --><span class="type">CFStringRef</span><!-- /a --> <span class="param">descriptionStringTableName</span> );  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>auth </code></dt>
+<dd>A reference to your program's authorization instance; you typically get this 
+by calling AuthorizationCreate.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+<dt><code>commands </code></dt>
+<dd>An array that describes the commands that you implement, and their associated 
+rights.  There must be at least one valid command.
+<br><br>
+</dd>
+<dt><code>bundleID </code></dt>
+<dd>The bundle identifier for your program.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+<dt><code>descriptionStringTableName </code></dt>
+<dd>The name of the .strings file from which to fetch the localised custom 
+prompts for the rights in the commands array (if any).  A NULL value is 
+equivalent to passing "Localizable" (that is, it gets the prompts from 
+"Localizable.strings").
+<br><br>
+For example, imagine you have a command for which you require a custom prompt.  
+You should put the custom prompt in a .strings file, let's call it 
+"AuthPrompts.strings".  You should then pass "AuthPrompts" to this parameter 
+and put the key that gets the prompt into the rightDescriptionKey of the command.</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->This routine ensures that the policy database (currently 
+"/etc/authorization") contains right specifications for all of the rights 
+that you use (as specified by the commands array).  This has two important 
+consequences:
+<br><br></p>
+<ol start="1">
+<li> It makes the rights that you use visible to the system administrator.  
+All they have to do is run your program once and they can see your default 
+right specifications in the policy database. 
+<br><br>
+</li>
+<li> It means that, when the privileged helper tool tries to acquire the right, 
+it will use your specification of the right (as modified by the system 
+administrator) rather than the default right specification. 
+</li>
+</ol>
+<p>
+You must call this function before calling BASExecuteRequestInHelperTool.  
+Typically you would call it at application startup time, or lazily, immediately 
+before calling BASExecuteRequestInHelperTool.
+<br><br><!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASExecuteRequestInHelperTool;  name=BASExecuteRequestInHelperTool --><a name="//apple_ref/c/func/BASExecuteRequestInHelperTool"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASExecuteRequestInHelperTool">BASExecuteRequestInHelperTool </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Executes a request in the privileged helper tool, returning the response.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/OSStatus //apple_ref/c/tdef/OSStatus //apple_ref/c/tag/OSStatus //apple_ref/c/econst/OSStatus //apple_ref/c/struct/OSStatus //apple_ref/c/clconst/OSStatus //apple_ref/c/intf/OSStatus" --><span class="type">OSStatus</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASExecuteRequestInHelperTool" logicalPath="//apple_ref/c/instm/BASExecuteRequestInHelperTool //apple_ref/c/clm/BASExecuteRequestInHelperTool //apple_ref/c/intfcm/BASExecuteRequestInHelperTool //apple_ref/c/intfm/BASExecuteRequestInHelperTool //apple_ref/c/func/BASExecuteRequestInHelperTool" target="_top"><span class="function">BASExecuteRequestInHelperTool</span></a>( 
+    <!-- a logicalPath="//apple_ref/c/cl/AuthorizationRef //apple_ref/c/tdef/AuthorizationRef //apple_ref/c/tag/AuthorizationRef //apple_ref/c/econst/AuthorizationRef //apple_ref/c/struct/AuthorizationRef //apple_ref/c/clconst/AuthorizationRef //apple_ref/c/intf/AuthorizationRef" --><span class="type">AuthorizationRef</span><!-- /a --> <span class="param">auth</span>, 
+    <span class="keyword">const</span> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Structs/Structs.html#//apple_ref/c/tag/BASCommandSpec" logicalPath="//apple_ref/c/cl/BASCommandSpec //apple_ref/c/tdef/BASCommandSpec //apple_ref/c/tag/BASCommandSpec" target="_top"><span class="type">BASCommandSpec</span></a> <!-- a logicalPath="//apple_ref/c/cl/commands //apple_ref/c/tdef/commands //apple_ref/c/tag/commands //apple_ref/c/econst/commands //apple_ref/c/struct/commands //apple_ref/c/clconst/commands //apple_ref/c/intf/commands" --><span class="type">commands</span><!-- /a -->[], 
+    <!-- a logicalPath="//apple_ref/c/cl/CFStringRef //apple_ref/c/tdef/CFStringRef //apple_ref/c/tag/CFStringRef //apple_ref/c/econst/CFStringRef //apple_ref/c/struct/CFStringRef //apple_ref/c/clconst/CFStringRef //apple_ref/c/intf/CFStringRef" --><span class="type">CFStringRef</span><!-- /a --> <span class="param">bundleID</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/CFDictionaryRef //apple_ref/c/tdef/CFDictionaryRef //apple_ref/c/tag/CFDictionaryRef //apple_ref/c/econst/CFDictionaryRef //apple_ref/c/struct/CFDictionaryRef //apple_ref/c/clconst/CFDictionaryRef //apple_ref/c/intf/CFDictionaryRef" --><span class="type">CFDictionaryRef</span><!-- /a --> <span class="param">request</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/CFDictionaryRef //apple_ref/c/tdef/CFDictionaryRef //apple_ref/c/tag/CFDictionaryRef //apple_ref/c/econst/CFDictionaryRef //apple_ref/c/struct/CFDictionaryRef //apple_ref/c/clconst/CFDictionaryRef //apple_ref/c/intf/CFDictionaryRef" --><span class="type">CFDictionaryRef</span><!-- /a --> *<span class="param">response</span> );  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>auth </code></dt>
+<dd>A reference to your program's authorization instance; you typically get this 
+by calling AuthorizationCreate.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+<dt><code>commands </code></dt>
+<dd>An array that describes the commands that you implement, and their associated 
+rights.  There must be at least one valid command.
+<br><br>
+</dd>
+<dt><code>bundleID </code></dt>
+<dd>The bundle identifier for your program.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+<dt><code>request </code></dt>
+<dd>A dictionary describing the requested operation.  This must, at least, contain 
+a string value for the kBASCommandKey.  Furthermore, this string must match 
+one of the commands in the array.
+<br><br>
+The dictionary may also contain other values.  These are passed to the helper 
+tool unintepreted.  All values must be serialisable using the CFPropertyList 
+API.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+<dt><code>response </code></dt>
+<dd>This must not be NULL.  On entry, *response must be NULL.  On success, *response 
+will not be NULL.  On error, *response will be NULL.
+<br><br>
+On success, you are responsible for disposing of *response.  You are also 
+responsible for closing any descriptors returned in the response.
+<br><br>
+</dd>
+</dl>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->An OSStatus code (see BASErrnoToOSStatus and BASOSStatusToErrno).
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->This routine synchronously executes a request in the privileged helper tool and 
+returns the response.
+<br><br>
+If the function returns an error, the IPC between your application and the helper tool 
+failed.  Unfortunately it's not possible to tell whether this failure occurred while 
+sending the request or receiving the response, thus it's not possible to know whether 
+the privileged operation was done or not. 
+<br><br>
+If the functions returns no error, the IPC between your application and the helper tool 
+was successful.  However, the command may still have failed.  You must get the error 
+value from the response (typically using BASGetErrorFromResponse) to see if the 
+command succeeded or not.
+<br><br>
+On success the response dictionary may contain a value for the kBASDescriptorArrayKey key.  
+If so, that will be a non-empty CFArray of CFNumbers, each of which can be accessed as an int.  
+Each value is a descriptor that is being returned to you from the helper tool.  You are 
+responsible for closing these descriptors when you're done with them. 
+<br><br><!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASDiagnoseFailure;  name=BASDiagnoseFailure --><a name="//apple_ref/c/func/BASDiagnoseFailure"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASDiagnoseFailure">BASDiagnoseFailure </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Determines the cause of a failed request.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Enums/Enums.html#//apple_ref/c/tag/BASFailCode" logicalPath="//apple_ref/c/cl/BASFailCode //apple_ref/c/tdef/BASFailCode //apple_ref/c/tag/BASFailCode" target="_top"><span class="type">BASFailCode</span></a> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASDiagnoseFailure" logicalPath="//apple_ref/c/instm/BASDiagnoseFailure //apple_ref/c/clm/BASDiagnoseFailure //apple_ref/c/intfcm/BASDiagnoseFailure //apple_ref/c/intfm/BASDiagnoseFailure //apple_ref/c/func/BASDiagnoseFailure" target="_top"><span class="function">BASDiagnoseFailure</span></a>( 
+    <!-- a logicalPath="//apple_ref/c/cl/AuthorizationRef //apple_ref/c/tdef/AuthorizationRef //apple_ref/c/tag/AuthorizationRef //apple_ref/c/econst/AuthorizationRef //apple_ref/c/struct/AuthorizationRef //apple_ref/c/clconst/AuthorizationRef //apple_ref/c/intf/AuthorizationRef" --><span class="type">AuthorizationRef</span><!-- /a --> <span class="param">auth</span>, 
+    <!-- a logicalPath="//apple_ref/c/cl/CFStringRef //apple_ref/c/tdef/CFStringRef //apple_ref/c/tag/CFStringRef //apple_ref/c/econst/CFStringRef //apple_ref/c/struct/CFStringRef //apple_ref/c/clconst/CFStringRef //apple_ref/c/intf/CFStringRef" --><span class="type">CFStringRef</span><!-- /a --> <span class="param">bundleID</span> );  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>auth </code></dt>
+<dd>A reference to your program's authorization instance; you typically get this 
+by calling AuthorizationCreate.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+<dt><code>bundleID </code></dt>
+<dd>The bundle identifier for your program.
+<br><br>
+This must not be NULL.
+<br><br>
+</dd>
+</dl>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->A BASFailCode value indicating the cause of the failure.  This will never be 
+kBASFailNeedsUpdate.
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->If BASExecuteRequestInHelperTool fails with an error (indicating an 
+IPC failure), you can call this routine to determine what went wrong.  
+It returns a BASFailCode value indicating the cause of the failure.  
+You should use this value to tell the user what's going on and what 
+you intend to do about it.  Once you get the user's consent, you can 
+call BASFixFailure to fix the problem.
+<br><br>
+For example, if this function result is kBASFailDisabled, you could put up the 
+dialog saying:
+<br><br>
+My privileged helper tool is disabled.  Would you like to enable it?
+This operation may require you to authorize as an admin user.
+[Cancel] [[Enable]]
+<br><br>
+On the other hand, if this function result is kBASFailNotInstalled, the dialog might be:
+<br><br>
+My privileged helper tool is not installed.  Would you like to install it?
+This operation may require you to authorize as an admin user.
+[Cancel] [[Install]]
+<br><br>
+BASDiagnoseFailure will never return kBASFailNeedsUpdate.  It's your responsibility 
+to detect version conflicts (a good way to do this is by sending a "get version" request 
+to the helper tool).  However, once you've detected a version conflict, you can pass 
+kBASFailNeedsUpdate to BASFixFailure to get it to install the latest version of your 
+helper tool.
+<br><br>
+If you call this routine when everything is working properly, you're likely to get 
+a result of kBASFailUnknown.
+<br><br><!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASErrnoToOSStatus;  name=BASErrnoToOSStatus --><a name="//apple_ref/c/func/BASErrnoToOSStatus"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASErrnoToOSStatus">BASErrnoToOSStatus </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Convert an errno value to an OSStatus value.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/OSStatus //apple_ref/c/tdef/OSStatus //apple_ref/c/tag/OSStatus //apple_ref/c/econst/OSStatus //apple_ref/c/struct/OSStatus //apple_ref/c/clconst/OSStatus //apple_ref/c/intf/OSStatus" --><span class="type">OSStatus</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASErrnoToOSStatus" logicalPath="//apple_ref/c/instm/BASErrnoToOSStatus //apple_ref/c/clm/BASErrnoToOSStatus //apple_ref/c/intfcm/BASErrnoToOSStatus //apple_ref/c/intfm/BASErrnoToOSStatus //apple_ref/c/func/BASErrnoToOSStatus" target="_top"><span class="function">BASErrnoToOSStatus</span></a>(
+    <!-- a logicalPath="//apple_ref/c/cl/int //apple_ref/c/tdef/int //apple_ref/c/tag/int //apple_ref/c/econst/int //apple_ref/c/struct/int //apple_ref/c/clconst/int //apple_ref/c/intf/int" --><span class="type">int</span><!-- /a --> <span class="param">errNum</span>);  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>errNum </code></dt>
+<dd>The errno value to convert.
+<br><br>
+</dd>
+</dl>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->An OSStatus code representing the errno equivalent.
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->All errno values have accepted alternatives in the errSecErrnoBase 
+OSStatus range, and this routine does the conversion. For example, 
+ENOENT becomes errSecErrnoBase + ENOENT. Any value that's not 
+recognised just gets passed through unmodified.
+<br><br>
+A value of 0 becomes noErr.
+<br><br>
+For more information about errSecErrnoBase, see DTS Q&amp;A 1499 
+<>.
+<br><br><!-- end discussion --></></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASOSStatusToErrno;  name=BASOSStatusToErrno --><a name="//apple_ref/c/func/BASOSStatusToErrno"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASOSStatusToErrno">BASOSStatusToErrno </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Convert an OSStatus value to an errno value.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/int //apple_ref/c/tdef/int //apple_ref/c/tag/int //apple_ref/c/econst/int //apple_ref/c/struct/int //apple_ref/c/clconst/int //apple_ref/c/intf/int" --><span class="type">int</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASOSStatusToErrno" logicalPath="//apple_ref/c/instm/BASOSStatusToErrno //apple_ref/c/clm/BASOSStatusToErrno //apple_ref/c/intfcm/BASOSStatusToErrno //apple_ref/c/intfm/BASOSStatusToErrno //apple_ref/c/func/BASOSStatusToErrno" target="_top"><span class="function">BASOSStatusToErrno</span></a>(
+    <!-- a logicalPath="//apple_ref/c/cl/OSStatus //apple_ref/c/tdef/OSStatus //apple_ref/c/tag/OSStatus //apple_ref/c/econst/OSStatus //apple_ref/c/struct/OSStatus //apple_ref/c/clconst/OSStatus //apple_ref/c/intf/OSStatus" --><span class="type">OSStatus</span><!-- /a --> <span class="param">errNum</span>);  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>errNum </code></dt>
+<dd>The OSStatus value to convert.
+<br><br>
+</dd>
+</dl>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->An integer code representing the OSStatus equivalent.
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->This function converts some specific OSStatus values (Open Transport and
+errSecErrnoBase ranges) to their corresponding errno values.  It more-or-less 
+undoes the conversion done by BASErrnoToOSStatus, including a pass 
+through for unrecognised values.
+<br><br>
+It's worth noting that there are many more defined OSStatus error codes 
+than errno error codes, so you're more likely to encounter a passed 
+through value when going in this direction.
+<br><br>
+A value of noErr becomes 0.
+<br><br>
+For more information about errSecErrnoBase, see DTS Q&amp;A 1499 
+<>.
+<br><br><!-- end discussion --></></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASGetErrorFromResponse;  name=BASGetErrorFromResponse --><a name="//apple_ref/c/func/BASGetErrorFromResponse"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASGetErrorFromResponse">BASGetErrorFromResponse </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Extracts the error status from a helper tool response.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/OSStatus //apple_ref/c/tdef/OSStatus //apple_ref/c/tag/OSStatus //apple_ref/c/econst/OSStatus //apple_ref/c/struct/OSStatus //apple_ref/c/clconst/OSStatus //apple_ref/c/intf/OSStatus" --><span class="type">OSStatus</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASGetErrorFromResponse" logicalPath="//apple_ref/c/instm/BASGetErrorFromResponse //apple_ref/c/clm/BASGetErrorFromResponse //apple_ref/c/intfcm/BASGetErrorFromResponse //apple_ref/c/intfm/BASGetErrorFromResponse //apple_ref/c/func/BASGetErrorFromResponse" target="_top"><span class="function">BASGetErrorFromResponse</span></a>(
+    <!-- a logicalPath="//apple_ref/c/cl/CFDictionaryRef //apple_ref/c/tdef/CFDictionaryRef //apple_ref/c/tag/CFDictionaryRef //apple_ref/c/econst/CFDictionaryRef //apple_ref/c/struct/CFDictionaryRef //apple_ref/c/clconst/CFDictionaryRef //apple_ref/c/intf/CFDictionaryRef" --><span class="type">CFDictionaryRef</span><!-- /a --> <span class="param">response</span>);  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>response </code></dt>
+<dd>A helper tool response, typically acquired by calling BASExecuteRequestInHelperTool.
+<br><br>
+This must not be NULL
+<br><br>
+</dd>
+</dl>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->An OSStatus code (see BASErrnoToOSStatus and BASOSStatusToErrno).
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->This function extracts the error status from a helper tool response. 
+Specifically, its uses the kBASErrorKey key to get a CFNumber and 
+it gets the resulting value from that number.
+<br><br><!-- end discussion --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/c/func/BASCloseDescriptorArray;  name=BASCloseDescriptorArray --><a name="//apple_ref/c/func/BASCloseDescriptorArray"></a><table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="BASCloseDescriptorArray">BASCloseDescriptorArray </a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract -->Closes all of the file descriptors referenced by a CFArray.<!-- end abstract --></p>
+<p></p>
+<pre><span class="keyword">extern</span> <!-- a logicalPath="//apple_ref/c/cl/void //apple_ref/c/tdef/void //apple_ref/c/tag/void //apple_ref/c/econst/void //apple_ref/c/struct/void //apple_ref/c/clconst/void //apple_ref/c/intf/void" --><span class="type">void</span><!-- /a --> <a href="../../../HTML/BetterAuthorizationSampleLib/index.html?Functions/Functions.html#//apple_ref/c/func/BASCloseDescriptorArray" logicalPath="//apple_ref/c/instm/BASCloseDescriptorArray //apple_ref/c/clm/BASCloseDescriptorArray //apple_ref/c/intfcm/BASCloseDescriptorArray //apple_ref/c/intfm/BASCloseDescriptorArray //apple_ref/c/func/BASCloseDescriptorArray" target="_top"><span class="function">BASCloseDescriptorArray</span></a>( 
+    <!-- a logicalPath="//apple_ref/c/cl/CFArrayRef //apple_ref/c/tdef/CFArrayRef //apple_ref/c/tag/CFArrayRef //apple_ref/c/econst/CFArrayRef //apple_ref/c/struct/CFArrayRef //apple_ref/c/clconst/CFArrayRef //apple_ref/c/intf/CFArrayRef" --><span class="type">CFArrayRef</span><!-- /a --> <span class="param">descArray</span> );  </pre>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<dl>
+<dt><code>descArray </code></dt>
+<dd>The array containing the descriptors to close.
+<br><br>
+This may be NULL, in which case the routine does nothing.</dd>
+</dl>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<p><!-- begin discussion -->Given a CFArray of CFNumbers, treat each number as a file descriptor 
+and close it.
+<br><br>
+The most common reason to use this routine is that you've executed, 
+using BASExecuteRequestInHelperTool, a request that returns a response 
+with embedded file descriptors, and you want to close those descriptors. 
+In that case, you typically call this as:
+<br><br>
+BASCloseDescriptorArray( CFDictionaryGetValue(response, CFSTR(kBASDescriptorArrayKey)) );
+<br><br><!-- end discussion --></p>
+<p></p>
+<p>Last Updated: Wednesday, September 03, 2008
+</p>
+</body>
+</html>
