@@ -40,8 +40,6 @@
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
 		6E270D090E158CED00BAE687 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E270D0A0E158CED00BAE687 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
-		6E31A02D0E6CFB51002804D0 /* Notification+ThreadAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E31A02B0E6CFB51002804D0 /* Notification+ThreadAdditions.h */; };
-		6E31A02E0E6CFB51002804D0 /* Notification+ThreadAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31A02C0E6CFB51002804D0 /* Notification+ThreadAdditions.m */; };
 		6E3345350E54AF14008A2F6C /* MPPortManipulationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */; };
 		6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
 		6E49F37B0DFFAB0B0030C3AF /* MPInterpreterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 489DD92E0C94674B00595506 /* MPInterpreterTest.m */; };
@@ -71,7 +69,6 @@
 		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
-		6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */; };
 		6EE6DDA40E626D4A00FB2115 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EE6DDA70E626D5A00FB2115 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
 		6EE6DDAB0E626DC900FB2115 /* MPHelperToolIPCTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */; };
@@ -145,8 +142,6 @@
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		6E270D080E158CED00BAE687 /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
-		6E31A02B0E6CFB51002804D0 /* Notification+ThreadAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notification+ThreadAdditions.h"; sourceTree = "<group>"; };
-		6E31A02C0E6CFB51002804D0 /* Notification+ThreadAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notification+ThreadAdditions.m"; sourceTree = "<group>"; };
 		6E3345330E54AF14008A2F6C /* MPPortManipulationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortManipulationTest.h; sourceTree = "<group>"; };
 		6E3345340E54AF14008A2F6C /* MPPortManipulationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortManipulationTest.m; sourceTree = "<group>"; };
 		6E44A00C0E2DAD66007DE8EC /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -156,7 +151,6 @@
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
 		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
-		6EAFD8B70DEC614E00E97270 /* dummycommit.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dummycommit.test; sourceTree = "<group>"; };
 		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
 		6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
@@ -172,7 +166,6 @@
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperToolServerFile.txt; sourceTree = "<group>"; };
 		6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperToolIPCTester; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolIPCTester.m; sourceTree = "<group>"; };
 		6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPNotifications+IPCAdditions.h"; sourceTree = "<group>"; };
@@ -284,10 +277,8 @@
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
-				6EAFD8B70DEC614E00E97270 /* dummycommit.test */,
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
 				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
-				6ED1AC740E4BA162000353B6 /* HelperToolServerFile.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -375,8 +366,6 @@
 				6E270D080E158CED00BAE687 /* MPNotifications.m */,
 				6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */,
 				6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */,
-				6E31A02B0E6CFB51002804D0 /* Notification+ThreadAdditions.h */,
-				6E31A02C0E6CFB51002804D0 /* Notification+ThreadAdditions.m */,
 			);
 			name = "Tcl Notifications ";
 			sourceTree = "<group>";
@@ -434,7 +423,6 @@
 				6E8563B90E5DDF7000C1D73C /* MPHelperNotificationsCommon.h in Headers */,
 				6E8563BA0E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h in Headers */,
 				6EE6DDCE0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h in Headers */,
-				6E31A02D0E6CFB51002804D0 /* Notification+ThreadAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +572,6 @@
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
 				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
-				6ED1AC750E4BA162000353B6 /* HelperToolServerFile.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,7 +675,6 @@
 				6EC2609A0E4272D20013BC48 /* MPHelperCommon.c in Sources */,
 				6E8563B80E5DDF7000C1D73C /* MPHelperNotificationsCommon.c in Sources */,
 				6EE6DDCF0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m in Sources */,
-				6E31A02E0E6CFB51002804D0 /* Notification+ThreadAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
