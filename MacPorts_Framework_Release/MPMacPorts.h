@@ -193,11 +193,11 @@
 
 /*!
  @brief Sets the delegate for this MPMacPorts object
- @param mpDelegate The object to be set as the delegate
+ @param aDelegate The object to be set as the delegate
  @Discussion Delegates of MPMacPorts may opt to implement -setAuthoriztionRef: .
  See (add link here to class discussion section) for more details.
  */
-- (void)setDelegate:(id)delegate;
+- (void)setDelegate:(id)aDelegate;
 
 /*!
  @brief Determines whether certain port operations require privileges before exection

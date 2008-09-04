@@ -588,7 +588,7 @@ extern BASFailCode BASDiagnoseFailure(
 	CFStringRef					bundleID
 );
 
-/*!
+/*
     @function       BASFixFailure
 
     @abstract       Installs, or reinstalls, the privileged helper tool.

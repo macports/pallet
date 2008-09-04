@@ -88,6 +88,13 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MacPorts;
 		};
+		6E31A2890E6F7910002804D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFE353650CFB8F0C003BACFC;
+			remoteInfo = Docs;
+		};
 		6EC2608B0E4270110013BC48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -514,6 +521,7 @@
 			dependencies = (
 				6ED12A530E3E55A50026773D /* PBXTargetDependency */,
 				6EC2608C0E4270110013BC48 /* PBXTargetDependency */,
+				6E31A28A0E6F7910002804D0 /* PBXTargetDependency */,
 			);
 			name = MacPorts;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -685,6 +693,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
 			targetProxy = 6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */;
+		};
+		6E31A28A0E6F7910002804D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFE353650CFB8F0C003BACFC /* Docs */;
+			targetProxy = 6E31A2890E6F7910002804D0 /* PBXContainerItemProxy */;
 		};
 		6EC2608C0E4270110013BC48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

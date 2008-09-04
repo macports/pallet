@@ -48,7 +48,7 @@
 - (id) initWithPkgPath:(NSString *)path {
 	if (self = [super init]) {
 		interpreter = [MPInterpreter sharedInterpreterWithPkgPath:path];
-		[self registerForLocalNotifications];
+		//[self registerForLocalNotifications];
 	}
 	return self;
 }
@@ -251,10 +251,10 @@
 	return macportsDelegate;
 }
 
--(void) setDelegate:(id)delegate {
-	[delegate retain];
+-(void) setDelegate:(id)aDelegate {
+	[aDelegate retain];
 	[macportsDelegate release];
-	macportsDelegate = delegate;
+	macportsDelegate = aDelegate;
 }
 
 //Internal Method for setting our Authorization Reference
@@ -264,10 +264,6 @@
 		AuthorizationRef clientRef = (AuthorizationRef) [[self delegate] performSelector:@selector(getAuthorizationRef)];
 		[interpreter setAuthorizationRef:clientRef];
 	}
-	//else { //I think i'll iniitalizeAuthorization lazily .. i.e. right
-	//before using helper tool
-//		[interpreter initializeAuthorization];
-//	}
 }
 
 #pragma mark -
