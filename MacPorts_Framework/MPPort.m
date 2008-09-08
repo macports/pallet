@@ -26,8 +26,8 @@
  *	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
  *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  *	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-						   *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-						   *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *	POSSIBILITY OF SUCH DAMAGE.
@@ -38,10 +38,20 @@
 
 @implementation MPPort
 
+// Each of the init methods sets the parent MPMacPorts object for this MPPort object
+// if it hasn't already been set. We are assuming that this MPPort object and its
+// parent MPMacPort object would have been created in the same thread. That might
+// not have been the case. I should make a note of that in the release notes and 
+// also add some more sane changes later for a closer coupling of an MPMacPorts 
+// object and its associated MPPort objects.
+
 - (id)init {
 	self = [super initWithCapacity:15];
 	if (self != nil) {
 		[self setState:MPPortStateUnknown];
+		if (parentMacPortsInstance != nil)
+			parentMacPortsInstance = [MPMacPorts sharedInstance];
+		
 	}
 	return self;
 }
@@ -50,6 +60,8 @@
 	self = [super initWithCapacity:numItems];
 	if (self != nil) {
 		[self setState:MPPortStateUnknown];
+		if (parentMacPortsInstance != nil)
+			parentMacPortsInstance = [MPMacPorts sharedInstance];
 	}
 	return self;
 }
@@ -59,6 +71,8 @@
 	if (self != nil) {
 		[self setState:MPPortStateUnknown];
 		[self setPortWithTclListAsString:string];
+		if (parentMacPortsInstance != nil)
+			parentMacPortsInstance = [MPMacPorts sharedInstance];
 	}
 	return self;
 }
@@ -99,7 +113,7 @@
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_run"]] forKey:@"depends_run"];
 		[self addDependencyAsPortName:@"depends_run"];
 	}
-
+	
 	@try {
 		if ([[self valueForKey:@"long_description"] characterAtIndex:0] == '{') {
 			[self setValue:[self valueForKey:@"description"] forKey:@"long_description"];
@@ -107,11 +121,11 @@
 	} 
 	@catch (NSException *e) {
 		[self setValue:[NSString stringWithFormat:
-			NSLocalizedStringWithDefaultValue(@"setPortWithTclListAsStringDescreiptionError",
-											  @"Localizable",
-											  [NSBundle mainBundle],
-											  @"Port has an invalid desciption or long_description key.",
-											  @"Error statement for exception raised when testing long_description.")]
+						NSLocalizedStringWithDefaultValue(@"setPortWithTclListAsStringDescreiptionError",
+														  @"Localizable",
+														  [NSBundle mainBundle],
+														  @"Port has an invalid desciption or long_description key.",
+														  @"Error statement for exception raised when testing long_description.")]
 				forKey:@"long_description"];
 	}
 	// set the status flag to unknown
@@ -138,7 +152,7 @@
 
 - (NSArray *)depends {
 	return [[[NSArray arrayWithArray:[self valueForKey:@"depends_build"]]
-			arrayByAddingObjectsFromArray:[self valueForKey:@"depends_lib"]] 
+			 arrayByAddingObjectsFromArray:[self valueForKey:@"depends_lib"]] 
 			arrayByAddingObjectsFromArray:[self valueForKey:@"depends_run"]];
 }
 
@@ -151,9 +165,103 @@
 	//Should I be sending self as the object? Or should I send a newly created
 	//copy? What if the listener modifies this object? 
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notificationName 
-																   object:self]; 
+																   object:nil]; 
 }
 
+
+
+//Used for mportactivate, mportdeactivate and mportuninstall
+-(void)execPortProc:(NSString *)procedure 
+		withOptions:(NSArray *)options 
+			version:(NSString *)version
+			  error:(NSError **)execError {
+	
+	NSString *opts, *v;
+	MPInterpreter *interpreter;
+	opts = [NSString stringWithString:@" "];
+	//v = [NSString stringWithString:[self name]];
+	interpreter = [MPInterpreter sharedInterpreter];
+	
+	if (version != NULL)
+		v = [NSString stringWithString:version];
+	else 
+		v = @"";
+		//v = [NSString stringWithString:[self version]];
+	
+	if (options != NULL) 
+		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
+	
+	//Send Global Notifications and update MPNotifications variable
+	[self sendGlobalExecNotification:procedure withStatus:@"Started"];
+	//NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
+	[[MPNotifications sharedListener] setPerformingTclCommand:procedure];
+	
+	if ([parentMacPortsInstance authorizationMode]) {
+		[interpreter evaluateStringWithMPHelperTool: 
+		 [NSString stringWithFormat:
+		  @"%@ %@ %@ %@" ,
+		  procedure, [self name], v, opts]
+											  error:execError];
+		
+	}
+	else {
+		[interpreter evaluateStringWithPossiblePrivileges:
+		 [NSString stringWithFormat:
+		  @"%@ %@ %@ %@" ,
+		  procedure, [self name], v, opts]
+													error:execError];		
+	}
+	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
+	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
+}
+
+//Used for the rest of other exec procedures
+-(void) exec:(NSString *)target 
+	 withOptions:(NSArray *)options 
+	variants:(NSArray *)variants 
+	   error:(NSError **)execError{
+	
+	NSString *opts; 
+	NSString *vrnts;
+	MPInterpreter *interpreter;
+	opts = [NSString stringWithString:@" "];
+	vrnts = [NSString stringWithString:@" "];
+	interpreter = [MPInterpreter sharedInterpreter];
+	
+	if (options != NULL) {
+		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
+	}
+	if (variants != NULL) {
+		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
+	}
+	
+	//Send Global Notifications and update MPNotifications variable
+	[self sendGlobalExecNotification:target withStatus:@"Started"];
+	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
+	[[MPNotifications sharedListener] setPerformingTclCommand:target];
+	
+	if ([parentMacPortsInstance authorizationMode]) {
+		[interpreter evaluateStringWithMPHelperTool:
+		 [NSString stringWithFormat:
+		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+		  [self valueForKey:@"porturl"], opts, vrnts, target]
+												error:execError];
+	}
+	else {
+		[interpreter evaluateStringWithPossiblePrivileges:
+		 [NSString stringWithFormat:
+		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+		  [self valueForKey:@"porturl"], opts, vrnts, target]
+													error:execError];
+	}
+	
+	
+	
+	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
+	[self sendGlobalExecNotification:target withStatus:@"Finished"];
+	
+}
 
 
 //This method is nice but really isn't used.
@@ -180,159 +288,89 @@
 		}
 	}
 	
-	
-	[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
-								  error:execError];
-	
-}
-
-
-//Used for mportactivate, mportdeactivate and mportuninstall
--(void)execPortProc:(NSString *)procedure 
-		withOptions:(NSArray *)options 
-		withVersion:(NSString *)version
-			  error:(NSError **)execError {
-	
-	NSString *opts, *v;
-	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
-	v = [NSString stringWithString:[self name]];
-	interpreter = [MPInterpreter sharedInterpreter];
-	
-	if (version != NULL)
-		v = [NSString stringWithString:version];
-	else 
-		v = [NSString stringWithString:[self version]];
-	
-	if (options != NULL) 
-		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];	
-	
-	//Send Global Notifications and update MPNotifications variable
-	[self sendGlobalExecNotification:procedure withStatus:@"Started"];
-	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
-	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
-	
-	[interpreter evaluateStringAsString:
-	 [NSString stringWithFormat:
-	  @"[%@ %@ %@ %@]" ,
-	  procedure, [self name], v, opts]
-								  error:execError];
-	
-	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
-}
-
-//Used for the rest of other exec procedures
--(void) exec:(NSString *)target 
- withOptions:(NSArray *)options 
-withVariants:(NSArray *)variants 
-	   error:(NSError **)execError{
-	
-	NSString *opts; 
-	NSString *vrnts;
-	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
-	vrnts = [NSString stringWithString:@" "];
-	interpreter = [MPInterpreter sharedInterpreter];
-	
-	if (options != NULL) {
-		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
+	if( [parentMacPortsInstance authorizationMode] ) {
+		[interpreter evaluateStringWithMPHelperTool:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
+									  error:execError];
 	}
-	if (variants != NULL) {
-		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
+	else {
+		[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
+									  error:execError];
 	}
 	
-	//Send Global Notifications and update MPNotifications variable
-	[self sendGlobalExecNotification:target withStatus:@"Started"];
-	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
-	[[MPNotifications sharedListener] setPerformingTclCommand:tclCmd];
-	
-	[interpreter evaluateStringAsString:
-	 [NSString stringWithFormat:
-	  @"set portHandle [mportopen  %@  %@  %@]; \
-	  mportexec portHandle %@; \
-	  mportclose portHandle", 
-	  [self valueForKey:@"portURL"], opts, vrnts, target]
-								  error:execError];
-	
-	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[self sendGlobalExecNotification:target withStatus:@"Finished"];
 	
 }
-
-
 
 
 #pragma mark -
 # pragma mark Exec methods 
-- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportuninstall" withOptions:options withVersion:version error:mError];
+- (void)uninstallWithVersion:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportuninstall" withOptions:nil version:version error:mError];
 }
 
-- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportactivate" withOptions:options withVersion:version error:mError];
+- (void)activateWithVersion:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportactivate" withOptions:nil version:version error:mError];
 }
 
-- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportdeactivate" withOptions:options withVersion:version error:mError];
+- (void)deactivateWithVersion:(NSString *)version error:(NSError **)mError {
+	[self execPortProc:@"mportdeactivate" withOptions:nil version:version error:mError];
 }
 
--(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"configure" withOptions:options withVariants:variants error:mError];
+-(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"configure" withOptions:options variants:variants error:mError];
 }
 
--(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"build" withOptions:options withVariants:variants error:mError];
+-(void)buildWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"build" withOptions:options variants:variants error:mError];
 }
 
--(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"test" withOptions:options withVariants:variants error:mError];	
+-(void)testWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"test" withOptions:options variants:variants error:mError];	
 }
 
--(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"destroot" withOptions:options withVariants:variants error:mError];
+-(void)destrootWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"destroot" withOptions:options variants:variants error:mError];
 }
 
--(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"install" withOptions:options withVariants:variants error:mError];
+-(void)installWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"install" withOptions:options variants:variants error:mError];
 }
 
--(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"archive" withOptions:options withVariants:variants error:mError];
+-(void)archiveWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"archive" withOptions:options variants:variants error:mError];
 }
 
--(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"dmg" withOptions:options withVariants:variants error:mError];
+-(void)createDmgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"dmg" withOptions:options variants:variants error:mError];
 }
 
--(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"mdmg" withOptions:options withVariants:variants error:mError];
+-(void)createMdmgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"mdmg" withOptions:options variants:variants error:mError];
 }
 
--(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"pkg" withOptions:options withVariants:variants error:mError];
+-(void)createPkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"pkg" withOptions:options variants:variants error:mError];
 }
 
--(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError {
-	[self exec:@"mpkg" withOptions:options withVariants:variants error:mError];
+-(void)createMpkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
+	[self exec:@"mpkg" withOptions:options variants:variants error:mError];
 }
 
--(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError{
-	[self exec:@"rpm" withOptions:options withVariants:variants error:mError];
+-(void)createRpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError{
+	[self exec:@"rpm" withOptions:options variants:variants error:mError];
 }
 
--(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError{
-	[self exec:@"dpkg" withOptions:options withVariants:variants error:mError];
+-(void)createDpkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError{
+	[self exec:@"dpkg" withOptions:options variants:variants error:mError];
 }
 
--(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)mError{
-	[self exec:@"srpm" withOptions:options withVariants:variants error:mError];
+-(void)createSrpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError{
+	[self exec:@"srpm" withOptions:options variants:variants error:mError];
 }
 
 # pragma mark -
 
 
-#pragma mark MPMutableDictionary Protocal
+#pragma mark MPMutableDictionary Protocol
 
 - (id)objectForKey:(id)aKey {
 	if ([aKey isEqualToString:@"receipts"] && ![super objectForKey:aKey]) {
@@ -350,34 +388,34 @@ withVariants:(NSArray *)variants
 	id receipt;
 	NSEnumerator *receiptsEnumerator;
 	switch (state) {
-	case MPPortStateLearnState:
-		if ([self objectForKey:@"receipts"]) {
-			receiptsEnumerator = [[self objectForKey:@"receipts"] objectEnumerator];
-			// the following logic is flawed - it makes the assuption that if the active version is not equal to the
-			// version in the PortIndex that the port is outdated + I don't know that this logic works at all on 
-			// direct installs
-			[self setState:MPPortStateInstalled];
-			while (receipt = [receiptsEnumerator nextObject]) {
-				if ([receipt valueForKey:@"active"]) {
-					[self setState:MPPortStateActive];
-					[self setObject:receipt forKey:@"active"];
-					if (![[receipt valueForKey:@"compositeVersion"] isEqualToString:[self valueForKey:@"compositeVersion"]]) {
-						[self setState:MPPortStateOutdated];
+		case MPPortStateLearnState:
+			if ([self objectForKey:@"receipts"]) {
+				receiptsEnumerator = [[self objectForKey:@"receipts"] objectEnumerator];
+				// the following logic is flawed - it makes the assuption that if the active version is not equal to the
+				// version in the PortIndex that the port is outdated + I don't know that this logic works at all on 
+				// direct installs
+				[self setState:MPPortStateInstalled];
+				while (receipt = [receiptsEnumerator nextObject]) {
+					if ([receipt valueForKey:@"active"]) {
+						[self setState:MPPortStateActive];
+						[self setObject:receipt forKey:@"active"];
+						if (![[receipt valueForKey:@"compositeVersion"] isEqualToString:[self valueForKey:@"compositeVersion"]]) {
+							[self setState:MPPortStateOutdated];
+						}
 					}
 				}
+			} else {
+				[self setState:MPPortStateNotInstalled];
 			}
-		} else {
-			[self setState:MPPortStateNotInstalled];
-		}
-		break;
-	case MPPortStateUnknown:
-		[self removeObjectForKey:@"active"];
-		[self removeObjectForKey:@"receipts"];
-		[super setObject:[NSNumber numberWithInt:MPPortStateUnknown] forKey:@"state"];
-		break;
-	default:
-		[super setObject:[NSNumber numberWithInt:state] forKey:@"state"];
-		break;
+			break;
+		case MPPortStateUnknown:
+			[self removeObjectForKey:@"active"];
+			[self removeObjectForKey:@"receipts"];
+			[super setObject:[NSNumber numberWithInt:MPPortStateUnknown] forKey:@"state"];
+			break;
+		default:
+			[super setObject:[NSNumber numberWithInt:state] forKey:@"state"];
+			break;
 	}
 }
 

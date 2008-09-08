@@ -1,27 +1,31 @@
 TO DO LIST (because there seems to be too much to get done haha)
 
-
-
-Get feedback on Notifications idea and implementation
-
-
-Test Notifications Library ... how? ... use the Tester ...
-and see if the rest of the tests build
-
-Create my own branch of src ? Yes ... do that and add  your patches
-
-
 Guide like documentation
 
 Scrub Code
 
-Sanitize NSString Code
-
 Ask Randall to look at perform exec methods
 
-Rearrange methods orderings in both .h and .m files
-and add appropriate pragma marks for more readablity
+Implement IPC Notifications mechanism between the Helper Tool and Framework
+
+Modify evaluateStringAsString to try evaluating, try evaluating with privileges
+if there is an error, then return if there is still an error for the special
+privileged methods: sync, selfupdate, exec methods etc.
 
 
-ASK FOR HOW TO TURN ON / OFF VARIOUS MODES FOR UI_$PRIORITY I.E.
-DEBUG, INFO ETC.
+Reimplement notifications so that, as Randall said, all threads should receive
+all notifications that they have registered for
+
+... in coming ... rant ...
+I am thinking of another scheme instead of notifications ... I don't think
+Objective-C has high order functions ... but something cool would be for
+us to just call some user defined method when a $ui_priority 
+call is made. So if say they wanted to update a progress bar during
+-sync, we would just be calling whatever method they had to update the GUI.
+
+I should read up some on Threading cause that might make things dicey ...
+
+Also, we could throw in bindings support. How would this work? Don't know
+yet ...
+
+Fix bug in uninstall

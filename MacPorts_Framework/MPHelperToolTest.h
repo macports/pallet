@@ -16,7 +16,7 @@
 	MPInterpreter * interp;
 }
 
--(void) testMPHelperToolWithoutRights;
+//-(void) testMPHelperToolWithoutRights;
 
 
 @end

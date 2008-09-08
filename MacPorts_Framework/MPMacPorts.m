@@ -48,7 +48,7 @@
 - (id) initWithPkgPath:(NSString *)path {
 	if (self = [super init]) {
 		interpreter = [MPInterpreter sharedInterpreterWithPkgPath:path];
-		[self registerForLocalNotifications];
+		//[self registerForLocalNotifications];
 	}
 	return self;
 }
@@ -107,32 +107,32 @@
 	NSString * result = nil;
 	
 	// This needs to throw an exception if things don't go well
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncStarted" object:nil];
-	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_sync"];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Started" object:nil];
+	[[MPNotifications sharedListener] setPerformingTclCommand:@"sync"];
 	
-	result = [interpreter evaluateStringAsString:@"mportsync" error:sError];
-	
-	//Testing DO implementation
-	//result = [interpreter evaluateStringWithMPHelperTool:@"mportsync"];
-	//[interpreter evaluateStringWithSimpleMPDOPHelperTool:@"mportsync"];
-	
-	result = [interpreter getTclCommandResult];
+	if ([self authorizationMode])
+		result = [interpreter evaluateStringWithMPHelperTool:@"mportsync" error:sError];
+	else
+		result = [interpreter evaluateStringWithPossiblePrivileges:@"mportsync" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSyncFinished" object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_sync_Finished" object:nil];
 
 	return result;
 }
 
 - (void)selfUpdate:(NSError**)sError {
 	//Also needs to throw an exception if things don't go well
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateStarted" object:nil];
-	[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_selfUpdate"];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Started" object:nil];
+	[[MPNotifications sharedListener] setPerformingTclCommand:@"selfUpdate"];
 	
-	[interpreter evaluateStringAsString:@"macports::selfupdate" error:sError];
+	if([self authorizationMode])
+		[interpreter evaluateStringWithMPHelperTool:@"macports::selfupdate" error:sError];
+	else
+		[interpreter evaluateStringWithPossiblePrivileges:@"macports::selfupdate" error:sError];
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPortsSelfupdateFinished" object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Finished" object:nil];
 }
 
 
@@ -149,8 +149,6 @@
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName {
-	//Should I notify for searches? Will do for now just in case
-	//[[MPNotifications sharedListener] setPerformingTclCommand:@"YES_search"];
 	
 	NSMutableDictionary *result, *newResult;
 	NSEnumerator *enumerator;
@@ -161,17 +159,7 @@
 	} else {
 		caseSensitivity = @"no";
 	}
-	/*result = [NSMutableDictionary dictionaryWithDictionary:
-			  [interpreter dictionaryFromTclListAsString:
-			   [[interpreter evaluateArrayAsString:
-				[NSArray arrayWithObjects:
-										  @"return [mportsearch",
-										  query,
-										  caseSensitivity,
-										  style,
-										  fieldName,
-										  @"]",
-				 nil]] objectForKey:TCL_RETURN_STRING] ]];*/
+
 	NSError * sError;
 	
 	result = [NSMutableDictionary dictionaryWithDictionary:
@@ -187,7 +175,7 @@
 		[newResult setObject:[[MPPort alloc] initWithTclListAsString:[result objectForKey:key]] forKey:key];
 	}
 	
-	//[[MPNotifications sharedListener] setPerformingTclCommand:@""];
+
 	return [NSDictionary dictionaryWithDictionary:newResult];
 }
 
@@ -198,11 +186,11 @@
 
 - (void)exec:(MPPort *)port 
   withTarget:(NSString *)target 
- withOptions:(NSArray *)options 
-withVariants:(NSArray *)variants
+	 options:(NSArray *)options 
+	variants:(NSArray *)variants
 	   error:(NSError **)execError
 {
-	[port exec:target withOptions:options withVariants:variants error:execError ];
+	[port exec:target withOptions:options variants:variants error:execError ];
 }
 
 #pragma settings
@@ -231,11 +219,11 @@ withVariants:(NSArray *)variants
 
 
 - (NSURL *)pathToPortIndex:(NSString *)source {
-	NSError * pError;
+	
 	return [NSURL fileURLWithPath:
 			[interpreter evaluateStringAsString:
 			 [NSString stringWithFormat:@"return [macports::getindex %@ ]", source]
-										  error:&pError]];
+										  error:nil]];
 }
 
 
@@ -248,6 +236,14 @@ withVariants:(NSArray *)variants
 	return version;
 }
 
+-(void) setAuthorizationMode:(BOOL)mode {
+	authorizationMode = mode;
+}
+
+-(BOOL) authorizationMode {
+	return authorizationMode;
+}
+
 #pragma mark -
 #pragma mark Delegate Methods
 
@@ -255,22 +251,19 @@ withVariants:(NSArray *)variants
 	return macportsDelegate;
 }
 
--(void) setDelegate:(id)delegate {
-	[delegate retain];
+-(void) setDelegate:(id)aDelegate {
+	[aDelegate retain];
 	[macportsDelegate release];
-	macportsDelegate = delegate;
+	macportsDelegate = aDelegate;
 }
 
 //Internal Method for setting our Authorization Reference
 - (void) setAuthorizationRef { 
 	if ([[self delegate] respondsToSelector:@selector(getAuthorizationRef)]) {
-		[interpreter setAuthorizationRef:
-		 [[self delegate] performSelector:@selector(getAuthorizationRef)]];
+		
+		AuthorizationRef clientRef = (AuthorizationRef) [[self delegate] performSelector:@selector(getAuthorizationRef)];
+		[interpreter setAuthorizationRef:clientRef];
 	}
-	//else { //I think i'll iniitalizeAuthorization lazily .. i.e. right
-	//before using helper tool
-//		[interpreter initializeAuthorization];
-//	}
 }
 
 #pragma mark -

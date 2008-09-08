@@ -72,6 +72,7 @@
 	NSString *version;
 	
 	id macportsDelegate;
+	BOOL authorizationMode;
 	
 }
 
@@ -148,7 +149,7 @@
  @Discussion See -exec: withOptions: withVariants: in @link //apple_ref/doc/header/MPPort.h MPPort @/link for discussion
  of this method.
  */
-- (void)exec:(MPPort *)port withTarget:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)execError;
+- (void)exec:(MPPort *)port withTarget:(NSString *)target options:(NSArray *)options variants:(NSArray *)variants error:(NSError **)execError;
 
 /*!
  @brief Returns the NSString path to the directory where ports are installed.
@@ -192,11 +193,29 @@
 
 /*!
  @brief Sets the delegate for this MPMacPorts object
- @param mpDelegate The object to be set as the delegate
+ @param aDelegate The object to be set as the delegate
  @Discussion Delegates of MPMacPorts may opt to implement -setAuthoriztionRef: .
  See (add link here to class discussion section) for more details.
  */
-- (void)setDelegate:(id)delegate;
+- (void)setDelegate:(id)aDelegate;
+
+/*!
+ @brief Determines whether certain port operations require privileges before exection
+ @param mode A YES value will require privileges whereas a NO value will not require privileges.
+ @Discussion Use this method to indicate whether port operations should be
+ run with privilieges. The default behavior is to not run these port operations with
+ privileges. Operations affected by this setting include -sync, -selfUpdate, all variants
+ of the -exec method and all of MPPort's port manipulation methods.
+ */
+-(void) setAuthorizationMode:(BOOL)mode;
+
+/*! Returns a BOOL that indicates whether or not port operations are to be run with privileges
+ @Discussion You can use this method in conjuction with -setAuthorizationMode: to set and unset
+ the authorization mode for this MPMacPorts object. A return value of YES means that the -sync,
+ -selfUpdate, all variants of the -exec method and all of MPPort's port manipulation methods 
+ require privileges;a return value of NO indicates that they don't.
+ */
+-(BOOL) authorizationMode;
 
 
 //Notifications stuff for private use and testing purposes

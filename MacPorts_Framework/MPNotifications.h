@@ -72,13 +72,7 @@
 #define MPDEBUG @"MPDebugNotification"
 #define MPALL @"MPAllNotification"
 
-
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <string.h>
-
+#import "MPInterpreter.h"
 
 /*!
  @class MPNotifications
@@ -95,10 +89,8 @@
 	NSFileHandle * readHandle;
 	
 	//BSD sockets stuff
-	NSString * serverFilePath;
-	int sd1, rc;
-	struct sockaddr_un serveraddr;
-	BOOL hasSetFileDescriptor;
+	id objectLock;
+	BOOL terminateBackgroundThread;
 	
 }
 
@@ -142,7 +134,7 @@
 //These methods aren't for the public ... yet ...
 -(void)setPerformingTclCommand:(NSString *)string;
 -(NSString *)performingTclCommand;
--(int) getServerFileDescriptor;
+-(BOOL) postNotificationOnMainThread:(NSString *) message;
 
 
 @end

@@ -1,12 +1,3 @@
-#catch {source \
-#	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
-
-#Trying my own MacPorts build rather than default one on the system
-#catch {source \
-#	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
-
-
-
 package require macports
 package require notifications
 
@@ -86,8 +77,6 @@ proc ui_channels {priority} {
 #This is currently under works ... a reasonable solution
 #should be coming up soon
 proc ui_init {priority prefix channels message} {
-	#puts "INSIDE ui_init priority with prefix $prefix and message $message"
-	
 	switch $priority {
 		msg {
 			set nottype "MPMsgNotification" 

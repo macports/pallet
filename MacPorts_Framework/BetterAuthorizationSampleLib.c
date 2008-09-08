@@ -1933,6 +1933,12 @@ static const char * kPlistTemplate =
     "	<key>OnDemand</key>\n"
     "	<true/>\n"
 
+	// We don't want our helper tool to be respawned every 10 seconds
+	// after a faliure ... hopefully this won't ALSO prevent us from
+	// rerunning the helper tool without rebooting the machine
+//	"	<key>LaunchOnlyOnce</key>\n"
+//	"	<true/>\n"
+
     // There are no program arguments, other that the path to the helper tool itself.
     //
     // IMPORTANT

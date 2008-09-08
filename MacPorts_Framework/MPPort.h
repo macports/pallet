@@ -48,6 +48,7 @@
 
 
 
+
 #define	MPPortStateUnknown		0
 #define MPPortStateLearnState	1
 
@@ -58,6 +59,9 @@
 
 #define MPPortWillExecuteTarget	@"org.macports.framework.port.willExecuteTarget"
 #define MPPortDidExecuteTarget	@"org.macports.framework.port.didExecuteTarget"
+
+@class MPMacPorts;
+
 /*!
  @class MPPort
  @abstract	A representation of a port.
@@ -67,6 +71,8 @@
 	//Maybe we should have a single MPInterpreter *interpreter and use that
 	//throughout the code? Ask Randall whether or not it was intentional
 	//to declare new variable for each method
+	
+	MPMacPorts * parentMacPortsInstance;
 }
 
 /*!
@@ -110,37 +116,29 @@
  */
 - (NSArray *)depends;
 
-//Wrapper method for the 3 functions below
-- (void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError **)execError;
-//Even more generic method to execute a Tcl command with any given number of args
-- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError;
-
 
 /*!
  @brief Deactivates and uninstalls this MPPort from the MacPorts system
- @param options An NSArray of NSStrings of options for this uninstallation execution
  @param version An NSString indicating which version of this port to uninstall
  @discussion version should NOT be nil
  */
-- (void)uninstallWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError**)mpError;
+- (void)uninstallWithVersion:(NSString *)version error:(NSError**)mpError;
 /*!
  @brief Activates an installed MPPort.
- @param options An NSArray of NSStrings of options for port activation
  @param version An NSString indicating which version of this port to activate
  @discussion version should NOT be nil. The activated port should have been
  already installed. This happens automatically during a default installation
  of a port. This means activation of a port should occur only if the port
  had been previously deactivated after a default installation.
  */
-- (void)activateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError**)mpError;
+- (void)activateWithVersion:(NSString *)version error:(NSError**)mpError;
 /*!
  @brief Deactivates an installed  MPPort.
- @param options An NSArray of NSStrings of options for port deactivation
  @param version An NSString indicating which version of this port to deactivate
  @discussion version should NOT be nil. Only installed and active ports
  should be deactivated
 */
-- (void)deactivateWithOptions:(NSArray *)options withVersion:(NSString *)version error:(NSError**)mpError;
+- (void)deactivateWithVersion:(NSString *)version error:(NSError**)mpError;
 
 
 /*!
@@ -155,7 +153,7 @@
  
  ADD SOMETHING HERE ABOUT VARIANTS AND OPTIONS
  */
--(void)exec:(NSString *)target withOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError **)execError;
+-(void)exec:(NSString *)target withOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)execError;
 
 /*Convenience methods based on the exec: withTarget: method
  These methods and -exec: need to be rewritten to handle variants
@@ -170,32 +168,32 @@
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)configureWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Builds this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)buildWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)buildWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Tests this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)testWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)testWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Installs this port to a temporary directory
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)destrootWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)destrootWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Installs this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  @discussion Installing a port automatically activates it.
  */
--(void)installWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)installWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Archives port for later unarchving. 
  @discussion Archive mode must be enabled for this command to work.
@@ -203,53 +201,53 @@
  located in ${prefix}/etc/macports/macports.conf. With archive mode enabled,
  binary archives are created automatically whenever an install is performed.
  */
--(void)archiveWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)archiveWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an internet-enabled disk image containing OS X package of this
  port
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createDmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createDmgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Create an internet-enabled disk image containing an OS X metapackage of this
  port
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createMdmgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createMdmgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an OS X installer package of this port
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createPkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createPkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an OS X installer metapackage of this this port and 
  its dependencies
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createMpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createMpkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates and RPM binary package of this port. This is similar to a
  tgz "archive".
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createRpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createRpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates a DEB binary package of this port.
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createDpkgWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createDpkgWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 /*!
  @brief Creates an SRPM source package of this port, similar to a xar "portpkg".
  @param options An NSArray of NSStrings of the various options for this target
  @param variants An NSArray of NSStrings of the various variants for this target
  */
--(void)createSrpmWithOptions:(NSArray *)options withVariants:(NSArray *)variants error:(NSError**)mError;
+-(void)createSrpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError**)mError;
 
 /*!
  @brief Sets the attributes of this MPPort using the given string
@@ -287,4 +285,9 @@
 + (Class)classForKeyedUnarchiver;
 - (Class)classForKeyedArchiver;
 
+
+//Wrapper method for activate, deactivate and uninstall operations
+- (void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options version:(NSString *)version error:(NSError **)execError;
+//Even more generic method to execute a Tcl command with any given number of args
+- (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError;
 @end

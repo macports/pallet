@@ -42,5 +42,3 @@
 
 //Including this file for testing the Notifications listener
 #import <MacPorts/MPNotifications.h>;
-//for testing Distributed objects
-#import <MacPorts/MPInterpreterProtocol.h>;

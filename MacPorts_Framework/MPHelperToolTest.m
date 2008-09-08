@@ -19,24 +19,24 @@
 	
 }
 
-- (void) testMPHelperToolWithoutRights {
-	AuthorizationRef authRef;
-	
-		
-	OSStatus junk;
-	
-	
-	junk = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &authRef);
-	assert(junk == noErr);
-	
-	[interp setAuthorizationRef:authRef];
-	
-	NSString * result = [interp evaluateStringWithMPHelperTool:@"mportsync"];
-	
-	NSLog(@"Result is %@" , result);
-	STAssertTrue ( [result isEqualToString:@"TCL COMMAND EXECUTION SUCCEEDED YAAY!:"], \
-				  @"Result should succeed so long as we enter credentials");	
-}
-
+//- (void) testMPHelperToolWithoutRights {
+//	AuthorizationRef authRef;
+//	
+//		
+//	OSStatus junk;
+//	
+//	
+//	junk = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &authRef);
+//	assert(junk == noErr);
+//	
+//	[interp setAuthorizationRef:authRef];
+//	
+//	NSString * result = [interp evaluateStringWithMPHelperTool:@"mportsync"];
+//	
+//	NSLog(@"Result is %@" , result);
+//	STAssertTrue ( [result isEqualToString:@"TCL COMMAND EXECUTION SUCCEEDED YAAY!:"], \
+//				  @"Result should succeed so long as we enter credentials");	
+//}
+//
 
 @end

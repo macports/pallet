@@ -1,12 +1,3 @@
-#catch {source \
-#	[file join "/Library/Tcl" macports1.0 macports_fastload.tcl]}
-
-#Trying my own MacPorts build rather than default one on the system
-#catch {source \
-#	[file join "/Users/Armahg/macportsbuild/build1/Library/Tcl" macports1.0 macports_fastload.tcl]}
-
-
-
 package require macports
 package require simplelog
 
@@ -80,10 +71,6 @@ proc ui_channels {priority} {
 }
 
 
-set logDest [ open "/Users/Armahg/Desktop/logFile.txt" w]
-puts $logDest "SOMETHING DEY HERE"
-simplelog "SOMETHING DEY HERE"
-
 
 #Modifying UI initialization to enable notifications
 #Redefine ui_$pritority to throw global notifications
@@ -129,9 +116,7 @@ proc ui_init {priority prefix channels message} {
     set nbchans [llength $channels]
     if {$nbchans == 0} {
         proc ::ui_$priority {str} [subst {
-        	puts stdout "\$str"
-        	puts $logDest "\$str"
-        	simplelog "\$str"
+        	simplelog "$nottype $chan $prefix" "\$str" 
         }]
     } else {
         try {
@@ -147,15 +132,13 @@ proc ui_init {priority prefix channels message} {
             
             proc ::ui_$priority {str} [subst { 
             	puts $chan "$prefix\$str"
-            	puts $logDest "$prefix\$str"
-            	simplelog "$prefix\$str"
+            	simplelog "$nottype $chan $prefix" "\$str" 
             }]
         } else {
         	proc ::ui_$priority {str} [subst {
         		foreach chan \$channels {
         			puts $chan "$prefix\$str"
-        			puts $logDest "$prefix\$str"
-        			simplelog "$prefix\$str"
+        			simplelog "$nottype $chan $prefix" "\$str" 
         		}
         	}]
         }
@@ -168,9 +151,10 @@ proc ui_init {priority prefix channels message} {
 
 #Wrapping the following API routines to catch errors
 #and log error Information in a similar fashion to code
-#in macports.tcl.
-proc mportuninstall {portname {v ""} optionslist} {
-	if {[catch {portuninstall::uninstall $portname $v $optionslist} result]} {
+#in macports.tcl. Note optionslist is not being used for now
+set mp_empty_list [list]
+proc mportuninstall {portname {v ""} {optionslist ""} } {
+	if {[catch {portuninstall::uninstall $portname $v [array get options]} result]} {
 		
 			global errorInfo
 			ui_debug "$errorInfo"
@@ -179,7 +163,7 @@ proc mportuninstall {portname {v ""} optionslist} {
 	}
 }
 
-proc mportactivate {portname v optionslist} {
+proc mportactivate {portname {v ""} {optionslist ""}} {
 	if {[catch {portimage::activate $portname $v $optionslist} result]} {
 			
 			global errorInfo
@@ -189,7 +173,7 @@ proc mportactivate {portname v optionslist} {
 	}
 }
 
-proc mportdeactivate {portname v optionslist} {
+proc mportdeactivate {portname {v ""} {optionslist ""} } {
 	if {[catch {portimage::deactivate $portname $v $optionslist} result]} {
 			
 			global errorInfo

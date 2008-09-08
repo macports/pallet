@@ -36,6 +36,7 @@
 #import "MPInterpreter.h"
 #include "BetterAuthorizationSampleLib.h"
 #include "MPHelperCommon.h"
+#include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
 
 
@@ -78,8 +79,8 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 	
 	if (tclResult == TCL_OK) {
 		
-	//I have sacrificed generality for simplicity in the code below
-		if (tclElements > 0) { 
+		//I have sacrificed generality for simplicity in the code below
+		if (tclCount > 0) { 
 			[info setObject:[NSString stringWithUTF8String:tclElements[0]] forKey:MPCHANNEL];
 			
 			if(tclElements[1])
@@ -107,17 +108,7 @@ int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *
 		
 		//Get the Tcl function that called this method
 		if (! [[mln performingTclCommand] isEqualToString:@""]) {
-			NSArray * cmd = [[mln performingTclCommand] componentsSeparatedByString:@"_"];
-			
-			//if code is working right, this value should always be YES
-			//when we are in this part of the code
-			if([cmd count] > 0) {
-				//NSLog(@"Class type is %@", NSStringFromClass([[cmd objectAtIndex:0] class]));
-				
-				if( [[cmd objectAtIndex:0] isEqualToString:@"YES"]) {
-					[info setObject:[cmd objectAtIndex:1] forKey:@"Function"];
-				}
-			}
+			[info setObject:[mln performingTclCommand] forKey:MPMETHOD];
 		}		
 		if (global != 0) {
 			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:info];
@@ -164,81 +155,6 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 }
 
 #pragma mark -
-#pragma mark Authorization Code
-
-- (BOOL)checkIfAuthorized {
-	if  (internalMacPortsAuthRef == NULL ) {
-		return NO;
-	}
-	return YES;
-}
-
--(void)setAuthorizationRef:(AuthorizationRef)authRef {
-	//I can do this since Framework client responsible
-	//for managing memory for Authorization
-	internalMacPortsAuthRef = authRef;
-}
-
-
-
-
-#pragma mark -
-
-#pragma mark MPInterpreterProtocol
-
-- (BOOL) vendSelfForServer {
-	NSConnection * defaultConn;
-	defaultConn = [NSConnection defaultConnection];
-	//NSLog(@"Creating connection ...");
-	
-	[defaultConn setRootObject:self];
-	
-	//NSLog(@"Connection Created ... "); //%@, %@", defaultConn, [defaultConn statistics]);
-	return [defaultConn registerName:MP_DOSERVER];
-	
-}
-
-- (bycopy NSString *) evaluateStringFromMPHelperTool:(in bycopy NSString *)statement {
-	//- (NSString *) evaluateStringFromMPHelperTool:(NSString *)statement {	
-	//TO DO ->  error:(inout NSError **)evalError {
-	//NSError * evalError;
-	NSString * result = [self evaluateStringAsString:statement error:nil];
-	
-	//TO DO : WORK ON ERROR STUFF AFTER GETTING BASIC FUNCTIONALITY WORKING
-	//For now ... Perhaps I might now have to take jberry's advice on ... Oh wait
-	//I should be able to pass by reference duh!
-	//return @"returning from evaluateStringFromMPHelperTool";
-	return result;
-}
-
-
-- (void) setTclCommand:(in bycopy NSString *)tclCmd {
-	if (![helperToolInterpCommand isEqualToString:tclCmd]) {
-		
-		[helperToolInterpCommand release];
-		helperToolInterpCommand = [tclCmd copy];
-	}
-	
-}
-- (bycopy NSString *)getTclCommand {
-	return helperToolInterpCommand;
-}
-
-- (void) setTclCommandResult:(in bycopy NSString *)tclCmdResult {
-	if (![helperToolCommandResult isEqualToString:tclCmdResult]) {
-		[helperToolCommandResult release];
-		helperToolCommandResult = [tclCmdResult copy];
-	}
-}
-- (bycopy NSString *) getTclCommandResult {
-	return helperToolCommandResult;
-}
-
-- (void) log :(in bycopy id) logOutput {
-	NSLog(@"MPInterpreterProtocol Logging : %@", logOutput);
-}
-
-#pragma mark -
 
 #pragma mark MPInterpreter Code
 
@@ -280,11 +196,6 @@ static NSString * tclInterpreterPkgPath = nil;
 			Tcl_DeleteInterp(_interpreter);
 		}
 		
-		/*if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] pathForResource:@"init" ofType:@"tcl"] UTF8String]) != TCL_OK) {
-		 NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
-		 Tcl_DeleteInterp(_interpreter);
-		 }*/
-		
 		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
 										 pathForResource:@"init" 
 										 ofType:@"tcl"] UTF8String]) != TCL_OK) {
@@ -299,28 +210,8 @@ static NSString * tclInterpreterPkgPath = nil;
 		//Initialize the MacPorts Tcl Package Path string
 		tclInterpreterPkgPath = [NSString stringWithString:path];
 		
-		//Initialize the Run Loop because we don't know if framework will be
-		//run in a Foundation Kit or App Kit. Hopefully this won't hurt if the
-		//run loop is already running. We are doing this so that our NSConnection
-		//object is able to handle Distributed Object messages
-		//NOTE: Since MPinterpreter instances are created per thread, we don't have to
-		//worry (I hope) about running loops for different threads
-		//[[NSRunLoop currentRunLoop] run];
-		
-		//if (![self vendSelfForServer]) {
-//			NSLog(@"Failed To initialize NSConnection server ");
-//			//Should probably do some more error handling over here
-//		}
-//		else
-//			NSLog(@"MPInterpreter Initialized ...");
-		
-		
 	}
 	return self;
-}
-
-- (Tcl_Interp *) sharedTclInterpreter {
-	return _interpreter;
 }
 
 
@@ -374,74 +265,6 @@ static NSString * tclInterpreterPkgPath = nil;
 #pragma Port Settings
 
 #pragma Utilities
-
-- (int) execute:(NSString *)pathToExecutable withArgs:(NSArray *)args {
-	NSTask * task = [[NSTask alloc] init];
-	[task setLaunchPath:pathToExecutable];
-	[task setArguments:args];
-	[task launch];
-	[task waitUntilExit];
-	int status = [task terminationStatus];
-	[task release];
-	return status;
-}
-
-/*- (NSDictionary *)evaluateArrayAsString:(NSArray *)statement {
- return [self evaluateStringAsString:[statement componentsJoinedByString:@" "]];
- }
- 
- */
-- (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError**)mportError{
-	//NSLog(@"Calling evaluateStringAsString with argument %@", statement);
-	
-	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
-	
-	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
-	if (return_code != TCL_OK) {
-		
-		Tcl_Obj * interpObj = Tcl_GetObjResult(_interpreter);
-		int length, errCode;
-		NSString * errString = [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)];
-		//NSLog(@"TclObj string is %@ with length %d", errString , length);
-		errCode = Tcl_GetErrno();
-		//NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
-		//NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
-		
-		//Handle errors here ... Framework users can do !mportError to find out if
-		//method was successful
-		NSString *descrip = NSLocalizedString(errString, @"");
-		NSDictionary *errDict;
-		//For now all error codes are TCL_ERROR
-		
-		//Create underlying error - For now I'll create the underlying Posix Error
-		NSError *undError = [[[NSError alloc] initWithDomain:NSPOSIXErrorDomain
-														code:errCode 
-													userInfo:nil] autorelease];
-		//Create and return custom domain error
-		NSArray *objArray = [NSArray arrayWithObjects:descrip, undError, nil];
-		NSArray *keyArray = [NSArray arrayWithObjects:NSLocalizedDescriptionKey,
-							 NSUnderlyingErrorKey, nil];
-		errDict = [NSDictionary dictionaryWithObjects:objArray forKeys:keyArray];
-		if (mportError != NULL)
-			*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
-													  code:TCL_ERROR 
-												  userInfo:errDict] autorelease];
-		return nil;
-	}
-	
-	return [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)];
-}
-
-
-/*
- - (NSDictionary *)evaluateStringAsString:(NSString *)statement {
- int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
- return [NSDictionary dictionaryWithObjectsAndKeys:
- [NSNumber numberWithInt:return_code], TCL_RETURN_CODE, 
- [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)], TCL_RETURN_STRING, nil];
- }
- */
-
 - (NSArray *)arrayFromTclListAsString:(NSString *)list {
 	NSMutableArray *array;
 	int tclCount;
@@ -485,37 +308,139 @@ static NSString * tclInterpreterPkgPath = nil;
 	return [NSString stringWithUTF8String:Tcl_GetVar(_interpreter, [variable UTF8String], 0)];
 }
 
+
 #pragma mark -
-#pragma mark Helper Tool(s) Code
+#pragma mark -evaluateString* routines
+
+- (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError**)mportError{
+	//NSLog(@"Calling evaluateStringAsString with argument %@", statement);
+	
+	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
+	
+	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
+	if (return_code != TCL_OK) {
+		
+		Tcl_Obj * interpObj = Tcl_GetObjResult(_interpreter);
+		int length, errCode;
+		NSString * errString = [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)];
+		//NSLog(@"TclObj string is %@ with length %d", errString , length);
+		errCode = Tcl_GetErrno();
+		//NSLog(@"Errno Id is %@ with value %d", [NSString stringWithUTF8String:Tcl_ErrnoId()], errCode);
+		//NSLog(@"Errno Msg is %@", [NSString stringWithUTF8String:Tcl_ErrnoMsg(errCode)]);
+		
+		//Handle errors here ... Framework users can do !mportError to find out if
+		//method was successful
+		NSString *descrip = NSLocalizedString(errString, @"");
+		NSDictionary *errDict;
+		//For now all error codes are TCL_ERROR
+		
+		//Create underlying error - For now I'll create the underlying Posix Error
+		NSError *undError = [[[NSError alloc] initWithDomain:NSPOSIXErrorDomain
+														code:errCode 
+													userInfo:nil] autorelease];
+		//Create and return custom domain error
+		NSArray *objArray = [NSArray arrayWithObjects:descrip, undError, nil];
+		NSArray *keyArray = [NSArray arrayWithObjects:NSLocalizedDescriptionKey,
+							 NSUnderlyingErrorKey, nil];
+		errDict = [NSDictionary dictionaryWithObjects:objArray forKeys:keyArray];
+		if (mportError != NULL)
+			*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
+													  code:TCL_ERROR 
+												  userInfo:errDict] autorelease];
+		return nil;
+	}
+	
+	return [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)];
+}
+
+- (NSString *)evaluateStringWithPossiblePrivileges:(NSString *)statement error:(NSError **)mportError {
+	
+	
+	
+	//N.B. I am going to insist that funciton users not pass in nil for the
+	//mportError parameter
+	NSString * firstResult;
+	NSString * secondResult;
+	
+	*mportError = nil;
+	firstResult = [self evaluateStringAsString:statement error:mportError];
+	
+	//Because of string results of methods like mportsync (which returns the empty string)
+	//the only way to truly check for an error is to check the mportError parameter.
+	//If it is nil then there was no error, if not we re-evaluate with privileges using
+	//the helper tool
+	
+	if ( *mportError != nil) {
+		*mportError = nil; 
+		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
+		
+		return secondResult;
+	}
+	
+	return firstResult;
+}
+
 //NOTE: We expect the Framework client to initialize the AuthorizationRef
-//Completely before calling any privileged operation. Perhaps we
-//should check for this and send an NSError ... rather than go
-//through the trouble of initializing the call and erroring out?
-- (NSString *) evaluateStringWithMPHelperTool:(NSString *) statement {
+//Completely before calling any privileged operation. If not we will pass in
+//a barely initialzed one. This method returns nil if there is an error
+- (NSString *) evaluateStringWithMPHelperTool:(NSString *) statement error:(NSError **)mportError {
 	OSStatus        err;
     BASFailCode     failCode;
     NSString *      bundleID;
     NSDictionary *  request;
     CFDictionaryRef response;
+	NSString * result = nil;
 	
 	response = NULL;
+	
+	//Creating file path for IPC with helper tool
+	NSString * ipcFilePath = [NSString stringWithFormat:@"%@_%@", @kServerSocketPath, [NSDate date]];
+	NSString * ipcFilePathCopy = [NSString stringWithString:ipcFilePath];
+	
+	
+	//We need to use the notificationsObject to set up IPC with the helper tool
+	//I hope BAS's main method is blocking ... it should be since we obtain
+	//a return value
+	MPNotifications * notificationObject = [MPNotifications sharedListener];
+	//if ([notificationObject respondsToSelector:@selector(prepareIPCServerThread)]) {
+	NSLog(@"PREPARING SERVER THREAD");
+	[notificationObject prepareIPCServerThread];
+	//}
+	
+	//if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
+	NSThread * cThread = [NSThread currentThread];
+	NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
+	
+	//This is important to note ... the tcl command being executed is saved in the
+	//current thread's thread dictionary in the upper tier method that calls this one. 
+	// This means we are only going to guarantee
+	//thread saftey for Framework clients at the the level of MPMacPorts, MPPorts etc. and above
+	NSDictionary * serverInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+								 ipcFilePathCopy, @"ipcFilePath",
+								 [[MPNotifications sharedListener] performingTclCommand], @"currentMethod",
+								 nil];
+	
+	[NSThread detachNewThreadSelector:@selector(startIPCServerThread:) 
+							 toTarget:notificationObject 
+						   withObject:serverInfo];
+	//[notificationObject startIPCServerThread];
+	//}
+	
 	
 	//Retrieving the path for interpInit.tcl for our helper tool
 	NSString * interpInitPath = [[NSBundle bundleForClass:[MPInterpreter class]] 
 								 pathForResource:@"interpInit" ofType:@"tcl"];
 	
-	int serverFileDesc = [[MPNotifications sharedListener] getServerFileDescriptor];
+		
 	
-	if (serverFileDesc < 0)
-		NSLog(@"Uninitialized file descriptor for HelperTool IPC");
-
+	
 	
 	request = [NSDictionary dictionaryWithObjectsAndKeys:
 			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
 			   statement, @kTclStringToBeEvaluated, 
 			   tclInterpreterPkgPath, @kTclInterpreterInitPath ,
-			   interpInitPath, @kInterpInitFilePath,
-			   [NSNumber numberWithInt:serverFileDesc], @kServerFileDescriptor, nil];
+			   interpInitPath, @kInterpInitFilePath, 
+			   ipcFilePath, @kServerFileSocketPath , nil];
 	
 	assert(request != NULL);
 	
@@ -523,28 +448,36 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	assert(bundleID != NULL);
 	
+	
+	//In order to make the framework work normally by default ... we do a bare initialization
+	//of internalMacPortsAuthRef if the delegate hasn't iniitialzed it already
+	if (internalMacPortsAuthRef == NULL) {
+		OSStatus res = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &internalMacPortsAuthRef);
+		assert(res == noErr);
+	}
+	
 	BASSetDefaultRules(internalMacPortsAuthRef, 
 					   kMPHelperCommandSet, 
 					   (CFStringRef) bundleID, 
 					   NULL);
 	
-	NSLog(@"BEFORE Tool Execution request is %@ , response is %@ \n\n", request, response);
+	//NSLog(@"BEFORE Tool Execution request is %@ , response is %@ \n\n", request, response);
 	err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 										kMPHelperCommandSet, 
 										(CFStringRef) bundleID, 
 										(CFDictionaryRef) request, 
 										&response);
-	
-	
-	//Try to recover
-	if ( (err != noErr) && (err != userCanceledErr) ) {
+	if (err == noErr){// retrieve result here if available
+		if( response != NULL)
+			result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
+	}
+	else { //Try to recover error
 		failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (CFStringRef) bundleID);
 		
 		
 		//Need to pass in URL's to helper and install tools since I
 		//modified BASFixFaliure
 		NSBundle * mpBundle = [NSBundle bundleForClass:[self class]];
-		//NSLog(@"mpBundle is %@", [mpBundle description]);
 		
 		NSString * installToolPath = [mpBundle pathForResource:@"MPHelperInstallTool" ofType:nil];
 		assert(installToolPath != nil);
@@ -555,9 +488,6 @@ static NSString * tclInterpreterPkgPath = nil;
 		assert(helperToolPath != nil);
 		NSURL * helperToolURL = [NSURL fileURLWithPath:helperToolPath];
 		assert(helperToolURL != nil);
-		//NSLog(@"Helper and Install tool URL's are \n %@ and \n %@ respectively",
-		//	  [helperToolURL description] , [installToolURL description]);
-		
 		
 		err = BASFixFailure(internalMacPortsAuthRef, 
 							(CFStringRef) bundleID, 
@@ -565,69 +495,106 @@ static NSString * tclInterpreterPkgPath = nil;
 							(CFURLRef) helperToolURL,
 							failCode);
 		
+		
+		//Making the following assumption in error handling. If we return
+		//a noErr then response dictionary cannot be nil since everything went ok. 
+		//Hence I'm only checking for errors WITHIN the following blocks ...
 		if (err == noErr) {
 			err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 												kMPHelperCommandSet, 
 												(CFStringRef) bundleID, 
 												(CFDictionaryRef) request, 
 												&response);
+			if (err == noErr){// retrieve result here if available
+				if( response != NULL)
+					result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
+			}
+			else { //If we executed unsuccessfully
+				if (mportError != NULL) {
+					NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
+																	 code:err 
+																 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																		   NSLocalizedString(@"Check error code for OSStatus returned",@""), 
+																		   NSLocalizedDescriptionKey,
+																		   nil]] autorelease];
+					
+					*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
+															  code:MPHELPINSTFAILED 
+														  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																	NSLocalizedString(@"Unable to execute MPHelperTool successfuly", @""), 
+																	NSLocalizedDescriptionKey,
+																	undError, NSUnderlyingErrorKey,
+																	NSLocalizedString(@"BASExecuteRequestInHelperTool execution failed", @""),
+																	NSLocalizedFailureReasonErrorKey,
+																	nil]] autorelease];
+				}
+			}
+		}
+		else {//This means FixFaliure failed ... Report that in returned error
+			if (mportError != NULL) {
+				//I'm not sure of exactly how to report this error ... 
+				//Do we need some error codes for our domain? I'll define one
+				NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
+																 code:err 
+															 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																	   NSLocalizedString(@"Check error code for OSStatus returned",@""), 
+																	   NSLocalizedDescriptionKey,
+																	   nil]] autorelease];
+				
+				*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
+														  code:MPHELPINSTFAILED 
+													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																NSLocalizedString(@"Unable to fix faliure for MPHelperTool execution", @""), 
+																NSLocalizedDescriptionKey,
+																undError, NSUnderlyingErrorKey,
+																NSLocalizedString(@"BASFixFaliure routine wasn't completed successfuly", @""),
+																NSLocalizedFailureReasonErrorKey,
+																nil]] autorelease];
+			}
 		}
 	}
-	else {
-		err = userCanceledErr;
+	
+	//NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
+	
+	return result;
+}
+
+
+#pragma mark -
+#pragma mark Authorization Code
+
+- (BOOL)checkIfAuthorized {
+	if  (internalMacPortsAuthRef == NULL ) {
+		return NO;
 	}
-	
-	assert(response != NULL);
-	CFStringRef newresult = CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
-	
-	NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
-	//NSLog(@"response dictionary is %@", response);
-	return (NSString *) newresult;
-	
-	
-	/*
-	 NSString * fakeResult = @"Frustrated";
-	 return fakeResult;
-	 
-	 //Read from file and see if it was written to
-	 NSString * testFilePath = [[NSBundle bundleForClass:[self class]]
-	 pathForResource:@"TestFile" ofType:@"test"];
-	 NSError * readError = nil;
-	 NSString * result = [NSString stringWithContentsOfFile:testFilePath 
-	 encoding:NSUTF8StringEncoding
-	 error:&readError];
-	 if (readError) {
-	 NSLog(@"Error is %@", [readError description]);
-	 return @"There was an error Reading";
-	 }
-	 else if ([result isEqualToString:@""]) {
-	 return @"An empty string was read";
-	 }
-	 else if (result == nil) {
-	 return @"Resulting String is NIL";
-	 }
-	 else
-	 return result;
-	 
-	 return @"This shouldn't happen";
-	 */
+	return YES;
+}
+
+-(void)setAuthorizationRef:(AuthorizationRef)authRef {
+	//I can do this since Framework client responsible
+	//for managing memory for Authorization
+	internalMacPortsAuthRef = authRef;
 }
 
 
--(NSString *) evaluateStringWithSimpleMPDOPHelperTool:(NSString *)statement  {
+
+#pragma mark -
+#pragma mark For Internal Use
+
+- (int) execute:(NSString *)pathToExecutable withArgs:(NSArray *)args {
 	NSTask * task = [[NSTask alloc] init];
-	[task setLaunchPath:[[NSBundle bundleForClass:[MPInterpreter class]] 
-						 pathForResource:@"SimpleDOMPHelperTool" 
-						 ofType:nil]];
-	[task setArguments:[NSArray arrayWithObjects:statement, nil]];
+	[task setLaunchPath:pathToExecutable];
+	[task setArguments:args];
 	[task launch];
-	
 	[task waitUntilExit];
-	
-	[task terminationStatus];
-	
-	return [self getTclCommandResult];
+	int status = [task terminationStatus];
+	[task release];
+	return status;
 }
 
+
+- (Tcl_Interp *) sharedInternalTclInterpreter {
+	return _interpreter;
+}
 
 @end

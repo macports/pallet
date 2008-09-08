@@ -43,6 +43,9 @@
 	//File Descriptor for server file
 	#define kServerFileDescriptor		"ServerFileDescriptor"		//CFNumber
 
+	//File path for IPC socket
+	#define kServerFileSocketPath		"ServerFileSocketPath"		//CFString
+
 
 
 
@@ -51,10 +54,8 @@
 	//response keys
 	#define kTclStringEvaluationResult	"TclStringEvaluationResult"		//CFString
 
-	//Actually hold off doing errors for now
-	//NSError object we are passing
-	#define kNSError				"NSError"				//Am I allowed to pass in an NSError object?
-																	//Lets make it a string for now
+	#define kTclReturnCode				"TclReturnCode"					//CFNumber (TCL_OK, TCL_ERROR etc.)
+
 
 	//Key for Testing Distributed Object implementation
 	#define kMPInterpreterDistObj		"MPInterpreterDistObj"
