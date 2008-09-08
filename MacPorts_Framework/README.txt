@@ -18,7 +18,7 @@ universal 32-bit binary.
 INSTALLATION
 MacPorts.Framework is currently distributed as a port named MacPorts_Framework.
 If you have MacPorts installed, you can install by entering (without the quotes)
-"port install MacPorts_Framework" or "sudo install MacPorts_Framework" (if
+"port install MacPorts_Framework" or "sudo port install MacPorts_Framework" (if
 your MacPorts installation requires permissions) into the command line (Terminal.app).
 
 The installed MacPorts.Framework is located in /Library/Frameworks/.
