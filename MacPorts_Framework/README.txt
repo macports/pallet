@@ -56,7 +56,7 @@ that demonstrate usage of the Framework.
 
 KNOWN ISSUES
 The framework is still in its beta stage and is distributed under the
-BSD Lisence http://opensource.org/licenses/bsd-license.php .
+BSD License http://opensource.org/licenses/bsd-license.php .
 
 CONTACT
 armahg@macports.org
