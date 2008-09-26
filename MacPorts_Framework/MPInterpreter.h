@@ -69,6 +69,24 @@
 #define MPHELPUSERCANCELLED 1 /*User cancelled privileged operation.*/
 
 
+#pragma mark MacPort Options
+#define MPVERBOSE				@"ports_verbose"
+#define MPDEBUGOPTION			@"ports_debug"
+#define MPQUIET					@"ports_quiet"
+#define MPPROCESSALL			@"ports_processall"
+#define MPEXIT					@"ports_exit"
+#define MPFORCE					@"ports_force"
+#define MPIGNOREOLDER			@"ports_ignore_older"
+#define MPNODEPS				@"ports_nodeps"
+#define MPDODEPS				@"ports_do_dependents"
+#define MPSOURCEONLY			@"ports_source_only"
+#define MPBINARYONLY			@"ports_binary_only"
+#define MPAUTOCLEAN				@"ports_autoclean"
+#define MPTRACE					@"ports_trace"
+
+
+
+
 
 /*!
  @class MPInterpreter

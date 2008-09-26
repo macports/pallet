@@ -1,31 +1,17 @@
 TO DO LIST (because there seems to be too much to get done haha)
 
-Guide like documentation
+-	Add Port option #define macros to MPInterpreter
 
-Scrub Code
+-	Modify MPInterpreter so that its init process is modularized into sub routines.
+	The main goal of this modification is to allow implementation of the method below.
+	MPInterpreter will be able to conveniently create and delete its internal Tcl_interp object
+	
+-	Modify MPMacPorts to have a setOptions:(NSArray *) method of various port options
 
-Ask Randall to look at perform exec methods
+-	Move Authorizations functionality into a new MPAuthorization(s) class
 
-Implement IPC Notifications mechanism between the Helper Tool and Framework
+-	Modify MPNotifications to allow for possible hooks for Bindings
 
-Modify evaluateStringAsString to try evaluating, try evaluating with privileges
-if there is an error, then return if there is still an error for the special
-privileged methods: sync, selfupdate, exec methods etc.
+-	Do an alternate GC compatible build?
 
-
-Reimplement notifications so that, as Randall said, all threads should receive
-all notifications that they have registered for
-
-... in coming ... rant ...
-I am thinking of another scheme instead of notifications ... I don't think
-Objective-C has high order functions ... but something cool would be for
-us to just call some user defined method when a $ui_priority 
-call is made. So if say they wanted to update a progress bar during
--sync, we would just be calling whatever method they had to update the GUI.
-
-I should read up some on Threading cause that might make things dicey ...
-
-Also, we could throw in bindings support. How would this work? Don't know
-yet ...
-
-Fix bug in uninstall
+-	Move major port functionality from MPPort to MPMacPorts?

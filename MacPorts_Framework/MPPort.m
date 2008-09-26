@@ -304,15 +304,31 @@
 #pragma mark -
 # pragma mark Exec methods 
 - (void)uninstallWithVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportuninstall" withOptions:nil version:version error:mError];
+	if (version == nil) {
+		[self execPortProc:@"mportuninstall" withOptions:nil version:@"" error:mError];
+	}
+	else {
+		[self execPortProc:@"mportuninstall" withOptions:nil version:version error:mError];
+	}
 }
 
 - (void)activateWithVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportactivate" withOptions:nil version:version error:mError];
+	if (version == nil) {
+		[self execPortProc:@"mportactivate" withOptions:nil version:@"" error:mError];
+	}
+	else {
+		[self execPortProc:@"mportactivate" withOptions:nil version:version error:mError];
+	}
+		
 }
 
 - (void)deactivateWithVersion:(NSString *)version error:(NSError **)mError {
-	[self execPortProc:@"mportdeactivate" withOptions:nil version:version error:mError];
+	if (version == nil) {
+		[self execPortProc:@"mportdeactivate" withOptions:nil version:@"" error:mError];
+	}
+	else {
+		[self execPortProc:@"mportdeactivate" withOptions:nil version:version error:mError];
+	}
 }
 
 -(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {

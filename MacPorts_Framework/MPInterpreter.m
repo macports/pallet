@@ -278,7 +278,7 @@ static NSString * tclInterpreterPkgPath = nil;
 			[array addObject:[NSString stringWithUTF8String:tclElements[i]]];
 		}
 	} else {
-		array = [[NSMutableArray alloc] init];
+		array = [[[NSMutableArray alloc] init] autorelease];
 	}
 	Tcl_Free((char *)tclElements);
 	return [NSArray arrayWithArray:array];
@@ -294,7 +294,9 @@ static NSString * tclInterpreterPkgPath = nil;
 	int i;
 	array = [self arrayFromTclListAsString:list];
 	dictionary = [[NSMutableDictionary alloc] initWithCapacity:[array count]];
-	for (i = 0; i < [array count]; i += 2) {
+	unsigned int array_count = [array count];
+	
+	for (i = 0; i < array_count; i += 2) {
 		[dictionary setObject:[array objectAtIndex:(i + 1)] forKey:[array objectAtIndex:i]];
 	}
 	return dictionary;
