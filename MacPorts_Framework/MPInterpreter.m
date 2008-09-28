@@ -169,39 +169,79 @@ static NSString * tclInterpreterPkgPath = nil;
 	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
 
+//Internal method for initializing Tcl interpreter
+//Should I be using a double pointer like is done for NSError ?
+-(BOOL) initTclInterpreter:(Tcl_Interp * *)interp withPath:(NSString *)path {
+	BOOL result = NO;
+	
+	*interp = Tcl_CreateInterp();
+	
+	if(*interp == NULL) {
+		NSLog(@"Error in Tcl_CreateInterp, aborting.");
+		return result;
+	}
+	
+	if(Tcl_Init(*interp) == TCL_ERROR) {
+		NSLog(@"Error in Tcl_Init: %s", Tcl_GetStringResult(*interp));
+		Tcl_DeleteInterp(*interp);
+		return result;
+	}
+	
+	
+	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
+								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
+	if(Tcl_Eval(*interp, [mport_fastload UTF8String]) != TCL_OK) {
+		NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(*interp));
+		Tcl_DeleteInterp(*interp);
+		return result;
+	}
+	
+	
+	Tcl_CreateObjCommand(*interp, "notifications", Notifications_Command, NULL, NULL);
+	if (Tcl_PkgProvide(*interp, "notifications", "1.0") != TCL_OK) {
+		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(*interp));
+		Tcl_DeleteInterp(*interp);
+		return result;
+	}
+	
+	if( Tcl_EvalFile(*interp, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
+									 pathForResource:@"init" 
+									 ofType:@"tcl"] UTF8String]) != TCL_OK) {
+		NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(*interp));
+		Tcl_DeleteInterp(*interp);
+		return result;
+	}
+	
+	result = YES;
+	return result;
+}
+
+//Internal method for setting port Tcl_interpreter options
+-(BOOL) setOptions:(NSArray *)options forTclInterpreter:(Tcl_Interp * *)interp {
+	BOOL result = NO;
+	
+	//I wish I could use fast enumeration
+	if (options != nil) {
+		if ([options count] > 0 ) {
+			NSEnumerator * optionsEnum = [options objectEnumerator];
+			id opt;
+			
+			while ((opt = [optionsEnum nextObject])) {
+				if (Tcl_Eval(*interp , [[NSString stringWithFormat:@"set ui_options(%@) \"yes\"", opt] UTF8String]) != TCL_OK) 
+					return result;
+			}
+			result = YES;
+			return result;
+		}
+	}
+	
+	return result;
+}
 
 - (id) initWithPkgPath:(NSString *)path {
 	if (self = [super init]) {
-		_interpreter = Tcl_CreateInterp();
-		if(_interpreter == NULL) {
-			NSLog(@"Error in Tcl_CreateInterp, aborting.");
-		}
-		if(Tcl_Init(_interpreter) == TCL_ERROR) {
-			NSLog(@"Error in Tcl_Init: %s", Tcl_GetStringResult(_interpreter));
-			Tcl_DeleteInterp(_interpreter);
-		}
 		
-		
-		NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
-									 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
-		if(Tcl_Eval(_interpreter, [mport_fastload UTF8String]) != TCL_OK) {
-			NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(_interpreter));
-			Tcl_DeleteInterp(_interpreter);
-		}
-		
-		
-		Tcl_CreateObjCommand(_interpreter, "notifications", Notifications_Command, NULL, NULL);
-		if (Tcl_PkgProvide(_interpreter, "notifications", "1.0") != TCL_OK) {
-			NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(_interpreter));
-			Tcl_DeleteInterp(_interpreter);
-		}
-		
-		if( Tcl_EvalFile(_interpreter, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
-										 pathForResource:@"init" 
-										 ofType:@"tcl"] UTF8String]) != TCL_OK) {
-			NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(_interpreter));
-			Tcl_DeleteInterp(_interpreter);
-		}
+		[self initTclInterpreter:&_interpreter withPath:path];
 		
 		//Initialize helperToolInterpCommand
 		helperToolInterpCommand = @"";
