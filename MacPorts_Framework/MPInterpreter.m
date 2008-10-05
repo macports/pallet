@@ -164,16 +164,12 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 //tool
 static NSString * tclInterpreterPkgPath = nil;
 
-
-- (id) init {
-	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH];
-}
-
-//Internal method for initializing Tcl interpreter
+#pragma mark -
+#pragma mark Internal Methods
+//Internal method for initializing actual C Tcl interpreter
 //Should I be using a double pointer like is done for NSError ?
 -(BOOL) initTclInterpreter:(Tcl_Interp * *)interp withPath:(NSString *)path {
 	BOOL result = NO;
-	
 	*interp = Tcl_CreateInterp();
 	
 	if(*interp == NULL) {
@@ -186,6 +182,9 @@ static NSString * tclInterpreterPkgPath = nil;
 		Tcl_DeleteInterp(*interp);
 		return result;
 	}
+	
+	if (path == nil)
+		path = MP_DEFAULT_PKG_PATH;
 	
 	
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
@@ -205,8 +204,8 @@ static NSString * tclInterpreterPkgPath = nil;
 	}
 	
 	if( Tcl_EvalFile(*interp, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
-									 pathForResource:@"init" 
-									 ofType:@"tcl"] UTF8String]) != TCL_OK) {
+								pathForResource:@"init" 
+								ofType:@"tcl"] UTF8String]) != TCL_OK) {
 		NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(*interp));
 		Tcl_DeleteInterp(*interp);
 		return result;
@@ -227,8 +226,10 @@ static NSString * tclInterpreterPkgPath = nil;
 			id opt;
 			
 			while ((opt = [optionsEnum nextObject])) {
-				if (Tcl_Eval(*interp , [[NSString stringWithFormat:@"set ui_options(%@) \"yes\"", opt] UTF8String]) != TCL_OK) 
+				if (Tcl_Eval(*interp , [[NSString stringWithFormat:@"set ui_options(%@) \"yes\"", opt] UTF8String]) != TCL_OK) {
+					NSLog(@"Error in Tcl_Eval for set ui_options: %s", Tcl_GetStringResult(*interp));
 					return result;
+				}
 			}
 			result = YES;
 			return result;
@@ -238,10 +239,36 @@ static NSString * tclInterpreterPkgPath = nil;
 	return result;
 }
 
-- (id) initWithPkgPath:(NSString *)path {
+//Wrapper method for above. Used when 
+-(BOOL) setOptionsForNewTclPort:(NSArray *)options {
+	BOOL result = NO;
+	
+	//First delete our internal Tcl interpreter
+	Tcl_DeleteInterp(_interpreter);
+	
+	if (tclInterpreterPkgPath == nil) 
+		result = [self initTclInterpreter:&_interpreter withPath:MP_DEFAULT_PKG_PATH];
+	else 
+		result = [self initTclInterpreter:&_interpreter withPath:tclInterpreterPkgPath];
+	
+	BOOL tempResult = [self setOptions:options forTclInterpreter:&_interpreter];
+		
+	
+	
+	
+	return (result && tempResult) ;
+} 
+
+- (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
 		
 		[self initTclInterpreter:&_interpreter withPath:path];
+		
+		//set port options maybe I should do this elsewhere?
+		defaultPortOptions = [NSArray arrayWithObjects: MPDEBUGOPTION, nil];
+		if (options == nil)
+			options = defaultPortOptions;
+		[self setOptions:options forTclInterpreter:&_interpreter];
 		
 		//Initialize helperToolInterpCommand
 		helperToolInterpCommand = @"";
@@ -255,15 +282,30 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 
-+ (MPInterpreter*)sharedInterpreter {
-	
-	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
+#pragma mark API methods
+- (id) init {
+	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
 }
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path {
 	@synchronized(self) {
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
-			[[self alloc] initWithPkgPath:path]; // assignment not done here
+			[[self alloc] initWithPkgPath:path portOptions:nil]; // assignment not done here
+		}
+	}
+	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+}
+
++ (MPInterpreter*)sharedInterpreter{
+	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
+}
+
+
+
++ (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
+	@synchronized(self) {
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
+			[[self alloc] initWithPkgPath:path portOptions:options]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];

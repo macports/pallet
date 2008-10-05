@@ -81,9 +81,13 @@
  */
 + (MPMacPorts *)sharedInstance;
 
++ (MPMacPorts *)sharedInstanceWithPortOptions:(NSArray *)options;
+
 //Names of messages below are subject to change
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path;
-- (id) initWithPkgPath:(NSString *)path;
++ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options;
+- (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options;
+- (BOOL) setPortOptions:(NSArray *)options;
 
 /*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.

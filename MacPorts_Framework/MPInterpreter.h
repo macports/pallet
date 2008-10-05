@@ -97,13 +97,15 @@
  */
 @interface MPInterpreter : NSObject  {
 	
-	Tcl_Interp* _interpreter;
-	NSString * helperToolInterpCommand;
-	NSString * helperToolCommandResult;
+	Tcl_Interp*	_interpreter;
+	NSString *	helperToolInterpCommand;
+	NSString *	helperToolCommandResult;
+	NSArray *	defaultPortOptions;
 	
 }
 
-
+//Internal methods
+-(BOOL) setOptionsForNewTclPort:(NSArray *)options;
 
 /*!
  @brief Return singleton shared MPInterpreter instance
@@ -111,11 +113,13 @@
 + (MPInterpreter *)sharedInterpreter;
 
 
+
+
 /*!
  @brief Return singleton shared MPInterpreter instance for specified macports tcl package path
  @param path An NSString specifying the absolute path for the macports tcl package
  */
-+ (MPInterpreter *)sharedInterpreterWithPkgPath:(NSString *)path;
++ (MPInterpreter *)sharedInterpreterWithPkgPath:(NSString *)path portOptions:(NSArray *)options;
 
 
 
@@ -189,7 +193,6 @@
 
 
 // METHODS FOR INTERNAL USE ONLY
-- (id) initWithPkgPath:(NSString *)path;
 - (Tcl_Interp *) sharedInternalTclInterpreter;
 - (int) execute:(NSString *)pathToExecutable withArgs:(NSArray*)args;
 - (void)setAuthorizationRef:(AuthorizationRef)authRef;

@@ -41,13 +41,13 @@
 
 
 - (id) init {
-	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH];
+	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
 }
 
 
-- (id) initWithPkgPath:(NSString *)path {
+- (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
-		interpreter = [MPInterpreter sharedInterpreterWithPkgPath:path];
+		interpreter = [MPInterpreter sharedInterpreterWithPkgPath:path portOptions:nil];
 		//[self registerForLocalNotifications];
 	}
 	return self;
@@ -57,16 +57,31 @@
 	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH];
 }
 
-+ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
++ (MPMacPorts *)sharedInstanceWithPortOptions:(NSArray *)options {
+	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:options];
+}
+
++ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	@synchronized(self) {
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithPkgPath:path]; // assignment not done here
+			[[self alloc] initWithPkgPath:path portOptions:options ]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
 }
 
++ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
+	@synchronized(self) {
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
+			[[self alloc] initWithPkgPath:path portOptions:nil ]; // assignment not done here
+		}
+	}
+	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
+}
 
+- (BOOL) setPortOptions:(NSArray *)options {
+	return [interpreter setOptionsForNewTclPort:options];
+}
 
 
 + (id)allocWithZone:(NSZone*)zone {
