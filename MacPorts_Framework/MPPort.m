@@ -98,6 +98,10 @@
 		[self setObject:[self objectForKey:@"categories"] forKey:@"categoriesAsString"];
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"categories"]] forKey:@"categories"];
 	}
+	if ([self objectForKey:@"variants"] != nil) {
+		[self setObject:[self objectForKey:@"variants"] forKey:@"variantsAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"variants"]] forKey:@"variants"];
+	}
 	if ([self objectForKey:@"depends_build"] != nil) {
 		[self setObject:[self objectForKey:@"depends_build"] forKey:@"depends_buildAsString"];
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_build"]] forKey:@"depends_build"];
@@ -115,8 +119,11 @@
 	}
 	
 	@try {
+		if ([[self valueForKey:@"description"] characterAtIndex:0] == '{') {
+			[self setValue:[self valueForKey:@"description"] forKey:@"description"];
+		}
 		if ([[self valueForKey:@"long_description"] characterAtIndex:0] == '{') {
-			[self setValue:[self valueForKey:@"description"] forKey:@"long_description"];
+			[self setValue:[self valueForKey:@"long_description"] forKey:@"long_description"];
 		}
 	} 
 	@catch (NSException *e) {
