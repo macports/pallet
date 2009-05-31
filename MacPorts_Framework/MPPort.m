@@ -122,6 +122,18 @@
 		if ([[self valueForKey:@"description"] characterAtIndex:0] == '{') {
 			[self setValue:[self valueForKey:@"description"] forKey:@"description"];
 		}
+	} 
+	@catch (NSException *e) {
+		[self setValue:[NSString stringWithFormat:
+						NSLocalizedStringWithDefaultValue(@"setPortWithTclListAsStringDescreiptionError",
+														  @"Localizable",
+														  [NSBundle mainBundle],
+														  @"Port has an invalid desciption key.",
+														  @"Error statement for exception raised when testing description.")]
+				forKey:@"description"];
+	}
+	
+	@try {
 		if ([[self valueForKey:@"long_description"] characterAtIndex:0] == '{') {
 			[self setValue:[self valueForKey:@"long_description"] forKey:@"long_description"];
 		}
@@ -131,7 +143,7 @@
 						NSLocalizedStringWithDefaultValue(@"setPortWithTclListAsStringDescreiptionError",
 														  @"Localizable",
 														  [NSBundle mainBundle],
-														  @"Port has an invalid desciption or long_description key.",
+														  @"Port has an invalid long_description key.",
 														  @"Error statement for exception raised when testing long_description.")]
 				forKey:@"long_description"];
 	}
