@@ -153,24 +153,6 @@ proc ui_init {priority prefix channels message} {
           }]
         }
 
-
-
-        # if {$nbchans == 1} {
-        #     set chan [lindex $channels 0]
-        #     
-        #     proc ::ui_$priority {str} [subst { 
-        #     	puts $chan "$prefix\$str"
-        #     	simplelog "$nottype $chan $prefix" "\$str" 
-        #     }]
-        # } else {
-        # 	proc ::ui_$priority {str} [subst {
-        # 		foreach chan \$channels {
-        # 			puts $chan "$prefix\$str"
-        # 			simplelog "$nottype $chan $prefix" "\$str" 
-        # 		}
-        # 	}]
-        # }
-        
     # Call ui_$priority - Is this step necessary? Consult with Randall
     #::ui_$priority $message
     }
