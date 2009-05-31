@@ -128,20 +128,48 @@ proc ui_init {priority prefix channels message} {
         #set prefix [ui_prefix $priority]
         
         if {$nbchans == 1} {
-            set chan [lindex $channels 0]
-            
-            proc ::ui_$priority {str} [subst { 
-            	puts $chan "$prefix\$str"
-            	simplelog "$nottype $chan $prefix" "\$str" 
-            }]
+          set chan [lindex $channels 0]
+
+          proc ::ui_$priority {args} [subst {
+            if {\[lindex \$args 0\] == "-nonewline"} {
+              puts $chan "$prefix\[lindex \$args 1\]"
+              simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
+            } else {
+              puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+              simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
+            }
+          }]
         } else {
-        	proc ::ui_$priority {str} [subst {
-        		foreach chan \$channels {
-        			puts $chan "$prefix\$str"
-        			simplelog "$nottype $chan $prefix" "\$str" 
-        		}
-        	}]
+          proc ::ui_$priority {args} [subst {
+            foreach chan \$channels {
+              if {\[lindex \$args 0\] == "-nonewline"} {
+                puts $chan "$prefix\[lindex \$args 1\]"
+                simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
+              } else {
+                puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+                simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
+              }
+            }
+          }]
         }
+
+
+
+        # if {$nbchans == 1} {
+        #     set chan [lindex $channels 0]
+        #     
+        #     proc ::ui_$priority {str} [subst { 
+        #     	puts $chan "$prefix\$str"
+        #     	simplelog "$nottype $chan $prefix" "\$str" 
+        #     }]
+        # } else {
+        # 	proc ::ui_$priority {str} [subst {
+        # 		foreach chan \$channels {
+        # 			puts $chan "$prefix\$str"
+        # 			simplelog "$nottype $chan $prefix" "\$str" 
+        # 		}
+        # 	}]
+        # }
         
     # Call ui_$priority - Is this step necessary? Consult with Randall
     #::ui_$priority $message

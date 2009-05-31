@@ -126,21 +126,31 @@ proc ui_init {priority prefix channels message} {
         #set prefix [ui_prefix $priority]
         
         if {$nbchans == 1} {
-            set chan [lindex $channels 0]
-            
-            proc ::ui_$priority {str} [subst { 
-            	puts $chan "$prefix\$str"
-            	notifications send $nottype "$chan $prefix" "\$str"
-            }]
+          set chan [lindex $channels 0]
+
+          proc ::ui_$priority {args} [subst {
+            if {\[lindex \$args 0\] == "-nonewline"} {
+              puts $chan "$prefix\[lindex \$args 1\]"
+              notifications send $nottype "$chan $prefix" "\[lindex \$args 1\]"
+            } else {
+              puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+              notifications send $nottype "$chan $prefix" "\[lindex \$args 0\]"
+            }
+          }]
         } else {
-        	proc ::ui_$priority {str} [subst {
-        		foreach chan \$channels {
-        			puts $chan "$prefix\$str"
-        			notifications send $nottype "$chan $prefix" "\$str"
-        		}
-        	}]
+          proc ::ui_$priority {args} [subst {
+            foreach chan \$channels {
+              if {\[lindex \$args 0\] == "-nonewline"} {
+                puts $chan "$prefix\[lindex \$args 1\]"
+                notifications send $nottype "$chan $prefix" "\[lindex \$args 1\]"
+              } else {
+                puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+                notifications send $nottype "$chan $prefix" "\[lindex \$args 0\]"
+              }
+            }
+          }]
         }
-        
+
     # Call ui_$priority - Is this step necessary? Consult with Randall
     #::ui_$priority $message
     }
@@ -150,7 +160,7 @@ proc ui_init {priority prefix channels message} {
 #Wrapping the following API routines to catch errors
 #and log error Information in a similar fashion to code
 #in macports.tcl.
-proc mportuninstall {portname {v ""} optionslist} {
+proc mportuninstall {portname {v ""} {optionslist ""}} {
 	if {[catch {portuninstall::uninstall $portname $v $optionslist} result]} {
 		
 			global errorInfo
@@ -180,6 +190,10 @@ proc mportdeactivate {portname v optionslist} {
 	}
 }
 
+proc mportupgrade {args} \
+{
+	
+}
 
 
 # Initialize dport
