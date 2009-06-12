@@ -76,6 +76,9 @@
 	
 }
 
++ (void) initialize;
++ (void) setPKGPath:(NSString *) path;
+
 /*!
  @brief Returns an MPMacPorts object that represents the MacPorts system on user's machine.
  */

@@ -36,9 +36,17 @@
 #import "MPMacPorts.h"
 #import "MPNotifications.h"
 
+static NSString* PKGPath;
 
 @implementation MPMacPorts
 
++ (void) initialize {
+	PKGPath = MP_DEFAULT_PKG_PATH;
+}
+
++ (void) setPKGPath: (NSString*) path {
+	PKGPath = path;
+}
 
 - (id) init {
 	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
@@ -54,11 +62,11 @@
 }
 
 + (MPMacPorts *)sharedInstance {
-	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH];
+	return [self sharedInstanceWithPkgPath:PKGPath];
 }
 
 + (MPMacPorts *)sharedInstanceWithPortOptions:(NSArray *)options {
-	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:options];
+	return [self sharedInstanceWithPkgPath:PKGPath portOptions:options];
 }
 
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
