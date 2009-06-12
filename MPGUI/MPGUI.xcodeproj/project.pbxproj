@@ -8,16 +8,77 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		21F165840FE2C1E500542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21F165860FE2C20F00542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21F1654C0FE2C04300542AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */;
+			remoteInfo = MPHelperInstallTool;
+		};
+		21F1654E0FE2C04300542AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6ED12A4A0E3E552F0026773D /* MPHelperTool */;
+			remoteInfo = MPHelperTool;
+		};
+		21F165500FE2C04300542AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */;
+			remoteInfo = MacPorts;
+		};
+		21F165520FE2C04300542AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 489DD8F40C94365F00595506 /* Test.octest */;
+			remoteInfo = Test;
+		};
+		21F165540FE2C04300542AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */;
+			remoteInfo = MPHelperToolIPCTester;
+		};
+		21F165810FE2C17C00542AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* MacPorts */;
+			remoteInfo = MacPorts;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21F165890FE2C22D00542AEE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21F165860FE2C20F00542AEE /* MacPorts.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacPorts.Framework.xcodeproj; path = ../MacPorts_Framework/MacPorts.Framework.xcodeproj; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -32,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				21F165840FE2C1E500542AEE /* MacPorts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,9 +133,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21F165410FE2C04300542AEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21F1654D0FE2C04300542AEE /* MPHelperInstallTool */,
+				21F1654F0FE2C04300542AEE /* MPHelperTool */,
+				21F165510FE2C04300542AEE /* MacPorts.framework */,
+				21F165530FE2C04300542AEE /* Test.octest */,
+				21F165550FE2C04300542AEE /* MPHelperToolIPCTester */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* MPGUI */ = {
 			isa = PBXGroup;
 			children = (
+				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -119,12 +194,14 @@
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MPGUI" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
+				21F165890FE2C22D00542AEE /* CopyFiles */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				21F165820FE2C17C00542AEE /* PBXTargetDependency */,
 			);
 			name = MPGUI;
 			productInstallPath = "$(HOME)/Applications";
@@ -142,12 +219,56 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MPGUI */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21F165410FE2C04300542AEE /* Products */;
+					ProjectRef = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* MPGUI */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21F1654D0FE2C04300542AEE /* MPHelperInstallTool */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = MPHelperInstallTool;
+			remoteRef = 21F1654C0FE2C04300542AEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21F1654F0FE2C04300542AEE /* MPHelperTool */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = MPHelperTool;
+			remoteRef = 21F1654E0FE2C04300542AEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21F165510FE2C04300542AEE /* MacPorts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MacPorts.framework;
+			remoteRef = 21F165500FE2C04300542AEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21F165530FE2C04300542AEE /* Test.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Test.octest;
+			remoteRef = 21F165520FE2C04300542AEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21F165550FE2C04300542AEE /* MPHelperToolIPCTester */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = MPHelperToolIPCTester;
+			remoteRef = 21F165540FE2C04300542AEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -171,6 +292,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21F165820FE2C17C00542AEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MacPorts;
+			targetProxy = 21F165810FE2C17C00542AEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
