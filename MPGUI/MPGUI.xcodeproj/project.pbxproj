@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		21F165840FE2C1E500542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
-		21F165860FE2C20F00542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21F165D80FE2F32800542AEE /* GUIPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F165D70FE2F32800542AEE /* GUIPort.m */; };
+		21F166110FE31C6700542AEE /* GUIMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F166100FE31C6700542AEE /* GUIMacPorts.m */; };
+		21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -20,42 +23,42 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */;
+			remoteGlobalIDString = 6EC260870E426FF10013BC48;
 			remoteInfo = MPHelperInstallTool;
 		};
 		21F1654E0FE2C04300542AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6ED12A4A0E3E552F0026773D /* MPHelperTool */;
+			remoteGlobalIDString = 6ED12A4A0E3E552F0026773D;
 			remoteInfo = MPHelperTool;
 		};
 		21F165500FE2C04300542AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = MacPorts;
 		};
 		21F165520FE2C04300542AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 489DD8F40C94365F00595506 /* Test.octest */;
+			remoteGlobalIDString = 489DD8F40C94365F00595506;
 			remoteInfo = Test;
 		};
 		21F165540FE2C04300542AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */;
+			remoteGlobalIDString = 6EE6DD9E0E626D2800FB2115;
 			remoteInfo = MPHelperToolIPCTester;
 		};
 		21F165810FE2C17C00542AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* MacPorts */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MacPorts;
 		};
 /* End PBXContainerItemProxy section */
@@ -67,7 +70,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				21F165860FE2C20F00542AEE /* MacPorts.framework in CopyFiles */,
+				21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,12 @@
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacPorts.Framework.xcodeproj; path = ../MacPorts_Framework/MacPorts.Framework.xcodeproj; sourceTree = SOURCE_ROOT; };
+		21F165D60FE2F32800542AEE /* GUIPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIPort.h; sourceTree = "<group>"; };
+		21F165D70FE2F32800542AEE /* GUIPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIPort.m; sourceTree = "<group>"; };
+		21F1660F0FE31C6700542AEE /* GUIMacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIMacPorts.h; sourceTree = "<group>"; };
+		21F166100FE31C6700542AEE /* GUIMacPorts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIMacPorts.m; sourceTree = "<group>"; };
+		21F167580FE3382D00542AEE /* PortsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortsTableController.h; sourceTree = "<group>"; };
+		21F167590FE3382D00542AEE /* PortsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortsTableController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -92,21 +101,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				21F165840FE2C1E500542AEE /* MacPorts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,11 +147,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21F166FC0FE32DF000542AEE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				21F1660F0FE31C6700542AEE /* GUIMacPorts.h */,
+				21F166100FE31C6700542AEE /* GUIMacPorts.m */,
+				21F165D60FE2F32800542AEE /* GUIPort.h */,
+				21F165D70FE2F32800542AEE /* GUIPort.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		21F167570FE3343600542AEE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				21F167580FE3382D00542AEE /* PortsTableController.h */,
+				21F167590FE3382D00542AEE /* PortsTableController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* MPGUI */ = {
 			isa = PBXGroup;
 			children = (
 				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
-				080E96DDFE201D6D7F000001 /* Classes */,
+				21F166FC0FE32DF000542AEE /* Models */,
+				21F167570FE3343600542AEE /* Controllers */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -288,6 +311,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				21F165D80FE2F32800542AEE /* GUIPort.m in Sources */,
+				21F166110FE31C6700542AEE /* GUIMacPorts.m in Sources */,
+				21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +352,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../MacPorts_Framework/build/Debug\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -343,6 +373,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../MacPorts_Framework/build/Debug\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MPGUI_Prefix.pch;
@@ -357,10 +391,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
