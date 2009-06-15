@@ -51,6 +51,14 @@
 	return self;
 }
 
++(NSString*) PKGPath {
+	return [MPInterpreter PKGPath];
+}
+
++(void) setPKGPath:(NSString*)newPath {
+    [MPInterpreter setPKGPath:newPath];
+}
+
 + (MPMacPorts *)sharedInstance {
 	return [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }
@@ -60,8 +68,11 @@
 		if ([path isEqual:nil]) {
 			path = [MPInterpreter PKGPath];
 		}
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil
-		|| [[MPInterpreter PKGPath] isNotEqualTo:path] ) {
+		if ([[MPInterpreter PKGPath] isNotEqualTo:path]) {
+            [self setPKGPath:path];
+        }
+		
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
 			[[self alloc] initWithPkgPath:path portOptions:options ]; // assignment not done here
 		}
 	}

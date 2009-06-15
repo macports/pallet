@@ -169,7 +169,13 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 +(void) setPKGPath:(NSString*)newPath {
-	PKGPath = newPath;
+    if([PKGPath isNotEqualTo:newPath]) {
+        [PKGPath release];
+        PKGPath = [newPath copy];
+        //I should check if interp is nil. *not needed now
+        MPInterpreter *interp = (MPInterpreter*) [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+        [interp resetTclInterpreterWithPath:PKGPath];
+    }
 }
 
 #pragma mark -
@@ -267,6 +273,11 @@ static NSString * tclInterpreterPkgPath = nil;
 	return (result && tempResult) ;
 } 
 
+-(BOOL) resetTclInterpreterWithPath:(NSString*) path {
+    Tcl_DeleteInterp(_interpreter);
+    return [self initTclInterpreter:&_interpreter withPath:PKGPath];
+}
+
 - (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
 		[self initTclInterpreter:&_interpreter withPath:path];
@@ -304,8 +315,11 @@ static NSString * tclInterpreterPkgPath = nil;
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil
-			|| [PKGPath isNotEqualTo:path] ) {
+        if ([PKGPath isNotEqualTo:path]) {
+            [self setPKGPath:path];
+        }
+        
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
 			[[self alloc] initWithPkgPath:path portOptions:options]; // assignment not done here
 		}
 	}

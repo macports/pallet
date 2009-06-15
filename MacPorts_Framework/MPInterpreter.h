@@ -108,6 +108,8 @@
 //Internal methods
 -(BOOL) setOptionsForNewTclPort:(NSArray *)options;
 
+-(BOOL) resetTclInterpreterWithPath:(NSString *)path;
+
 /*!
  @brief Return singleton shared MPInterpreter instance
  */
