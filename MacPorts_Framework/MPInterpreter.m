@@ -38,14 +38,14 @@
 #include "MPHelperCommon.h"
 #include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
-
+static NSString* PKGPath = @"/Library/Tcl";
 
 
 #pragma mark -
 
 @implementation MPInterpreter
 
-#pragma mark Notifications Code 
+#pragma mark Notifications Code
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
 	NSString *name;
 	NSMutableString *msg;
@@ -164,6 +164,14 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 //tool
 static NSString * tclInterpreterPkgPath = nil;
 
++(NSString*) PKGPath {
+	return PKGPath;
+}
+
++(void) setPKGPath:(NSString*)newPath {
+	PKGPath = newPath;
+}
+
 #pragma mark -
 #pragma mark Internal Methods
 //Internal method for initializing actual C Tcl interpreter
@@ -184,7 +192,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	}
 	
 	if (path == nil)
-		path = MP_DEFAULT_PKG_PATH;
+		path = PKGPath;
 	
 	
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
@@ -247,7 +255,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	Tcl_DeleteInterp(_interpreter);
 	
 	if (tclInterpreterPkgPath == nil) 
-		result = [self initTclInterpreter:&_interpreter withPath:MP_DEFAULT_PKG_PATH];
+		result = [self initTclInterpreter:&_interpreter withPath:PKGPath];
 	else 
 		result = [self initTclInterpreter:&_interpreter withPath:tclInterpreterPkgPath];
 	
@@ -261,7 +269,6 @@ static NSString * tclInterpreterPkgPath = nil;
 
 - (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
-		
 		[self initTclInterpreter:&_interpreter withPath:path];
 		
 		//set port options maybe I should do this elsewhere?
@@ -284,27 +291,21 @@ static NSString * tclInterpreterPkgPath = nil;
 
 #pragma mark API methods
 - (id) init {
-	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
+	return [self initWithPkgPath:PKGPath portOptions:nil];
 }
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
-			[[self alloc] initWithPkgPath:path portOptions:nil]; // assignment not done here
-		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+	return [self sharedInterpreterWithPkgPath:path portOptions:nil];
 }
 
 + (MPInterpreter*)sharedInterpreter{
-	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
+	return [self sharedInterpreterWithPkgPath:PKGPath];
 }
-
-
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil
+			|| [PKGPath isNotEqualTo:path] ) {
 			[[self alloc] initWithPkgPath:path portOptions:options]; // assignment not done here
 		}
 	}

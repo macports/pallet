@@ -18,9 +18,11 @@
 -(BOOL) installUninstallManipulation:(NSString *)portName {
 	BOOL ret = NO;
 	
+	MPMacPorts * port = [MPMacPorts sharedInstanceWithPkgPath:@"/Users/juanger/local/macportsbuild/branch-unprivileged/Library/Tcl"
+	 					portOptions:nil];
+	NSLog(@"PkgPath1:  %@", [MPInterpreter PKGPath]);
 	MPRegistry * registry = [MPRegistry sharedRegistry];
-	MPMacPorts * port = [MPMacPorts sharedInstance];
-	
+	NSLog(@"PkgPath2:  %@", [MPInterpreter PKGPath]);
 	// Check if portName is installed
 	unsigned int installed = [[registry installed:portName] count];
 	
@@ -41,7 +43,7 @@
 			//I guess we should just return here
 			return ret;
 		}
-		
+		NSLog(@"Uninstallation Successful.");
 		//Uninstallation was successful ... now check registry to make sure its gone
 		installed = [[registry installed:portName] count];
 		if (installed > 0) { //Uh oh ... is this suppose to happen?
@@ -67,9 +69,11 @@
 			//I guess we should just return here
 			return ret;
 		}
-		
+		NSLog(@"Installation successful");
 		//Installation was successful ... now check registry to make sure its gone
 		installed = [[registry installed:portName] count];
+        NSLog(@"%@", [registry installed]);
+        
 		if (installed == 0) { //Uh oh ... is this suppose to happen?
 			NSLog(@"%@ is not installed after successful install operation ... double check this from commandline", portName);
 			//for now return
@@ -124,7 +128,7 @@
 //	//Double check somehow
 //	MPRegistry * registry = [MPRegistry sharedRegistry];
 //	NSLog(@"\n\n Result from registry is %@ \n\n", [registry installed:[keyArray objectAtIndex:0]]);
-	
+
 	PortManipulator * pm = [[PortManipulator alloc] init];
 	STAssertTrue([pm installUninstallManipulation:@"pngcrush"] , @"This test should always return true on success");
 	[pm release];

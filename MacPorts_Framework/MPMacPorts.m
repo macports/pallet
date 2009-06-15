@@ -36,22 +36,12 @@
 #import "MPMacPorts.h"
 #import "MPNotifications.h"
 
-static NSString* PKGPath;
 
 @implementation MPMacPorts
 
-+ (void) initialize {
-	PKGPath = MP_DEFAULT_PKG_PATH;
-}
-
-+ (void) setPKGPath: (NSString*) path {
-	PKGPath = path;
-}
-
 - (id) init {
-	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
+	return [self initWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }
-
 
 - (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
@@ -62,26 +52,17 @@ static NSString* PKGPath;
 }
 
 + (MPMacPorts *)sharedInstance {
-	return [self sharedInstanceWithPkgPath:PKGPath];
-}
-
-+ (MPMacPorts *)sharedInstanceWithPortOptions:(NSArray *)options {
-	return [self sharedInstanceWithPkgPath:PKGPath portOptions:options];
+	return [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }
 
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithPkgPath:path portOptions:options ]; // assignment not done here
+		if ([path isEqual:nil]) {
+			path = [MPInterpreter PKGPath];
 		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
-}
-
-+ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithPkgPath:path portOptions:nil ]; // assignment not done here
+		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil
+		|| [[MPInterpreter PKGPath] isNotEqualTo:path] ) {
+			[[self alloc] initWithPkgPath:path portOptions:options ]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];

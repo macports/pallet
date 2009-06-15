@@ -115,6 +115,7 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		21067BB50FE5B25800CAD732 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* MacPorts.Framework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPorts.Framework_Prefix.pch; sourceTree = "<group>"; };
 		481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MPMutableDictionary.h; sourceTree = "<group>"; };
 		481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MPMutableDictionary.m; sourceTree = "<group>"; };
@@ -257,6 +258,7 @@
 				6EB6FC900E45DEA80057962C /* Foundation.framework */,
 				6ECD970D0E465C7800488335 /* Security.framework */,
 				6EE93E780E495B3100AECE9E /* Tcl.framework */,
+				21067BB50FE5B25800CAD732 /* Tests-Info.plist */,
 			);
 			name = "MacPorts Foundation";
 			sourceTree = "<group>";
@@ -822,6 +824,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,

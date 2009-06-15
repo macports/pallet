@@ -65,7 +65,7 @@
 
 //Ask Randall about what exactly port tree path is
 -(void) testPathToPortIndex {
-	NSURL *pindex = [testPort pathToPortIndex:@"file:///Users/Armahg/macportsbuild/build1/"];
+	NSURL *pindex = [testPort pathToPortIndex:@"file:///Users/juanger/local/macportsbuild/branch-unprivileged/"];
 	STAssertNotNil(pindex, @"URL for port index should not be nil");
 }
 
@@ -74,7 +74,14 @@
 	STAssertNotNil(searchResults, @"This dictionary should have at least %d key value pairs", [searchResults count]);
 }
 
+-(void) testPKGPathChange {
+    NSString *newPkgPath = @"/Users/juanger/local/macportsbuild/branch-unprivileged/Library/Tcl";
 
+    STAssertEqualObjects([MPInterpreter PKGPath], @"/Library/Tcl", @"Initialy, the PKGPath should be /Library/Tcl");
+
+    [MPMacPorts sharedInstanceWithPkgPath:newPkgPath portOptions:nil];
+    STAssertEqualObjects([MPInterpreter PKGPath], newPkgPath, @"The global PKGPath should change as needed");
+}
 /*-(void) testSync {
 	NSError * syncError = nil;
 	[testPort sync:&syncError];
