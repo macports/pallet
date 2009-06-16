@@ -24,6 +24,7 @@
     NSDictionary *allPorts = [[MPMacPorts sharedInstance] search:MPPortsAll];
     NSDictionary *installedPorts = [[MPRegistry sharedRegistry] installed];
     
+    [self willChangeValueForKey:@"ports"];    
     for (id port in allPorts) {
         MPPort *mpport = [allPorts objectForKey:port];
         [mpport setState:MPPortStateNotInstalled];
@@ -33,8 +34,8 @@
     for (id port in installedPorts) {
         [[allPorts objectForKey:port] setStateFromReceipts:[installedPorts objectForKey:port]];
     }
+    [self didChangeValueForKey:@"ports"];
     
-    [portsController rearrangeObjects];
     [pool release];
 }
 

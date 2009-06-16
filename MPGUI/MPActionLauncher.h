@@ -11,11 +11,11 @@
 
 @interface MPActionLauncher : NSObject {
     NSMutableArray *ports;
-    IBOutlet NSArrayController *portsController;
 }
 
 @property (copy) NSMutableArray *ports;
 
 - (void) loadPorts;
+
 
 @end
