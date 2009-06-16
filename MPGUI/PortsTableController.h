@@ -12,8 +12,24 @@
 
 @interface PortsTableController : NSObject {
     IBOutlet MPActionLauncher *actionLauncher;
+    IBOutlet NSTableView *portsTableView;
+    IBOutlet NSPredicateEditor *predicateEditor;
+    IBOutlet NSWindow *mainWindow;
+
+    // NSPredicateEditor management
+    NSPredicate *predicate;
+    NSInteger rowCount;
 }
 
-@property MPActionLauncher *actionLauncher;
+@property (copy) NSPredicate *predicate;
+
+- (IBAction)predicateEditorChanged:(id)sender;
 
 @end
+
+@interface PortsTableController (Private)
+
+- (void)changePredicateEditorSize:(NSInteger) newRowCount;
+
+@end
+
