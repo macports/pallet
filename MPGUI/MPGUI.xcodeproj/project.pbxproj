@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		21F165D80FE2F32800542AEE /* GUIPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F165D70FE2F32800542AEE /* GUIPort.m */; };
-		21F166110FE31C6700542AEE /* GUIMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F166100FE31C6700542AEE /* GUIMacPorts.m */; };
+		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
 		21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
@@ -81,11 +80,9 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionLauncher.h; sourceTree = "<group>"; };
+		214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionLauncher.m; sourceTree = "<group>"; };
 		21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacPorts.Framework.xcodeproj; path = ../MacPorts_Framework/MacPorts.Framework.xcodeproj; sourceTree = SOURCE_ROOT; };
-		21F165D60FE2F32800542AEE /* GUIPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIPort.h; sourceTree = "<group>"; };
-		21F165D70FE2F32800542AEE /* GUIPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIPort.m; sourceTree = "<group>"; };
-		21F1660F0FE31C6700542AEE /* GUIMacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIMacPorts.h; sourceTree = "<group>"; };
-		21F166100FE31C6700542AEE /* GUIMacPorts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIMacPorts.m; sourceTree = "<group>"; };
 		21F167580FE3382D00542AEE /* PortsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortsTableController.h; sourceTree = "<group>"; };
 		21F167590FE3382D00542AEE /* PortsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortsTableController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -150,10 +147,8 @@
 		21F166FC0FE32DF000542AEE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				21F1660F0FE31C6700542AEE /* GUIMacPorts.h */,
-				21F166100FE31C6700542AEE /* GUIMacPorts.m */,
-				21F165D60FE2F32800542AEE /* GUIPort.h */,
-				21F165D70FE2F32800542AEE /* GUIPort.m */,
+				214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */,
+				214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -311,9 +306,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				21F165D80FE2F32800542AEE /* GUIPort.m in Sources */,
-				21F166110FE31C6700542AEE /* GUIMacPorts.m in Sources */,
 				21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */,
+				214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,16 +11,16 @@
 
 @implementation PortsTableController
 
-@synthesize macports;
+@synthesize actionLauncher;
 
+- (id)init {
+    [MPMacPorts setPKGPath:@"/Users/juanger/local/macportsbuild/branch-unprivileged/Library/Tcl"];
+    return self;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self performSelectorInBackground:@selector(getPorts) withObject:nil];
+    [actionLauncher performSelectorInBackground:@selector(loadPorts) withObject:nil];
 }
 
-- (void) getPorts {
-    macports = [GUIMacPorts new];
-    [ports performSelectorInBackground:@selector(addObjects:) withObject:[macports ports]];
-}
 
 @end

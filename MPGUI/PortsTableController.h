@@ -7,14 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "GUIMacPorts.h"
+#import "MPActionLauncher.h"
 
 
 @interface PortsTableController : NSObject {
-    IBOutlet NSArrayController *ports;
-    GUIMacPorts *macports;
+    IBOutlet MPActionLauncher *actionLauncher;
 }
 
-@property GUIMacPorts *macports;
+@property MPActionLauncher *actionLauncher;
 
 @end
