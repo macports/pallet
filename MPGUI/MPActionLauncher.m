@@ -11,7 +11,7 @@
 
 @implementation MPActionLauncher
 
-@synthesize ports;
+@synthesize ports, isLoading;
 
 - (id)init {
     // This is a temporary pkgPath for testing purposes
@@ -20,13 +20,14 @@
     NSString *pkgPath = [bundlePath stringByAppendingPathComponent:@"../macports-1.8/Library/Tcl"];
     pkgPath = [pkgPath stringByStandardizingPath];
     [MPMacPorts setPKGPath:pkgPath];
-    NSLog(pkgPath);
+
     ports = [NSMutableArray arrayWithCapacity:6000];
     [self performSelectorInBackground:@selector(loadPorts) withObject:nil];
     return self;
 }
 
 - (void)loadPorts {
+    [self setIsLoading:YES];
     NSDictionary *allPorts = [[MPMacPorts sharedInstance] search:MPPortsAll];
     NSDictionary *installedPorts = [[MPRegistry sharedRegistry] installed];
     
@@ -41,6 +42,7 @@
         [[allPorts objectForKey:port] setStateFromReceipts:[installedPorts objectForKey:port]];
     }
     [self didChangeValueForKey:@"ports"];
+    [self setIsLoading:NO];
 }
 
 @end

@@ -11,9 +11,11 @@
 
 @interface MPActionLauncher : NSObject {
     NSMutableArray *ports;
+    BOOL isLoading;
 }
 
 @property (copy) NSMutableArray *ports;
+@property BOOL isLoading;
 
 - (void) loadPorts;
 
