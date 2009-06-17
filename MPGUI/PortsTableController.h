@@ -11,7 +11,6 @@
 
 
 @interface PortsTableController : NSObject {
-    IBOutlet MPActionLauncher *actionLauncher;
     IBOutlet NSTableView *portsTableView;
     IBOutlet NSPredicateEditor *predicateEditor;
     IBOutlet NSWindow *mainWindow;

@@ -20,7 +20,6 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [actionLauncher performSelectorInBackground:@selector(loadPorts) withObject:nil];
     [self changePredicateEditorSize:0];
 }
 

@@ -22,6 +22,7 @@
     [MPMacPorts setPKGPath:pkgPath];
     NSLog(pkgPath);
     ports = [NSMutableArray arrayWithCapacity:6000];
+    [self performSelectorInBackground:@selector(loadPorts) withObject:nil];
     return self;
 }
 
