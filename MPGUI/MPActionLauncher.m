@@ -14,6 +14,13 @@
 @synthesize ports;
 
 - (id)init {
+    // This is a temporary pkgPath for testing purposes
+    // PKGPath should be retrieved with User Defaults
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    NSString *pkgPath = [bundlePath stringByAppendingPathComponent:@"../macports-1.8/Library/Tcl"];
+    pkgPath = [pkgPath stringByStandardizingPath];
+    [MPMacPorts setPKGPath:pkgPath];
+    NSLog(pkgPath);
     ports = [NSMutableArray arrayWithCapacity:6000];
     return self;
 }

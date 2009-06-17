@@ -308,8 +308,10 @@
 			files = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)/../base/",
 			);
 			outputPaths = (
+				"$BUILT_PRODUCTS_DIR/macports-1.8",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;

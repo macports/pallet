@@ -23,7 +23,8 @@
 
 @property (copy) NSPredicate *predicate;
 
-- (IBAction)predicateEditorChanged:(id)sender;
+- (IBAction)advancedSearch:(id)sender;
+- (IBAction)basicSearch:(id)sender;
 
 @end
 
