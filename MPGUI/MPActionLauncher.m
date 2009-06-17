@@ -26,8 +26,6 @@
 }
 
 - (void)loadPorts {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     NSDictionary *allPorts = [[MPMacPorts sharedInstance] search:MPPortsAll];
     NSDictionary *installedPorts = [[MPRegistry sharedRegistry] installed];
     
@@ -42,8 +40,6 @@
         [[allPorts objectForKey:port] setStateFromReceipts:[installedPorts objectForKey:port]];
     }
     [self didChangeValueForKey:@"ports"];
-    
-    [pool release];
 }
 
 @end

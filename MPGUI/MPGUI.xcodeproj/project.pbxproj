@@ -12,6 +12,9 @@
 		21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
+		21FC226A0FE8895900B1E835 /* StateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC22690FE8895900B1E835 /* StateTransformer.m */; };
+		21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226B0FE88A2A00B1E835 /* Installed.tiff */; };
+		21FC226E0FE88A2A00B1E835 /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226C0FE88A2A00B1E835 /* Outdated.tiff */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -85,6 +88,10 @@
 		21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacPorts.Framework.xcodeproj; path = ../MacPorts_Framework/MacPorts.Framework.xcodeproj; sourceTree = SOURCE_ROOT; };
 		21F167580FE3382D00542AEE /* PortsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortsTableController.h; sourceTree = "<group>"; };
 		21F167590FE3382D00542AEE /* PortsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortsTableController.m; sourceTree = "<group>"; };
+		21FC22680FE8895900B1E835 /* StateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateTransformer.h; sourceTree = "<group>"; };
+		21FC22690FE8895900B1E835 /* StateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateTransformer.m; sourceTree = "<group>"; };
+		21FC226B0FE88A2A00B1E835 /* Installed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Installed.tiff; sourceTree = "<group>"; };
+		21FC226C0FE88A2A00B1E835 /* Outdated.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Outdated.tiff; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -162,12 +169,22 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		21FC22620FE888F200B1E835 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				21FC22680FE8895900B1E835 /* StateTransformer.h */,
+				21FC22690FE8895900B1E835 /* StateTransformer.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* MPGUI */ = {
 			isa = PBXGroup;
 			children = (
 				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
 				21F166FC0FE32DF000542AEE /* Models */,
 				21F167570FE3343600542AEE /* Controllers */,
+				21FC22620FE888F200B1E835 /* Helpers */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -188,6 +205,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				21FC226B0FE88A2A00B1E835 /* Installed.tiff */,
+				21FC226C0FE88A2A00B1E835 /* Outdated.tiff */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -296,6 +315,8 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */,
+				21FC226E0FE88A2A00B1E835 /* Outdated.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n  say \"Building MacPorts\"\n  PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n  --prefix=$PREFIX \\\n  --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n  make install\n\n  make clean\n  say \"done\"\n\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n  say \"Building MacPorts\"\n  PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n  --prefix=$PREFIX \\\n  --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n  make install\n\n  make clean\n  $PREFIX/bin/port selfupdate\n  say \"done\"\n\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -327,6 +348,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */,
 				214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */,
+				21FC226A0FE8895900B1E835 /* StateTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
