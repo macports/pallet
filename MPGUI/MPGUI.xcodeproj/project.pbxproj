@@ -15,6 +15,7 @@
 		21FC226A0FE8895900B1E835 /* StateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC22690FE8895900B1E835 /* StateTransformer.m */; };
 		21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226B0FE88A2A00B1E835 /* Installed.tiff */; };
 		21FC226E0FE88A2A00B1E835 /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226C0FE88A2A00B1E835 /* Outdated.tiff */; };
+		21FC233B0FE8AB0400B1E835 /* StatePredicateTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -92,6 +93,8 @@
 		21FC22690FE8895900B1E835 /* StateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateTransformer.m; sourceTree = "<group>"; };
 		21FC226B0FE88A2A00B1E835 /* Installed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Installed.tiff; sourceTree = "<group>"; };
 		21FC226C0FE88A2A00B1E835 /* Outdated.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Outdated.tiff; sourceTree = "<group>"; };
+		21FC23390FE8AB0400B1E835 /* StatePredicateTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatePredicateTemplate.h; sourceTree = "<group>"; };
+		21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatePredicateTemplate.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -174,6 +177,8 @@
 			children = (
 				21FC22680FE8895900B1E835 /* StateTransformer.h */,
 				21FC22690FE8895900B1E835 /* StateTransformer.m */,
+				21FC23390FE8AB0400B1E835 /* StatePredicateTemplate.h */,
+				21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */,
 				214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */,
 				21FC226A0FE8895900B1E835 /* StateTransformer.m in Sources */,
+				21FC233B0FE8AB0400B1E835 /* StatePredicateTemplate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

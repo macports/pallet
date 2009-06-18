@@ -38,19 +38,9 @@
 - (IBAction)advancedSearch:(id)sender {
     NSPredicate* newPredicate = [predicateEditor  objectValue];
     NSLog(@"Advanced Predicate: %@", [newPredicate predicateFormat]);    
-    // Ugly Hack. It would be better to subclass NSPredicateEditorRowTemplate
-    // to get custom predicates
+
     if([newPredicate isNotEqualTo:predicate]) {
-        NSString *transformedFormat = [newPredicate predicateFormat];
-        transformedFormat = [transformedFormat stringByReplacingOccurrencesOfString:@"state == \"Any\""
-                                                                         withString:@"state >= 2"];
-        transformedFormat = [transformedFormat stringByReplacingOccurrencesOfString:@"state == \"Installed\""
-                                                                         withString:@"(state == 2 OR state == 4)"];
-        transformedFormat = [transformedFormat stringByReplacingOccurrencesOfString:@"\"Outdated\""
-                                                                         withString:@"4"];
-        transformedFormat = [transformedFormat stringByReplacingOccurrencesOfString:@"\"Uninstalled\""
-                                                                         withString:@"5"];
-        [self setPredicate:[NSPredicate predicateWithFormat:transformedFormat]];
+        [self setPredicate:[NSPredicate predicateWithFormat:[newPredicate predicateFormat]]];
     }
 }
 
