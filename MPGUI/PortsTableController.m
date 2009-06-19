@@ -8,7 +8,14 @@
 
 #import "PortsTableController.h"
 
+#pragma mark Private Methods
+@interface PortsTableController (Private)
 
+- (void)changePredicateEditorSize:(NSInteger) newRowCount;
+
+@end
+
+#pragma mark Implementation
 @implementation PortsTableController
 
 @synthesize predicate;

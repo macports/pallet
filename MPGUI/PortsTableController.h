@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPActionLauncher.h"
 
 
 @interface PortsTableController : NSObject {
@@ -24,12 +23,6 @@
 
 - (IBAction)advancedSearch:(id)sender;
 - (IBAction)basicSearch:(id)sender;
-
-@end
-
-@interface PortsTableController (Private)
-
-- (void)changePredicateEditorSize:(NSInteger) newRowCount;
 
 @end
 

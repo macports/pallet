@@ -17,7 +17,7 @@
 @property (copy) NSMutableArray *ports;
 @property BOOL isLoading;
 
-- (void) loadPorts;
-
+- (void)loadPortsInBackground;
+- (void)installPortInBackground:(MPPort *)port;
 
 @end
