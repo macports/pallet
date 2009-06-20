@@ -16,13 +16,15 @@ static MPActionLauncher *sharedActionLauncher = nil;
 - (void)loadPorts;
 - (void)installPort:(MPPort *)port;
 - (void)uninstallPort:(MPPort *)port;
+- (void)sync;
+- (void)selfupdate;
 
 @end
 
 #pragma mark Implementation
 @implementation MPActionLauncher
 
-@synthesize ports, isLoading;
+@synthesize ports, isLoading, isBusy;
 
 + (MPActionLauncher*) sharedInstance {
     
@@ -59,6 +61,14 @@ static MPActionLauncher *sharedActionLauncher = nil;
     [self performSelectorInBackground:@selector(uninstallPort:) withObject:port];
 }
 
+- (void)syncInBackground {
+    [self performSelectorInBackground:@selector(sync) withObject:nil];
+}
+
+- (void)selfupdateInBackground {
+    [self performSelectorInBackground:@selector(selfupdate) withObject:nil];
+}
+
 #pragma mark Private Methods implementation
 
 - (void)loadPorts {
@@ -83,14 +93,33 @@ static MPActionLauncher *sharedActionLauncher = nil;
 - (void)installPort:(MPPort *)port {
     NSError * error;
     NSArray *empty = [NSArray arrayWithObject: @""];
+    [self setIsBusy:YES];
     [port installWithOptions:empty variants:empty error:&error];
     [port setState:MPPortStateLearnState];
+    [self setIsBusy:NO];
 }
 
 - (void)uninstallPort:(MPPort *)port {
     NSError * error;
+    [self setIsBusy:YES];
     [port uninstallWithVersion:nil error:&error];
     [port setState:MPPortStateLearnState];
+    [self setIsBusy:NO];
 }
+
+- (void)sync {
+    NSError * error;
+    [self setIsBusy:YES];
+    [[MPMacPorts sharedInstance] sync:&error];
+    [self setIsBusy:NO];
+}
+
+- (void)selfupdate {
+    NSError * error;
+    [self setIsBusy:YES];
+    [[MPMacPorts sharedInstance] selfUpdate:&error];
+    [self setIsBusy:NO];
+}
+
 
 @end
