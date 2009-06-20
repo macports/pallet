@@ -15,6 +15,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
 
 - (void)loadPorts;
 - (void)installPort:(MPPort *)port;
+- (void)uninstallPort:(MPPort *)port;
 
 @end
 
@@ -54,6 +55,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
     [self performSelectorInBackground:@selector(installPort:) withObject:port];
 }
 
+- (void)uninstallPortInBackground:(MPPort *)port {
+    [self performSelectorInBackground:@selector(uninstallPort:) withObject:port];
+}
+
 #pragma mark Private Methods implementation
 
 - (void)loadPorts {
@@ -79,6 +84,13 @@ static MPActionLauncher *sharedActionLauncher = nil;
     NSError * error;
     NSArray *empty = [NSArray arrayWithObject: @""];
     [port installWithOptions:empty variants:empty error:&error];
+    [port setState:MPPortStateLearnState];
+}
+
+- (void)uninstallPort:(MPPort *)port {
+    NSError * error;
+    [port uninstallWithVersion:nil error:&error];
+    [port setState:MPPortStateLearnState];
 }
 
 @end

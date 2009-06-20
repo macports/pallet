@@ -53,4 +53,10 @@
 */
 - (void)installPortInBackground:(MPPort *)port;
 
+/*!
+ @brief Uninstalls a single port in another thread
+ @param port MPPort that represents the port to install
+ */
+- (void)uninstallPortInBackground:(MPPort *)port;
+
 @end

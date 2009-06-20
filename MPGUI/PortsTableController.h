@@ -36,7 +36,7 @@
  @var predicate
  @abstract The NSPredicate which filters the ports table
 */
-@property (readonly, copy) NSPredicate *predicate;
+@property (copy) NSPredicate *predicate;
 
 /*!
  @brief Creates a NSPredicate based in the rows of the NSPredicateEditor
