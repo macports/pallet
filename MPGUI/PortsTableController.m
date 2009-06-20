@@ -27,6 +27,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [[MPActionLauncher sharedInstance] loadPortsInBackground];
     [self changePredicateEditorSize:0];
 }
 

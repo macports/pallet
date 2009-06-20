@@ -40,7 +40,6 @@ static MPActionLauncher *sharedActionLauncher = nil;
         NSString *pkgPath = [bundlePath stringByAppendingPathComponent:@"../macports-1.8/Library/Tcl"];
         pkgPath = [pkgPath stringByStandardizingPath];
         [MPMacPorts setPKGPath:pkgPath];
-        [self loadPortsInBackground];
         ports = [NSMutableArray arrayWithCapacity:6000];
         sharedActionLauncher = self;
     }

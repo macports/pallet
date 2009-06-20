@@ -6,6 +6,20 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		21351F530FEC59520074ACFE /* Docs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 21351F5D0FEC597F0074ACFE /* Build configuration list for PBXAggregateTarget "Docs" */;
+			buildPhases = (
+				21351F520FEC59520074ACFE /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Docs;
+			productName = Docs;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
@@ -271,6 +285,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* MPGUI */,
+				21351F530FEC59520074ACFE /* Docs */,
 			);
 		};
 /* End PBXProject section */
@@ -328,6 +343,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		21351F520FEC59520074ACFE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BASEDIR=`pwd`\nDOCDIR=build/Documentation\nif [ ! -d $DOCDIR ]; then\n\tmkdir $DOCDIR\nfi\ncd $DOCDIR\nheaderdoc2html -u -o HTML $BASEDIR/*.h* && gatherheaderdoc HTML index.html";
+		};
 		21FC212A0FE8546700B1E835 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +416,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		21351F540FEC59520074ACFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Docs;
+			};
+			name = Debug;
+		};
+		21351F550FEC59520074ACFE /* Debug-InstallMacPorts */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Docs;
+			};
+			name = "Debug-InstallMacPorts";
+		};
+		21351F560FEC59520074ACFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Docs;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		21FC211D0FE84F7F00B1E835 /* Debug-InstallMacPorts */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -493,6 +549,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		21351F5D0FEC597F0074ACFE /* Build configuration list for PBXAggregateTarget "Docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21351F540FEC59520074ACFE /* Debug */,
+				21351F550FEC59520074ACFE /* Debug-InstallMacPorts */,
+				21351F560FEC59520074ACFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MPGUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
