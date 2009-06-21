@@ -24,6 +24,10 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
+		21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
+		21B6A38F0FEDCBD5001DF976 /* TB_Sync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */; };
+		21B6A3910FEDCBD5001DF976 /* TB_Upgrade.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */; };
+		21B6A3940FEDE6CA001DF976 /* TB_Uninstall.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A3930FEDE6CA001DF976 /* TB_Uninstall.icns */; };
 		21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
@@ -103,6 +107,10 @@
 		21351FB20FEC67780074ACFE /* MPActionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionsController.m; sourceTree = "<group>"; };
 		214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionLauncher.h; sourceTree = "<group>"; };
 		214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionLauncher.m; sourceTree = "<group>"; wrapsLines = 0; };
+		21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Install.icns; sourceTree = "<group>"; };
+		21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Sync.icns; sourceTree = "<group>"; };
+		21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Upgrade.icns; sourceTree = "<group>"; };
+		21B6A3930FEDE6CA001DF976 /* TB_Uninstall.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Uninstall.icns; sourceTree = "<group>"; };
 		21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacPorts.Framework.xcodeproj; path = ../MacPorts_Framework/MacPorts.Framework.xcodeproj; sourceTree = SOURCE_ROOT; };
 		21F167580FE3382D00542AEE /* PortsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortsTableController.h; sourceTree = "<group>"; };
 		21F167590FE3382D00542AEE /* PortsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortsTableController.m; sourceTree = "<group>"; };
@@ -229,6 +237,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */,
+				21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */,
+				21B6A3930FEDE6CA001DF976 /* TB_Uninstall.icns */,
+				21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */,
 				21FC226B0FE88A2A00B1E835 /* Installed.tiff */,
 				21FC226C0FE88A2A00B1E835 /* Outdated.tiff */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -342,6 +354,10 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */,
 				21FC226E0FE88A2A00B1E835 /* Outdated.tiff in Resources */,
+				21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */,
+				21B6A38F0FEDCBD5001DF976 /* TB_Sync.icns in Resources */,
+				21B6A3910FEDCBD5001DF976 /* TB_Upgrade.icns in Resources */,
+				21B6A3940FEDE6CA001DF976 /* TB_Uninstall.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

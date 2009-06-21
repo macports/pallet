@@ -23,7 +23,7 @@
 */
 @interface MPActionLauncher : NSObject {
     NSMutableArray *ports;
-    BOOL isLoading;
+    BOOL isLoading, isBusy;
 }
 /*! 
  @var ports
@@ -36,6 +36,8 @@
  @abstract Tells whether the instance is loading the ports array or not
 */
 @property BOOL isLoading;
+
+@property BOOL isBusy;
 
 /*!
  @brief Return singleton shared MPActionLauncher instance
@@ -58,5 +60,15 @@
  @param port MPPort that represents the port to install
  */
 - (void)uninstallPortInBackground:(MPPort *)port;
+
+/*!
+ @brief Syncs the MacPorts installation in another thread
+ */
+- (void)syncInBackground;
+
+/*!
+ @brief Selfupdates the MacPorts installation in another thread
+ */
+- (void)selfupdateInBackground;
 
 @end

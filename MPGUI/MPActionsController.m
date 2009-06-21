@@ -25,4 +25,18 @@
     }
 }
 
+- (IBAction)sync:(id)sender {
+    [[MPActionLauncher sharedInstance] syncInBackground];
+}
+
+- (IBAction)selfupdate:(id)sender {
+    [[MPActionLauncher sharedInstance] selfupdateInBackground];
+}
+
+-(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem
+{
+    BOOL enable = ![[MPActionLauncher sharedInstance] isBusy];
+    return enable;
+}
+
 @end
