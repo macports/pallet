@@ -16,6 +16,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
 - (void)loadPorts;
 - (void)installPort:(MPPort *)port;
 - (void)uninstallPort:(MPPort *)port;
+- (void)upgradePort:(MPPort *)port;
 - (void)sync;
 - (void)selfupdate;
 
@@ -54,11 +55,16 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (void)installPortInBackground:(MPPort *)port {
-    [self performSelectorInBackground:@selector(installPort:) withObject:port];
+    //[self performSelectorInBackground:@selector(installPort:) withObject:port];
+    [self installPort:port];
 }
 
 - (void)uninstallPortInBackground:(MPPort *)port {
     [self performSelectorInBackground:@selector(uninstallPort:) withObject:port];
+}
+
+- (void)upgradePortInBackground:(MPPort *)port {
+    [self performSelectorInBackground:@selector(upgradePort:) withObject:port];
 }
 
 - (void)syncInBackground {
@@ -103,6 +109,14 @@ static MPActionLauncher *sharedActionLauncher = nil;
     NSError * error;
     [self setIsBusy:YES];
     [port uninstallWithVersion:nil error:&error];
+    [port setState:MPPortStateLearnState];
+    [self setIsBusy:NO];
+}
+
+- (void)upgradePort:(MPPort *)port {
+    NSError * error;
+    [self setIsBusy:YES];
+    [port upgradeWithError:&error];
     [port setState:MPPortStateLearnState];
     [self setIsBusy:NO];
 }

@@ -16,6 +16,7 @@
 
 - (IBAction)install:(id)sender;
 - (IBAction)uninstall:(id)sender;
+- (IBAction)upgrade:(id)sender;
 - (IBAction)sync:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 

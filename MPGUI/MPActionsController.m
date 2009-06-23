@@ -25,6 +25,13 @@
     }
 }
 
+- (IBAction)upgrade:(id)sender {
+    NSArray *selectedPorts = [ports selectedObjects];
+    for (id port in selectedPorts) {
+        [[MPActionLauncher sharedInstance] upgradePortInBackground:port];
+    }
+}
+
 - (IBAction)sync:(id)sender {
     [[MPActionLauncher sharedInstance] syncInBackground];
 }

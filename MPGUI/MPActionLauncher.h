@@ -62,6 +62,13 @@
 - (void)uninstallPortInBackground:(MPPort *)port;
 
 /*!
+ @brief Upgrades a single port in another thread
+ @param port MPPort that represents the port to upgrade
+ */
+- (void)upgradePortInBackground:(MPPort *)port;
+
+
+/*!
  @brief Syncs the MacPorts installation in another thread
  */
 - (void)syncInBackground;
