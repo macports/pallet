@@ -193,7 +193,16 @@ proc mportdeactivate {portname {v ""} {optionslist ""} } {
 	}
 }
 
-
+proc mportupgrade {portname} {
+    array set depscache {}
+	if {[catch {macports::upgrade $portname "port:$portname" [array get global_variations] [array get variations] [array get options] depscache} result]} {
+			
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Upgrade $portname failed: $result"
+			return 1
+	}
+}
 
 # Initialize dport
 # This must be done following parse of global options, as some options are

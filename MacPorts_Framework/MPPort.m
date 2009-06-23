@@ -350,6 +350,10 @@
 	}
 }
 
+- (void)upgradeWithError:(NSError **)mError {
+	[self execPortProc:@"mportupgrade" withOptions:nil version:@"" error:mError];
+}
+
 -(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
 	[self exec:@"configure" withOptions:options variants:variants error:mError];
 }
@@ -401,6 +405,7 @@
 -(void)createSrpmWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError{
 	[self exec:@"srpm" withOptions:options variants:variants error:mError];
 }
+
 
 # pragma mark -
 

@@ -18,7 +18,7 @@
 -(BOOL) installUninstallManipulation:(NSString *)portName {
 	BOOL ret = NO;
 	
-	MPMacPorts * port = [MPMacPorts sharedInstanceWithPkgPath:@"/Users/juanger/local/macportsbuild/branch-unprivileged/Library/Tcl"
+	MPMacPorts * port = [MPMacPorts sharedInstanceWithPkgPath:@"/Users/juanger/Projects/gsoc09-gui/MPGUI/build/Debug-InstallMacPorts/macports-1.8/Library/Tcl"
 	 					portOptions:nil];
 	NSLog(@"PkgPath1:  %@", [MPInterpreter PKGPath]);
 	MPRegistry * registry = [MPRegistry sharedRegistry];
@@ -123,7 +123,7 @@
 //		NSLog(@"\n\n Installation successful \n\n");
 //		
 //		
-//	}
+//	}	
 //	
 //	//Double check somehow
 //	MPRegistry * registry = [MPRegistry sharedRegistry];
@@ -132,6 +132,7 @@
 	PortManipulator * pm = [[PortManipulator alloc] init];
 	STAssertTrue([pm installUninstallManipulation:@"pngcrush"] , @"This test should always return true on success");
 	[pm release];
+    
 }
 
 @end
