@@ -2009,7 +2009,7 @@
 																				<reference ref="385089462"/>
 																			</object>
 																		</object>
-																		<object class="NSMutableDictionary" id="87328039">
+																		<object class="NSMutableDictionary" id="521510853">
 																			<bool key="EncodedWithXMLCoder">YES</bool>
 																			<object class="NSMutableArray" key="dict.sortedKeys">
 																				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2135,7 +2135,7 @@
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<reference ref="833924481"/>
 																					<reference ref="328879136"/>
-																					<reference ref="87328039"/>
+																					<reference ref="521510853"/>
 																				</object>
 																				<object class="NSMutableArray">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2592,6 +2592,7 @@
 									</object>
 									<string key="NSFrame">{{1, 1}, {246, 331}}</string>
 									<reference key="NSSuperview" ref="199390391"/>
+									<reference key="NSNextKeyView" ref="238622922"/>
 									<reference key="NSDocView" ref="238622922"/>
 									<reference key="NSBGColor" ref="800202432"/>
 									<int key="NScvFlags">4</int>
@@ -2618,6 +2619,7 @@
 							</object>
 							<string key="NSFrame">{{6, 26}, {263, 348}}</string>
 							<reference key="NSSuperview" ref="187671130"/>
+							<reference key="NSNextKeyView" ref="340647127"/>
 							<int key="NSsFlags">50</int>
 							<reference key="NSVScroller" ref="482661369"/>
 							<reference key="NSHScroller" ref="400167025"/>
@@ -2994,14 +2996,6 @@
 					<int key="connectionID">490</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="1050"/>
-						<reference key="destination" ref="517167976"/>
-					</object>
-					<int key="connectionID">491</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.description</string>
 						<reference key="source" ref="484726988"/>
@@ -3225,6 +3219,14 @@
 						<reference key="destination" ref="815358429"/>
 					</object>
 					<int key="connectionID">648</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1050"/>
+						<reference key="destination" ref="800227439"/>
+					</object>
+					<int key="connectionID">650</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4904,7 +4906,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">648</int>
+			<int key="maxID">650</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -46,4 +46,18 @@
     return enable;
 }
 
+#pragma mark App Delegate
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [[MPActionLauncher sharedInstance] loadPortsInBackground];
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    [[[MPActionLauncher sharedInstance] actionTool] terminate];
+}
+
 @end

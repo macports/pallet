@@ -14,18 +14,13 @@ static MPActionLauncher *sharedActionLauncher = nil;
 @interface MPActionLauncher (Private)
 
 - (void)loadPorts;
-- (void)installPort:(MPPort *)port;
-- (void)uninstallPort:(MPPort *)port;
-- (void)upgradePort:(MPPort *)port;
-- (void)sync;
-- (void)selfupdate;
 
 @end
 
 #pragma mark Implementation
 @implementation MPActionLauncher
 
-@synthesize ports, isLoading, isBusy;
+@synthesize ports, isLoading, isBusy, actionTool;
 
 + (MPActionLauncher*) sharedInstance {
     
@@ -37,16 +32,31 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (id)init {
-    // This is a temporary pkgPath for testing purposes
-    // PKGPath should be retrieved with User Defaults
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     if (sharedActionLauncher == nil) {
-        NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-        NSString *pkgPath = [bundlePath stringByAppendingPathComponent:@"../macports-1.8/Library/Tcl"];
-        pkgPath = [pkgPath stringByStandardizingPath];
+        NSString *pkgPath;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        pkgPath = [defaults objectForKey:@"PKGPath"];
+        if (pkgPath == nil) {
+            // This pkgPath is just for testing purposes
+            // TODO: Open the preferences panel to setup the PKGPath
+            pkgPath = [bundlePath stringByAppendingPathComponent:@"../macports-1.8/Library/Tcl"];
+            pkgPath = [pkgPath stringByStandardizingPath];
+            [defaults setObject:pkgPath forKey:@"PKGPath"];
+        }
+                
         [MPMacPorts setPKGPath:pkgPath];
         ports = [NSMutableArray arrayWithCapacity:6000];
         sharedActionLauncher = self;
+        
+        // Runt he MPActionTool
     }
+
+    // This is the path to the MPActionTool
+    NSString *toolPath = [bundlePath stringByAppendingPathComponent:@"Contents/MacOS/MPActionTool"];
+    // Launch the MPActionTool
+    actionTool = [NSTask launchedTaskWithLaunchPath:toolPath arguments:[NSArray arrayWithObject:@""]];
+    
     return sharedActionLauncher;
 }
 
@@ -55,24 +65,43 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (void)installPortInBackground:(MPPort *)port {
-    //[self performSelectorInBackground:@selector(installPort:) withObject:port];
-    [self installPort:port];
+    id theProxy;
+    theProxy = [NSConnection
+                    rootProxyForConnectionWithRegisteredName:@"actionTool"
+                    host:nil];
+    [theProxy installPort:port];
 }
 
 - (void)uninstallPortInBackground:(MPPort *)port {
-    [self performSelectorInBackground:@selector(uninstallPort:) withObject:port];
+    id theProxy;
+    theProxy = [NSConnection
+                rootProxyForConnectionWithRegisteredName:@"actionTool"
+                host:nil];
+    [theProxy uninstallPort:port];
 }
 
 - (void)upgradePortInBackground:(MPPort *)port {
-    [self performSelectorInBackground:@selector(upgradePort:) withObject:port];
+    id theProxy;
+    theProxy = [NSConnection
+                rootProxyForConnectionWithRegisteredName:@"actionTool"
+                host:nil];
+    [theProxy upgradePort:port];
 }
 
 - (void)syncInBackground {
-    [self performSelectorInBackground:@selector(sync) withObject:nil];
+    id theProxy;
+    theProxy = [NSConnection
+                rootProxyForConnectionWithRegisteredName:@"actionTool"
+                host:nil];
+    [theProxy sync];
 }
 
 - (void)selfupdateInBackground {
-    [self performSelectorInBackground:@selector(selfupdate) withObject:nil];
+    id theProxy;
+    theProxy = [NSConnection
+                rootProxyForConnectionWithRegisteredName:@"actionTool"
+                host:nil];
+    [theProxy selfupdate];
 }
 
 #pragma mark Private Methods implementation
@@ -95,45 +124,5 @@ static MPActionLauncher *sharedActionLauncher = nil;
     [self didChangeValueForKey:@"ports"];
     [self setIsLoading:NO];
 }
-
-- (void)installPort:(MPPort *)port {
-    NSError * error;
-    NSArray *empty = [NSArray arrayWithObject: @""];
-    [self setIsBusy:YES];
-    [port installWithOptions:empty variants:empty error:&error];
-    [port setState:MPPortStateLearnState];
-    [self setIsBusy:NO];
-}
-
-- (void)uninstallPort:(MPPort *)port {
-    NSError * error;
-    [self setIsBusy:YES];
-    [port uninstallWithVersion:nil error:&error];
-    [port setState:MPPortStateLearnState];
-    [self setIsBusy:NO];
-}
-
-- (void)upgradePort:(MPPort *)port {
-    NSError * error;
-    [self setIsBusy:YES];
-    [port upgradeWithError:&error];
-    [port setState:MPPortStateLearnState];
-    [self setIsBusy:NO];
-}
-
-- (void)sync {
-    NSError * error;
-    [self setIsBusy:YES];
-    [[MPMacPorts sharedInstance] sync:&error];
-    [self setIsBusy:NO];
-}
-
-- (void)selfupdate {
-    NSError * error;
-    [self setIsBusy:YES];
-    [[MPMacPorts sharedInstance] selfUpdate:&error];
-    [self setIsBusy:NO];
-}
-
 
 @end

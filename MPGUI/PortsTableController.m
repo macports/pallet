@@ -26,15 +26,6 @@
     return self;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[MPActionLauncher sharedInstance] loadPortsInBackground];
-    [self changePredicateEditorSize:0];
-}
-
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
-    return YES;
-}
-
 #pragma mark PredicateEditor delegate
 
 - (void)ruleEditorRowsDidChange:(NSNotification *)notification {

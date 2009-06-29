@@ -15,6 +15,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MacPorts/MacPorts.h>
+#import "MPActionTool.h"
 
 /*!
  @class MPActionLauncher
@@ -23,6 +24,8 @@
 */
 @interface MPActionLauncher : NSObject {
     NSMutableArray *ports;
+    NSTask *actionTool;
+    NSConnection *connectionToActionTool;
     BOOL isLoading, isBusy;
 }
 /*! 
@@ -30,6 +33,8 @@
  @abstract An array of available MPPorts
 */
 @property (copy) NSMutableArray *ports;
+
+@property NSTask *actionTool;
 
 /*! 
  @var isLoading
