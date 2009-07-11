@@ -11,6 +11,10 @@
 
 @implementation MPActionsController
 
+- (IBAction)openPreferences:(id)sender {
+    [NSBundle loadNibNamed:@"Preferences" owner:self];
+}
+
 - (IBAction)install:(id)sender {
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
@@ -49,7 +53,16 @@
 #pragma mark App Delegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[MPActionLauncher sharedInstance] loadPortsInBackground];
+    [tableController hidePredicateEditor:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *pkgPath = [defaults objectForKey:@"PKGPath"];
+    
+    if (pkgPath == nil) {
+        [self openPreferences:self];
+    } else {
+        [MPMacPorts setPKGPath:pkgPath];
+        [[MPActionLauncher sharedInstance] loadPortsInBackground];    
+    }
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {

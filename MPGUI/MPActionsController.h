@@ -8,12 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MPActionLauncher.h"
+#import "PortsTableController.h"
 
 
 @interface MPActionsController : NSObject {
     IBOutlet NSArrayController *ports;
+    IBOutlet PortsTableController *tableController;
 }
 
+- (IBAction)openPreferences:(id)sender;
 - (IBAction)install:(id)sender;
 - (IBAction)uninstall:(id)sender;
 - (IBAction)upgrade:(id)sender;

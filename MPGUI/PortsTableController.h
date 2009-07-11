@@ -50,5 +50,8 @@
 */
 - (IBAction)basicSearch:(id)sender;
 
+
+- (IBAction)hidePredicateEditor:(id)sender;
+
 @end
 

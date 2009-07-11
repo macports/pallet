@@ -13,7 +13,11 @@
 @synthesize macports;
 
 - (id)init {
-    macports = [MPMacPorts sharedInstanceWithPkgPath:[self PKGPathFromDefaults] portOptions:nil];
+    if ([self PKGPathFromDefaults] != nil) {
+        [self loadPKGPath];
+    } else {
+        macports = [MPMacPorts sharedInstance];
+    }
     return self;
 }
 
@@ -71,6 +75,10 @@
 - (NSString*)PKGPathFromDefaults {
     NSString *PKGPath = [[NSUserDefaults standardUserDefaults] objectForKey:@"PKGPath"];
     return PKGPath;
+}
+
+- (oneway void)loadPKGPath {
+    macports = [MPMacPorts sharedInstanceWithPkgPath:[self PKGPathFromDefaults] portOptions:nil];
 }
 
 @end

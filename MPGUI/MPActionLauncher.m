@@ -34,22 +34,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
 - (id)init {
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     if (sharedActionLauncher == nil) {
-        NSString *pkgPath;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        pkgPath = [defaults objectForKey:@"PKGPath"];
-        if (pkgPath == nil) {
-            // This pkgPath is just for testing purposes
-            // TODO: Open the preferences panel to setup the PKGPath
-            pkgPath = [bundlePath stringByAppendingPathComponent:@"../macports-1.8/Library/Tcl"];
-            pkgPath = [pkgPath stringByStandardizingPath];
-            [defaults setObject:pkgPath forKey:@"PKGPath"];
-        }
-                
-        [MPMacPorts setPKGPath:pkgPath];
-        ports = [NSMutableArray arrayWithCapacity:6000];
+        ports = [NSMutableArray arrayWithCapacity:1];
         sharedActionLauncher = self;
-        
-        // Runt he MPActionTool
     }
 
     // This is the path to the MPActionTool
@@ -108,6 +94,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
 
 - (void)loadPorts {
     [self setIsLoading:YES];
+    ports = [NSMutableArray arrayWithCapacity:6000];
     NSDictionary *allPorts = [[MPMacPorts sharedInstance] search:MPPortsAll];
     NSDictionary *installedPorts = [[MPRegistry sharedRegistry] installed];
     
@@ -122,6 +109,12 @@ static MPActionLauncher *sharedActionLauncher = nil;
         [[allPorts objectForKey:port] setStateFromReceipts:[installedPorts objectForKey:port]];
     }
     [self didChangeValueForKey:@"ports"];
+    
+    id theProxy = [NSConnection
+                rootProxyForConnectionWithRegisteredName:@"actionTool"
+                host:nil];
+    [theProxy loadPKGPath];
+    
     [self setIsLoading:NO];
 }
 

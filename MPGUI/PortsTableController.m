@@ -53,6 +53,10 @@
     [self setPredicate:newPredicate];
 }
 
+- (IBAction)hidePredicateEditor:(id)sender {
+    [self changePredicateEditorSize:0];
+}
+
 #pragma mark Private Methods
 
 - (void)changePredicateEditorSize:(NSInteger) newRowCount {

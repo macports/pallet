@@ -21,6 +21,7 @@
 - (oneway void)upgradePort:(byref id)port;
 - (oneway void)sync;
 - (oneway void)selfupdate;
+- (oneway void)loadPKGPath;
 
 - (NSString*)PKGPathFromDefaults;
 
