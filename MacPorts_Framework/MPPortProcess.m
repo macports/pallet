@@ -56,6 +56,8 @@
 @end
 
 int main(int argc, char const * argv[]) {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
     NSConnection *portProcessConnection; 
     portProcessConnection = [NSConnection defaultConnection];
     NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSUTF8StringEncoding];
@@ -77,5 +79,6 @@ int main(int argc, char const * argv[]) {
     
     // Wait for any message
     [[NSRunLoop currentRunLoop] run];
+  	[pool release];
     return 0;
 }
