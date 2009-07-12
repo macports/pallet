@@ -25,6 +25,7 @@
 		21D954431009411400DEF58A /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		21D954471009412F00DEF58A /* MPPortProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D954461009412F00DEF58A /* MPPortProcess.m */; };
 		21D954721009475200DEF58A /* portProcessInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 21D954711009475200DEF58A /* portProcessInit.tcl */; };
+		21D9548C1009522100DEF58A /* MPPortProcess in Resources */ = {isa = PBXBuildFile; fileRef = 21D9543E100940EE00DEF58A /* MPPortProcess */; };
 		481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
 		4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -127,10 +128,10 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		21067BB50FE5B25800CAD732 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		21D9543E100940EE00DEF58A /* MPPortProcess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = MPPortProcess; path = build/Release/MPPortProcess; sourceTree = "<group>"; };
+		21D9543E100940EE00DEF58A /* MPPortProcess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPPortProcess; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D954461009412F00DEF58A /* MPPortProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortProcess.m; sourceTree = "<group>"; };
 		21D954491009413800DEF58A /* MPPortProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortProcess.h; sourceTree = "<group>"; };
-		21D954711009475200DEF58A /* portProcessInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portProcessInit.tcl; sourceTree = "<group>"; };
+		21D954711009475200DEF58A /* portProcessInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portProcessInit.tcl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		32DBCF5E0370ADEE00C91783 /* MacPorts.Framework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPorts.Framework_Prefix.pch; sourceTree = "<group>"; };
 		481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MPMutableDictionary.h; sourceTree = "<group>"; };
 		481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MPMutableDictionary.m; sourceTree = "<group>"; };
@@ -623,6 +624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */,
+				21D9548C1009522100DEF58A /* MPPortProcess in Resources */,
 				6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */,
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,

@@ -201,5 +201,6 @@
 - (void)setAuthorizationRef:(AuthorizationRef)authRef;
 - (BOOL)checkIfAuthorized;
 -(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement error:(NSError **)mportError;
+-(NSString *)evaluateStringWithMPPortProcess:(NSString *)statement error:(NSError **)mportError;
 
 @end

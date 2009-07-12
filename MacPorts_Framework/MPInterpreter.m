@@ -453,16 +453,14 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 - (NSString *)evaluateStringWithPossiblePrivileges:(NSString *)statement error:(NSError **)mportError {
-	
-	
-	
 	//N.B. I am going to insist that funciton users not pass in nil for the
 	//mportError parameter
 	NSString * firstResult;
 	NSString * secondResult;
 	
 	*mportError = nil;
-	firstResult = [self evaluateStringAsString:statement error:mportError];
+    //  firstResult = [self evaluateStringAsString:statement error:mportError];
+   	firstResult = [self evaluateStringWithMPPortProcess:statement error:mportError];
 	
 	//Because of string results of methods like mportsync (which returns the empty string)
 	//the only way to truly check for an error is to check the mportError parameter.
@@ -656,6 +654,17 @@ static NSString * tclInterpreterPkgPath = nil;
 	//NSLog(@"AFTER Tool Execution request is %@ , response is %@ \n\n", request, response);
 	
 	return result;
+}
+
+- (NSString *) evaluateStringWithMPPortProcess:(NSString *) statement error:(NSError **)mportError {
+    NSLog(@"Path: %@", [[NSBundle bundleForClass:[self class]] resourcePath]);
+    NSString *portProcessPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MPPortProcess" ofType:@""];
+    NSTask *portProcess = [NSTask launchedTaskWithLaunchPath:portProcessPath arguments:[NSArray arrayWithObject:PKGPath]];
+    id theProxy = [NSConnection
+                rootProxyForConnectionWithRegisteredName:@"MPPortProcess"
+                host:nil];
+    [theProxy evaluateString:statement];
+    return nil;
 }
 
 

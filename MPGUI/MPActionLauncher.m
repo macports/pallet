@@ -51,11 +51,14 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (void)installPortInBackground:(MPPort *)port {
-    id theProxy;
-    theProxy = [NSConnection
-                    rootProxyForConnectionWithRegisteredName:@"actionTool"
-                    host:nil];
-    [theProxy installPort:port];
+//    id theProxy;
+//    theProxy = [NSConnection
+//                    rootProxyForConnectionWithRegisteredName:@"actionTool"
+//                    host:nil];
+//    [theProxy installPort:port];
+    NSError * error;
+    NSArray *empty = [NSArray arrayWithObject: @""];
+    [port installWithOptions:empty variants:empty error:&error];
 }
 
 - (void)uninstallPortInBackground:(MPPort *)port {

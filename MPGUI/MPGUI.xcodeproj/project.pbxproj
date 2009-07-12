@@ -61,6 +61,13 @@
 			remoteGlobalIDString = 21A588130FF5D508003CF725;
 			remoteInfo = MPActionTool;
 		};
+		21D954D81009731100DEF58A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21D9543E100940EE00DEF58A /* MPPortProcess */;
+			remoteInfo = MPPortProcess;
+		};
 		21F1654C0FE2C04300542AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
@@ -230,6 +237,7 @@
 				21F165510FE2C04300542AEE /* MacPorts.framework */,
 				21F165530FE2C04300542AEE /* Test.octest */,
 				21F165550FE2C04300542AEE /* MPHelperToolIPCTester */,
+				21D954D91009731100DEF58A /* MPPortProcess */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -387,6 +395,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		21D954D91009731100DEF58A /* MPPortProcess */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = MPPortProcess;
+			remoteRef = 21D954D81009731100DEF58A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		21F1654D0FE2C04300542AEE /* MPHelperInstallTool */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";

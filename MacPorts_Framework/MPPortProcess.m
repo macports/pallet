@@ -23,7 +23,7 @@
     return self;
 }
 
-- (oneway void)evaluateString:(byref id)statement {
+- (oneway void)evaluateString:(bycopy id)statement {
     // TODO Handle the posible errors and notifications
     Tcl_Eval(interpreter, [statement UTF8String]);
 }
@@ -48,9 +48,14 @@
 		NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
 	}
-    // TODO Load distributed object messaging methods
+    // TODO Load notifications methods
     
-    // TODO load portProcessInit.tcl
+    // Load portProcessInit.tcl
+    NSString *portProcessInitPath = @"portProcessInit.tcl";
+    if( Tcl_EvalFile(interpreter, [portProcessInitPath UTF8String]) == TCL_ERROR) {
+		NSLog(@"Error in Tcl_EvalFile portProcessInit.tcl: %s", Tcl_GetStringResult(interpreter));
+		Tcl_DeleteInterp(interpreter);
+	}
 }
 
 @end
@@ -74,8 +79,6 @@ int main(int argc, char const * argv[]) {
         NSLog( @"Name used by %@", 
               [[[NSPortNameServer systemDefaultPortNameServer] portForName:@"MPPortProcess"] description] );
     }
-    
-    // TODO Send a ready signal to "delegate"
     
     // Wait for any message
     [[NSRunLoop currentRunLoop] run];

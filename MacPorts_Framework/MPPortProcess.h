@@ -13,4 +13,6 @@
     NSString *PKGPath;
 }
 
+- (oneway void)evaluateString:(bycopy id)statement;
+
 @end
