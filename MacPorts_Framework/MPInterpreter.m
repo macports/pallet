@@ -657,9 +657,26 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 - (NSString *) evaluateStringWithMPPortProcess:(NSString *) statement error:(NSError **)mportError {
-    NSLog(@"Path: %@", [[NSBundle bundleForClass:[self class]] resourcePath]);
+/*    NSString *portProcessInitPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"portProcessInit" ofType:@"tcl"];
     NSString *portProcessPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MPPortProcess" ofType:@""];
-    NSTask *portProcess = [NSTask launchedTaskWithLaunchPath:portProcessPath arguments:[NSArray arrayWithObject:PKGPath]];
+    NSLog(portProcessInitPath);
+    
+    NSArray *args = [NSArray arrayWithObjects:PKGPath,portProcessInitPath];
+    
+    NSTask *portProcess = [NSTask launchedTaskWithLaunchPath:[portProcessPath retain] arguments:[args retain]];
+ */
+    NSTask *aTask = [[NSTask alloc] init];
+    NSMutableArray *args = [NSMutableArray array];
+    
+    /* set arguments */
+    [args addObject:PKGPath];
+    [aTask setCurrentDirectoryPath:[[NSBundle bundleForClass:[self class]] resourcePath]];
+    [aTask setLaunchPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"MPPortProcess" ofType:@""]];
+    [aTask setArguments:args];
+    [aTask launch];
+    
+    NSLog(@"Going to sleep");
+    [NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:10000]];
     id theProxy = [NSConnection
                 rootProxyForConnectionWithRegisteredName:@"MPPortProcess"
                 host:nil];

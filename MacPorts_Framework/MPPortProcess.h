@@ -11,6 +11,7 @@
 @interface MPPortProcess : NSObject {
     Tcl_Interp *interpreter;
     NSString *PKGPath;
+    NSString *InitTclPath;
 }
 
 - (oneway void)evaluateString:(bycopy id)statement;

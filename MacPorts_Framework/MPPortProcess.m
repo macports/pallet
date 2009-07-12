@@ -17,8 +17,9 @@
 
 @implementation MPPortProcess
 
-- (id)initWithPKGPath:(NSString*)path {
-    PKGPath = path;
+- (id)initWithPKGPath:(NSString*)pkgPath initTclPath:(NSString*)tclPath {
+    PKGPath = pkgPath;
+    InitTclPath = tclPath;
     [self initializeInterpreter];
     return self;
 }
@@ -66,10 +67,12 @@ int main(int argc, char const * argv[]) {
     NSConnection *portProcessConnection; 
     portProcessConnection = [NSConnection defaultConnection];
     NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSUTF8StringEncoding];
-    MPPortProcess *portProcess = [[MPPortProcess alloc] initWithPKGPath:PKGPath];
+    NSString *portProcessInitPath = [[NSString alloc] initWithCString:argv[2] encoding:NSUTF8StringEncoding];
+    
+    MPPortProcess *portProcess = [[MPPortProcess alloc] initWithPKGPath:PKGPath initTclPath:portProcessInitPath];
     
     // Vending portProcess
-    [portProcessConnection setRootObject:portProcess]; 
+    [portProcessConnection setRootObject:portProcess];
     
     // Register the named connection
     if ( [portProcessConnection registerName:@"MPPortProcess"] ) {
