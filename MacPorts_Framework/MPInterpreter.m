@@ -675,8 +675,8 @@ static NSString * tclInterpreterPkgPath = nil;
     [aTask setArguments:args];
     [aTask launch];
     
-    NSLog(@"Going to sleep");
-    [NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:10000]];
+//    NSLog(@"Going to sleep");
+    [NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     id theProxy = [NSConnection
                 rootProxyForConnectionWithRegisteredName:@"MPPortProcess"
                 host:nil];

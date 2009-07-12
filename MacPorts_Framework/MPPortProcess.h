@@ -6,12 +6,11 @@
 //  Copyright 2009 UNAM. All rights reserved.
 //
 
-#include <Tcl/Tcl.h>
+#include <tcl.h>
 
 @interface MPPortProcess : NSObject {
     Tcl_Interp *interpreter;
     NSString *PKGPath;
-    NSString *InitTclPath;
 }
 
 - (oneway void)evaluateString:(bycopy id)statement;
