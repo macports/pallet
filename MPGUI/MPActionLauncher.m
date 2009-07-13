@@ -39,9 +39,9 @@ static MPActionLauncher *sharedActionLauncher = nil;
     }
 
     // This is the path to the MPActionTool
-    NSString *toolPath = [bundlePath stringByAppendingPathComponent:@"Contents/MacOS/MPActionTool"];
+    // NSString *toolPath = [bundlePath stringByAppendingPathComponent:@"Contents/MacOS/MPActionTool"];
     // Launch the MPActionTool
-    actionTool = [NSTask launchedTaskWithLaunchPath:toolPath arguments:[NSArray arrayWithObject:@""]];
+    // actionTool = [NSTask launchedTaskWithLaunchPath:toolPath arguments:[NSArray arrayWithObject:@""]];
     
     return sharedActionLauncher;
 }
@@ -51,46 +51,29 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (void)installPortInBackground:(MPPort *)port {
-//    id theProxy;
-//    theProxy = [NSConnection
-//                    rootProxyForConnectionWithRegisteredName:@"actionTool"
-//                    host:nil];
-//    [theProxy installPort:port];
     NSError * error;
     NSArray *empty = [NSArray arrayWithObject: @""];
     [port installWithOptions:empty variants:empty error:&error];
 }
 
 - (void)uninstallPortInBackground:(MPPort *)port {
-    id theProxy;
-    theProxy = [NSConnection
-                rootProxyForConnectionWithRegisteredName:@"actionTool"
-                host:nil];
-    [theProxy uninstallPort:port];
+    NSError * error;
+    [port uninstallWithVersion:@"" error:&error];
 }
 
 - (void)upgradePortInBackground:(MPPort *)port {
-    id theProxy;
-    theProxy = [NSConnection
-                rootProxyForConnectionWithRegisteredName:@"actionTool"
-                host:nil];
-    [theProxy upgradePort:port];
+    NSError * error;
+    [port upgradeWithError:&error];
 }
 
 - (void)syncInBackground {
-    id theProxy;
-    theProxy = [NSConnection
-                rootProxyForConnectionWithRegisteredName:@"actionTool"
-                host:nil];
-    [theProxy sync];
+    NSError * error;
+    [[MPMacPorts sharedInstance] sync:&error];
 }
 
 - (void)selfupdateInBackground {
-    id theProxy;
-    theProxy = [NSConnection
-                rootProxyForConnectionWithRegisteredName:@"actionTool"
-                host:nil];
-    [theProxy selfupdate];
+    NSError * error;
+    [[MPMacPorts sharedInstance] selfUpdate:&error];
 }
 
 #pragma mark Private Methods implementation

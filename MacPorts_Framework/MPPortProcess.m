@@ -26,6 +26,7 @@
 - (oneway void)evaluateString:(bycopy id)statement {
     // TODO Handle the posible errors and notifications
     Tcl_Eval(interpreter, [statement UTF8String]);
+    exit(0);
 }
 
 #pragma mark Private Methods
