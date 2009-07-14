@@ -24,7 +24,6 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
-		21A588360FF5D683003CF725 /* MPActionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A588350FF5D683003CF725 /* MPActionTool.m */; };
 		21A5884C0FF5D834003CF725 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		21A5895A0FF5E96E003CF725 /* MPActionTool in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21A588140FF5D508003CF725 /* MPActionTool */; };
 		21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
@@ -34,6 +33,7 @@
 		21E2ADB01002E428003F8885 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E2ADAF1002E428003F8885 /* Preferences.xib */; };
 		21E2ADB71002EAE0003F8885 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E2ADB61002EAE0003F8885 /* PreferencesController.m */; };
 		21E2AEBB1002FC3C003F8885 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21EB8B11100CDD37007371EE /* MPPortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EB8B10100CDD37007371EE /* MPPortTableView.m */; };
 		21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
@@ -145,8 +145,6 @@
 		214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionLauncher.h; sourceTree = "<group>"; };
 		214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionLauncher.m; sourceTree = "<group>"; wrapsLines = 0; };
 		21A588140FF5D508003CF725 /* MPActionTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPActionTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		21A588340FF5D683003CF725 /* MPActionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionTool.h; sourceTree = "<group>"; };
-		21A588350FF5D683003CF725 /* MPActionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionTool.m; sourceTree = "<group>"; };
 		21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Install.icns; sourceTree = "<group>"; };
 		21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Sync.icns; sourceTree = "<group>"; };
 		21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Upgrade.icns; sourceTree = "<group>"; };
@@ -154,6 +152,8 @@
 		21E2ADAF1002E428003F8885 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		21E2ADB51002EAE0003F8885 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		21E2ADB61002EAE0003F8885 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		21EB8B0F100CDD37007371EE /* MPPortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortTableView.h; sourceTree = "<group>"; };
+		21EB8B10100CDD37007371EE /* MPPortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortTableView.m; sourceTree = "<group>"; };
 		21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacPorts.Framework.xcodeproj; path = ../MacPorts_Framework/MacPorts.Framework.xcodeproj; sourceTree = SOURCE_ROOT; };
 		21F167580FE3382D00542AEE /* PortsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortsTableController.h; sourceTree = "<group>"; };
 		21F167590FE3382D00542AEE /* PortsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortsTableController.m; sourceTree = "<group>"; };
@@ -220,15 +220,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		21A588200FF5D5B3003CF725 /* ActionTool */ = {
-			isa = PBXGroup;
-			children = (
-				21A588340FF5D683003CF725 /* MPActionTool.h */,
-				21A588350FF5D683003CF725 /* MPActionTool.m */,
-			);
-			name = ActionTool;
-			sourceTree = "<group>";
-		};
 		21F165410FE2C04300542AEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +262,8 @@
 				21FC22690FE8895900B1E835 /* StateTransformer.m */,
 				21FC23390FE8AB0400B1E835 /* StatePredicateTemplate.h */,
 				21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */,
+				21EB8B0F100CDD37007371EE /* MPPortTableView.h */,
+				21EB8B10100CDD37007371EE /* MPPortTableView.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -279,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
-				21A588200FF5D5B3003CF725 /* ActionTool */,
 				21F166FC0FE32DF000542AEE /* Models */,
 				21F167570FE3343600542AEE /* Controllers */,
 				21FC22620FE888F200B1E835 /* Helpers */,
@@ -494,7 +486,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21A588360FF5D683003CF725 /* MPActionTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +500,7 @@
 				21FC233B0FE8AB0400B1E835 /* StatePredicateTemplate.m in Sources */,
 				21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */,
 				21E2ADB71002EAE0003F8885 /* PreferencesController.m in Sources */,
+				21EB8B11100CDD37007371EE /* MPPortTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

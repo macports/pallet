@@ -15,7 +15,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MacPorts/MacPorts.h>
-#import "MPActionTool.h"
 #import "PreferencesController.h"
 
 /*!

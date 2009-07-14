@@ -14,6 +14,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
 @interface MPActionLauncher (Private)
 
 - (void)loadPorts;
+- (void)subscribeToNotifications;
 
 @end
 
@@ -102,6 +103,29 @@ static MPActionLauncher *sharedActionLauncher = nil;
     [theProxy loadPKGPath];
     
     [self setIsLoading:NO];
+}
+
+- (void)subscribeToNotifications {
+    /*
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector()
+                                                 name:MPINFO object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector()
+												 name:MPERROR object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector()
+												 name:MPWARN object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector()
+												 name:MPDEBUG object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector()
+												 name:MPDEFAULT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector()
+                                                 name:MPMSG object:nil];
+    */
 }
 
 @end

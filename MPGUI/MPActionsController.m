@@ -44,8 +44,7 @@
     [[MPActionLauncher sharedInstance] selfupdateInBackground];
 }
 
--(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem
-{
+-(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
     BOOL enable = ![[MPActionLauncher sharedInstance] isBusy];
     return enable;
 }
