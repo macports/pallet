@@ -63,6 +63,10 @@
     if (newRowCount == rowCount)
         return;
     
+    if (newRowCount == 0) {
+        [self setPredicate:[NSPredicate predicateWithFormat:@"name LIKE '*'"]];
+    }
+    
     NSScrollView* tableScrollView = [portsTableView enclosingScrollView];
     NSUInteger oldOutlineViewMask = [tableScrollView autoresizingMask];
     

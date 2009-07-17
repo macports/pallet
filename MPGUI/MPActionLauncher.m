@@ -81,20 +81,14 @@ static MPActionLauncher *sharedActionLauncher = nil;
 
 - (void)loadPorts {
     [self setIsLoading:YES];
-    ports = [NSMutableArray arrayWithCapacity:6000];
     NSDictionary *allPorts = [[MPMacPorts sharedInstance] search:MPPortsAll];
     NSDictionary *installedPorts = [[MPRegistry sharedRegistry] installed];
     
     [self willChangeValueForKey:@"ports"];
-    for (id port in allPorts) {
-        MPPort *mpport = [allPorts objectForKey:port];
-        [mpport setState:MPPortStateNotInstalled];
-        [ports addObject:mpport];
-    }
-    
     for (id port in installedPorts) {
         [[allPorts objectForKey:port] setStateFromReceipts:[installedPorts objectForKey:port]];
     }
+    ports = [allPorts allValues];
     [self didChangeValueForKey:@"ports"];
     
     id theProxy = [NSConnection
