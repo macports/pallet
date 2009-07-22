@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		218DEE2610162091003B5A3B /* SimpleLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 218DED83101612F1003B5A3B /* SimpleLog.m */; };
+		218DEE3E10162157003B5A3B /* SimpleLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 218DED82101612F1003B5A3B /* SimpleLog.h */; };
 		21D95442100940FF00DEF58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
 		21D954431009411400DEF58A /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		21D954471009412F00DEF58A /* MPPortProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D954461009412F00DEF58A /* MPPortProcess.m */; };
@@ -128,6 +130,8 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		21067BB50FE5B25800CAD732 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		218DED82101612F1003B5A3B /* SimpleLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleLog.h; sourceTree = "<group>"; };
+		218DED83101612F1003B5A3B /* SimpleLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLog.m; sourceTree = "<group>"; };
 		21D9543E100940EE00DEF58A /* MPPortProcess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPPortProcess; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D954461009412F00DEF58A /* MPPortProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortProcess.m; sourceTree = "<group>"; };
 		21D954491009413800DEF58A /* MPPortProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortProcess.h; sourceTree = "<group>"; };
@@ -187,7 +191,7 @@
 		6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolIPCTester.m; sourceTree = "<group>"; };
 		6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPNotifications+IPCAdditions.h"; sourceTree = "<group>"; };
 		6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPNotifications+IPCAdditions.m"; sourceTree = "<group>"; };
-		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
+		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,6 +361,8 @@
 			children = (
 				21D954491009413800DEF58A /* MPPortProcess.h */,
 				21D954461009412F00DEF58A /* MPPortProcess.m */,
+				218DED82101612F1003B5A3B /* SimpleLog.h */,
+				218DED83101612F1003B5A3B /* SimpleLog.m */,
 			);
 			name = MPPortProcess;
 			sourceTree = "<group>";
@@ -433,6 +439,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		218DEE4010162175003B5A3B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				218DEE3E10162157003B5A3B /* SimpleLog.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6ED12AD30E3E9AE10026773D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,6 +486,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21D954481009413000DEF58A /* Build configuration list for PBXNativeTarget "MPPortProcess" */;
 			buildPhases = (
+				218DEE4010162175003B5A3B /* Headers */,
 				21D9543B100940EE00DEF58A /* Sources */,
 				21D9543C100940EE00DEF58A /* Frameworks */,
 			);
@@ -685,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D954471009412F00DEF58A /* MPPortProcess.m in Sources */,
+				218DEE2610162091003B5A3B /* SimpleLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

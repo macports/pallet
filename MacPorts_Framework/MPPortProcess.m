@@ -7,6 +7,7 @@
 //
 
 #import "MPPortProcess.h"
+#import "SimpleLog.h"
 
 @interface MPPortProcess (PrivateMethods)
 
@@ -21,6 +22,10 @@
     PKGPath = pkgPath;
     [self initializeInterpreter];
     return self;
+}
+
+- (oneway void)setDelegate:(byref id)newDelegate {
+    delegate = newDelegate;
 }
 
 - (oneway void)evaluateString:(bycopy id)statement {
@@ -49,8 +54,11 @@
 		NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
 	}
-    // TODO Load notifications methods
-    
+    // Load notifications methods
+    Tcl_CreateObjCommand(interpreter, "simplelog", Notify_Command, NULL, NULL);
+	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {
+		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(interpreter));
+	}
     // Load portProcessInit.tcl
     NSString *portProcessInitPath = @"portProcessInit.tcl";
     if( Tcl_EvalFile(interpreter, [portProcessInitPath UTF8String]) == TCL_ERROR) {
