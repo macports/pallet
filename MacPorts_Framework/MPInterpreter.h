@@ -104,6 +104,10 @@
 
 +(void) setPKGPath:(NSString*)newPath;
 
++(id) delegate;
+
++(void) setDelegate:(id)newDelegate;
+
 
 //Internal methods
 -(BOOL) setOptionsForNewTclPort:(NSArray *)options;

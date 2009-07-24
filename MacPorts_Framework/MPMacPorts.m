@@ -59,6 +59,15 @@
     [MPInterpreter setPKGPath:newPath];
 }
 
++(id) notificationsDelegate {
+	return [MPInterpreter delegate];
+}
+
++(void) setNotificationsDelegate:(id)newDelegate {
+    [MPInterpreter setDelegate:newDelegate];
+}
+
+
 + (MPMacPorts *)sharedInstance {
 	return [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }

@@ -39,6 +39,7 @@
 #include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
 static NSString* PKGPath = @"/Library/Tcl";
+static id delegate;
 
 
 #pragma mark -
@@ -163,6 +164,15 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 //passing the path to macports1.0 package to the helper
 //tool
 static NSString * tclInterpreterPkgPath = nil;
+
++(id) delegate {
+    return delegate;
+}
+
++(void) setDelegate:(id)newDelegate {
+    delegate = newDelegate;
+}
+
 
 +(NSString*) PKGPath {
 	return PKGPath;
@@ -458,22 +468,22 @@ static NSString * tclInterpreterPkgPath = nil;
 	NSString * firstResult;
 	NSString * secondResult;
 	
-	//*mportError = nil;
-   	//firstResult = [self evaluateStringWithMPPortProcess:statement error:mportError];
+	*mportError = nil;
+   	firstResult = [self evaluateStringWithMPPortProcess:statement error:mportError];
 	
 	//Because of string results of methods like mportsync (which returns the empty string)
 	//the only way to truly check for an error is to check the mportError parameter.
 	//If it is nil then there was no error, if not we re-evaluate with privileges using
 	//the helper tool
 	
-	//if ( *mportError != nil) {
+	if ( *mportError != nil) {
 		*mportError = nil; 
 		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
 		
 		return secondResult;
-	//}
+	}
 	
-	//return firstResult;
+	return firstResult;
 }
 
 //NOTE: We expect the Framework client to initialize the AuthorizationRef
@@ -682,7 +692,7 @@ static NSString * tclInterpreterPkgPath = nil;
     } 
     while (theProxy == nil);
     
-    [theProxy evaluateString:statement];
+    [theProxy evaluateString:statement delegate:delegate];
     return nil;
 }
 
