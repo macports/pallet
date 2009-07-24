@@ -22,12 +22,12 @@
 
 /* Begin PBXBuildFile section */
 		218DEE2610162091003B5A3B /* SimpleLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 218DED83101612F1003B5A3B /* SimpleLog.m */; };
-		218DEE3E10162157003B5A3B /* SimpleLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 218DED82101612F1003B5A3B /* SimpleLog.h */; };
 		21D95442100940FF00DEF58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
 		21D954431009411400DEF58A /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		21D954471009412F00DEF58A /* MPPortProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D954461009412F00DEF58A /* MPPortProcess.m */; };
 		21D954721009475200DEF58A /* portProcessInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 21D954711009475200DEF58A /* portProcessInit.tcl */; };
 		21D9548C1009522100DEF58A /* MPPortProcess in Resources */ = {isa = PBXBuildFile; fileRef = 21D9543E100940EE00DEF58A /* MPPortProcess */; };
+		21F6DD701017E38E00FC43DE /* SimpleLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 218DED82101612F1003B5A3B /* SimpleLog.h */; };
 		481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
 		4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -443,7 +443,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				218DEE3E10162157003B5A3B /* SimpleLog.h in Headers */,
+				21F6DD701017E38E00FC43DE /* SimpleLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,7 @@
 package require macports
-package require simplelog #Require My new notifications extension
+package require simplelog
+
+
 
 #Set ui_options to log all messages to stdout and notify system
 #filtering is done on the Obj-C side of things
@@ -77,6 +79,30 @@ proc ui_channels {priority} {
 proc ui_init {priority prefix channels message} {
 	#puts "INSIDE ui_init priority with prefix $prefix and message $message"
 	
+	switch $priority {
+		msg {
+			set nottype "MPMsgNotification" 
+		}
+		debug {
+			set "MPDebugNotification"
+			puts "Recieved Debug"
+		}
+		warn {
+			set nottype "MPWarnNotification"
+		}
+		error {
+			set nottype "MPErrorNotification"
+			puts "Recieved Error"
+		}
+		info {
+			set nottype "MPInfoNotification"
+			puts "Recieved Info"
+		}
+		default {
+			set nottype "MPDefaultNotification"
+		}	
+	}
+	
     # Get the list of channels.
     try {
         set channels [ui_channels $priority]
@@ -106,10 +132,10 @@ proc ui_init {priority prefix channels message} {
 
           proc ::ui_$priority {args} [subst {
             if {\[lindex \$args 0\] == "-nonewline"} {
-              puts $chan "$prefix\[lindex \$args 1\]"
+              #puts $chan "$prefix\[lindex \$args 1\]"
               simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
             } else {
-              puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+              #puts -nonewline $chan "$prefix\[lindex \$args 1\]"
               simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
             }
           }]
@@ -117,10 +143,10 @@ proc ui_init {priority prefix channels message} {
           proc ::ui_$priority {args} [subst {
             foreach chan \$channels {
               if {\[lindex \$args 0\] == "-nonewline"} {
-                puts $chan "$prefix\[lindex \$args 1\]"
+                #puts $chan "$prefix\[lindex \$args 1\]"
                 simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
               } else {
-                puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+                #puts -nonewline $chan "$prefix\[lindex \$args 1\]"
                 simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
               }
             }
@@ -132,11 +158,13 @@ proc ui_init {priority prefix channels message} {
     }
 }
 
+
 #Wrapping the following API routines to catch errors
 #and log error Information in a similar fashion to code
-#in macports.tcl.
-proc mportuninstall {portname {v ""} {optionslist ""}} {
-	if {[catch {portuninstall::uninstall $portname $v $optionslist} result]} {
+#in macports.tcl. Note optionslist is not being used for now
+set mp_empty_list [list]
+proc mportuninstall {portname {v ""} {optionslist ""} } {
+	if {[catch {portuninstall::uninstall $portname $v [array get options]} result]} {
 		
 			global errorInfo
 			ui_debug "$errorInfo"
@@ -145,7 +173,7 @@ proc mportuninstall {portname {v ""} {optionslist ""}} {
 	}
 }
 
-proc mportactivate {portname v optionslist} {
+proc mportactivate {portname {v ""} {optionslist ""}} {
 	if {[catch {portimage::activate $portname $v $optionslist} result]} {
 			
 			global errorInfo
@@ -155,7 +183,7 @@ proc mportactivate {portname v optionslist} {
 	}
 }
 
-proc mportdeactivate {portname v optionslist} {
+proc mportdeactivate {portname {v ""} {optionslist ""} } {
 	if {[catch {portimage::deactivate $portname $v $optionslist} result]} {
 			
 			global errorInfo
@@ -175,7 +203,6 @@ proc mportupgrade {portname} {
 			return 1
 	}
 }
-
 
 # Initialize dport
 # This must be done following parse of global options, as some options are

@@ -15,7 +15,6 @@
 
 @end
 
-
 @implementation MPPortProcess
 
 - (id)initWithPKGPath:(NSString*)pkgPath {
@@ -28,11 +27,13 @@
     delegate = newDelegate;
 }
 
-- (oneway void)evaluateString:(bycopy id)statement {
+- (oneway void)evaluateString:(bycopy id)statement delegate:(byref id)newDelegate {
     // TODO Handle the posible errors and notifications
+    delegate = newDelegate;
     Tcl_Eval(interpreter, [statement UTF8String]);
     exit(0);
 }
+
 
 #pragma mark Private Methods
 
@@ -55,7 +56,7 @@
 		Tcl_DeleteInterp(interpreter);
 	}
     // Load notifications methods
-    Tcl_CreateObjCommand(interpreter, "simplelog", Notify_Command, NULL, NULL);
+    Tcl_CreateObjCommand(interpreter, "simplelog", SimpleLog_Command, NULL, NULL);
 	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {
 		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(interpreter));
 	}
