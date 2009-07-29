@@ -22,5 +22,6 @@
 - (IBAction)upgrade:(id)sender;
 - (IBAction)sync:(id)sender;
 - (IBAction)selfupdate:(id)sender;
+- (IBAction)cancel:(id)sender;
 
 @end

@@ -13,7 +13,6 @@ static MPActionLauncher *sharedActionLauncher = nil;
 #pragma mark Private Methods
 @interface MPActionLauncher (Private)
 
-- (void)loadPorts;
 - (void)subscribeToNotifications;
 
 @end
@@ -33,51 +32,12 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (id)init {
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     if (sharedActionLauncher == nil) {
         ports = [NSMutableArray arrayWithCapacity:1];
         sharedActionLauncher = self;
     }
-
-    // This is the path to the MPActionTool
-    // NSString *toolPath = [bundlePath stringByAppendingPathComponent:@"Contents/MacOS/MPActionTool"];
-    // Launch the MPActionTool
-    // actionTool = [NSTask launchedTaskWithLaunchPath:toolPath arguments:[NSArray arrayWithObject:@""]];
-    
     return sharedActionLauncher;
 }
-
-- (void)loadPortsInBackground {
-    [self performSelectorInBackground:@selector(loadPorts) withObject:nil];
-}
-
-- (void)installPortInBackground:(MPPort *)port {
-    NSError * error;
-    NSArray *empty = [NSArray arrayWithObject: @""];
-    [port installWithOptions:empty variants:empty error:&error];
-}
-
-- (void)uninstallPortInBackground:(MPPort *)port {
-    NSError * error;
-    [port uninstallWithVersion:@"" error:&error];
-}
-
-- (void)upgradePortInBackground:(MPPort *)port {
-    NSError * error;
-    [port upgradeWithError:&error];
-}
-
-- (void)syncInBackground {
-    NSError * error;
-    [[MPMacPorts sharedInstance] sync:&error];
-}
-
-- (void)selfupdateInBackground {
-    NSError * error;
-    [[MPMacPorts sharedInstance] selfUpdate:&error];
-}
-
-#pragma mark Private Methods implementation
 
 - (void)loadPorts {
     [self setIsLoading:YES];
@@ -92,12 +52,48 @@ static MPActionLauncher *sharedActionLauncher = nil;
     [self didChangeValueForKey:@"ports"];
     
     id theProxy = [NSConnection
-                rootProxyForConnectionWithRegisteredName:@"actionTool"
-                host:nil];
+                   rootProxyForConnectionWithRegisteredName:@"actionTool"
+                   host:nil];
     [theProxy loadPKGPath];
     
     [self setIsLoading:NO];
 }
+
+- (void)installPort:(MPPort *)port {
+    NSError * error;
+    NSArray *empty = [NSArray arrayWithObject: @""];
+    [port installWithOptions:empty variants:empty error:&error];
+}
+
+- (void)uninstallPort:(MPPort *)port {
+    NSError * error;
+    [port uninstallWithVersion:@"" error:&error];
+}
+
+- (void)upgradePort:(MPPort *)port {
+    NSError * error;
+    [port upgradeWithError:&error];
+}
+
+- (void)sync {
+    NSError * error;
+    [[MPMacPorts sharedInstance] sync:&error];
+}
+
+- (void)selfupdate {
+    NSError * error;
+    [[MPMacPorts sharedInstance] selfUpdate:&error];
+}
+
+- (void)cancelPortProcess {
+    //  TODO: display confirmation dialog
+    NSTask *task = [[MPInterpreter sharedInterpreter] task];
+    if(task != nil && [task isRunning]) {
+        [task terminate];
+    }
+}
+
+#pragma mark Private Methods implementation
 
 - (void)subscribeToNotifications {
     /*

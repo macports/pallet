@@ -108,6 +108,7 @@
 
 +(void) setDelegate:(id)newDelegate;
 
+-(NSTask*) task;
 
 //Internal methods
 -(BOOL) setOptionsForNewTclPort:(NSArray *)options;

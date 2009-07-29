@@ -24,15 +24,12 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
-		21A5884C0FF5D834003CF725 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
-		21A5895A0FF5E96E003CF725 /* MPActionTool in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21A588140FF5D508003CF725 /* MPActionTool */; };
 		21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
 		21B6A38F0FEDCBD5001DF976 /* TB_Sync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */; };
 		21B6A3910FEDCBD5001DF976 /* TB_Upgrade.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */; };
 		21B6A3940FEDE6CA001DF976 /* TB_Uninstall.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A3930FEDE6CA001DF976 /* TB_Uninstall.icns */; };
 		21E2ADB01002E428003F8885 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E2ADAF1002E428003F8885 /* Preferences.xib */; };
 		21E2ADB71002EAE0003F8885 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E2ADB61002EAE0003F8885 /* PreferencesController.m */; };
-		21E2AEBB1002FC3C003F8885 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21EB8B11100CDD37007371EE /* MPPortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EB8B10100CDD37007371EE /* MPPortTableView.m */; };
 		21F166D80FE329A700542AEE /* MacPorts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
@@ -47,20 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2106329F0FF7CC8100FF0217 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = MacPorts;
-		};
-		21A588E40FF5E09A003CF725 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 21A588130FF5D508003CF725;
-			remoteInfo = MPActionTool;
-		};
 		21D954D81009731100DEF58A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
@@ -119,7 +102,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				21A5895A0FF5E96E003CF725 /* MPActionTool in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +126,6 @@
 		21351FB20FEC67780074ACFE /* MPActionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionsController.m; sourceTree = "<group>"; };
 		214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionLauncher.h; sourceTree = "<group>"; };
 		214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionLauncher.m; sourceTree = "<group>"; wrapsLines = 0; };
-		21A588140FF5D508003CF725 /* MPActionTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPActionTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Install.icns; sourceTree = "<group>"; };
 		21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Sync.icns; sourceTree = "<group>"; };
 		21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Upgrade.icns; sourceTree = "<group>"; };
@@ -172,15 +153,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		21A588120FF5D508003CF725 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				21E2AEBB1002FC3C003F8885 /* MacPorts.framework in Frameworks */,
-				21A5884C0FF5D834003CF725 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* MPGUI.app */,
-				21A588140FF5D508003CF725 /* MPActionTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -321,23 +292,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		21A588130FF5D508003CF725 /* MPActionTool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 21A588190FF5D527003CF725 /* Build configuration list for PBXNativeTarget "MPActionTool" */;
-			buildPhases = (
-				21A588110FF5D508003CF725 /* Sources */,
-				21A588120FF5D508003CF725 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				210632A00FF7CC8100FF0217 /* PBXTargetDependency */,
-			);
-			name = MPActionTool;
-			productName = MPActionTool;
-			productReference = 21A588140FF5D508003CF725 /* MPActionTool */;
-			productType = "com.apple.product-type.tool";
-		};
 		8D1107260486CEB800E47090 /* MPGUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MPGUI" */;
@@ -352,7 +306,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				21A588E50FF5E09A003CF725 /* PBXTargetDependency */,
 				21F165820FE2C17C00542AEE /* PBXTargetDependency */,
 			);
 			name = MPGUI;
@@ -381,7 +334,6 @@
 			targets = (
 				8D1107260486CEB800E47090 /* MPGUI */,
 				21351F530FEC59520074ACFE /* Docs */,
-				21A588130FF5D508003CF725 /* MPActionTool */,
 			);
 		};
 /* End PBXProject section */
@@ -482,13 +434,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		21A588110FF5D508003CF725 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -507,16 +452,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		210632A00FF7CC8100FF0217 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MacPorts;
-			targetProxy = 2106329F0FF7CC8100FF0217 /* PBXContainerItemProxy */;
-		};
-		21A588E50FF5E09A003CF725 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 21A588130FF5D508003CF725 /* MPActionTool */;
-			targetProxy = 21A588E40FF5E09A003CF725 /* PBXContainerItemProxy */;
-		};
 		21F165820FE2C17C00542AEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MacPorts;
@@ -568,74 +503,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PRODUCT_NAME = Docs;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		21A588160FF5D509003CF725 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build/\"";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = MPActionTool;
-			};
-			name = Debug;
-		};
-		21A588170FF5D509003CF725 /* Debug-InstallMacPorts */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build/\"";
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = MPActionTool;
-			};
-			name = "Debug-InstallMacPorts";
-		};
-		21A588180FF5D509003CF725 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = MPActionTool;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -751,16 +618,6 @@
 				21351F540FEC59520074ACFE /* Debug */,
 				21351F550FEC59520074ACFE /* Debug-InstallMacPorts */,
 				21351F560FEC59520074ACFE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		21A588190FF5D527003CF725 /* Build configuration list for PBXNativeTarget "MPActionTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				21A588160FF5D509003CF725 /* Debug */,
-				21A588170FF5D509003CF725 /* Debug-InstallMacPorts */,
-				21A588180FF5D509003CF725 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

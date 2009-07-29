@@ -18,30 +18,39 @@
 - (IBAction)install:(id)sender {
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-        [[MPActionLauncher sharedInstance] installPortInBackground:port];
+        [[MPActionLauncher sharedInstance]
+            performSelectorInBackground:@selector(installPort:) withObject:port];
     }
 }
 
 - (IBAction)uninstall:(id)sender {
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-        [[MPActionLauncher sharedInstance] uninstallPortInBackground:port];
+        [[MPActionLauncher sharedInstance]
+            performSelectorInBackground:@selector(uninstallPort:) withObject:port];
     }
 }
 
 - (IBAction)upgrade:(id)sender {
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-        [[MPActionLauncher sharedInstance] upgradePortInBackground:port];
+        [[MPActionLauncher sharedInstance]
+            performSelectorInBackground:@selector(upgradePort:) withObject:port];
     }
 }
 
 - (IBAction)sync:(id)sender {
-    [[MPActionLauncher sharedInstance] syncInBackground];
+    [[MPActionLauncher sharedInstance]
+        performSelectorInBackground:@selector(sync) withObject:nil];
 }
 
 - (IBAction)selfupdate:(id)sender {
-    [[MPActionLauncher sharedInstance] selfupdateInBackground];
+    [[MPActionLauncher sharedInstance]
+        performSelectorInBackground:@selector(selfupdate) withObject:nil];
+}
+
+- (IBAction)cancel:(id)sender {
+    [[MPActionLauncher sharedInstance] cancelPortProcess];
 }
 
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
@@ -60,7 +69,8 @@
         [self openPreferences:self];
     } else {
         [MPMacPorts setPKGPath:pkgPath];
-        [[MPActionLauncher sharedInstance] loadPortsInBackground];    
+        [[MPActionLauncher sharedInstance]
+                    performSelectorInBackground:@selector(loadPorts) withObject:nil];
     }
 }
 
@@ -69,7 +79,7 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    [[[MPActionLauncher sharedInstance] actionTool] terminate];
+    [[MPActionLauncher sharedInstance] cancelPortProcess];
 }
 
 @end

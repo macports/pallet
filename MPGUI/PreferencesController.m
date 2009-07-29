@@ -22,7 +22,8 @@
         [defaults setObject:path forKey:@"PKGPath"];
         NSLog(@"PATH: %@", path);
         [MPMacPorts setPKGPath:path];
-        [[MPActionLauncher sharedInstance] loadPortsInBackground];
+        [[MPActionLauncher sharedInstance] 
+                    performSelectorInBackground:@selector(loadPorts) withObject:nil];
     }
 }
 

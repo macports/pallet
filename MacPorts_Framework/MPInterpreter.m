@@ -40,7 +40,7 @@
 static AuthorizationRef internalMacPortsAuthRef;
 static NSString* PKGPath = @"/Library/Tcl";
 static id delegate;
-
+static NSTask* aTask;
 
 #pragma mark -
 
@@ -666,15 +666,7 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 - (NSString *) evaluateStringWithMPPortProcess:(NSString *) statement error:(NSError **)mportError {
-/*    NSString *portProcessInitPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"portProcessInit" ofType:@"tcl"];
-    NSString *portProcessPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MPPortProcess" ofType:@""];
-    NSLog(portProcessInitPath);
-    
-    NSArray *args = [NSArray arrayWithObjects:PKGPath,portProcessInitPath];
-    
-    NSTask *portProcess = [NSTask launchedTaskWithLaunchPath:[portProcessPath retain] arguments:[args retain]];
- */
-    NSTask *aTask = [[NSTask alloc] init];
+    aTask = [[NSTask alloc] init];
     NSMutableArray *args = [NSMutableArray array];
     
     /* set arguments */
@@ -696,6 +688,9 @@ static NSString * tclInterpreterPkgPath = nil;
     return nil;
 }
 
+- (NSTask*) task {
+    return aTask;
+}
 
 #pragma mark -
 #pragma mark Authorization Code

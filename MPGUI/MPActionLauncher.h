@@ -15,7 +15,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MacPorts/MacPorts.h>
-#import "PreferencesController.h"
 
 /*!
  @class MPActionLauncher
@@ -23,7 +22,7 @@
  @discussion Contains a shared per thread MacPorts Framework wrapper
 */
 @interface MPActionLauncher : NSObject {
-    NSMutableArray *ports;
+    NSArray *ports;
     NSTask *actionTool;
     NSConnection *connectionToActionTool;
     BOOL isLoading, isBusy;
@@ -32,7 +31,7 @@
  @var ports
  @abstract An array of available MPPorts
 */
-@property (copy) NSMutableArray *ports;
+@property (copy) NSArray *ports;
 
 @property NSTask *actionTool;
 
@@ -52,35 +51,37 @@
 /*!
  @brief Loads the MPPorts array with the available ports current PKGPath in another thread
 */
-- (void)loadPortsInBackground;
+- (void)loadPorts;
 
 /*!
  @brief Installs a single port in another thread
  @param port MPPort that represents the port to install
 */
-- (void)installPortInBackground:(MPPort *)port;
+- (void)installPort:(MPPort *)port;
 
 /*!
  @brief Uninstalls a single port in another thread
  @param port MPPort that represents the port to install
  */
-- (void)uninstallPortInBackground:(MPPort *)port;
+- (void)uninstallPort:(MPPort *)port;
 
 /*!
  @brief Upgrades a single port in another thread
  @param port MPPort that represents the port to upgrade
  */
-- (void)upgradePortInBackground:(MPPort *)port;
+- (void)upgradePort:(MPPort *)port;
 
 
 /*!
  @brief Syncs the MacPorts installation in another thread
  */
-- (void)syncInBackground;
+- (void)sync;
 
 /*!
  @brief Selfupdates the MacPorts installation in another thread
  */
-- (void)selfupdateInBackground;
+- (void)selfupdate;
+
+- (void)cancelPortProcess;
 
 @end
