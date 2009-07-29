@@ -23,13 +23,8 @@
     return self;
 }
 
-- (oneway void)setDelegate:(byref id)newDelegate {
-    delegate = newDelegate;
-}
-
-- (oneway void)evaluateString:(bycopy id)statement delegate:(byref id)newDelegate {
+- (oneway void)evaluateString:(bycopy id)statement {
     // TODO Handle the posible errors and notifications
-    delegate = newDelegate;
     Tcl_Eval(interpreter, [statement UTF8String]);
     exit(0);
 }

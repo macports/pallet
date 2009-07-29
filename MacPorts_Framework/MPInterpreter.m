@@ -165,15 +165,6 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 //tool
 static NSString * tclInterpreterPkgPath = nil;
 
-+(id) delegate {
-    return delegate;
-}
-
-+(void) setDelegate:(id)newDelegate {
-    delegate = newDelegate;
-}
-
-
 +(NSString*) PKGPath {
 	return PKGPath;
 }
@@ -470,7 +461,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	*mportError = nil;
    	firstResult = [self evaluateStringWithMPPortProcess:statement error:mportError];
-	
+    
 	//Because of string results of methods like mportsync (which returns the empty string)
 	//the only way to truly check for an error is to check the mportError parameter.
 	//If it is nil then there was no error, if not we re-evaluate with privileges using
@@ -684,11 +675,12 @@ static NSString * tclInterpreterPkgPath = nil;
     } 
     while (theProxy == nil);
     
-    [theProxy evaluateString:statement delegate:delegate];
+    [theProxy evaluateString:statement];
+    [aTask waitUntilExit];
     return nil;
 }
 
-- (NSTask*) task {
++ (NSTask*) task {
     return aTask;
 }
 

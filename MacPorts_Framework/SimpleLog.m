@@ -11,18 +11,14 @@
 
 #define MPSEPARATOR @"_&MP&_"
 
-@interface NSObject (SimpleLogDelegate) 
--(void)processDidBeginRunning;
--(void)processDidEndRunning;
-@end
-
 int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, Tcl_Obj *CONST objv[]){
     int returnCode = TCL_OK;
     
     NSArray *msgType = [[NSString stringWithUTF8String:Tcl_GetString(*(++objv))] componentsSeparatedByString:@" "];
     NSString *msg = [NSString stringWithUTF8String:Tcl_GetString(*(++objv))];
     
-    [delegate doSomething];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MPMsgNotification" object:msg];
+    //[[NSDistributedNotificationCenter defaultCenter] postNotificationName: object:msg];
     
     NSLog(@"%@ : %@",[msgType objectAtIndex:0], msg);
     

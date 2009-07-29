@@ -64,7 +64,6 @@
     [tableController hidePredicateEditor:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *pkgPath = [defaults objectForKey:@"PKGPath"];
-    
     if (pkgPath == nil) {
         [self openPreferences:self];
     } else {

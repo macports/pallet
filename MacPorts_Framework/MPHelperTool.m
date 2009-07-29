@@ -53,7 +53,6 @@
 #include <signal.h>
 
 
-
 //According to the docs all I need is
 //the file descriptor that MPNotifications
 //obtained when creating the server socket

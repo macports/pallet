@@ -9,6 +9,4 @@
 
 #include <tcl.h>
 
-id delegate;
-
 int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, Tcl_Obj *CONST objv[]);
