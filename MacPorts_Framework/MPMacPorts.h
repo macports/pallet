@@ -80,10 +80,6 @@
 
 + (void) setPKGPath:(NSString*)newPath;
 
-+ (id) notificationsDelegate;
-
-+ (void) setNotificationsDelegate:(id)newDelegate;
-
 /*!
  @brief Returns an MPMacPorts object that represents the MacPorts system on user's machine.
  */

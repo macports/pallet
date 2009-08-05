@@ -53,10 +53,10 @@
     [[MPActionLauncher sharedInstance] cancelPortProcess];
 }
 
--(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
-    BOOL enable = ![[MPActionLauncher sharedInstance] isBusy];
-    return enable;
-}
+//-(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
+//    BOOL enable = ![[MPActionLauncher sharedInstance] isBusy];
+//    return enable;
+//}
 
 #pragma mark App Delegate
 

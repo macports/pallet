@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
 		219DC2E41027BF660065C8DF /* MacPorts.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
@@ -114,6 +115,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2105F5071028ACBA00A28D1A /* ActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityController.h; sourceTree = "<group>"; };
+		2105F5081028ACBA00A28D1A /* ActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityController.m; sourceTree = "<group>"; };
 		21351FB10FEC67780074ACFE /* MPActionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionsController.h; sourceTree = "<group>"; };
 		21351FB20FEC67780074ACFE /* MPActionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionsController.m; sourceTree = "<group>"; };
 		214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionLauncher.h; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				21351FB20FEC67780074ACFE /* MPActionsController.m */,
 				21E2ADB51002EAE0003F8885 /* PreferencesController.h */,
 				21E2ADB61002EAE0003F8885 /* PreferencesController.m */,
+				2105F5071028ACBA00A28D1A /* ActivityController.h */,
+				2105F5081028ACBA00A28D1A /* ActivityController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */,
 				21E2ADB71002EAE0003F8885 /* PreferencesController.m in Sources */,
 				21EB8B11100CDD37007371EE /* MPPortTableView.m in Sources */,
+				2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

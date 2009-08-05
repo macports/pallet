@@ -17,10 +17,10 @@ int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, 
     NSArray *msgType = [[NSString stringWithUTF8String:Tcl_GetString(*(++objv))] componentsSeparatedByString:@" "];
     NSString *msg = [NSString stringWithUTF8String:Tcl_GetString(*(++objv))];
     
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MPMsgNotification" object:msg];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:[msgType objectAtIndex:0] object:msg];
     //[[NSDistributedNotificationCenter defaultCenter] postNotificationName: object:msg];
     
-    NSLog(@"%@ : %@",[msgType objectAtIndex:0], msg);
+    //NSLog(@"%@ : %@",[msgType objectAtIndex:0], msg);
     
 	return returnCode;
 }

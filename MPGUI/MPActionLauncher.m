@@ -10,17 +10,10 @@
 
 static MPActionLauncher *sharedActionLauncher = nil;
 
-#pragma mark Private Methods
-@interface MPActionLauncher (Private)
-
-- (void)subscribeToNotifications;
-
-@end
-
 #pragma mark Implementation
 @implementation MPActionLauncher
 
-@synthesize ports, isLoading, isBusy, actionTool;
+@synthesize ports, isLoading, actionTool;
 
 + (MPActionLauncher*) sharedInstance {
     
@@ -32,7 +25,6 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (id)init {
-    [self subscribeToNotifications];
     if (sharedActionLauncher == nil) {
         ports = [NSMutableArray arrayWithCapacity:1];
         sharedActionLauncher = self;
@@ -51,11 +43,6 @@ static MPActionLauncher *sharedActionLauncher = nil;
     }
     ports = [allPorts allValues];
     [self didChangeValueForKey:@"ports"];
-    
-    id theProxy = [NSConnection
-                   rootProxyForConnectionWithRegisteredName:@"actionTool"
-                   host:nil];
-    [theProxy loadPKGPath];
     
     [self setIsLoading:NO];
 }
@@ -88,40 +75,11 @@ static MPActionLauncher *sharedActionLauncher = nil;
 
 - (void)cancelPortProcess {
     //  TODO: display confirmation dialog
+    //        send a "Shutting down" notification
     NSTask *task = [MPInterpreter task];
     if(task != nil && [task isRunning]) {
         [task terminate];
     }
-}
-
-#pragma mark Private Methods implementation
-
-- (void)subscribeToNotifications {
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector()
-//                                                 name:MPINFO object:nil];
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector()
-//												 name:MPERROR object:nil];
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector()
-//												 name:MPWARN object:nil];
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector()
-//												 name:MPDEBUG object:nil];
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector()
-//												 name:MPDEFAULT object:nil];
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(gotMPMSG:)
-                                                 name:MPMSG object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(gotMPMSG:)
-                                                 name:MPMSG object:nil];
-}
-
-- (void)gotMPMSG:(NSNotification *)notification {
-    NSLog(@"GOT MPMSG NOTIFICATION");
 }
 
 @end

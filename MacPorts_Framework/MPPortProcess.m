@@ -25,7 +25,11 @@
 
 - (oneway void)evaluateString:(bycopy id)statement {
     // TODO Handle the posible errors and notifications
+    [[NSDistributedNotificationCenter defaultCenter] 
+        postNotificationName:@"MPInfoNotification" object:@"Starting up"];
     Tcl_Eval(interpreter, [statement UTF8String]);
+    [[NSDistributedNotificationCenter defaultCenter] 
+     postNotificationName:@"MPInfoNotification" object:@"Shutting down"];
     exit(0);
 }
 

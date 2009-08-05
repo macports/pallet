@@ -25,7 +25,7 @@
     NSArray *ports;
     NSTask *actionTool;
     NSConnection *connectionToActionTool;
-    BOOL isLoading, isBusy;
+    BOOL isLoading;
 }
 /*! 
  @var ports
@@ -40,8 +40,6 @@
  @abstract Tells whether the instance is loading the ports array or not
 */
 @property BOOL isLoading;
-
-@property BOOL isBusy;
 
 /*!
  @brief Return singleton shared MPActionLauncher instance

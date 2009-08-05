@@ -39,7 +39,6 @@
 #include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
 static NSString* PKGPath = @"/Library/Tcl";
-static id delegate;
 static NSTask* aTask;
 
 #pragma mark -
