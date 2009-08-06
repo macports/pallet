@@ -9,11 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "MPActionLauncher.h"
 #import "PortsTableController.h"
+#import "ActivityController.h"
 
 
 @interface MPActionsController : NSObject {
     IBOutlet NSArrayController *ports;
     IBOutlet PortsTableController *tableController;
+    IBOutlet ActivityController *activityController;
+    
+    IBOutlet NSToolbarItem *cancel;
 }
 
 - (IBAction)openPreferences:(id)sender;

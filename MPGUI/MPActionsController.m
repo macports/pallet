@@ -50,13 +50,17 @@
 }
 
 - (IBAction)cancel:(id)sender {
+    [activityController setBusy:NO]; // TODO: Should I set this with a notification?
     [[MPActionLauncher sharedInstance] cancelPortProcess];
 }
 
-//-(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
-//    BOOL enable = ![[MPActionLauncher sharedInstance] isBusy];
-//    return enable;
-//}
+-(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
+    BOOL enable = ![activityController busy];
+    if ([[toolbarItem itemIdentifier] isEqual:[cancel itemIdentifier]]) {
+        enable = !enable;
+    } 
+    return enable;
+}
 
 #pragma mark App Delegate
 
