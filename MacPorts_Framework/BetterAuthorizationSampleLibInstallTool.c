@@ -395,6 +395,24 @@ static int EnableCommand(
 	return err;
 }
 
+static int TerminateCommand(
+    const char					*bundleID
+)
+// Utility function to call through to RunLaunchCtl in order to terminate a job
+// given by the path contructed from the (const char *) bundleID.
+{
+	int		err;
+	char	plistPath[PATH_MAX];
+	
+	// Pre-condition.
+	assert(bundleID != NULL);
+	
+	(void) snprintf(plistPath, sizeof(plistPath), kBASPlistPathFormat, bundleID);
+	err = RunLaunchCtl(false, "unload", plistPath);
+    
+	return err;
+}
+
 int main(int argc, char **argv)
 {
 	int err;
@@ -453,10 +471,17 @@ int main(int argc, char **argv)
 				fprintf(stderr, "usage4\n");
 				err = EINVAL;
 			}
-		} else {
-			fprintf(stderr, "usage2\n");
-			err = EINVAL;
-		}
+		} else if (strcmp(argv[1], kBASInstallToolTerminateCommand) == 0) {
+            if (argc == 3) {
+				err = TerminateCommand(argv[2]);
+			} else {
+				fprintf(stderr, "usage4\n");
+				err = EINVAL;
+			}
+        } else {
+            fprintf(stderr, "usage2\n");
+            err = EINVAL;
+        }
 	}
 
 	// Write "oK" to stdout and quit.  The presence of the "oK" on the last 

@@ -2460,3 +2460,23 @@ extern OSStatus BASFixFailure(
 
     return retval;
 }
+
+extern void BASTerminateCommand (
+                           AuthorizationRef			auth, 
+                           const char *				bundleID, 
+                           const char *             installToolPath
+)
+// Terminate the HelperTool.
+{
+    // Pre-conditions
+    
+    assert(auth != NULL);
+    assert(bundleID != NULL);
+    assert(installToolPath != NULL);
+    
+    // Run the install tool as root using AuthorizationExecuteWithPrivileges.   
+    RunInstallToolAsRoot(auth, installToolPath, kBASInstallToolTerminateCommand, bundleID, NULL);
+    
+    return;
+}
+
