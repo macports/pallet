@@ -51,7 +51,7 @@
 
 - (IBAction)cancel:(id)sender {
     [activityController setBusy:NO]; // TODO: Should I set this with a notification?
-    [[MPActionLauncher sharedInstance] cancelPortProcess];
+    [[MPMacPorts sharedInstance] cancelCurrentCommand];
 }
 
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
@@ -59,7 +59,7 @@
     if ([[toolbarItem itemIdentifier] isEqual:[cancel itemIdentifier]]) {
         enable = !enable;
     } 
-    return enable;
+    return YES;
 }
 
 #pragma mark App Delegate

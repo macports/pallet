@@ -77,7 +77,7 @@
 
 enum {
     kIdleTimeoutInSeconds     = 120,        // if we get no requests in 2 minutes, we quit
-    kWatchdogTimeoutInSeconds = 65          // any given request must be completely in 65 seconds
+    kWatchdogTimeoutInSeconds = 500000      // any given request must be completed in ~5 days (is this ok?)
 };
 
 // IMPORTANT:

@@ -221,6 +221,7 @@
  */
 -(BOOL) authorizationMode;
 
+- (void) cancelCurrentCommand;
 
 //Notifications stuff for private use and testing purposes
 -(void)registerForLocalNotifications;

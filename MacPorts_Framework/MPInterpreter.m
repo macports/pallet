@@ -34,6 +34,7 @@
  */
 
 #import "MPInterpreter.h"
+#import "MPMacPorts.h"
 #include "BetterAuthorizationSampleLib.h"
 #include "MPHelperCommon.h"
 #include "MPHelperNotificationsProtocol.h"
@@ -455,25 +456,18 @@ static NSString * tclInterpreterPkgPath = nil;
 - (NSString *)evaluateStringWithPossiblePrivileges:(NSString *)statement error:(NSError **)mportError {
 	//N.B. I am going to insist that funciton users not pass in nil for the
 	//mportError parameter
-	NSString * firstResult;
-	NSString * secondResult;
+	NSString * result;
 	
-	*mportError = nil;
-   	firstResult = [self evaluateStringWithMPPortProcess:statement error:mportError];
-    
-	//Because of string results of methods like mportsync (which returns the empty string)
-	//the only way to truly check for an error is to check the mportError parameter.
-	//If it is nil then there was no error, if not we re-evaluate with privileges using
-	//the helper tool
+    // Is this the best way to know if the running user can use macports without privileges?
+    if ([[NSFileManager defaultManager] isWritableFileAtPath:PKGPath]) {
+        [[MPMacPorts sharedInstance] setAuthorizationMode:NO];
+        result = [self evaluateStringWithMPPortProcess:statement error:mportError];
+    } else {
+        [[MPMacPorts sharedInstance] setAuthorizationMode:YES];
+        result = [self evaluateStringWithMPHelperTool:statement error:mportError];
+    }
 	
-	if ( *mportError != nil) {
-		*mportError = nil; 
-		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
-		
-		return secondResult;
-	}
-	
-	return firstResult;
+	return result;
 }
 
 //NOTE: We expect the Framework client to initialize the AuthorizationRef
@@ -595,38 +589,10 @@ static NSString * tclInterpreterPkgPath = nil;
 		//Making the following assumption in error handling. If we return
 		//a noErr then response dictionary cannot be nil since everything went ok. 
 		//Hence I'm only checking for errors WITHIN the following blocks ...
-		if (err == noErr) {
-			err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
-												kMPHelperCommandSet, 
-												(CFStringRef) bundleID, 
-												(CFDictionaryRef) request, 
-												&response);
-			if (err == noErr){// retrieve result here if available
-				if( response != NULL)
-					result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
-			}
-			else { //If we executed unsuccessfully
-				if (mportError != NULL) {
-					NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
-																	 code:err 
-																 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																		   NSLocalizedString(@"Check error code for OSStatus returned",@""), 
-																		   NSLocalizedDescriptionKey,
-																		   nil]] autorelease];
-					
-					*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
-															  code:MPHELPINSTFAILED 
-														  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																	NSLocalizedString(@"Unable to execute MPHelperTool successfuly", @""), 
-																	NSLocalizedDescriptionKey,
-																	undError, NSUnderlyingErrorKey,
-																	NSLocalizedString(@"BASExecuteRequestInHelperTool execution failed", @""),
-																	NSLocalizedFailureReasonErrorKey,
-																	nil]] autorelease];
-				}
-			}
-		}
-		else {//This means FixFaliure failed ... Report that in returned error
+        //
+        // NOTE: We don't automatically retry as the user wants to have a consistent cancel 
+        //      action (i.e. terminate the process when he wants to)
+		if (err != noErr) {//This means FixFaliure failed ... Report that in returned error
 			if (mportError != NULL) {
 				//I'm not sure of exactly how to report this error ... 
 				//Do we need some error codes for our domain? I'll define one
@@ -676,6 +642,14 @@ static NSString * tclInterpreterPkgPath = nil;
     
     [theProxy evaluateString:statement];
     [aTask waitUntilExit];
+    
+    int status = [aTask terminationStatus];
+    
+    if (status == TCL_OK) {
+        NSLog(@"Task succeeded.");
+    } else {
+        NSLog(@"Task failed.%i", status);
+    }
     
     return nil;
 }

@@ -60,8 +60,14 @@
 }
 
 - (void) cancelCurrentCommand {
-    //[[MPNotifications sharedListener] cancel];
-    [MPInterpreter terminateMPHelperTool];
+    if (authorizationMode) {
+        [MPInterpreter terminateMPHelperTool];
+    } else {
+        NSTask *task = [MPInterpreter task];
+        if(task != nil && [task isRunning]) {
+            [task terminate];
+        }
+    }
 }
 
 + (MPMacPorts *)sharedInstance {
