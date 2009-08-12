@@ -59,6 +59,11 @@
     [MPInterpreter setPKGPath:newPath];
 }
 
+- (void) cancelCurrentCommand {
+    //[[MPNotifications sharedListener] cancel];
+    [MPInterpreter terminateMPHelperTool];
+}
+
 + (MPMacPorts *)sharedInstance {
 	return [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }

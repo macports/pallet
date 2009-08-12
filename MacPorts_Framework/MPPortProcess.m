@@ -25,12 +25,20 @@
 
 - (oneway void)evaluateString:(bycopy id)statement {
     // TODO Handle the posible errors and notifications
-    [[NSDistributedNotificationCenter defaultCenter] 
-        postNotificationName:@"MPInfoNotification" object:@"Starting up"];
-    Tcl_Eval(interpreter, [statement UTF8String]);
-    [[NSDistributedNotificationCenter defaultCenter] 
-     postNotificationName:@"MPInfoNotification" object:@"Shutting down"];
-    exit(0);
+    int retCode = Tcl_Eval(interpreter, [statement UTF8String]);
+//   	OSStatus retval = noErr;
+//	if(  retCode == TCL_ERROR ) {
+//		//Do some error handling
+//		retval = coreFoundationUnknownErr;
+//	}
+//	else {
+//		retval = noErr;
+//	}
+//    NSLog(@"%i", retCode);
+    const char *result = Tcl_GetStringResult(interpreter);
+    NSLog(@"- %s - %i", result, retCode);
+    
+    exit(retCode);
 }
 
 

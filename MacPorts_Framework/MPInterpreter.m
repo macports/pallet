@@ -676,11 +676,36 @@ static NSString * tclInterpreterPkgPath = nil;
     
     [theProxy evaluateString:statement];
     [aTask waitUntilExit];
+    
     return nil;
 }
 
 + (NSTask*) task {
     return aTask;
+}
+
++ (void) terminateMPHelperTool {
+    NSString *      bundleID;
+
+    //In order to make the framework work normally by default ... we do a bare initialization
+    //of internalMacPortsAuthRef if the delegate hasn't iniitialzed it already
+    if (internalMacPortsAuthRef == NULL) {
+        OSStatus res = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &internalMacPortsAuthRef);
+        assert(res == noErr);
+    }
+
+    NSBundle * mpBundle = [NSBundle bundleForClass:[self class]];
+    NSString * installToolPath = [mpBundle pathForResource:@"MPHelperInstallTool" ofType:nil];
+    bundleID = [mpBundle bundleIdentifier];
+
+    BASSetDefaultRules(internalMacPortsAuthRef, 
+                        kMPHelperCommandSet, 
+                        (CFStringRef) bundleID, 
+                        NULL);
+    BASTerminateCommand(internalMacPortsAuthRef, 
+                        [bundleID UTF8String], 
+                        [installToolPath UTF8String]);
+    return;
 }
 
 #pragma mark -

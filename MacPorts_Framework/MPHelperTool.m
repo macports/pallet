@@ -821,12 +821,6 @@ int SimpleLog_Command
 /////////////////////////////////////////////////////////////////
 #pragma mark ***** Tool Infrastructure
 
-/*
- IMPORTANT
- ---------
- This array must be exactly parallel to the kMPHelperCommandSet array 
- in "MPHelperCommon.c".
- */
 
 static OSStatus DoEvaluateTclString 
 (
@@ -983,6 +977,12 @@ static OSStatus DoEvaluateTclString
 }
 
 
+/*
+ IMPORTANT
+ ---------
+ This array must be exactly parallel to the kMPHelperCommandSet array 
+ in "MPHelperCommon.c".
+ */
 static const BASCommandProc kMPHelperCommandProcs[] = {
 DoEvaluateTclString,	
 NULL

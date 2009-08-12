@@ -104,6 +104,8 @@
 
 +(void) setPKGPath:(NSString*)newPath;
 
++(void) terminateMPHelperTool;
+
 +(NSTask*) task;
 
 //Internal methods
