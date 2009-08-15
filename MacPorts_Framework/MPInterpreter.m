@@ -458,15 +458,19 @@ static NSString * tclInterpreterPkgPath = nil;
 	//mportError parameter
 	NSString * result;
 	
+    [[MPNotifications sharedListener] 
+     sendIPCNotification:@"MPInfoNotification_&MP&_stdout_&MP&_None_&MP&_Starting up"];
+    
     // Is this the best way to know if the running user can use macports without privileges?
     if ([[NSFileManager defaultManager] isWritableFileAtPath:PKGPath]) {
-        [[MPMacPorts sharedInstance] setAuthorizationMode:NO];
         result = [self evaluateStringWithMPPortProcess:statement error:mportError];
     } else {
-        [[MPMacPorts sharedInstance] setAuthorizationMode:YES];
         result = [self evaluateStringWithMPHelperTool:statement error:mportError];
     }
-	
+
+    [[MPNotifications sharedListener] 
+     sendIPCNotification:@"MPInfoNotification_&MP&_stdout_&MP&_None_&MP&_Shutting down"];
+    
 	return result;
 }
 
@@ -632,6 +636,20 @@ static NSString * tclInterpreterPkgPath = nil;
     [aTask setArguments:args];
     [aTask launch];
     
+    NSConnection *notificationsConnection = [NSConnection defaultConnection];
+    // Vending MPNotifications sharedListener
+    [notificationsConnection setRootObject:[MPNotifications sharedListener]];
+    
+    // Register the named connection
+    if ( [notificationsConnection registerName:@"MPNotifications"] ) {
+        NSLog( @"Successfully registered connection with port %@", 
+              [[notificationsConnection receivePort] description] );
+    } else {
+        NSLog( @"Name used by %@", 
+              [[[NSPortNameServer systemDefaultPortNameServer] portForName:@"MPNotifications"] description] );
+    }
+    
+    
     id theProxy;
     do {
         theProxy = [NSConnection
@@ -645,11 +663,10 @@ static NSString * tclInterpreterPkgPath = nil;
     
     int status = [aTask terminationStatus];
     
-    if (status == TCL_OK) {
-        NSLog(@"Task succeeded.");
-    } else {
-        NSLog(@"Task failed.%i", status);
+    if (status != TCL_OK) {
+        NSLog(@"Task failed. Code: %i", status);
     }
+    [[notificationsConnection receivePort] invalidate];
     
     return nil;
 }

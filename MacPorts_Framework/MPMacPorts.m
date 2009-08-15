@@ -60,13 +60,15 @@
 }
 
 - (void) cancelCurrentCommand {
-    if (authorizationMode) {
-        [MPInterpreter terminateMPHelperTool];
-    } else {
+    if ([[NSFileManager defaultManager] isWritableFileAtPath:[MPInterpreter PKGPath]]) {
+        NSLog(@"Terminating MPPortProcess");
         NSTask *task = [MPInterpreter task];
         if(task != nil && [task isRunning]) {
             [task terminate];
         }
+    } else {
+        NSLog(@"Terminating MPHelperTool");
+        [MPInterpreter terminateMPHelperTool];
     }
 }
 
