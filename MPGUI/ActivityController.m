@@ -14,6 +14,7 @@
 @synthesize busy;
 
 - (void)awakeFromNib {
+    [self setBusy:NO];
     [self subscribeToNotifications];
 }
 
@@ -34,24 +35,20 @@
     //											 selector:@selector()
     //												 name:MPDEFAULT object:nil];
     // This is for MPPortProcess
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(gotMPMSG:)
-                                                            name:MPMSG object:nil];
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(gotMPDEFAULT:)
-                                                            name:MPDEFAULT object:nil];
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(gotMPINFO:)
-                                                            name:MPINFO object:nil];
-    // This is for MPHelperTool (privileged operations)
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gotMPMSG:)
                                                  name:MPMSG object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gotMPDEFAULT:)
+                                                 name:MPDEFAULT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gotMPINFO:)
+                                                 name:MPINFO object:nil];
 }
 
 - (void)gotMPINFO:(NSNotification *)notification {
-    NSString *msg = [notification object];
-    // NSLog(@"GOT MPINFO NOTIFICATION: %@", msg);
+    NSString *msg = [[notification userInfo] objectForKey:MPMESSAGE];
+    NSLog(@"GOT MPINFO NOTIFICATION: %@", msg);
     if ([msg isEqual:@"Starting up"]) {
         [self setBusy:YES];
         return;
@@ -64,12 +61,12 @@
 }
 
 - (void)gotMPMSG:(NSNotification *)notification {
-    NSString *msg = [notification object];
+    NSString *msg = [[notification userInfo] objectForKey:MPMESSAGE];
     NSLog(@"GOT MPMSG NOTIFICATION: %@", msg);
 }
 
 - (void)gotMPDEFAULT:(NSNotification *)notification {
-    NSString *msg = [notification object];
+    NSString *msg = [[notification userInfo] objectForKey:MPMESSAGE];
     NSLog(@"GOT MPDEFAULT NOTIFICATION: %@", msg);
 }
 

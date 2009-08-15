@@ -50,16 +50,17 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [activityController setBusy:NO]; // TODO: Should I set this with a notification?
     [[MPMacPorts sharedInstance] cancelCurrentCommand];
 }
 
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
     BOOL enable = ![activityController busy];
     if ([[toolbarItem itemIdentifier] isEqual:[cancel itemIdentifier]]) {
-        enable = !enable;
-    } 
-    return YES;
+        // Cancel button is enabled when busy
+        return !enable;
+    }
+    
+    return enable;
 }
 
 #pragma mark App Delegate
