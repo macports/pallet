@@ -11,6 +11,7 @@
 
 
 @interface ActivityController : NSObject {
+    IBOutlet NSTextField *currentTask;
     IBOutlet NSTableView *operations;
     IBOutlet NSProgressIndicator *progress;
     BOOL busy;

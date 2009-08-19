@@ -25,6 +25,8 @@
 		2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
+		2172B850103923FF0006138C /* TB_Cancel.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2172B84E103923FF0006138C /* TB_Cancel.icns */; };
+		2172B851103923FF0006138C /* TB_Selfupdate.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2172B84F103923FF0006138C /* TB_Selfupdate.icns */; };
 		219DC2E41027BF660065C8DF /* MacPorts.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
 		21B6A38F0FEDCBD5001DF976 /* TB_Sync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */; };
@@ -121,6 +123,8 @@
 		21351FB20FEC67780074ACFE /* MPActionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionsController.m; sourceTree = "<group>"; };
 		214BAFE20FE7164200BD1B46 /* MPActionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionLauncher.h; sourceTree = "<group>"; };
 		214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionLauncher.m; sourceTree = "<group>"; wrapsLines = 0; };
+		2172B84E103923FF0006138C /* TB_Cancel.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Cancel.icns; sourceTree = "<group>"; };
+		2172B84F103923FF0006138C /* TB_Selfupdate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Selfupdate.icns; sourceTree = "<group>"; };
 		21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Install.icns; sourceTree = "<group>"; };
 		21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Sync.icns; sourceTree = "<group>"; };
 		21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Upgrade.icns; sourceTree = "<group>"; };
@@ -263,6 +267,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2172B84E103923FF0006138C /* TB_Cancel.icns */,
+				2172B84F103923FF0006138C /* TB_Selfupdate.icns */,
 				21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */,
 				21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */,
 				21B6A3930FEDE6CA001DF976 /* TB_Uninstall.icns */,
@@ -394,6 +400,8 @@
 				21B6A3910FEDCBD5001DF976 /* TB_Upgrade.icns in Resources */,
 				21B6A3940FEDE6CA001DF976 /* TB_Uninstall.icns in Resources */,
 				21E2ADB01002E428003F8885 /* Preferences.xib in Resources */,
+				2172B850103923FF0006138C /* TB_Cancel.icns in Resources */,
+				2172B851103923FF0006138C /* TB_Selfupdate.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

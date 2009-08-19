@@ -50,11 +50,13 @@
     NSString *msg = [[notification userInfo] objectForKey:MPMESSAGE];
     NSLog(@"GOT MPINFO NOTIFICATION: %@", msg);
     if ([msg isEqual:@"Starting up"]) {
+        [currentTask setStringValue:[[notification userInfo] objectForKey:MPMETHOD]];
         [self setBusy:YES];
         return;
     }
     
     if ([msg isEqual:@"Shutting down"]) {
+        [currentTask setStringValue:@"" ];
         [self setBusy:NO];
         return;
     }

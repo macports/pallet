@@ -83,7 +83,10 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    [[MPActionLauncher sharedInstance] cancelPortProcess];
+    // I should check if it is running also 
+    if (![[NSFileManager defaultManager] isWritableFileAtPath:[MPMacPorts PKGPath]]) {
+        [[MPActionLauncher sharedInstance] cancelPortProcess];
+    }
 }
 
 @end
