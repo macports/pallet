@@ -766,7 +766,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{335, 301}, {773, 449}}</string>
 				<int key="NSWTFlags">1946157056</int>
-				<string key="NSWindowTitle">MPGUI</string>
+				<string key="NSWindowTitle">Pallet</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSToolbar" key="NSViewClass" id="978062640">
 					<object class="NSMutableString" key="NSToolbarIdentifier">
@@ -2059,7 +2059,7 @@
 																				<reference ref="385089462"/>
 																			</object>
 																		</object>
-																		<object class="NSMutableDictionary" id="277413920">
+																		<object class="NSMutableDictionary" id="193271997">
 																			<bool key="EncodedWithXMLCoder">YES</bool>
 																			<object class="NSMutableArray" key="dict.sortedKeys">
 																				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2185,7 +2185,7 @@
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<reference ref="375100135"/>
 																					<reference ref="1016684085"/>
-																					<reference ref="277413920"/>
+																					<reference ref="193271997"/>
 																				</object>
 																				<object class="NSMutableArray">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -6061,7 +6061,7 @@
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../MPGUI.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../Pallet.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>
