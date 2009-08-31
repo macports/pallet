@@ -82,7 +82,7 @@ proc ui_init {priority prefix channels message} {
 			set nottype "MPMsgNotification" 
 		}
 		debug {
-			set "MPDebugNotification"
+			set nottype "MPDebugNotification"
 			puts "Recieved Debug"
 		}
 		warn {
