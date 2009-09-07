@@ -230,7 +230,13 @@
 		  procedure, [self name], v, opts]
 													error:execError];		
 	}
-	
+    // I must get the new state of the port from the registry
+	// instead of just [self setState:MPPortStateLearnState];
+    //NSArray *receipts  = [[[MPRegistry sharedRegistry] installed:[self name]] objectForKey:[self name]];
+    //[self setStateFromReceipts:receipts];
+    [self removeObjectForKey:@"receipts"];
+    [self setState:MPPortStateLearnState];
+    
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
 }
@@ -260,23 +266,14 @@
 	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
 	
-	if ([parentMacPortsInstance authorizationMode]) {
-		[interpreter evaluateStringWithMPHelperTool:
-		 [NSString stringWithFormat:
-		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-		  [self valueForKey:@"porturl"], opts, vrnts, target]
-												error:execError];
-	}
-	else {
-		[interpreter evaluateStringWithPossiblePrivileges:
-		 [NSString stringWithFormat:
-		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-		  [self valueForKey:@"porturl"], opts, vrnts, target]
-													error:execError];
-	}
+    [interpreter evaluateStringWithPossiblePrivileges:
+        [NSString stringWithFormat:
+            @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+            [self valueForKey:@"porturl"], opts, vrnts, target]
+        error:execError];
 	
 	
-	
+	[self setState:MPPortStateLearnState];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:target withStatus:@"Finished"];
 	
@@ -414,7 +411,12 @@
 
 - (id)objectForKey:(id)aKey {
 	if ([aKey isEqualToString:@"receipts"] && ![super objectForKey:aKey]) {
-		[self setObject:[[[MPRegistry sharedRegistry] installed:[self objectForKey:@"name"]] objectForKey:[self objectForKey:@"name"]]forKey:aKey];
+        NSArray *receipts = [[[MPRegistry sharedRegistry] installed:[self objectForKey:@"name"]] objectForKey:[self objectForKey:@"name"]];
+        if (receipts == nil) {
+            return nil;
+        } else {
+            [self setObject:receipts forKey:aKey];
+        }
 	}
 	return [super objectForKey:aKey];
 }
@@ -460,7 +462,7 @@
 }
 
 - (void)setStateFromReceipts:(NSArray *)receipts {
-	[self setObject:receipts forKey:@"receipts"];
+    [self setObject:receipts forKey:@"receipts"];
 	[self setState:MPPortStateLearnState];
 }
 
