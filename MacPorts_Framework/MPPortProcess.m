@@ -26,17 +26,15 @@
 - (oneway void)evaluateString:(bycopy id)statement {
     // TODO Handle the posible errors and notifications
     int retCode = Tcl_Eval(interpreter, [statement UTF8String]);
-//   	OSStatus retval = noErr;
-//	if(  retCode == TCL_ERROR ) {
-//		//Do some error handling
-//		retval = coreFoundationUnknownErr;
-//	}
-//	else {
-//		retval = noErr;
-//	}
-//    NSLog(@"%i", retCode);
-    const char *result = Tcl_GetStringResult(interpreter);
-    NSLog(@"- %s - %i", result, retCode);
+    if (retCode != TCL_OK) {
+        Tcl_Obj * interpObj = Tcl_GetObjResult(interpreter);
+        int length, errCode;
+        NSString * errString = [NSString stringWithUTF8String:Tcl_GetStringFromObj(interpObj, &length)];
+        errCode = Tcl_GetErrno();
+    
+        NSLog(@"- %@ - %i", errString, errCode);
+        exit(errCode);
+    }
     
     exit(retCode);
 }

@@ -12,38 +12,26 @@
 #define MPSEPARATOR @"_&MP&_"
 
 int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, Tcl_Obj *CONST objv[]) {
-//    int returnCode = TCL_OK;
-    
-//    NSArray *msgType = [[NSString stringWithUTF8String:Tcl_GetString(*(++objv))] componentsSeparatedByString:@" "];
-//    NSString *msg = [NSString stringWithUTF8String:Tcl_GetString(*(++objv))];
-//    
-//    NSLog(@"%@ : %@",[msgType objectAtIndex:0], msg);
-    
-    //[[NSDistributedNotificationCenter defaultCenter] postNotificationName:[msgType objectAtIndex:0] object:msg];
-    //[[NSDistributedNotificationCenter defaultCenter] postNotificationName: object:msg];
-    
-//    NSLog(@"SIIIIIIIIIIIIIIIIIIIIIIIIII");
-//    
-    int returnCode = TCL_ERROR;
+    int tclResult = TCL_ERROR;
 	NSMutableString * data;
 	
 	++objv, --objc;
 	
 	if (objc) {
 		int tclCount;
-		int tclResult;
 		const char **tclElements;
-		
 		
 		tclResult = Tcl_SplitList(interpreter, Tcl_GetString(*objv), &tclCount, &tclElements);
 		
 		
 		if (tclResult == TCL_OK) {
 			if (tclCount > 0) {
+                NSLog([NSString stringWithUTF8String:tclElements[0]]);
 				data = [NSMutableString stringWithUTF8String:tclElements[0]];
 				[data appendString:MPSEPARATOR];
 				
 				if(tclCount > 1 && tclElements[1]) {
+                    NSLog([NSString stringWithUTF8String:tclElements[1]]);
 					[data appendString:[NSString stringWithUTF8String:tclElements[1]]];
 					[data appendString:MPSEPARATOR];
 				}
@@ -53,6 +41,7 @@ int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, 
 				}
 				
 				if(tclCount > 2 && tclElements[2]) {
+                    NSLog([NSString stringWithUTF8String:tclElements[2]]);
 					[data appendString:[NSString stringWithUTF8String:tclElements[2]]];
 					[data appendString:MPSEPARATOR];
 				}
@@ -77,11 +66,11 @@ int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, 
     }
     
     id theProxy = [NSConnection
-                rootProxyForConnectionWithRegisteredName:@"MPNotifications"
-                host:nil];
+                   rootProxyForConnectionWithRegisteredName:@"MPNotifications"
+                   host:nil];
     [theProxy sendIPCNotification:data];
     
     NSLog(@"-----%@", data);
     
-	return returnCode;
+	return tclResult;
 }

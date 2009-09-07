@@ -76,85 +76,82 @@ proc ui_channels {priority} {
 #Redefine ui_$pritority to throw global notifications
 #This is currently under works ... a reasonable solution
 #should be coming up soon
-proc ui_init {priority prefix channels message} {
-	#puts "INSIDE ui_init priority with prefix $prefix and message $message"
-	
-	switch $priority {
-		msg {
-			set nottype "MPMsgNotification" 
-		}
-		debug {
-			set nottype "MPDebugNotification"
-			puts "Recieved Debug"
-		}
-		warn {
-			set nottype "MPWarnNotification"
-		}
-		error {
-			set nottype "MPErrorNotification"
-			puts "Recieved Error"
-		}
-		info {
-			set nottype "MPInfoNotification"
-			puts "Recieved Info"
-		}
-		default {
-			set nottype "MPDefaultNotification"
-		}	
-	}
-	
+proc macports::ui_init {priority args} {
+    switch $priority {
+  		msg {
+  			set nottype "MPMsgNotification" 
+  		}
+  		debug {
+  			set nottype "MPDebugNotification"
+  			puts "Recieved Debug"
+  		}
+  		warn {
+  			set nottype "MPWarnNotification"
+  		}
+  		error {
+  			set nottype "MPErrorNotification"
+  			puts "Recieved Error"
+  		}
+  		info {
+  			set nottype "MPInfoNotification"
+  			puts "Recieved Info"
+  		}
+  		default {
+  			set nottype "MPDefaultNotification"
+  		}	
+  	}
+  
     # Get the list of channels.
-    try {
+    if {[llength [info commands ui_channels]] > 0} {
         set channels [ui_channels $priority]
-    } catch * {
+    } else {
         set channels [ui_channels_default $priority]
     }
-    
-    #set channels [ui_channels $priority]
-    
+
     # Simplify ui_$priority.
     set nbchans [llength $channels]
     if {$nbchans == 0} {
-        proc ::ui_$priority {str} [subst {
-        	simplelog "$nottype $chan $prefix" "\$str" 
+        proc ::ui_$priority {args} [subst {
+          simplelog "$nottype $chan $prefix" "\$str"
         }]
     } else {
-        try {
+        if {[llength [info commands ui_prefix]] > 0} {
             set prefix [ui_prefix $priority]
-        } catch * {
+        } else {
             set prefix [ui_prefix_default $priority]
         }
-        
-        #set prefix [ui_prefix $priority]
-        
-        if {$nbchans == 1} {
-          set chan [lindex $channels 0]
 
-          proc ::ui_$priority {args} [subst {
-            if {\[lindex \$args 0\] == "-nonewline"} {
-              #puts $chan "$prefix\[lindex \$args 1\]"
-              simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
-            } else {
-              #puts -nonewline $chan "$prefix\[lindex \$args 1\]"
-              simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
-            }
-          }]
+        if {[llength [info commands ::ui_init]] > 0} {
+            eval ::ui_init $priority $prefix $channels $args
         } else {
-          proc ::ui_$priority {args} [subst {
-            foreach chan \$channels {
-              if {\[lindex \$args 0\] == "-nonewline"} {
-                #puts $chan "$prefix\[lindex \$args 1\]"
-                simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
-              } else {
-                #puts -nonewline $chan "$prefix\[lindex \$args 1\]"
-                simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
-              }
+            if {$nbchans == 1} {
+                set chan [lindex $channels 0]
+                proc ::ui_$priority {args} [subst {
+                  if {\[lindex \$args 0\] == "-nonewline"} {
+                    puts $chan "$prefix\[lindex \$args 1\]"
+                    simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
+                  } else {
+                    puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+                    simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
+                  }
+                }]
+            } else {
+                proc ::ui_$priority {args} [subst {
+                    foreach chan \$channels {
+                      if {\[lindex \$args 0\] == "-nonewline"} {
+                        puts $chan "$prefix\[lindex \$args 1\]"
+                        simplelog "$nottype $chan $prefix" "\[lindex \$args 1\]"
+                      } else {
+                        puts -nonewline $chan "$prefix\[lindex \$args 1\]"
+                        simplelog "$nottype $chan $prefix" "\[lindex \$args 0\]"
+                      }
+                    }
+                }]
             }
-          }]
         }
 
-    # Call ui_$priority - Is this step necessary? Consult with Randall
-    #::ui_$priority $message
+        # Call ui_$priority
+        eval ::ui_$priority $args
     }
 }
 
