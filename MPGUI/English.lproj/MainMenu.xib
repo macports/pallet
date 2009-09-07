@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="371"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2059,7 +2059,7 @@
 																				<reference ref="385089462"/>
 																			</object>
 																		</object>
-																		<object class="NSMutableDictionary" id="193271997">
+																		<object class="NSMutableDictionary" id="247503625">
 																			<bool key="EncodedWithXMLCoder">YES</bool>
 																			<object class="NSMutableArray" key="dict.sortedKeys">
 																				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2185,7 +2185,7 @@
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<reference ref="375100135"/>
 																					<reference ref="1016684085"/>
-																					<reference ref="193271997"/>
+																					<reference ref="247503625"/>
 																				</object>
 																				<object class="NSMutableArray">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2509,8 +2509,7 @@
 							<object class="NSPSMatrix" key="NSDrawMatrix"/>
 							<string key="NSFrame">{{6, 6}, {63, 12}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<int key="NSpiFlags">16650</int>
-							<double key="NSMinValue">1.600000e+01</double>
+							<int key="NSpiFlags">24842</int>
 							<double key="NSMaxValue">1.000000e+02</double>
 						</object>
 						<object class="NSTextField" id="1009077985">
@@ -3812,22 +3811,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">animate: busy</string>
-						<reference key="source" ref="269595080"/>
-						<reference key="destination" ref="245714563"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="269595080"/>
-							<reference key="NSDestination" ref="245714563"/>
-							<string key="NSLabel">animate: busy</string>
-							<string key="NSBinding">animate</string>
-							<string key="NSKeyPath">busy</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">772</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: busy</string>
 						<reference key="source" ref="650498606"/>
 						<reference key="destination" ref="245714563"/>
@@ -3909,6 +3892,30 @@
 						<reference key="destination" ref="1009077985"/>
 					</object>
 					<int key="connectionID">787</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">animate: busy</string>
+						<reference key="source" ref="269595080"/>
+						<reference key="destination" ref="245714563"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="269595080"/>
+							<reference key="NSDestination" ref="245714563"/>
+							<string key="NSLabel">animate: busy</string>
+							<string key="NSBinding">animate</string>
+							<string key="NSKeyPath">busy</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">791</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">progress</string>
+						<reference key="source" ref="245714563"/>
+						<reference key="destination" ref="269595080"/>
+					</object>
+					<int key="connectionID">792</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -5709,9 +5716,9 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{298, 246}, {773, 449}}</string>
+					<string>{{300, 235}, {773, 449}}</string>
 					<reference ref="6"/>
-					<string>{{298, 246}, {773, 449}}</string>
+					<string>{{300, 235}, {773, 449}}</string>
 					<reference ref="9"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5883,7 +5890,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">789</int>
+			<int key="maxID">792</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

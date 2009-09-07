@@ -30,6 +30,7 @@
 
 - (void)ruleEditorRowsDidChange:(NSNotification *)notification {
     [self changePredicateEditorSize:[predicateEditor numberOfRows]];
+    NSLog(@"rileEditorRowsDidChange");
 }
 
 #pragma mark Search
@@ -46,11 +47,21 @@
 - (IBAction)basicSearch:(id)sender {
     // Change internal NSPredicate and the NSPredicateEditor to match the basic query
     NSString *name = [sender stringValue];
-    NSArray *subpredicates = [NSArray arrayWithObject:[NSPredicate predicateWithFormat:@"name CONTAINS %@", name]];
-    NSPredicate *newPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:subpredicates];
-    [predicateEditor setObjectValue:newPredicate];
-    NSLog(@"Basic Predicate: %@", [newPredicate predicateFormat]);
-    [self setPredicate:newPredicate];
+    if([name isEqual:@""]) {
+        [self setPredicate:nil];
+        [predicateEditor setObjectValue:nil];
+    } else {
+        NSArray *subpredicates = [NSArray arrayWithObject:[NSPredicate predicateWithFormat:@"name CONTAINS %@", name]];
+        NSPredicate *newPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:subpredicates];
+        // I know what I am doing to you, so I dont want to be your delegate for now
+        [predicateEditor setDelegate:nil];
+        [predicateEditor setObjectValue:newPredicate];
+        [self setPredicate:newPredicate];
+        [self changePredicateEditorSize:[predicateEditor numberOfRows]];
+        // Now I want to know what you do :)
+        [predicateEditor setDelegate:self];
+        NSLog(@"Basic Predicate: %@", [newPredicate predicateFormat]);
+    }
 }
 
 - (IBAction)hidePredicateEditor:(id)sender {
@@ -60,6 +71,7 @@
 #pragma mark Private Methods
 
 - (void)changePredicateEditorSize:(NSInteger) newRowCount {
+    NSLog(@"ROWS: %d", newRowCount);
     if (newRowCount == rowCount)
         return;
     

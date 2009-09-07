@@ -75,7 +75,6 @@ static MPActionLauncher *sharedActionLauncher = nil;
 
 - (void)cancelPortProcess {
     //  TODO: display confirmation dialog
-    //        send a "Shutting down" notification
     [[MPMacPorts sharedInstance] cancelCurrentCommand];
 }
 

@@ -21,5 +21,8 @@
 
 - (void)subscribeToNotifications;
 - (void)gotMPMSG:(NSNotification *)notification;
+- (void)gotMPINFO:(NSNotification *)notification;
+- (void)gotMPDEFAULT:(NSNotification *)notification;
+- (void)gotMPERROR:(NSNotification *)notification;
 
 @end
