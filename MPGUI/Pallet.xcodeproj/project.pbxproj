@@ -27,7 +27,31 @@
 		214BAFE40FE7164200BD1B46 /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
 		2172B850103923FF0006138C /* TB_Cancel.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2172B84E103923FF0006138C /* TB_Cancel.icns */; };
 		2172B851103923FF0006138C /* TB_Selfupdate.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2172B84F103923FF0006138C /* TB_Selfupdate.icns */; };
-		219DC2E41027BF660065C8DF /* MacPorts.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21900DC71095001700ED79CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		21900DC81095001700ED79CF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		21900DC91095001700ED79CF /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226B0FE88A2A00B1E835 /* Installed.tiff */; };
+		21900DCA1095001700ED79CF /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226C0FE88A2A00B1E835 /* Outdated.tiff */; };
+		21900DCB1095001700ED79CF /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
+		21900DCC1095001700ED79CF /* TB_Sync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */; };
+		21900DCD1095001700ED79CF /* TB_Upgrade.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */; };
+		21900DCE1095001700ED79CF /* TB_Uninstall.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A3930FEDE6CA001DF976 /* TB_Uninstall.icns */; };
+		21900DCF1095001700ED79CF /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21E2ADAF1002E428003F8885 /* Preferences.xib */; };
+		21900DD01095001700ED79CF /* TB_Cancel.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2172B84E103923FF0006138C /* TB_Cancel.icns */; };
+		21900DD11095001700ED79CF /* TB_Selfupdate.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2172B84F103923FF0006138C /* TB_Selfupdate.icns */; };
+		21900DD21095001700ED79CF /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21E74CA610403250006843E6 /* Application.icns */; };
+		21900DD61095001700ED79CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		21900DD71095001700ED79CF /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
+		21900DD81095001700ED79CF /* MPActionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */; };
+		21900DD91095001700ED79CF /* StateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC22690FE8895900B1E835 /* StateTransformer.m */; };
+		21900DDA1095001700ED79CF /* StatePredicateTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */; };
+		21900DDB1095001700ED79CF /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
+		21900DDC1095001700ED79CF /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E2ADB61002EAE0003F8885 /* PreferencesController.m */; };
+		21900DDD1095001700ED79CF /* MPPortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EB8B10100CDD37007371EE /* MPPortTableView.m */; };
+		21900DDE1095001700ED79CF /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
+		21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
+		21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21900E021095030B00ED79CF /* MacPorts.framework */; };
+		21ACCE0B109537F90070F0DD /* MacPorts.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = 21900DB71095000200ED79CF /* MacPorts.framework */; };
 		21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
 		21B6A38F0FEDCBD5001DF976 /* TB_Sync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */; };
 		21B6A3910FEDCBD5001DF976 /* TB_Upgrade.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */; };
@@ -36,7 +60,6 @@
 		21E2ADB71002EAE0003F8885 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E2ADB61002EAE0003F8885 /* PreferencesController.m */; };
 		21E74CA710403250006843E6 /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21E74CA610403250006843E6 /* Application.icns */; };
 		21EB8B11100CDD37007371EE /* MPPortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EB8B10100CDD37007371EE /* MPPortTableView.m */; };
-		21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21F1675A0FE3382D00542AEE /* PortsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F167590FE3382D00542AEE /* PortsTableController.m */; };
 		21FC226A0FE8895900B1E835 /* StateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC22690FE8895900B1E835 /* StateTransformer.m */; };
 		21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226B0FE88A2A00B1E835 /* Installed.tiff */; };
@@ -48,6 +71,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		21900DB61095000200ED79CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 216010F21094D34500EE9CD0;
+			remoteInfo = "MacPorts-embeddable";
+		};
+		21ACCE16109538410070F0DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 216010BD1094D34500EE9CD0;
+			remoteInfo = "MacPorts-embeddable";
+		};
 		21D954D81009731100DEF58A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
@@ -90,23 +127,16 @@
 			remoteGlobalIDString = 6EE6DD9E0E626D2800FB2115;
 			remoteInfo = MPHelperToolIPCTester;
 		};
-		21F165810FE2C17C00542AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = MacPorts;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		219DC2E31027BF260065C8DF /* Copy Bundle Frameworks */ = {
+		21900DD31095001700ED79CF /* Copy Bundle Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				219DC2E41027BF660065C8DF /* MacPorts.framework in Copy Bundle Frameworks */,
+				21ACCE0B109537F90070F0DD /* MacPorts.framework in Copy Bundle Frameworks */,
 			);
 			name = "Copy Bundle Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +156,8 @@
 		214BAFE30FE7164200BD1B46 /* MPActionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionLauncher.m; sourceTree = "<group>"; wrapsLines = 0; };
 		2172B84E103923FF0006138C /* TB_Cancel.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Cancel.icns; sourceTree = "<group>"; };
 		2172B84F103923FF0006138C /* TB_Selfupdate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Selfupdate.icns; sourceTree = "<group>"; };
+		21900DE81095001700ED79CF /* Pallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21900E021095030B00ED79CF /* MacPorts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacPorts.framework; path = ../MacPorts_Framework/build/MacPorts.framework; sourceTree = SOURCE_ROOT; };
 		21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Install.icns; sourceTree = "<group>"; };
 		21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Sync.icns; sourceTree = "<group>"; };
 		21B6A38D0FEDCBD5001DF976 /* TB_Upgrade.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Upgrade.icns; sourceTree = "<group>"; };
@@ -154,11 +186,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		21900DDF1095001700ED79CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */,
+				21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21F166D90FE329AA00542AEE /* MacPorts.framework in Frameworks */,
+				21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Pallet.app */,
+				21900DE81095001700ED79CF /* Pallet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +240,7 @@
 				21F1654D0FE2C04300542AEE /* MPHelperInstallTool */,
 				21F1654F0FE2C04300542AEE /* MPHelperTool */,
 				21F165510FE2C04300542AEE /* MacPorts.framework */,
+				21900DB71095000200ED79CF /* MacPorts.framework */,
 				21F165530FE2C04300542AEE /* Test.octest */,
 				21F165550FE2C04300542AEE /* MPHelperToolIPCTester */,
 				21D954D91009731100DEF58A /* MPPortProcess */,
@@ -253,6 +296,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				21900E021095030B00ED79CF /* MacPorts.framework */,
 			);
 			name = Pallet;
 			sourceTree = "<group>";
@@ -298,21 +342,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		21900DC31095001700ED79CF /* Pallet-standalone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21900DE41095001700ED79CF /* Build configuration list for PBXNativeTarget "Pallet-standalone" */;
+			buildPhases = (
+				21900DC61095001700ED79CF /* Resources */,
+				21900DD31095001700ED79CF /* Copy Bundle Frameworks */,
+				21900DD51095001700ED79CF /* Sources */,
+				21900DDF1095001700ED79CF /* Frameworks */,
+				21900DE21095001700ED79CF /* Install MacPorts 1.8 */,
+				21900DE31095001700ED79CF /* Create dmg */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21ACCE17109538410070F0DD /* PBXTargetDependency */,
+			);
+			name = "Pallet-standalone";
+			productInstallPath = "$(HOME)/Applications";
+			productName = Pallet;
+			productReference = 21900DE81095001700ED79CF /* Pallet.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* Pallet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Pallet" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
-				219DC2E31027BF260065C8DF /* Copy Bundle Frameworks */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				21FC212A0FE8546700B1E835 /* Install MacPorts 1.8 */,
-				219DC31D1027C4760065C8DF /* Create dmg */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				21F165820FE2C17C00542AEE /* PBXTargetDependency */,
 			);
 			name = Pallet;
 			productInstallPath = "$(HOME)/Applications";
@@ -339,12 +401,20 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Pallet */,
+				21900DC31095001700ED79CF /* Pallet-standalone */,
 				21351F530FEC59520074ACFE /* Docs */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		21900DB71095000200ED79CF /* MacPorts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MacPorts.framework;
+			remoteRef = 21900DB61095000200ED79CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		21D954D91009731100DEF58A /* MPPortProcess */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
@@ -390,6 +460,25 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		21900DC61095001700ED79CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21900DC71095001700ED79CF /* InfoPlist.strings in Resources */,
+				21900DC81095001700ED79CF /* MainMenu.xib in Resources */,
+				21900DC91095001700ED79CF /* Installed.tiff in Resources */,
+				21900DCA1095001700ED79CF /* Outdated.tiff in Resources */,
+				21900DCB1095001700ED79CF /* TB_Install.icns in Resources */,
+				21900DCC1095001700ED79CF /* TB_Sync.icns in Resources */,
+				21900DCD1095001700ED79CF /* TB_Upgrade.icns in Resources */,
+				21900DCE1095001700ED79CF /* TB_Uninstall.icns in Resources */,
+				21900DCF1095001700ED79CF /* Preferences.xib in Resources */,
+				21900DD01095001700ED79CF /* TB_Cancel.icns in Resources */,
+				21900DD11095001700ED79CF /* TB_Selfupdate.icns in Resources */,
+				21900DD21095001700ED79CF /* Application.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,21 +514,7 @@
 			shellPath = /bin/sh;
 			shellScript = "BASEDIR=`pwd`\nDOCDIR=build/Documentation\nif [ ! -d $DOCDIR ]; then\n\tmkdir $DOCDIR\nfi\ncd $DOCDIR\nheaderdoc2html -u -o HTML $BASEDIR/*.h* && gatherheaderdoc HTML index.html";
 		};
-		219DC31D1027C4760065C8DF /* Create dmg */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Create dmg";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/ruby;
-			shellScript = "if ENV['CONFIGURATION'] == \"Release\"\n\timage_name = \"#{ENV['PROJECT_NAME']}.dmg\"\n\tFile.delete image_name if File.exists? image_name\n\n\tsystem(\"hdiutil create -srcfolder \\'#{ENV['CONFIGURATION_BUILD_DIR']}/#{ENV['PRODUCT_NAME']}.app\\' -volname #{ENV['PROJECT_NAME']} \\'#{image_name}\\'\")\nend\n\n";
-		};
-		21FC212A0FE8546700B1E835 /* Install MacPorts 1.8 */ = {
+		21900DE21095001700ED79CF /* Install MacPorts 1.8 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -455,9 +530,39 @@
 			shellPath = /bin/bash;
 			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n  say \"Building MacPorts\"\n  PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n  --prefix=$PREFIX \\\n  --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n  make install\n\n  make clean\n  $PREFIX/bin/port selfupdate\n  say \"done\"\n\nfi";
 		};
+		21900DE31095001700ED79CF /* Create dmg */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create dmg";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/ruby;
+			shellScript = "if ENV['CONFIGURATION'] == \"Release\"\n\timage_name = \"#{ENV['PROJECT_NAME']}.dmg\"\n\tFile.delete image_name if File.exists? image_name\n\n\tsystem(\"hdiutil create -srcfolder \\'#{ENV['CONFIGURATION_BUILD_DIR']}/#{ENV['PRODUCT_NAME']}.app\\' -volname #{ENV['PROJECT_NAME']} \\'#{image_name}\\'\")\nend\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		21900DD51095001700ED79CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21900DD61095001700ED79CF /* main.m in Sources */,
+				21900DD71095001700ED79CF /* PortsTableController.m in Sources */,
+				21900DD81095001700ED79CF /* MPActionLauncher.m in Sources */,
+				21900DD91095001700ED79CF /* StateTransformer.m in Sources */,
+				21900DDA1095001700ED79CF /* StatePredicateTemplate.m in Sources */,
+				21900DDB1095001700ED79CF /* MPActionsController.m in Sources */,
+				21900DDC1095001700ED79CF /* PreferencesController.m in Sources */,
+				21900DDD1095001700ED79CF /* MPPortTableView.m in Sources */,
+				21900DDE1095001700ED79CF /* ActivityController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,10 +582,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		21F165820FE2C17C00542AEE /* PBXTargetDependency */ = {
+		21ACCE17109538410070F0DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = MacPorts;
-			targetProxy = 21F165810FE2C17C00542AEE /* PBXContainerItemProxy */;
+			name = "MacPorts-embeddable";
+			targetProxy = 21ACCE16109538410070F0DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -532,10 +637,65 @@
 			};
 			name = Release;
 		};
+		21900DE51095001700ED79CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Pallet;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		21900DE61095001700ED79CF /* Debug-InstallMacPorts */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Pallet;
+				SDKROOT = macosx10.5;
+			};
+			name = "Debug-InstallMacPorts";
+		};
+		21900DE71095001700ED79CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Pallet;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
 		21FC211D0FE84F7F00B1E835 /* Debug-InstallMacPorts */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -555,6 +715,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
+					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -565,6 +726,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Pallet;
+				SDKROOT = macosx10.5;
 			};
 			name = "Debug-InstallMacPorts";
 		};
@@ -573,10 +735,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -586,6 +745,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Pallet;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -597,6 +757,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
 				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
@@ -605,13 +766,14 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Pallet;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -626,7 +788,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -644,6 +806,16 @@
 				21351F540FEC59520074ACFE /* Debug */,
 				21351F550FEC59520074ACFE /* Debug-InstallMacPorts */,
 				21351F560FEC59520074ACFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21900DE41095001700ED79CF /* Build configuration list for PBXNativeTarget "Pallet-standalone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21900DE51095001700ED79CF /* Debug */,
+				21900DE61095001700ED79CF /* Debug-InstallMacPorts */,
+				21900DE71095001700ED79CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
