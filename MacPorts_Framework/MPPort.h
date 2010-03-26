@@ -140,6 +140,13 @@
 */
 - (void)deactivateWithVersion:(NSString *)version error:(NSError**)mpError;
 
+/*!
+ @brief Upgrades an outdated MPPort.
+ @discussion Only installed and active ports
+ should be upgraded
+ */
+- (void)upgradeWithError:(NSError**)mpError;
+
 
 /*!
  @brief Executes the specified target for this MPPort
@@ -290,4 +297,5 @@
 - (void)execPortProc:(NSString *)procedure withOptions:(NSArray *)options version:(NSString *)version error:(NSError **)execError;
 //Even more generic method to execute a Tcl command with any given number of args
 - (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError;
+
 @end

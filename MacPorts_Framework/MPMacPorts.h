@@ -76,15 +76,15 @@
 	
 }
 
++ (NSString*) PKGPath;
+
++ (void) setPKGPath:(NSString*)newPath;
+
 /*!
  @brief Returns an MPMacPorts object that represents the MacPorts system on user's machine.
  */
 + (MPMacPorts *)sharedInstance;
 
-+ (MPMacPorts *)sharedInstanceWithPortOptions:(NSArray *)options;
-
-//Names of messages below are subject to change
-+ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path;
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options;
 - (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options;
 - (BOOL) setPortOptions:(NSArray *)options;
@@ -221,6 +221,7 @@
  */
 -(BOOL) authorizationMode;
 
+- (void) cancelCurrentCommand;
 
 //Notifications stuff for private use and testing purposes
 -(void)registerForLocalNotifications;

@@ -98,6 +98,10 @@
 		[self setObject:[self objectForKey:@"categories"] forKey:@"categoriesAsString"];
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"categories"]] forKey:@"categories"];
 	}
+	if ([self objectForKey:@"variants"] != nil) {
+		[self setObject:[self objectForKey:@"variants"] forKey:@"variantsAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"variants"]] forKey:@"variants"];
+	}
 	if ([self objectForKey:@"depends_build"] != nil) {
 		[self setObject:[self objectForKey:@"depends_build"] forKey:@"depends_buildAsString"];
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_build"]] forKey:@"depends_build"];
@@ -115,8 +119,8 @@
 	}
 	
 	@try {
-		if ([[self valueForKey:@"long_description"] characterAtIndex:0] == '{') {
-			[self setValue:[self valueForKey:@"description"] forKey:@"long_description"];
+		if ([[self valueForKey:@"description"] characterAtIndex:0] == '{') {
+			[self setValue:[self valueForKey:@"description"] forKey:@"description"];
 		}
 	} 
 	@catch (NSException *e) {
@@ -124,7 +128,22 @@
 						NSLocalizedStringWithDefaultValue(@"setPortWithTclListAsStringDescreiptionError",
 														  @"Localizable",
 														  [NSBundle mainBundle],
-														  @"Port has an invalid desciption or long_description key.",
+														  @"Port has an invalid desciption key.",
+														  @"Error statement for exception raised when testing description.")]
+				forKey:@"description"];
+	}
+	
+	@try {
+		if ([[self valueForKey:@"long_description"] characterAtIndex:0] == '{') {
+			[self setValue:[self valueForKey:@"long_description"] forKey:@"long_description"];
+		}
+	} 
+	@catch (NSException *e) {
+		[self setValue:[NSString stringWithFormat:
+						NSLocalizedStringWithDefaultValue(@"setPortWithTclListAsStringDescreiptionError",
+														  @"Localizable",
+														  [NSBundle mainBundle],
+														  @"Port has an invalid long_description key.",
 														  @"Error statement for exception raised when testing long_description.")]
 				forKey:@"long_description"];
 	}
@@ -211,7 +230,13 @@
 		  procedure, [self name], v, opts]
 													error:execError];		
 	}
-	
+    // I must get the new state of the port from the registry
+	// instead of just [self setState:MPPortStateLearnState];
+    //NSArray *receipts  = [[[MPRegistry sharedRegistry] installed:[self name]] objectForKey:[self name]];
+    //[self setStateFromReceipts:receipts];
+    [self removeObjectForKey:@"receipts"];
+    [self setState:MPPortStateLearnState];
+    
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:procedure withStatus:@"Finished"];
 }
@@ -241,23 +266,14 @@
 	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
 	
-	if ([parentMacPortsInstance authorizationMode]) {
-		[interpreter evaluateStringWithMPHelperTool:
-		 [NSString stringWithFormat:
-		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-		  [self valueForKey:@"porturl"], opts, vrnts, target]
-												error:execError];
-	}
-	else {
-		[interpreter evaluateStringWithPossiblePrivileges:
-		 [NSString stringWithFormat:
-		  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-		  [self valueForKey:@"porturl"], opts, vrnts, target]
-													error:execError];
-	}
+    [interpreter evaluateStringWithPossiblePrivileges:
+        [NSString stringWithFormat:
+            @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+            [self valueForKey:@"porturl"], opts, vrnts, target]
+        error:execError];
 	
 	
-	
+	[self setState:MPPortStateLearnState];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
 	[self sendGlobalExecNotification:target withStatus:@"Finished"];
 	
@@ -331,6 +347,10 @@
 	}
 }
 
+- (void)upgradeWithError:(NSError **)mError {
+	[self execPortProc:@"mportupgrade" withOptions:nil version:@"" error:mError];
+}
+
 -(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
 	[self exec:@"configure" withOptions:options variants:variants error:mError];
 }
@@ -383,6 +403,7 @@
 	[self exec:@"srpm" withOptions:options variants:variants error:mError];
 }
 
+
 # pragma mark -
 
 
@@ -390,7 +411,12 @@
 
 - (id)objectForKey:(id)aKey {
 	if ([aKey isEqualToString:@"receipts"] && ![super objectForKey:aKey]) {
-		[self setObject:[[[MPRegistry sharedRegistry] installed:[self objectForKey:@"name"]] objectForKey:[self objectForKey:@"name"]]forKey:aKey];
+        NSArray *receipts = [[[MPRegistry sharedRegistry] installed:[self objectForKey:@"name"]] objectForKey:[self objectForKey:@"name"]];
+        if (receipts == nil) {
+            return nil;
+        } else {
+            [self setObject:receipts forKey:aKey];
+        }
 	}
 	return [super objectForKey:aKey];
 }
@@ -436,7 +462,7 @@
 }
 
 - (void)setStateFromReceipts:(NSArray *)receipts {
-	[self setObject:receipts forKey:@"receipts"];
+    [self setObject:receipts forKey:@"receipts"];
 	[self setState:MPPortStateLearnState];
 }
 

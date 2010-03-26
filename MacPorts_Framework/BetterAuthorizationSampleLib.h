@@ -738,6 +738,12 @@ extern void BASCloseDescriptorArray(
 	CFArrayRef					descArray
 );
 
+extern void BASTerminateCommand(
+    AuthorizationRef			auth, 
+    const char *				bundleID, 
+    const char *                installToolPath
+);
+
 /////////////////////////////////////////////////////////////////
 #pragma mark ***** Utility Routines
 
@@ -763,6 +769,7 @@ extern void BASCloseDescriptorArray(
 
     #define kBASInstallToolInstallCommand "install"
     #define kBASInstallToolEnableCommand  "enable"
+    #define kBASInstallToolTerminateCommand  "terminate"
 
 	// Magic values used to bracket the process ID returned by the install tool.
 	

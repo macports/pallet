@@ -21,6 +21,54 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2160109C1094C66300EE9CD0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA60E3E7E900026773D /* Cocoa.framework */; };
+		2160109F1094C6ED00EE9CD0 /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		216010A21094C6FD00EE9CD0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
+		216010A31094C6FD00EE9CD0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
+		216010C51094D34500EE9CD0 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010C61094D34500EE9CD0 /* MPInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 48906AFB0C4230B700A3ED8A /* MPInterpreter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010C71094D34500EE9CD0 /* MacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E9925B0C82C45800219DDF /* MacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010C81094D34500EE9CD0 /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010C91094D34500EE9CD0 /* MPIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 487679530C98C2EB00577C59 /* MPIndex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010CA1094D34500EE9CD0 /* MPPort.h in Headers */ = {isa = PBXBuildFile; fileRef = 487679670C98C55E00577C59 /* MPPort.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010CB1094D34500EE9CD0 /* MPReceipt.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A866A80CD364F700B521BC /* MPReceipt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010CC1094D34500EE9CD0 /* MPMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010CD1094D34500EE9CD0 /* MPNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E270D070E158CED00BAE687 /* MPNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216010CE1094D34500EE9CD0 /* BetterAuthorizationSampleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */; };
+		216010CF1094D34500EE9CD0 /* MPHelperCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC260950E4272D20013BC48 /* MPHelperCommon.h */; };
+		216010D01094D34500EE9CD0 /* MPHelperNotificationsCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8563B60E5DDF7000C1D73C /* MPHelperNotificationsCommon.h */; };
+		216010D11094D34500EE9CD0 /* MPHelperNotificationsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */; };
+		216010D21094D34500EE9CD0 /* MPNotifications+IPCAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */; };
+		216010D41094D34500EE9CD0 /* MPHelperInstallTool in Resources */ = {isa = PBXBuildFile; fileRef = 6EC260870E426FF10013BC48 /* MPHelperInstallTool */; };
+		216010D51094D34500EE9CD0 /* MPPortProcess in Resources */ = {isa = PBXBuildFile; fileRef = 21D9543E100940EE00DEF58A /* MPPortProcess */; };
+		216010D61094D34500EE9CD0 /* MPHelperTool in Resources */ = {isa = PBXBuildFile; fileRef = 6ED12A4A0E3E552F0026773D /* MPHelperTool */; };
+		216010D71094D34500EE9CD0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		216010D81094D34500EE9CD0 /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
+		216010D91094D34500EE9CD0 /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E44A00C0E2DAD66007DE8EC /* ToDo.txt */; };
+		216010DA1094D34500EE9CD0 /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
+		216010DB1094D34500EE9CD0 /* portProcessInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 21D954711009475200DEF58A /* portProcessInit.tcl */; };
+		216010DD1094D34500EE9CD0 /* MPInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48906AFC0C4230B700A3ED8A /* MPInterpreter.m */; };
+		216010DE1094D34500EE9CD0 /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
+		216010DF1094D34500EE9CD0 /* MPIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 487679540C98C2EB00577C59 /* MPIndex.m */; };
+		216010E01094D34500EE9CD0 /* MPPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 487679680C98C55E00577C59 /* MPPort.m */; };
+		216010E11094D34500EE9CD0 /* MPReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A866A90CD364F700B521BC /* MPReceipt.m */; };
+		216010E21094D34500EE9CD0 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
+		216010E31094D34500EE9CD0 /* MPRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F811BF0CE4638C009630DE /* MPRegistry.m */; };
+		216010E41094D34500EE9CD0 /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E270D080E158CED00BAE687 /* MPNotifications.m */; };
+		216010E51094D34500EE9CD0 /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */; };
+		216010E61094D34500EE9CD0 /* MPHelperCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6EC260960E4272D20013BC48 /* MPHelperCommon.c */; };
+		216010E71094D34500EE9CD0 /* MPHelperNotificationsCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E8563B50E5DDF7000C1D73C /* MPHelperNotificationsCommon.c */; };
+		216010E81094D34500EE9CD0 /* MPNotifications+IPCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */; };
+		216010EA1094D34500EE9CD0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA60E3E7E900026773D /* Cocoa.framework */; };
+		216010EB1094D34500EE9CD0 /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		216010EC1094D34500EE9CD0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
+		218DEE2610162091003B5A3B /* SimpleLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 218DED83101612F1003B5A3B /* SimpleLog.m */; };
+		21D95442100940FF00DEF58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
+		21D954431009411400DEF58A /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
+		21D954471009412F00DEF58A /* MPPortProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D954461009412F00DEF58A /* MPPortProcess.m */; };
+		21D954721009475200DEF58A /* portProcessInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 21D954711009475200DEF58A /* portProcessInit.tcl */; };
+		21D9548C1009522100DEF58A /* MPPortProcess in Resources */ = {isa = PBXBuildFile; fileRef = 21D9543E100940EE00DEF58A /* MPPortProcess */; };
+		21F6DD701017E38E00FC43DE /* SimpleLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 218DED82101612F1003B5A3B /* SimpleLog.h */; };
 		481D04A20CDAAAFD00D4A550 /* MPMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		481D04A30CDAAAFD00D4A550 /* MPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */; };
 		4825ECC30CE6145B006B0385 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,7 +82,6 @@
 		48A866AA0CD364F700B521BC /* MPReceipt.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A866A80CD364F700B521BC /* MPReceipt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48A866AB0CD364F700B521BC /* MPReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A866A90CD364F700B521BC /* MPReceipt.m */; };
 		48E9925C0C82C45800219DDF /* MacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E9925B0C82C45800219DDF /* MacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		48E992980C82C98C00219DDF /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E992970C82C98C00219DDF /* Tcl.framework */; };
 		48E993940C82CAAE00219DDF /* MPMacPorts.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E993920C82CAAE00219DDF /* MPMacPorts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48E993950C82CAAE00219DDF /* MPMacPorts.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E993930C82CAAE00219DDF /* MPMacPorts.m */; };
 		48E9939F0C82CEB000219DDF /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 48E9939E0C82CEB000219DDF /* init.tcl */; };
@@ -66,8 +113,6 @@
 		6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */; };
 		6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD98100E484E8400488335 /* MPHelperTool.m */; };
 		6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */; };
-		6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
-		6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12A540E3E55DF0026773D /* Security.framework */; };
 		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		6EE6DDA40E626D4A00FB2115 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EE6DDA70E626D5A00FB2115 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
@@ -77,10 +122,37 @@
 		6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 6EE93E660E493AC600AECE9E /* interpInit.tcl */; };
 		6EE93FAB0E495C2200AECE9E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
-		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		216010BF1094D34500EE9CD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ED12A490E3E552F0026773D;
+			remoteInfo = MPHelperTool;
+		};
+		216010C11094D34500EE9CD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EC260860E426FF10013BC48;
+			remoteInfo = MPHelperInstallTool;
+		};
+		216010C31094D34500EE9CD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D9543D100940EE00DEF58A;
+			remoteInfo = MPPortProcess;
+		};
+		21D9544B1009416100DEF58A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D9543D100940EE00DEF58A;
+			remoteInfo = MPPortProcess;
+		};
 		6E1AE8460E232D0700F6D7BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -112,9 +184,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		21067BB50FE5B25800CAD732 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		216010F21094D34500EE9CD0 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		218DED82101612F1003B5A3B /* SimpleLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleLog.h; sourceTree = "<group>"; };
+		218DED83101612F1003B5A3B /* SimpleLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLog.m; sourceTree = "<group>"; };
+		21D9543E100940EE00DEF58A /* MPPortProcess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPPortProcess; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D954461009412F00DEF58A /* MPPortProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPortProcess.m; sourceTree = "<group>"; };
+		21D954491009413800DEF58A /* MPPortProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPortProcess.h; sourceTree = "<group>"; };
+		21D954711009475200DEF58A /* portProcessInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portProcessInit.tcl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		32DBCF5E0370ADEE00C91783 /* MacPorts.Framework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPorts.Framework_Prefix.pch; sourceTree = "<group>"; };
 		481D04A00CDAAAFC00D4A550 /* MPMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MPMutableDictionary.h; sourceTree = "<group>"; };
 		481D04A10CDAAAFD00D4A550 /* MPMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MPMutableDictionary.m; sourceTree = "<group>"; };
@@ -134,10 +212,9 @@
 		48A866A80CD364F700B521BC /* MPReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPReceipt.h; sourceTree = "<group>"; };
 		48A866A90CD364F700B521BC /* MPReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPReceipt.m; sourceTree = "<group>"; };
 		48E9925B0C82C45800219DDF /* MacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPorts.h; sourceTree = "<group>"; };
-		48E992970C82C98C00219DDF /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = /System/Library/Frameworks/Tcl.framework; sourceTree = "<absolute>"; };
 		48E993920C82CAAE00219DDF /* MPMacPorts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPorts.h; sourceTree = "<group>"; };
 		48E993930C82CAAE00219DDF /* MPMacPorts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPorts.m; sourceTree = "<group>"; };
-		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
+		48E9939E0C82CEB000219DDF /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		48F811BE0CE4636A009630DE /* MPRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRegistry.h; sourceTree = "<group>"; };
 		48F811BF0CE4638C009630DE /* MPRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRegistry.m; sourceTree = "<group>"; };
 		6E270D070E158CED00BAE687 /* MPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
@@ -164,19 +241,36 @@
 		6ECD99C40E48B91B00488335 /* MPHelperToolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperToolTest.h; sourceTree = "<group>"; };
 		6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolTest.m; sourceTree = "<group>"; };
 		6ED12A4A0E3E552F0026773D /* MPHelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		6ED12A540E3E55DF0026773D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6ED12AA60E3E7E900026773D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MPHelperToolIPCTester; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelperToolIPCTester.m; sourceTree = "<group>"; };
 		6EE6DDCC0E6276AA00FB2115 /* MPNotifications+IPCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPNotifications+IPCAdditions.h"; sourceTree = "<group>"; };
 		6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPNotifications+IPCAdditions.m"; sourceTree = "<group>"; };
-		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; };
-		6EE93E780E495B3100AECE9E /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
+		6EE93E660E493AC600AECE9E /* interpInit.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interpInit.tcl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MacPorts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacPorts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		216010E91094D34500EE9CD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216010EA1094D34500EE9CD0 /* Cocoa.framework in Frameworks */,
+				216010EB1094D34500EE9CD0 /* Tcl.framework in Frameworks */,
+				216010EC1094D34500EE9CD0 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D9543C100940EE00DEF58A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D95442100940FF00DEF58A /* Foundation.framework in Frameworks */,
+				21D954431009411400DEF58A /* Tcl.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		489DD8F10C94365F00595506 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,10 +291,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ED12A550E3E55DF0026773D /* Security.framework in Frameworks */,
 				6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */,
 				6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */,
 				6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */,
+				216010A31094C6FD00EE9CD0 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,9 +311,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
-				48E992980C82C98C00219DDF /* Tcl.framework in Frameworks */,
-				6ED12A560E3E55DF0026773D /* Security.framework in Frameworks */,
+				2160109C1094C66300EE9CD0 /* Cocoa.framework in Frameworks */,
+				2160109F1094C6ED00EE9CD0 /* Tcl.framework in Frameworks */,
+				216010A21094C6FD00EE9CD0 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +328,8 @@
 				6ED12A4A0E3E552F0026773D /* MPHelperTool */,
 				6EC260870E426FF10013BC48 /* MPHelperInstallTool */,
 				6EE6DD9E0E626D2800FB2115 /* MPHelperToolIPCTester */,
+				21D9543E100940EE00DEF58A /* MPPortProcess */,
+				216010F21094D34500EE9CD0 /* MacPorts.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +337,7 @@
 		0867D691FE84028FC02AAC07 /* MacPorts Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				21D954381009409E00DEF58A /* MPPortProcess */,
 				6EE6DDA80E626D8000FB2115 /* IPCTesting */,
 				6ED12A460E3E54A80026773D /* MPHelperTools */,
 				6EA293540E05C8C600902D12 /* Tcl Notifications  */,
@@ -256,7 +353,7 @@
 				6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */,
 				6EB6FC900E45DEA80057962C /* Foundation.framework */,
 				6ECD970D0E465C7800488335 /* Security.framework */,
-				6EE93E780E495B3100AECE9E /* Tcl.framework */,
+				21067BB50FE5B25800CAD732 /* Tests-Info.plist */,
 			);
 			name = "MacPorts Foundation";
 			sourceTree = "<group>";
@@ -279,6 +376,7 @@
 				489DD8F50C94365F00595506 /* Test-Info.plist */,
 				6E44A00C0E2DAD66007DE8EC /* ToDo.txt */,
 				6EE93E660E493AC600AECE9E /* interpInit.tcl */,
+				21D954711009475200DEF58A /* portProcessInit.tcl */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -307,9 +405,6 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6ED12A540E3E55DF0026773D /* Security.framework */,
-				48E992970C82C98C00219DDF /* Tcl.framework */,
-				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -317,9 +412,19 @@
 		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		21D954381009409E00DEF58A /* MPPortProcess */ = {
+			isa = PBXGroup;
+			children = (
+				21D954491009413800DEF58A /* MPPortProcess.h */,
+				21D954461009412F00DEF58A /* MPPortProcess.m */,
+				218DED82101612F1003B5A3B /* SimpleLog.h */,
+				218DED83101612F1003B5A3B /* SimpleLog.m */,
+			);
+			name = MPPortProcess;
 			sourceTree = "<group>";
 		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
@@ -394,6 +499,35 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		216010C41094D34500EE9CD0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216010C51094D34500EE9CD0 /* MPRegistry.h in Headers */,
+				216010C61094D34500EE9CD0 /* MPInterpreter.h in Headers */,
+				216010C71094D34500EE9CD0 /* MacPorts.h in Headers */,
+				216010C81094D34500EE9CD0 /* MPMacPorts.h in Headers */,
+				216010C91094D34500EE9CD0 /* MPIndex.h in Headers */,
+				216010CA1094D34500EE9CD0 /* MPPort.h in Headers */,
+				216010CB1094D34500EE9CD0 /* MPReceipt.h in Headers */,
+				216010CC1094D34500EE9CD0 /* MPMutableDictionary.h in Headers */,
+				216010CD1094D34500EE9CD0 /* MPNotifications.h in Headers */,
+				216010CE1094D34500EE9CD0 /* BetterAuthorizationSampleLib.h in Headers */,
+				216010CF1094D34500EE9CD0 /* MPHelperCommon.h in Headers */,
+				216010D01094D34500EE9CD0 /* MPHelperNotificationsCommon.h in Headers */,
+				216010D11094D34500EE9CD0 /* MPHelperNotificationsProtocol.h in Headers */,
+				216010D21094D34500EE9CD0 /* MPNotifications+IPCAdditions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		218DEE4010162175003B5A3B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21F6DD701017E38E00FC43DE /* SimpleLog.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6ED12AD30E3E9AE10026773D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,6 +563,46 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		216010BD1094D34500EE9CD0 /* MacPorts-embeddable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 216010EE1094D34500EE9CD0 /* Build configuration list for PBXNativeTarget "MacPorts-embeddable" */;
+			buildPhases = (
+				216010C41094D34500EE9CD0 /* Headers */,
+				216010D31094D34500EE9CD0 /* Resources */,
+				216010DC1094D34500EE9CD0 /* Sources */,
+				216010E91094D34500EE9CD0 /* Frameworks */,
+				2136ECA01097A29500833416 /* Install */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				216010BE1094D34500EE9CD0 /* PBXTargetDependency */,
+				216010C01094D34500EE9CD0 /* PBXTargetDependency */,
+				216010C21094D34500EE9CD0 /* PBXTargetDependency */,
+			);
+			name = "MacPorts-embeddable";
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = "MacPorts Foundation";
+			productReference = 216010F21094D34500EE9CD0 /* MacPorts.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		21D9543D100940EE00DEF58A /* MPPortProcess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D954481009413000DEF58A /* Build configuration list for PBXNativeTarget "MPPortProcess" */;
+			buildPhases = (
+				218DEE4010162175003B5A3B /* Headers */,
+				21D9543B100940EE00DEF58A /* Sources */,
+				21D9543C100940EE00DEF58A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MPPortProcess;
+			productName = MPPortProcess;
+			productReference = 21D9543E100940EE00DEF58A /* MPPortProcess */;
+			productType = "com.apple.product-type.tool";
+		};
 		489DD8F30C94365F00595506 /* Test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 489DD8F60C94366000595506 /* Build configuration list for PBXNativeTarget "Test" */;
@@ -507,13 +681,13 @@
 				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
-				6E49F4F40E00DD520030C3AF /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				6ED12A530E3E55A50026773D /* PBXTargetDependency */,
 				6EC2608C0E4270110013BC48 /* PBXTargetDependency */,
+				21D9544C1009416100DEF58A /* PBXTargetDependency */,
 			);
 			name = MacPorts;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -540,14 +714,31 @@
 				6EC260860E426FF10013BC48 /* MPHelperInstallTool */,
 				6ED12A490E3E552F0026773D /* MPHelperTool */,
 				8DC2EF4F0486A6940098B216 /* MacPorts */,
+				216010BD1094D34500EE9CD0 /* MacPorts-embeddable */,
 				489DD8F30C94365F00595506 /* Test */,
 				DFE353650CFB8F0C003BACFC /* Docs */,
 				6EE6DD9D0E626D2800FB2115 /* MPHelperToolIPCTester */,
+				21D9543D100940EE00DEF58A /* MPPortProcess */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		216010D31094D34500EE9CD0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216010D41094D34500EE9CD0 /* MPHelperInstallTool in Resources */,
+				216010D51094D34500EE9CD0 /* MPPortProcess in Resources */,
+				216010D61094D34500EE9CD0 /* MPHelperTool in Resources */,
+				216010D71094D34500EE9CD0 /* InfoPlist.strings in Resources */,
+				216010D81094D34500EE9CD0 /* init.tcl in Resources */,
+				216010D91094D34500EE9CD0 /* ToDo.txt in Resources */,
+				216010DA1094D34500EE9CD0 /* interpInit.tcl in Resources */,
+				216010DB1094D34500EE9CD0 /* portProcessInit.tcl in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		489DD8EF0C94365F00595506 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -567,17 +758,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EB6FA460E43ECD60057962C /* MPHelperInstallTool in Resources */,
+				21D9548C1009522100DEF58A /* MPPortProcess in Resources */,
 				6EB6FA420E43ECCE0057962C /* MPHelperTool in Resources */,
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
 				48E9939F0C82CEB000219DDF /* init.tcl in Resources */,
 				6E44A00D0E2DAD66007DE8EC /* ToDo.txt in Resources */,
 				6EE93E670E493AC600AECE9E /* interpInit.tcl in Resources */,
+				21D954721009475200DEF58A /* portProcessInit.tcl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2136ECA01097A29500833416 /* Install */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Install;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env ruby";
+			shellScript = "# This script just copies the framework to the build directory so that it can be found by Pallet\n# in any configuration.\nrequire 'fileutils'\n\nif File.directory? \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/MacPorts.framework\"\n  FileUtils.rm_rf \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/MacPorts.framework\"\nend\n\nFileUtils.cp_r \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/#{ENV['CONFIGURATION']}/MacPorts.framework\", \"#{ENV['SRCROOT']}/../MacPorts_Framework/build\"\n";
+		};
 		489DD8F20C94365F00595506 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -591,19 +798,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n\n#rm -rf notifications.dylib\n\n\n";
-		};
-		6E49F4F40E00DD520030C3AF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#This script is to copy the build product to a subfolder \"build\"\n#of the project directory so that whoever checks out this plugin will have\n#access to the built MacPorts.framework\n#Do I really need it since build products go to your default / project / target\n#specific Build Products path?\n\nditto $CONFIGURATION_BUILD_DIR/MacPorts.framework build/MacPorts.framework\n\n";
 		};
 		DFE353640CFB8F0C003BACFC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -621,6 +815,34 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		216010DC1094D34500EE9CD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216010DD1094D34500EE9CD0 /* MPInterpreter.m in Sources */,
+				216010DE1094D34500EE9CD0 /* MPMacPorts.m in Sources */,
+				216010DF1094D34500EE9CD0 /* MPIndex.m in Sources */,
+				216010E01094D34500EE9CD0 /* MPPort.m in Sources */,
+				216010E11094D34500EE9CD0 /* MPReceipt.m in Sources */,
+				216010E21094D34500EE9CD0 /* MPMutableDictionary.m in Sources */,
+				216010E31094D34500EE9CD0 /* MPRegistry.m in Sources */,
+				216010E41094D34500EE9CD0 /* MPNotifications.m in Sources */,
+				216010E51094D34500EE9CD0 /* BetterAuthorizationSampleLib.c in Sources */,
+				216010E61094D34500EE9CD0 /* MPHelperCommon.c in Sources */,
+				216010E71094D34500EE9CD0 /* MPHelperNotificationsCommon.c in Sources */,
+				216010E81094D34500EE9CD0 /* MPNotifications+IPCAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D9543B100940EE00DEF58A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D954471009412F00DEF58A /* MPPortProcess.m in Sources */,
+				218DEE2610162091003B5A3B /* SimpleLog.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		489DD8F00C94365F00595506 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -681,6 +903,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		216010BE1094D34500EE9CD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ED12A490E3E552F0026773D /* MPHelperTool */;
+			targetProxy = 216010BF1094D34500EE9CD0 /* PBXContainerItemProxy */;
+		};
+		216010C01094D34500EE9CD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EC260860E426FF10013BC48 /* MPHelperInstallTool */;
+			targetProxy = 216010C11094D34500EE9CD0 /* PBXContainerItemProxy */;
+		};
+		216010C21094D34500EE9CD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21D9543D100940EE00DEF58A /* MPPortProcess */;
+			targetProxy = 216010C31094D34500EE9CD0 /* PBXContainerItemProxy */;
+		};
+		21D9544C1009416100DEF58A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21D9543D100940EE00DEF58A /* MPPortProcess */;
+			targetProxy = 21D9544B1009416100DEF58A /* PBXContainerItemProxy */;
+		};
 		6E1AE8470E232D0700F6D7BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* MacPorts */;
@@ -718,6 +960,8 @@
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -734,7 +978,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
@@ -761,7 +1004,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
@@ -774,14 +1016,15 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				DEBUG_INFORMATION_FORMAT = stabs;
 				GCC_ENABLE_OBJC_GC = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				ZERO_LINK = NO;
 			};
 			name = Debug;
@@ -789,13 +1032,308 @@
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
 				GCC_ENABLE_OBJC_GC = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		216010B01094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_ENABLE_OBJC_GC = YES;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B11094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperInstallTool;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B21094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperTool;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B31094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				PRODUCT_NAME = MacPorts;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B41094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(value)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B51094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Docs;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B61094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MPHelperToolIPCTester;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010B71094C7FC00EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MPPortProcess;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		216010EF1094D34500EE9CD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				PRODUCT_NAME = MacPorts;
+				SYMROOT = build;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		216010F01094D34500EE9CD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				PRODUCT_NAME = MacPorts;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		216010F11094D34500EE9CD0 /* Release-Tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPorts.Framework_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				PRODUCT_NAME = MacPorts;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = "Release-Tiger";
+		};
+		21D95440100940EF00DEF58A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MPPortProcess;
+			};
+			name = Debug;
+		};
+		21D95441100940EF00DEF58A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MPPortProcess;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -819,6 +1357,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
@@ -1005,6 +1544,7 @@
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
 				1DEB91AF08733DA50010E9CD /* Release */,
+				216010B31094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1014,6 +1554,27 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
+				216010B01094C7FC00EE9CD0 /* Release-Tiger */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		216010EE1094D34500EE9CD0 /* Build configuration list for PBXNativeTarget "MacPorts-embeddable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				216010EF1094D34500EE9CD0 /* Debug */,
+				216010F01094D34500EE9CD0 /* Release */,
+				216010F11094D34500EE9CD0 /* Release-Tiger */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D954481009413000DEF58A /* Build configuration list for PBXNativeTarget "MPPortProcess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D95440100940EF00DEF58A /* Debug */,
+				21D95441100940EF00DEF58A /* Release */,
+				216010B71094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1023,6 +1584,7 @@
 			buildConfigurations = (
 				489DD8F70C94366000595506 /* Debug */,
 				489DD8F80C94366000595506 /* Release */,
+				216010B41094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1032,6 +1594,7 @@
 			buildConfigurations = (
 				6EC260890E426FF30013BC48 /* Debug */,
 				6EC2608A0E426FF30013BC48 /* Release */,
+				216010B11094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1041,6 +1604,7 @@
 			buildConfigurations = (
 				6ED12A4C0E3E55300026773D /* Debug */,
 				6ED12A4D0E3E55300026773D /* Release */,
+				216010B21094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1050,6 +1614,7 @@
 			buildConfigurations = (
 				6EE6DDA00E626D2900FB2115 /* Debug */,
 				6EE6DDA10E626D2900FB2115 /* Release */,
+				216010B61094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1059,6 +1624,7 @@
 			buildConfigurations = (
 				DFE353660CFB8F0C003BACFC /* Debug */,
 				DFE353670CFB8F0C003BACFC /* Release */,
+				216010B51094C7FC00EE9CD0 /* Release-Tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

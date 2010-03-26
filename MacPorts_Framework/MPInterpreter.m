@@ -34,18 +34,19 @@
  */
 
 #import "MPInterpreter.h"
+#import "MPMacPorts.h"
 #include "BetterAuthorizationSampleLib.h"
 #include "MPHelperCommon.h"
 #include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
-
-
+static NSString* PKGPath = @"/Library/Tcl";
+static NSTask* aTask;
 
 #pragma mark -
 
 @implementation MPInterpreter
 
-#pragma mark Notifications Code 
+#pragma mark Notifications Code
 int Notifications_Send(int objc, Tcl_Obj *CONST objv[], int global, Tcl_Interp *interpreter) {
 	NSString *name;
 	NSMutableString *msg;
@@ -164,6 +165,20 @@ int Notifications_Command(ClientData clientData, Tcl_Interp *interpreter, int ob
 //tool
 static NSString * tclInterpreterPkgPath = nil;
 
++(NSString*) PKGPath {
+	return PKGPath;
+}
+
++(void) setPKGPath:(NSString*)newPath {
+    if([PKGPath isNotEqualTo:newPath]) {
+        [PKGPath release];
+        PKGPath = [newPath copy];
+        //I should check if interp is nil. *not needed now
+        MPInterpreter *interp = (MPInterpreter*) [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+        [interp resetTclInterpreterWithPath:PKGPath];
+    }
+}
+
 #pragma mark -
 #pragma mark Internal Methods
 //Internal method for initializing actual C Tcl interpreter
@@ -184,7 +199,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	}
 	
 	if (path == nil)
-		path = MP_DEFAULT_PKG_PATH;
+		path = PKGPath;
 	
 	
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
@@ -247,7 +262,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	Tcl_DeleteInterp(_interpreter);
 	
 	if (tclInterpreterPkgPath == nil) 
-		result = [self initTclInterpreter:&_interpreter withPath:MP_DEFAULT_PKG_PATH];
+		result = [self initTclInterpreter:&_interpreter withPath:PKGPath];
 	else 
 		result = [self initTclInterpreter:&_interpreter withPath:tclInterpreterPkgPath];
 	
@@ -259,9 +274,13 @@ static NSString * tclInterpreterPkgPath = nil;
 	return (result && tempResult) ;
 } 
 
+-(BOOL) resetTclInterpreterWithPath:(NSString*) path {
+    Tcl_DeleteInterp(_interpreter);
+    return [self initTclInterpreter:&_interpreter withPath:PKGPath];
+}
+
 - (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
-		
 		[self initTclInterpreter:&_interpreter withPath:path];
 		
 		//set port options maybe I should do this elsewhere?
@@ -284,26 +303,23 @@ static NSString * tclInterpreterPkgPath = nil;
 
 #pragma mark API methods
 - (id) init {
-	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
+	return [self initWithPkgPath:PKGPath portOptions:nil];
 }
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
-			[[self alloc] initWithPkgPath:path portOptions:nil]; // assignment not done here
-		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
+	return [self sharedInterpreterWithPkgPath:path portOptions:nil];
 }
 
 + (MPInterpreter*)sharedInterpreter{
-	return [self sharedInterpreterWithPkgPath:MP_DEFAULT_PKG_PATH];
+	return [self sharedInterpreterWithPkgPath:PKGPath];
 }
-
-
 
 + (MPInterpreter*)sharedInterpreterWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	@synchronized(self) {
+        if ([PKGPath isNotEqualTo:path]) {
+            [self setPKGPath:path];
+        }
+        
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"] == nil) {
 			[[self alloc] initWithPkgPath:path portOptions:options]; // assignment not done here
 		}
@@ -438,30 +454,24 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 - (NSString *)evaluateStringWithPossiblePrivileges:(NSString *)statement error:(NSError **)mportError {
-	
-	
-	
 	//N.B. I am going to insist that funciton users not pass in nil for the
 	//mportError parameter
-	NSString * firstResult;
-	NSString * secondResult;
+	NSString * result;
 	
-	*mportError = nil;
-	firstResult = [self evaluateStringAsString:statement error:mportError];
-	
-	//Because of string results of methods like mportsync (which returns the empty string)
-	//the only way to truly check for an error is to check the mportError parameter.
-	//If it is nil then there was no error, if not we re-evaluate with privileges using
-	//the helper tool
-	
-	if ( *mportError != nil) {
-		*mportError = nil; 
-		secondResult = [self evaluateStringWithMPHelperTool:statement error:mportError];
-		
-		return secondResult;
-	}
-	
-	return firstResult;
+    [[MPNotifications sharedListener] 
+     sendIPCNotification:@"MPInfoNotification_&MP&_stdout_&MP&_None_&MP&_Starting up"];
+    
+    // Is this the best way to know if the running user can use macports without privileges?
+    if ([[NSFileManager defaultManager] isWritableFileAtPath:PKGPath]) {
+        result = [self evaluateStringWithMPPortProcess:statement error:mportError];
+    } else {
+        result = [self evaluateStringWithMPHelperTool:statement error:mportError];
+    }
+
+    [[MPNotifications sharedListener] 
+     sendIPCNotification:@"MPInfoNotification_&MP&_stdout_&MP&_None_&MP&_Shutting down"];
+    
+	return result;
 }
 
 //NOTE: We expect the Framework client to initialize the AuthorizationRef
@@ -583,38 +593,10 @@ static NSString * tclInterpreterPkgPath = nil;
 		//Making the following assumption in error handling. If we return
 		//a noErr then response dictionary cannot be nil since everything went ok. 
 		//Hence I'm only checking for errors WITHIN the following blocks ...
-		if (err == noErr) {
-			err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
-												kMPHelperCommandSet, 
-												(CFStringRef) bundleID, 
-												(CFDictionaryRef) request, 
-												&response);
-			if (err == noErr){// retrieve result here if available
-				if( response != NULL)
-					result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
-			}
-			else { //If we executed unsuccessfully
-				if (mportError != NULL) {
-					NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
-																	 code:err 
-																 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																		   NSLocalizedString(@"Check error code for OSStatus returned",@""), 
-																		   NSLocalizedDescriptionKey,
-																		   nil]] autorelease];
-					
-					*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
-															  code:MPHELPINSTFAILED 
-														  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																	NSLocalizedString(@"Unable to execute MPHelperTool successfuly", @""), 
-																	NSLocalizedDescriptionKey,
-																	undError, NSUnderlyingErrorKey,
-																	NSLocalizedString(@"BASExecuteRequestInHelperTool execution failed", @""),
-																	NSLocalizedFailureReasonErrorKey,
-																	nil]] autorelease];
-				}
-			}
-		}
-		else {//This means FixFaliure failed ... Report that in returned error
+        //
+        // NOTE: We don't automatically retry as the user wants to have a consistent cancel 
+        //      action (i.e. terminate the process when he wants to)
+		if (err != noErr) {//This means FixFaliure failed ... Report that in returned error
 			if (mportError != NULL) {
 				//I'm not sure of exactly how to report this error ... 
 				//Do we need some error codes for our domain? I'll define one
@@ -643,6 +625,79 @@ static NSString * tclInterpreterPkgPath = nil;
 	return result;
 }
 
+- (NSString *) evaluateStringWithMPPortProcess:(NSString *) statement error:(NSError **)mportError {
+    aTask = [[NSTask alloc] init];
+    NSMutableArray *args = [NSMutableArray array];
+    
+    /* set arguments */
+    [args addObject:PKGPath];
+    [aTask setCurrentDirectoryPath:[[NSBundle bundleForClass:[self class]] resourcePath]];
+    [aTask setLaunchPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"MPPortProcess" ofType:@""]];
+    [aTask setArguments:args];
+    [aTask launch];
+    
+    NSConnection *notificationsConnection = [NSConnection defaultConnection];
+    // Vending MPNotifications sharedListener
+    [notificationsConnection setRootObject:[MPNotifications sharedListener]];
+    
+    // Register the named connection
+    if ( [notificationsConnection registerName:@"MPNotifications"] ) {
+        NSLog( @"Successfully registered connection with port %@", 
+              [[notificationsConnection receivePort] description] );
+    } else {
+        NSLog( @"Name used by %@", 
+              [[[NSPortNameServer systemDefaultPortNameServer] portForName:@"MPNotifications"] description] );
+    }
+    
+    
+    id theProxy;
+    do {
+        theProxy = [NSConnection
+                       rootProxyForConnectionWithRegisteredName:@"MPPortProcess"
+                       host:nil];
+    } 
+    while (theProxy == nil);
+    
+    [theProxy evaluateString:statement];
+    [aTask waitUntilExit];
+    
+    int status = [aTask terminationStatus];
+    
+    if (status != TCL_OK) {
+        NSLog(@"Task failed. Code: %i", status);
+    }
+    [[notificationsConnection receivePort] invalidate];
+    
+    return nil;
+}
+
++ (NSTask*) task {
+    return aTask;
+}
+
++ (void) terminateMPHelperTool {
+    NSString *      bundleID;
+
+    //In order to make the framework work normally by default ... we do a bare initialization
+    //of internalMacPortsAuthRef if the delegate hasn't iniitialzed it already
+    if (internalMacPortsAuthRef == NULL) {
+        OSStatus res = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &internalMacPortsAuthRef);
+        assert(res == noErr);
+    }
+
+    NSBundle * mpBundle = [NSBundle bundleForClass:[self class]];
+    NSString * installToolPath = [mpBundle pathForResource:@"MPHelperInstallTool" ofType:nil];
+    bundleID = [mpBundle bundleIdentifier];
+
+    BASSetDefaultRules(internalMacPortsAuthRef, 
+                        kMPHelperCommandSet, 
+                        (CFStringRef) bundleID, 
+                        NULL);
+    BASTerminateCommand(internalMacPortsAuthRef, 
+                        [bundleID UTF8String], 
+                        [installToolPath UTF8String]);
+    return;
+}
 
 #pragma mark -
 #pragma mark Authorization Code

@@ -39,11 +39,9 @@
 
 @implementation MPMacPorts
 
-
 - (id) init {
-	return [self initWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:nil];
+	return [self initWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }
-
 
 - (id) initWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	if (self = [super init]) {
@@ -53,27 +51,42 @@
 	return self;
 }
 
-+ (MPMacPorts *)sharedInstance {
-	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH];
++(NSString*) PKGPath {
+	return [MPInterpreter PKGPath];
 }
 
-+ (MPMacPorts *)sharedInstanceWithPortOptions:(NSArray *)options {
-	return [self sharedInstanceWithPkgPath:MP_DEFAULT_PKG_PATH portOptions:options];
++(void) setPKGPath:(NSString*)newPath {
+    [MPInterpreter setPKGPath:newPath];
+}
+
+- (void) cancelCurrentCommand {
+    if ([[NSFileManager defaultManager] isWritableFileAtPath:[MPInterpreter PKGPath]]) {
+        NSLog(@"Terminating MPPortProcess");
+        NSTask *task = [MPInterpreter task];
+        if(task != nil && [task isRunning]) {
+            [task terminate];
+        }
+    } else {
+        NSLog(@"Terminating MPHelperTool");
+        [MPInterpreter terminateMPHelperTool];
+    }
+}
+
++ (MPMacPorts *)sharedInstance {
+	return [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
 }
 
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
 	@synchronized(self) {
+		if ([path isEqual:nil]) {
+			path = [MPInterpreter PKGPath];
+		}
+		if ([[MPInterpreter PKGPath] isNotEqualTo:path]) {
+            [self setPKGPath:path];
+        }
+		
 		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
 			[[self alloc] initWithPkgPath:path portOptions:options ]; // assignment not done here
-		}
-	}
-	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];
-}
-
-+ (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path {
-	@synchronized(self) {
-		if ([[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"] == nil) {
-			[[self alloc] initWithPkgPath:path portOptions:nil ]; // assignment not done here
 		}
 	}
 	return [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPMacPorts"];

@@ -47,6 +47,7 @@
 // Define BAS_PRIVATE so that we pick up our private definitions from 
 // "BetterAuthorizationSampleLib.h".
 
+
 #define BAS_PRIVATE 1
 
 #include "BetterAuthorizationSampleLib.h"
@@ -77,7 +78,7 @@
 
 enum {
     kIdleTimeoutInSeconds     = 120,        // if we get no requests in 2 minutes, we quit
-    kWatchdogTimeoutInSeconds = 65          // any given request must be completely in 65 seconds
+    kWatchdogTimeoutInSeconds = 500000      // any given request must be completed in ~5 days (is this ok?)
 };
 
 // IMPORTANT:
@@ -93,12 +94,12 @@ enum {
 // 2. Because it's less than 4 GB, this limit ensures that the dictionary size 
 //    can be sent as an architecture-neutral uint32_t.
 
-#define kBASMaxNumberOfKBytes			(1024 * 1024)
+#define kBASMaxNumberOfKBytes           (1024 * 1024)
 
 // A hard-wired file system path for the UNIX domain socket; %s is the placeholder 
 // for the bundle ID (in file system representation).
 
-#define kBASSocketPathFormat			"/var/run/%s.socket"
+#define kBASSocketPathFormat            "/var/run/%s.socket"
 
 // The key used to get our describe our socket in the launchd property list file.
 
@@ -117,9 +118,9 @@ extern int BASOSStatusToErrno(OSStatus errNum)
             retval = ident;     \
             break
     switch (errNum) {
-		case noErr:
-			retval = 0;
-			break;
+        case noErr:
+            retval = 0;
+            break;
         case kENORSRCErr:
             retval = ESRCH;                 // no ENORSRC on Mac OS X, so use ESRCH
             break;
@@ -128,9 +129,9 @@ extern int BASOSStatusToErrno(OSStatus errNum)
             break;
         CASE(EDEADLK);
         CASE(EAGAIN);
-		case kEOPNOTSUPPErr:
-			retval = ENOTSUP;
-			break;
+        case kEOPNOTSUPPErr:
+            retval = ENOTSUP;
+            break;
         CASE(EPROTO);
         CASE(ETIME);
         CASE(ENOSR);
@@ -145,12 +146,12 @@ extern int BASOSStatusToErrno(OSStatus errNum)
         CASE(ENOMSG);
         default:
             if ( (errNum <= kEPERMErr) && (errNum >= kENOMSGErr) ) {
-				retval = (-3200 - errNum) + 1;				// OT based error
+                retval = (-3200 - errNum) + 1;              // OT based error
             } else if ( (errNum >= errSecErrnoBase) && (errNum <= (errSecErrnoBase + ELAST)) ) {
-                retval = (int) errNum - errSecErrnoBase;	// POSIX based error
+                retval = (int) errNum - errSecErrnoBase;    // POSIX based error
             } else {
-				retval = (int) errNum;						// just return the value unmodified
-			}
+                retval = (int) errNum;                      // just return the value unmodified
+            }
     }
     #undef CASE
     return retval;
@@ -1920,39 +1921,45 @@ static const char * kPlistTemplate =
 
     // We install the job disabled, then enable it as the last step.
 
-    "	<key>Disabled</key>\n"
-    "	<true/>\n"
+    "   <key>Disabled</key>\n"
+    "   <true/>\n"
 
     // Use the bundle identifier as the job label.
 
-    "	<key>Label</key>\n"
-    "	<string>%s</string>\n"
+    "   <key>Label</key>\n"
+    "   <string>%s</string>\n"
 
     // Use launch on demaind.
 
-    "	<key>OnDemand</key>\n"
-    "	<true/>\n"
+    "   <key>OnDemand</key>\n"
+    "   <true/>\n"
 
-	// We don't want our helper tool to be respawned every 10 seconds
-	// after a faliure ... hopefully this won't ALSO prevent us from
-	// rerunning the helper tool without rebooting the machine
-//	"	<key>LaunchOnlyOnce</key>\n"
-//	"	<true/>\n"
+    // We don't want our helper tool to be respawned every 10 seconds
+    // after a faliure ... hopefully this won't ALSO prevent us from
+    // rerunning the helper tool without rebooting the machine
+    "   <key>LaunchOnlyOnce</key>\n"
+    "   <true/>\n"
 
-    // There are no program arguments, other that the path to the helper tool itself.
+    // There are no program arguments, other that the path to the helper tool itself
+    // but we must force it to run using the i386 binary if the Framework is
+    // being used as a i386 binary.
     //
     // IMPORTANT
     // kBASToolPathFormat embeds a %s
 
-    "	<key>ProgramArguments</key>\n"
-    "	<array>\n"
-    "		<string>" kBASToolPathFormat "</string>\n"
-    "	</array>\n"
+    "   <key>ProgramArguments</key>\n"
+    "   <array>\n"
+#ifdef __i386__
+    "       <string>/usr/bin/arch</string>\n"
+    "       <string>-i386</string>\n"
+#endif
+    "       <string>" kBASToolPathFormat "</string>\n"
+    "   </array>\n"
 
     // The tool is required to check in with launchd.
 
-    "	<key>ServiceIPC</key>\n"
-    "	<true/>\n"
+    "   <key>ServiceIPC</key>\n"
+    "   <true/>\n"
 
     // This specifies the UNIX domain socket used to launch the tool, including 
     // the permissions on the socket (438 is 0666).
@@ -1960,20 +1967,20 @@ static const char * kPlistTemplate =
     // IMPORTANT
     // kBASSocketPathFormat embeds a %s
 
-    "	<key>Sockets</key>\n"
-    "	<dict>\n"
-    "		<key>" kLaunchDSocketDictKey "</key>\n"
-    "		<dict>\n"
-    "			<key>SockFamily</key>\n"
-    "			<string>Unix</string>\n"
-    "			<key>SockPathMode</key>\n"
-    "			<integer>438</integer>\n"
-    "			<key>SockPathName</key>\n"
-    "			<string>" kBASSocketPathFormat "</string>\n"
-    "			<key>SockType</key>\n"
-    "			<string>Stream</string>\n"
-    "		</dict>\n"
-    "	</dict>\n"
+    "   <key>Sockets</key>\n"
+    "   <dict>\n"
+    "       <key>" kLaunchDSocketDictKey "</key>\n"
+    "       <dict>\n"
+    "           <key>SockFamily</key>\n"
+    "           <string>Unix</string>\n"
+    "           <key>SockPathMode</key>\n"
+    "           <integer>438</integer>\n"
+    "           <key>SockPathName</key>\n"
+    "           <string>" kBASSocketPathFormat "</string>\n"
+    "           <key>SockType</key>\n"
+    "           <string>Stream</string>\n"
+    "       </dict>\n"
+    "   </dict>\n"
     "</dict>\n"
     "</plist>\n"
     ;
@@ -2460,3 +2467,23 @@ extern OSStatus BASFixFailure(
 
     return retval;
 }
+
+extern void BASTerminateCommand (
+                           AuthorizationRef			auth, 
+                           const char *				bundleID, 
+                           const char *             installToolPath
+)
+// Terminate the HelperTool.
+{
+    // Pre-conditions
+    
+    assert(auth != NULL);
+    assert(bundleID != NULL);
+    assert(installToolPath != NULL);
+    
+    // Run the install tool as root using AuthorizationExecuteWithPrivileges.   
+    RunInstallToolAsRoot(auth, installToolPath, kBASInstallToolTerminateCommand, bundleID, NULL);
+    
+    return;
+}
+

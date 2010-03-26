@@ -60,7 +60,7 @@
 - (NSDictionary *)installed;
 
 /*
- @brief Calls [self installed:name version:@""]
+ @brief Calls [self installed:name withVersion:@""]
  @param name Text to match the port name
  */
 - (NSDictionary *)installed:(NSString *)name;

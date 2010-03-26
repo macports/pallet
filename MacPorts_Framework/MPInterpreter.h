@@ -52,7 +52,6 @@
 
 #define	MPPackage				@"macports"
 #define MPPackageVersion		@"1.0"
-#define MP_DEFAULT_PKG_PATH		@"/Library/Tcl"
 #define TCL_RETURN_CODE			@"return code"
 #define TCL_RETURN_STRING		@"return string"
 #define MPFrameworkErrorDomain	@"MacPortsFrameworkErrorDomain"
@@ -85,9 +84,6 @@
 #define MPTRACE					@"ports_trace"
 
 
-
-
-
 /*!
  @class MPInterpreter
  @abstract Tcl interpreter object
@@ -104,8 +100,18 @@
 	
 }
 
++(NSString*) PKGPath;
+
++(void) setPKGPath:(NSString*)newPath;
+
++(void) terminateMPHelperTool;
+
++(NSTask*) task;
+
 //Internal methods
 -(BOOL) setOptionsForNewTclPort:(NSArray *)options;
+
+-(BOOL) resetTclInterpreterWithPath:(NSString *)path;
 
 /*!
  @brief Return singleton shared MPInterpreter instance
@@ -198,5 +204,6 @@
 - (void)setAuthorizationRef:(AuthorizationRef)authRef;
 - (BOOL)checkIfAuthorized;
 -(NSString *)evaluateStringWithMPHelperTool:(NSString *)statement error:(NSError **)mportError;
+-(NSString *)evaluateStringWithMPPortProcess:(NSString *)statement error:(NSError **)mportError;
 
 @end

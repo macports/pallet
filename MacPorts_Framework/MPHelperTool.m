@@ -53,7 +53,6 @@
 #include <signal.h>
 
 
-
 //According to the docs all I need is
 //the file descriptor that MPNotifications
 //obtained when creating the server socket
@@ -822,12 +821,6 @@ int SimpleLog_Command
 /////////////////////////////////////////////////////////////////
 #pragma mark ***** Tool Infrastructure
 
-/*
- IMPORTANT
- ---------
- This array must be exactly parallel to the kMPHelperCommandSet array 
- in "MPHelperCommon.c".
- */
 
 static OSStatus DoEvaluateTclString 
 (
@@ -984,6 +977,12 @@ static OSStatus DoEvaluateTclString
 }
 
 
+/*
+ IMPORTANT
+ ---------
+ This array must be exactly parallel to the kMPHelperCommandSet array 
+ in "MPHelperCommon.c".
+ */
 static const BASCommandProc kMPHelperCommandProcs[] = {
 DoEvaluateTclString,	
 NULL
