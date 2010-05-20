@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
+		1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
@@ -147,6 +149,7 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2105F5071028ACBA00A28D1A /* ActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityController.h; sourceTree = "<group>"; };
 		2105F5081028ACBA00A28D1A /* ActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityController.m; sourceTree = "<group>"; };
@@ -326,6 +329,7 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				21E2ADAF1002E428003F8885 /* Preferences.xib */,
+				1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -476,6 +480,7 @@
 				21900DD01095001700ED79CF /* TB_Cancel.icns in Resources */,
 				21900DD11095001700ED79CF /* TB_Selfupdate.icns in Resources */,
 				21900DD21095001700ED79CF /* Application.icns in Resources */,
+				1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +488,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */,
