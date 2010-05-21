@@ -23,6 +23,10 @@
 /* Begin PBXBuildFile section */
 		1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
 		1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
+		1D4B87BB11A54DE000AD9D33 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
+		1D4B87BC11A54DE000AD9D33 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
+		1D4B87CE11A54FEF00AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
+		1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
@@ -132,6 +136,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1D4B87CC11A54F9B00AD9D33 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1D4B87CE11A54FEF00AD9D33 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D4B87D311A54FFC00AD9D33 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21900DD31095001700ED79CF /* Copy Bundle Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,6 +174,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		1D4B87BA11A54DE000AD9D33 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "Growl-1.2.1-Framework/Growl.framework"; sourceTree = "<group>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2105F5071028ACBA00A28D1A /* ActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityController.h; sourceTree = "<group>"; };
 		2105F5081028ACBA00A28D1A /* ActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityController.m; sourceTree = "<group>"; };
@@ -195,6 +220,7 @@
 			files = (
 				21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */,
 				21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */,
+				1D4B87BB11A54DE000AD9D33 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +230,7 @@
 			files = (
 				21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				1D4B87BC11A54DE000AD9D33 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +318,7 @@
 		29B97314FDCFA39411CA2CEA /* Pallet */ = {
 			isa = PBXGroup;
 			children = (
+				1D4B87BA11A54DE000AD9D33 /* Growl.framework */,
 				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
 				21F166FC0FE32DF000542AEE /* Models */,
 				21F167570FE3343600542AEE /* Controllers */,
@@ -356,6 +384,7 @@
 				21900DDF1095001700ED79CF /* Frameworks */,
 				21900DE21095001700ED79CF /* Install MacPorts 1.8 */,
 				21900DE31095001700ED79CF /* Create dmg */,
+				1D4B87CC11A54F9B00AD9D33 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -375,6 +404,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				1D4B87D311A54FFC00AD9D33 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -648,7 +678,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
+					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -667,7 +700,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
+					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -686,7 +722,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
+					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
+				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -722,6 +761,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
+					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -741,7 +781,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -764,6 +807,7 @@
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
+					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
 				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
