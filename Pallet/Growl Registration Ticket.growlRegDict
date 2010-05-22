@@ -9,9 +9,9 @@
 		<string>InstallCompleted</string>
 		<string>InstallFailed</string>
 		<string>UpgradeCompleted</string>
-		<string>UgrdadeFailed</string>
-		<string>RemoveCompleted</string>
-		<string>RemoveFailed</string>
+		<string>UgradeFailed</string>
+		<string>UninstallCompleted</string>
+		<string>UninstallFailed</string>
 		<string>SelfupdateCompleted</string>
 		<string>SelfupdateFailed</string>
 		<string>SyncCompleted</string>

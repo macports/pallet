@@ -15,13 +15,23 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MacPorts/MacPorts.h>
+#import <Growl/Growl.h>
 
+/* Defining growl types*/
+
+/**/
+#define GROWL_TYPES 5
+#define GROWL_INSTALL 1
+#define GROWL_UNINSTALL 2
+#define GROWL_UPGRADE 3
+#define GROWL_SYNC 4
+#define GROWL_SELFUPDATE 5
 /*!
  @class MPActionLauncher
  @abstract Wrapper for MacPorts Framework actions
  @discussion Contains a shared per thread MacPorts Framework wrapper
 */
-@interface MPActionLauncher : NSObject {
+@interface MPActionLauncher : NSObject <GrowlApplicationBridgeDelegate> {
     NSArray *ports;
     NSTask *actionTool;
     NSConnection *connectionToActionTool;
@@ -81,5 +91,7 @@
 - (void)selfupdate;
 
 - (void)cancelPortProcess;
+
+-(void) sendGrowlNotification: (int) type;
 
 @end

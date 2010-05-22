@@ -51,31 +51,70 @@ static MPActionLauncher *sharedActionLauncher = nil;
     NSError * error;
     NSArray *empty = [NSArray arrayWithObject: @""];
     [port installWithOptions:empty variants:empty error:&error];
+	[self sendGrowlNotification: GROWL_INSTALL];
 }
 
 - (void)uninstallPort:(MPPort *)port {
     NSError * error;
     [port uninstallWithVersion:@"" error:&error];
+	[self sendGrowlNotification: GROWL_UNINSTALL];
 }
 
 - (void)upgradePort:(MPPort *)port {
     NSError * error;
     [port upgradeWithError:&error];
+	[self sendGrowlNotification: GROWL_UPGRADE];
 }
 
 - (void)sync {
     NSError * error;
     [[MPMacPorts sharedInstance] sync:&error];
+	[self sendGrowlNotification: GROWL_SYNC];
 }
 
 - (void)selfupdate {
     NSError * error;
     [[MPMacPorts sharedInstance] selfUpdate:&error];
+	//NSLog(@"yay");
+	//NSInteger code = [error code];
+	//NSLog(@"Selfupdate Error Code %i", code);
+	[self sendGrowlNotification: GROWL_SELFUPDATE];
 }
 
 - (void)cancelPortProcess {
     //  TODO: display confirmation dialog
     [[MPMacPorts sharedInstance] cancelCurrentCommand];
+}
+
+-(void) sendGrowlNotification:(int)type
+{
+	NSString *growlTitles[GROWL_TYPES];
+	growlTitles[GROWL_INSTALL] = [NSString stringWithString: @"Installation Completed"];
+	growlTitles[GROWL_UNINSTALL] = [NSString stringWithString: @"Uninstall Completed"];
+	growlTitles[GROWL_UPGRADE] = [NSString stringWithString: @"Upgrade Completed"];
+	growlTitles[GROWL_SYNC] = [NSString stringWithString: @"Sync Completed"];
+	growlTitles[GROWL_SELFUPDATE] = [NSString stringWithString: @"Selfupdate Completed"];
+	
+	NSString *growlDescriptions[GROWL_TYPES];
+	
+	growlDescriptions[GROWL_INSTALL] = [NSString stringWithString: @"Operation completed successfully"];
+	growlDescriptions[GROWL_UNINSTALL] = [NSString stringWithString: @"Operation completed successfully"];
+	growlDescriptions[GROWL_UPGRADE] = [NSString stringWithString: @"Operation completed successfully"];
+	growlDescriptions[GROWL_SYNC] = [NSString stringWithString: @"Operation completed successfully"];
+	growlDescriptions[GROWL_SELFUPDATE] = [NSString stringWithString: @"Operation completed successfully"];
+	
+	NSString *growlNotificationNames[GROWL_TYPES];
+	
+	growlNotificationNames[GROWL_INSTALL] = [NSString stringWithString: @"InstallCompleted"];
+	growlNotificationNames[GROWL_UNINSTALL] = [NSString stringWithString: @"UninstallCompleted"];
+	growlNotificationNames[GROWL_UPGRADE] = [NSString stringWithString: @"UpgradeCompleted"];
+	growlNotificationNames[GROWL_SYNC] = [NSString stringWithString: @"SyncCompleted"];
+	growlNotificationNames[GROWL_SELFUPDATE] = [NSString stringWithString: @"SelfupdateCompleted"];
+	
+	[GrowlApplicationBridge setGrowlDelegate:(id) @""];
+	[GrowlApplicationBridge notifyWithTitle: growlTitles[type] description: growlDescriptions[type]\
+						   notificationName:growlNotificationNames[type] iconData:nil priority: 0\
+								   isSticky: NO clickContext:nil];
 }
 
 @end
