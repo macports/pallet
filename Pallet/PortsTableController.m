@@ -106,4 +106,46 @@
     rowCount = newRowCount;
 }
 
+/****************** Drawer ******************/
+
+/* Our drawer is created programmatically rather than in IB, and has a 
+ fixed size both vertically and horizontally.  The fixed vertical size is achieved
+ by setting min and max content sizes equal to the content size.  The fixed horizontal
+ size is achieved by setting leading and trailing offsets when the parent window resizes. */ 
+
+- (void)setupDrawer {
+    NSSize contentSize = NSMakeSize(150, 150);
+    drawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinXEdge];
+    [drawer setParentWindow:mainWindow];
+    [drawer setMinContentSize:contentSize];
+    [drawer setMaxContentSize:contentSize];
+}
+
+- (void)openDrawer:(id)sender {[drawer openOnEdge:NSMinXEdge];}
+
+- (void)closeDrawer:(id)sender {[drawer close];}
+
+- (void)toggleDrawer:(id)sender {
+    NSDrawerState state = [drawer state];
+    if (NSDrawerOpeningState == state || NSDrawerOpenState == state) {
+        [drawer close];
+    } else {
+        [drawer openOnEdge:NSMinXEdge];
+    }
+}
+
+- (void)setDrawerOffsets {
+    [drawer setLeadingOffset:30];
+    // we want a drawer width of approximately 220 unscaled.  Figure out an offset to accomplish that size.
+    //CGFloat drawerWidth = 220 * [mainWindow userSpaceScaleFactor];
+    [drawer setTrailingOffset: 30];
+}
+
+- (void)awakeFromNib {
+    [self setupDrawer];
+    [self setDrawerOffsets];
+	[self openDrawer:(id) nil];
+}
+
+
 @end
