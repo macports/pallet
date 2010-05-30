@@ -16,11 +16,13 @@
 }
 
 - (IBAction)install:(id)sender {
+	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
         [[MPActionLauncher sharedInstance]
             performSelectorInBackground:@selector(installPort:) withObject:port];
     }
+	NSLog(@"Installation Completed");
 }
 
 - (IBAction)uninstall:(id)sender {
