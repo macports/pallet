@@ -22,6 +22,7 @@
 
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)install:(id)sender;
+- (IBAction)installWithVariants:(id)sender;
 - (IBAction)uninstall:(id)sender;
 - (IBAction)upgrade:(id)sender;
 - (IBAction)sync:(id)sender;

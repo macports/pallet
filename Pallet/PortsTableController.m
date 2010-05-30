@@ -144,7 +144,7 @@
 - (void)awakeFromNib {
     [self setupDrawer];
     [self setDrawerOffsets];
-	[self openDrawer:(id) nil];
+	//[self openDrawer:(id) nil];
 }
 
 

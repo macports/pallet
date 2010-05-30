@@ -15,6 +15,10 @@
     [NSBundle loadNibNamed:@"Preferences" owner:self];
 }
 
+- (IBAction)installWithVariants:(id)sender {
+	[self install:(id) nil];
+}
+
 - (IBAction)install:(id)sender {
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
