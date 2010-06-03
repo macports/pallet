@@ -18,6 +18,8 @@
     IBOutlet ActivityController *activityController;
     
     IBOutlet NSToolbarItem *cancel;
+
+    IBOutlet NSArrayController *queue;
 }
 
 - (IBAction)openPreferences:(id)sender;

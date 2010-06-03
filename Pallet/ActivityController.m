@@ -8,6 +8,7 @@
 
 #import "ActivityController.h"
 
+BOOL errorReceived;
 
 @implementation ActivityController
 
@@ -71,6 +72,7 @@
     NSString *msg = [[notification userInfo] objectForKey:MPMESSAGE];
     NSLog(@"GOT ERROR NOTIFICATION: %@", msg);
     //TODO: Display an alert
+	errorReceived=YES;
 }
 
 @end

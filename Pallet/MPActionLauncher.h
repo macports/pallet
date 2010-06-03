@@ -20,12 +20,19 @@
 /* Defining growl types*/
 
 /**/
-#define GROWL_TYPES 5
-#define GROWL_INSTALL 1
-#define GROWL_UNINSTALL 2
-#define GROWL_UPGRADE 3
-#define GROWL_SYNC 4
-#define GROWL_SELFUPDATE 5
+#define GROWL_TYPES 10
+#define GROWL_INSTALL 0
+#define GROWL_UNINSTALL 1
+#define GROWL_UPGRADE 2
+#define GROWL_SYNC 3
+#define GROWL_SELFUPDATE 4
+#define GROWL_INSTALLFAILED 5
+#define GROWL_UNINSTALLFAILED 6
+#define GROWL_UPGRADEFAILED 7
+#define GROWL_SYNCFAILED 8
+#define GROWL_SELFUPDATEFAILED 9
+
+
 /*!
  @class MPActionLauncher
  @abstract Wrapper for MacPorts Framework actions

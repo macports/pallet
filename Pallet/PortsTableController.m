@@ -112,7 +112,7 @@
  fixed size both vertically and horizontally.  The fixed vertical size is achieved
  by setting min and max content sizes equal to the content size.  The fixed horizontal
  size is achieved by setting leading and trailing offsets when the parent window resizes. */ 
-
+/*
 - (void)setupDrawer {
     NSSize contentSize = NSMakeSize(150, 150);
     drawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinXEdge];
@@ -120,12 +120,13 @@
     [drawer setMinContentSize:contentSize];
     [drawer setMaxContentSize:contentSize];
 }
+ */
 
-- (void)openDrawer:(id)sender {[drawer openOnEdge:NSMinXEdge];}
+- (IBAction)open:(id)sender {[drawer openOnEdge:NSMinXEdge];}
 
-- (void)closeDrawer:(id)sender {[drawer close];}
+- (IBAction)close:(id)sender {[drawer close];}
 
-- (void)toggleDrawer:(id)sender {
+- (IBAction)toggle:(id)sender {
     NSDrawerState state = [drawer state];
     if (NSDrawerOpeningState == state || NSDrawerOpenState == state) {
         [drawer close];
@@ -133,7 +134,7 @@
         [drawer openOnEdge:NSMinXEdge];
     }
 }
-
+/*
 - (void)setDrawerOffsets {
     [drawer setLeadingOffset:30];
     // we want a drawer width of approximately 220 unscaled.  Figure out an offset to accomplish that size.
@@ -146,6 +147,6 @@
     [self setDrawerOffsets];
 	//[self openDrawer:(id) nil];
 }
-
+*/
 
 @end

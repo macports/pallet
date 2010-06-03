@@ -31,6 +31,7 @@
     IBOutlet NSPredicateEditor *predicateEditor;
     IBOutlet NSWindow *mainWindow;
 	IBOutlet NSDrawer *drawer;
+	IBOutlet NSTableView *drawerTable;
 
     // NSPredicateEditor management
     NSPredicate *predicate;
@@ -58,9 +59,9 @@
 
 - (IBAction)hidePredicateEditor:(id)sender;
 
-- (IBAction)openDrawer:(id)sender;
-- (IBAction)closeDrawer:(id)sender;
-- (IBAction)toggleDrawer:(id)sender;
+- (IBAction)open:(id)sender;
+- (IBAction)close:(id)sender;
+- (IBAction)toggle:(id)sender;
 
 
 @end
