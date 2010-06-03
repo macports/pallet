@@ -18,7 +18,7 @@
     IBOutlet ActivityController *activityController;
     
     IBOutlet NSToolbarItem *cancel;
-
+	IBOutlet NSButton *startQueueButton;
     IBOutlet NSArrayController *queue;
 }
 
@@ -30,5 +30,7 @@
 - (IBAction)sync:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
+
+-(IBAction) startQueue:(id) sender;
 
 @end

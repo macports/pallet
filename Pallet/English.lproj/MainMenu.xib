@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="850"/>
+			<integer value="840"/>
 			<integer value="430"/>
 			<integer value="435"/>
 		</object>
@@ -3389,6 +3389,26 @@
 				<int key="NSvFlags">256</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="NSButton" id="452370589">
+						<reference key="NSNextResponder" ref="610590059"/>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{0, -1}, {240, 35}}</string>
+						<reference key="NSSuperview" ref="610590059"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="412817228">
+							<int key="NSCellFlags">-2080244224</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Start</string>
+							<reference key="NSSupport" ref="782475540"/>
+							<reference key="NSControlView" ref="452370589"/>
+							<int key="NSButtonFlags">-2033434369</int>
+							<int key="NSButtonFlags2">162</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">400</int>
+							<int key="NSPeriodicInterval">75</int>
+						</object>
+					</object>
 					<object class="NSScrollView" id="271863607">
 						<reference key="NSNextResponder" ref="610590059"/>
 						<int key="NSvFlags">274</int>
@@ -3402,7 +3422,7 @@
 									<object class="NSTableView" id="7154443">
 										<reference key="NSNextResponder" ref="874476791"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrameSize">{238, 265}</string>
+										<string key="NSFrameSize">{238, 418}</string>
 										<reference key="NSSuperview" ref="874476791"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTableHeaderView" key="NSHeaderView" id="446743769">
@@ -3481,7 +3501,7 @@
 										<reference key="NSBackgroundColor" ref="415231890"/>
 										<reference key="NSGridColor" ref="391761051"/>
 										<double key="NSRowHeight">17</double>
-										<int key="NSTvFlags">-702545920</int>
+										<int key="NSTvFlags">-700448768</int>
 										<reference key="NSDelegate"/>
 										<reference key="NSDataSource"/>
 										<int key="NSColumnAutoresizingStyle">4</int>
@@ -3491,7 +3511,7 @@
 										<int key="NSTableViewDraggingDestinationStyle">0</int>
 									</object>
 								</object>
-								<string key="NSFrame">{{1, 17}, {238, 265}}</string>
+								<string key="NSFrame">{{1, 17}, {238, 418}}</string>
 								<reference key="NSSuperview" ref="271863607"/>
 								<reference key="NSNextKeyView" ref="7154443"/>
 								<reference key="NSDocView" ref="7154443"/>
@@ -3534,7 +3554,7 @@
 							</object>
 							<reference ref="989237356"/>
 						</object>
-						<string key="NSFrameSize">{240, 283}</string>
+						<string key="NSFrame">{{0, 32}, {240, 436}}</string>
 						<reference key="NSSuperview" ref="610590059"/>
 						<reference key="NSNextKeyView" ref="874476791"/>
 						<int key="NSsFlags">530</int>
@@ -3546,7 +3566,7 @@
 						<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 					</object>
 				</object>
-				<string key="NSFrameSize">{240, 283}</string>
+				<string key="NSFrameSize">{240, 468}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -3561,7 +3581,7 @@
 				<nil key="NSParentWindow"/>
 				<nil key="NSDelegate"/>
 			</object>
-			<object class="NSArrayController" id="197308813">
+			<object class="NSArrayController" id="194540380">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>id</string>
@@ -4541,9 +4561,25 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">queue</string>
 						<reference key="source" ref="800227439"/>
-						<reference key="destination" ref="197308813"/>
+						<reference key="destination" ref="194540380"/>
 					</object>
 					<int key="connectionID">868</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">startQueueButton</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="452370589"/>
+					</object>
+					<int key="connectionID">871</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">startQueue:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="452370589"/>
+					</object>
+					<int key="connectionID">873</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -5998,6 +6034,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="271863607"/>
+							<reference ref="452370589"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Drawer Content View</string>
@@ -6127,9 +6164,23 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">867</int>
-						<reference key="object" ref="197308813"/>
+						<reference key="object" ref="194540380"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Queue</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">869</int>
+						<reference key="object" ref="452370589"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="412817228"/>
+						</object>
+						<reference key="parent" ref="610590059"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">870</int>
+						<reference key="object" ref="412817228"/>
+						<reference key="parent" ref="452370589"/>
 					</object>
 				</object>
 			</object>
@@ -6464,6 +6515,8 @@
 					<string>857.IBPluginDependency</string>
 					<string>858.IBPluginDependency</string>
 					<string>867.IBPluginDependency</string>
+					<string>869.IBPluginDependency</string>
+					<string>870.IBPluginDependency</string>
 					<string>92.IBPluginDependency</string>
 					<string>92.ImportedFromIB2</string>
 				</object>
@@ -6783,7 +6836,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{354, 355}, {240, 283}}</string>
+					<string>{{354, 170}, {240, 468}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6816,7 +6871,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">868</int>
+			<int key="maxID">873</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6872,12 +6927,14 @@
 							<string>installWithVariants:</string>
 							<string>openPreferences:</string>
 							<string>selfupdate:</string>
+							<string>startQueue:</string>
 							<string>sync:</string>
 							<string>uninstall:</string>
 							<string>upgrade:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -6896,6 +6953,7 @@
 							<string>cancel</string>
 							<string>ports</string>
 							<string>queue</string>
+							<string>startQueueButton</string>
 							<string>tableController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -6904,6 +6962,7 @@
 							<string>NSToolbarItem</string>
 							<string>NSArrayController</string>
 							<string>NSArrayController</string>
+							<string>NSButton</string>
 							<string>PortsTableController</string>
 						</object>
 					</object>
