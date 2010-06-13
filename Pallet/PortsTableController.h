@@ -59,6 +59,8 @@
 
 - (IBAction)hidePredicateEditor:(id)sender;
 
+
+//Drawer methods
 - (IBAction)open:(id)sender;
 - (IBAction)close:(id)sender;
 - (IBAction)toggle:(id)sender;

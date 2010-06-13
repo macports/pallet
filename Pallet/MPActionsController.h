@@ -20,6 +20,7 @@
     IBOutlet NSToolbarItem *cancel;
 	IBOutlet NSButton *startQueueButton;
     IBOutlet NSArrayController *queue;
+    IBOutlet PortsTableController *queueController;
 }
 
 - (IBAction)openPreferences:(id)sender;
@@ -30,6 +31,8 @@
 - (IBAction)sync:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
+
+- (void) queueOperation: (NSString*) operation andPort: (NSString*) port;
 
 -(IBAction) startQueue:(id) sender;
 
