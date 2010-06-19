@@ -57,7 +57,11 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_INSTALLFAILED];
 	else
+	{
 		[self sendGrowlNotification: GROWL_INSTALL];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+	}
+	
 }
 
 - (void)uninstallPort:(MPPort *)port {
@@ -67,7 +71,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_UNINSTALLFAILED];
 	else
+	{
 		[self sendGrowlNotification: GROWL_UNINSTALL];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+	}
 }
 
 - (void)upgradePort:(MPPort *)port {
@@ -77,7 +84,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_UPGRADEFAILED];
 	else
+	{
 		[self sendGrowlNotification: GROWL_UPGRADE];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+	}
 }
 
 - (void)sync {
@@ -87,7 +97,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_SYNCFAILED];
 	else
+	{
 		[self sendGrowlNotification: GROWL_SYNC];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+	}
 }
 
 - (void)selfupdate {
@@ -100,7 +113,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_SELFUPDATEFAILED];
 	else
+	{
 		[self sendGrowlNotification: GROWL_SELFUPDATE];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+	}
 }
 
 - (void)cancelPortProcess {
@@ -121,7 +137,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	growlTitles[GROWL_UPGRADEFAILED] = [NSString stringWithString: @"Upgrade Failed"];
 	growlTitles[GROWL_SYNCFAILED] = [NSString stringWithString: @"Sync Failed"];
 	growlTitles[GROWL_SELFUPDATEFAILED] = [NSString stringWithString: @"Selfupdate Failed"];
-	
+
+	growlTitles[GROWL_ALLOPS] = [NSString stringWithString: @"Operations Completed"];
+	growlTitles[GROWL_ALLOPSFAILED] = [NSString stringWithString: @"Operations Failed"];
+
 	NSString *growlDescriptions[GROWL_TYPES];
 	
 	growlDescriptions[GROWL_INSTALL] = [NSString stringWithString: @"Operation completed successfully"];
@@ -134,7 +153,10 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	growlDescriptions[GROWL_UPGRADEFAILED] = [NSString stringWithString: @"Operation Failed"];
 	growlDescriptions[GROWL_SYNCFAILED] = [NSString stringWithString: @"Operation Failed"];
 	growlDescriptions[GROWL_SELFUPDATEFAILED] = [NSString stringWithString: @"Operation Failed"];
-	
+
+	growlDescriptions[GROWL_ALLOPS] = [NSString stringWithString: @"All Operations Completed Succesfully"];
+	growlDescriptions[GROWL_ALLOPSFAILED] = [NSString stringWithString: @"Operations Failed"];
+
 	NSString *growlNotificationNames[GROWL_TYPES];
 	
 	growlNotificationNames[GROWL_INSTALL] = [NSString stringWithString: @"InstallCompleted"];
@@ -148,6 +170,9 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	growlNotificationNames[GROWL_SYNCFAILED] = [NSString stringWithString: @"SyncFailed"];
 	growlNotificationNames[GROWL_SELFUPDATEFAILED] = [NSString stringWithString: @"SelfupdateFailed"];
 	
+	growlNotificationNames[GROWL_ALLOPS] = [NSString stringWithString: @"OperationsCompleted"];
+	growlNotificationNames[GROWL_ALLOPSFAILED] = [NSString stringWithString: @"OperationsFailed"];
+
 	[GrowlApplicationBridge setGrowlDelegate:(id) @""];
 	[GrowlApplicationBridge notifyWithTitle: growlTitles[type] description: growlDescriptions[type]\
 						   notificationName:growlNotificationNames[type] iconData:nil priority: 0\

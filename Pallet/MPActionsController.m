@@ -20,10 +20,11 @@
 }
 
 - (IBAction)install:(id)sender {
+	[tableController open:nil];
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-		[self queueOperation:@"install" andPort:[port name]];
+		[self queueOperation:@"install" portName:[port name] portObject:port];
 		NSLog(@"%@",[port name]);
         //[[MPActionLauncher sharedInstance]
         //    performSelectorInBackground:@selector(installPort:) withObject:port];
@@ -32,9 +33,10 @@
 }
 
 - (IBAction)uninstall:(id)sender {
+	[tableController open:nil];
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
- 		[self queueOperation:@"uninstall" andPort:[port name]];
+ 		[self queueOperation:@"uninstall" portName:[port name] portObject:port];
 		NSLog(@"%@",[port name]);
 		/*
        [[MPActionLauncher sharedInstance]
@@ -44,9 +46,10 @@
 }
 
 - (IBAction)upgrade:(id)sender {
-    NSArray *selectedPorts = [ports selectedObjects];
+ 	[tableController open:nil];
+   NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-		[self queueOperation:@"upgrade" andPort:[port name]];
+		[self queueOperation:@"upgrade" portName:[port name] portObject:port];
 		NSLog(@"%@",[port name]);
 		/*
         [[MPActionLauncher sharedInstance]
@@ -56,7 +59,8 @@
 }
 
 - (IBAction)sync:(id)sender {
-	[self queueOperation:@"sync" andPort:@"sync"];
+	[tableController open:nil];
+	[self queueOperation:@"sync" portName:@"sync" portObject:nil];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(sync) withObject:nil];
@@ -64,7 +68,8 @@
 }
 
 - (IBAction)selfupdate:(id)sender {
-	[self queueOperation:@"selfupdate" andPort:@"selfupdate"];
+	[tableController open:nil];
+	[self queueOperation:@"selfupdate" portName:@"selfupdate" portObject:nil];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(selfupdate) withObject:nil];
@@ -116,12 +121,20 @@
 	//[queue selectNext:nil];
 	NSLog(@"Starting Queue");
 	NSUInteger index;
-	index = [queue selectionIndex];
-	NSLog(@"Index before: %u", index);
+	index = [queueArray count]-1;
+	NSLog(@"Array Size is: %u", index);
 	NSUInteger i;
 	[queue setSelectionIndex: 0];
-	for(i=0; i<=index; i++)
+	queueCounter=0;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(advanceQueue)
+												 name:@"advanceQ" object:nil];
+	[self advanceQueue];
+	
+	for(i=0; i<=index+10; i++)
 	{
+		/*
 		//We select each object from the array
 		[queue setSelectionIndex:i];
 		//We sleep the process for debugging puproses
@@ -132,22 +145,82 @@
 		NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[wtf objectAtIndex:0]];
 		//And we print the operations
 		NSLog(@"Port %@ Operation %@",[dict objectForKey:@"port"], [dict objectForKey:@"operation"]);
+		 */
 		
 	}
-	[queue setSelectionIndex:index];
-	//[queue remove:nil];
-
-	
-	//index = [queue selectionIndex];
-	//NSLog(@"Index after: %u", index);
-	//NSLog(@"Starting Queue Operations");
+	//[queue setSelectionIndex:index];
+	//[queue selectNext:nil];
 }
 
--(void) queueOperation:(NSString*)operation andPort:(NSString*)port
+-(void) advanceQueue
+{
+	NSUInteger index=queueCounter;
+	if([queueArray count]>index)
+	{
+		NSLog(@"Advancing Queue for %u", index);
+		//index = [queue selectionIndex];
+		NSLog(@"Index before: %u", index);
+
+		//We select each object from the array
+		[queue setSelectionIndex:index];
+		//We sleep the process for debugging puproses
+		//sleep(3);
+		//We then take the dictionary
+		NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[queueArray objectAtIndex:index]];
+		//And we print the operations
+		NSLog(@"Port %@ Operation %@",[dict objectForKey:@"port"], [dict objectForKey:@"operation"]);
+		id port= [dict objectForKey:@"object"];
+		
+		if ([[dict objectForKey:@"operation"] isEqualToString:@"install"])
+		{
+			NSLog(@"We have installation");
+			[[MPActionLauncher sharedInstance]
+			 performSelectorInBackground:@selector(installPort:) withObject:port];		
+		}
+		else if([[dict objectForKey:@"operation"] isEqualToString:@"uninstall"])
+		{
+			NSLog(@"We have uninstallation");
+			[[MPActionLauncher sharedInstance]
+			 performSelectorInBackground:@selector(uninstallPort:) withObject:port];		
+		}
+		else if([[dict objectForKey:@"operation"] isEqualToString:@"upgrade"])
+		{
+			NSLog(@"We have upgrade");
+			[[MPActionLauncher sharedInstance]
+			 performSelectorInBackground:@selector(upgradePort:) withObject:port];
+		}
+		else if([[dict objectForKey:@"operation"] isEqualToString:@"selfupdate"])
+		{
+			NSLog(@"We have selfupdate");
+			[[MPActionLauncher sharedInstance]
+			 performSelectorInBackground:@selector(selfupdate) withObject:nil];		
+		}
+		else if([[dict objectForKey:@"operation"] isEqualToString:@"sync"])
+		{
+			NSLog(@"We have sync");
+			[[MPActionLauncher sharedInstance]
+			 performSelectorInBackground:@selector(sync) withObject:nil];		
+		}
+	}
+	else
+	{
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"advanceQ" object:nil];
+		
+		int allops=GROWL_ALLOPS;
+		[[MPActionLauncher sharedInstance]
+		 performSelectorInBackground:@selector(sendGrowlNotification:) withObject:(id) allops];		
+		
+	}
+
+	queueCounter++;
+	
+}
+
+-(void) queueOperation:(NSString*)operation portName:(NSString*)name portObject: (id) port
 {
 	NSLog(@"Queueing our Operation");
 	//NSMutableDictionary *tempDict=[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"wtf", @"operation", @"le_port", @"port", nil];
-	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", port, @"port",nil]];
+	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", nil]];
 	//[queue addObject: tempDict];
 	//[queue retain];
 	

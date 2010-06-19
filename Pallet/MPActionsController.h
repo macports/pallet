@@ -11,6 +11,7 @@
 #import "PortsTableController.h"
 #import "ActivityController.h"
 
+#import "GrowlNotifications.h"
 
 @interface MPActionsController : NSObject {
     IBOutlet NSArrayController *ports;
@@ -19,8 +20,9 @@
     
     IBOutlet NSToolbarItem *cancel;
 	IBOutlet NSButton *startQueueButton;
+	IBOutlet NSMutableArray *queueArray;
     IBOutlet NSArrayController *queue;
-    IBOutlet PortsTableController *queueController;
+	NSUInteger queueCounter;
 }
 
 - (IBAction)openPreferences:(id)sender;
@@ -32,8 +34,8 @@
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
 
-- (void) queueOperation: (NSString*) operation andPort: (NSString*) port;
+- (void) queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port;
 
 -(IBAction) startQueue:(id) sender;
-
+-(void) advanceQueue;
 @end
