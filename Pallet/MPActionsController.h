@@ -20,6 +20,7 @@
     
     IBOutlet NSToolbarItem *cancel;
 	IBOutlet NSButton *startQueueButton;
+	IBOutlet NSButton *removeFromQueueButton;
 	IBOutlet NSMutableArray *queueArray;
     IBOutlet NSArrayController *queue;
 	NSUInteger queueCounter;
@@ -37,5 +38,6 @@
 - (void) queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port;
 
 -(IBAction) startQueue:(id) sender;
+-(IBAction) removeFromQueue:(id) sender;
 -(void) advanceQueue;
 @end

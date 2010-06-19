@@ -266,4 +266,11 @@
 	
 }
 
+-(void) removeFromQueue:(id)sender
+{
+	UInt index = [queue selectionIndex];
+	[queue removeObject: [[queue selectedObjects] objectAtIndex:0]];
+	[queue setSelectionIndex: index];
+}
+
 @end
