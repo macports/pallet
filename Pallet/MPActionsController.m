@@ -60,7 +60,7 @@
 
 - (IBAction)sync:(id)sender {
 	[tableController open:nil];
-	[self queueOperation:@"sync" portName:@"sync" portObject:nil];
+	[self queueOperation:@"sync" portName:@"-" portObject:@"-"];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(sync) withObject:nil];
@@ -69,7 +69,7 @@
 
 - (IBAction)selfupdate:(id)sender {
 	[tableController open:nil];
-	[self queueOperation:@"selfupdate" portName:@"selfupdate" portObject:nil];
+	[self queueOperation:@"selfupdate" portName:@"-" portObject:@"-"];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(selfupdate) withObject:nil];
@@ -218,9 +218,31 @@
 
 -(void) queueOperation:(NSString*)operation portName:(NSString*)name portObject: (id) port
 {
+	NSImage *image;
+	if ([operation isEqualToString:@"install"])
+	{
+		image = [NSImage imageNamed:@"TB_Install.icns"];
+	}
+	else if ([operation isEqualToString:@"uninstall"])
+	{
+		image = [NSImage imageNamed:@"TB_Uninstall.icns"];
+	}
+	else if ([operation isEqualToString:@"upgrade"])
+	{
+		image = [NSImage imageNamed:@"TB_Upgrade.icns"];
+	}
+	else if ([operation isEqualToString:@"sync"])
+	{
+		image = [NSImage imageNamed:@"TB_Sync.icns"];
+	}
+	else if ([operation isEqualToString:@"selfupdate"])
+	{
+		image = [NSImage imageNamed:@"TB_Selfupdate.icns"];
+	}
+	
 	NSLog(@"Queueing our Operation");
 	//NSMutableDictionary *tempDict=[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"wtf", @"operation", @"le_port", @"port", nil];
-	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", nil]];
+	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", image, @"image", nil]];
 	//[queue addObject: tempDict];
 	//[queue retain];
 	
