@@ -16,7 +16,15 @@
 }
 
 - (IBAction)installWithVariants:(id)sender {
-	[self install:(id) nil];
+	[tableController open:nil];
+	NSLog(@"Staring Installation");
+    NSArray *selectedPorts = [ports selectedObjects];
+    for (id port in selectedPorts) {
+		[self queueOperation:@"install+" portName:[port name] portObject:port];
+		NSLog(@"%@",[port name]);
+    }
+	
+	
 }
 
 - (IBAction)install:(id)sender {
@@ -29,7 +37,7 @@
         //[[MPActionLauncher sharedInstance]
         //    performSelectorInBackground:@selector(installPort:) withObject:port];
     }
-	NSLog(@"Installation Completed");
+	//NSLog(@"Installation Completed");
 }
 
 - (IBAction)uninstall:(id)sender {
@@ -177,6 +185,12 @@
 			[[MPActionLauncher sharedInstance]
 			 performSelectorInBackground:@selector(installPort:) withObject:port];		
 		}
+		else if([[dict objectForKey:@"operation"] isEqualToString:@"install+"])
+		{
+			NSLog(@"We have installation with variants");
+			[[MPActionLauncher sharedInstance]
+			 performSelectorInBackground:@selector(installPort:) withObject:port];		
+		}
 		else if([[dict objectForKey:@"operation"] isEqualToString:@"uninstall"])
 		{
 			NSLog(@"We have uninstallation");
@@ -222,6 +236,10 @@
 	if ([operation isEqualToString:@"install"])
 	{
 		image = [NSImage imageNamed:@"TB_Install.icns"];
+	}
+	else if ([operation isEqualToString:@"install+"])
+	{
+		image = [NSImage imageNamed:@"TB_InstallWithVar.icns"];
 	}
 	else if ([operation isEqualToString:@"uninstall"])
 	{
