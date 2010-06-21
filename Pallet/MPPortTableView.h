@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+BOOL altWasPressed;
 
 @interface MPPortTableView : NSTableView {
     IBOutlet NSPanel *quickLookPanel;
+	
 }
 
 @end

@@ -13,6 +13,8 @@
 
 #import "GrowlNotifications.h"
 
+extern BOOL altWasPressed;
+
 @interface MPActionsController : NSObject {
     IBOutlet NSArrayController *ports;
     IBOutlet PortsTableController *tableController;
@@ -39,5 +41,6 @@
 
 -(IBAction) startQueue:(id) sender;
 -(IBAction) removeFromQueue:(id) sender;
+-(void) clearQueue;
 -(void) advanceQueue;
 @end

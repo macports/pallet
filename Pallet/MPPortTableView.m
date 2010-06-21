@@ -31,4 +31,22 @@
     }
 }
 
+
+-(void)flagsChanged:(NSEvent *)theEvent
+{
+	if([theEvent modifierFlags]&NSAlternateKeyMask)
+	{
+		NSLog(@"Alt is pressed");
+		altWasPressed=YES;
+	}
+	else
+	{
+		if(altWasPressed)
+		{
+			NSLog(@"Alt is released");
+			altWasPressed=NO;
+		}
+		else [super flagsChanged:theEvent];
+	}
+}
 @end

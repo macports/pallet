@@ -16,6 +16,10 @@
 }
 
 - (IBAction)installWithVariants:(id)sender {
+	if (altWasPressed)
+	{
+		[self clearQueue];
+	}	 	
 	[tableController open:nil];
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
@@ -23,11 +27,15 @@
 		[self queueOperation:@"install+" portName:[port name] portObject:port];
 		NSLog(@"%@",[port name]);
     }
-	
-	
+	if (altWasPressed)
+		[self startQueue:nil];
 }
 
 - (IBAction)install:(id)sender {
+	if (altWasPressed)
+	{
+		[self clearQueue];
+	}	 
 	[tableController open:nil];
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
@@ -38,9 +46,16 @@
         //    performSelectorInBackground:@selector(installPort:) withObject:port];
     }
 	//NSLog(@"Installation Completed");
+	if (altWasPressed)
+		[self startQueue:nil];
 }
 
 - (IBAction)uninstall:(id)sender {
+	
+	if (altWasPressed)
+	{
+		[self clearQueue];
+	}	 
 	[tableController open:nil];
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
@@ -51,9 +66,15 @@
             performSelectorInBackground:@selector(uninstallPort:) withObject:port];
 		 */
     }
+	if (altWasPressed)
+		[self startQueue:nil];
 }
 
 - (IBAction)upgrade:(id)sender {
+	if (altWasPressed)
+	{
+		[self clearQueue];
+	}	 
  	[tableController open:nil];
    NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
@@ -64,24 +85,38 @@
             performSelectorInBackground:@selector(upgradePort:) withObject:port];
 		 */
     }
+	if (altWasPressed)
+		[self startQueue:nil];
 }
 
 - (IBAction)sync:(id)sender {
+	if (altWasPressed)
+	{
+		[self clearQueue];
+	}	 
 	[tableController open:nil];
 	[self queueOperation:@"sync" portName:@"-" portObject:@"-"];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(sync) withObject:nil];
 	 */
+	if (altWasPressed)
+		[self startQueue:nil];
 }
 
 - (IBAction)selfupdate:(id)sender {
+	if (altWasPressed)
+	{
+		[self clearQueue];
+	}	 
 	[tableController open:nil];
 	[self queueOperation:@"selfupdate" portName:@"-" portObject:@"-"];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(selfupdate) withObject:nil];
 	 */
+	if (altWasPressed)
+		[self startQueue:nil];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -271,6 +306,15 @@
 	UInt index = [queue selectionIndex];
 	[queue removeObject: [[queue selectedObjects] objectAtIndex:0]];
 	[queue setSelectionIndex: index];
+}
+
+
+-(void) clearQueue
+{
+	//NSLog(@"We have the alt key pressed");
+	NSIndexSet *tempIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [queueArray count])];
+	[queue removeObjectsAtArrangedObjectIndexes:tempIndex];
+	
 }
 
 @end
