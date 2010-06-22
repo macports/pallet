@@ -24,6 +24,12 @@
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
+		NSLog(@"Port variants:");
+		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
+		{
+			NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+		}
+		NSLog(@"End of Variants");
 		[self queueOperation:@"install+" portName:[port name] portObject:port];
 		NSLog(@"%@",[port name]);
     }
