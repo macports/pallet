@@ -13,7 +13,8 @@
 
 -(id)init {
     [quickLookPanel setFloatingPanel:YES];
-    [super init];
+    
+	[super init];
     return self;
 }
 
@@ -22,6 +23,7 @@
         ([[theEvent characters] characterAtIndex:0] == 27 && [quickLookPanel isVisible])) {
         if ([quickLookPanel isVisible]) {
             [quickLookPanel close];
+			//[variantsPanel close];
         } else {
             [quickLookPanel makeKeyAndOrderFront:self];
             [quickLookPanel makeFirstResponder:self];

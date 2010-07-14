@@ -26,11 +26,28 @@ extern BOOL altWasPressed;
 	IBOutlet NSMutableArray *queueArray;
     IBOutlet NSArrayController *queue;
 	NSUInteger queueCounter;
+	
+	//Variants Panel
+    IBOutlet NSPanel *variantsPanel;
+	
+	id checkboxes[10];
+	
+	IBOutlet NSButton *chckbx0;
+	IBOutlet NSButton *chckbx1;
+	IBOutlet NSButton *chckbx2;
+	IBOutlet NSButton *chckbx3;
+	IBOutlet NSButton *chckbx4;
+	IBOutlet NSButton *chckbx5;
+	IBOutlet NSButton *chckbx6;
+	IBOutlet NSButton *chckbx7;
+	IBOutlet NSButton *chckbx8;
+	IBOutlet NSButton *chckbx9;	
 }
 
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)install:(id)sender;
-- (IBAction)installWithVariants:(id)sender;
+- (IBAction)installWithVariantsChoose:(id)sender;
+- (IBAction)installWithVariantsPerform:(id)sender;
 - (IBAction)uninstall:(id)sender;
 - (IBAction)upgrade:(id)sender;
 - (IBAction)sync:(id)sender;
@@ -43,4 +60,5 @@ extern BOOL altWasPressed;
 -(IBAction) removeFromQueue:(id) sender;
 -(void) clearQueue;
 -(void) advanceQueue;
+
 @end

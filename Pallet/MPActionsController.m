@@ -15,26 +15,83 @@
     [NSBundle loadNibNamed:@"Preferences" owner:self];
 }
 
-- (IBAction)installWithVariants:(id)sender {
+- (IBAction)installWithVariantsPerform:(id)sender {
 	if (altWasPressed)
 	{
 		[self clearQueue];
-	}	 	
+	}
+	[variantsPanel close];
+
 	[tableController open:nil];
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
+		
+		//NSLog(@"Lets see %@", [checkboxes[0] title]);
 		NSLog(@"Port variants:");
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
 			NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+			if ([checkboxes[i] state] == NSOnState)
+			{
+				NSLog(@"Checked");
+			}
+			else
+			{
+				NSLog(@"Unchecked");
+			}
 		}
 		NSLog(@"End of Variants");
+		
+		
 		[self queueOperation:@"install+" portName:[port name] portObject:port];
 		NSLog(@"%@",[port name]);
     }
 	if (altWasPressed)
 		[self startQueue:nil];
+}
+
+- (IBAction)installWithVariantsChoose:(id)sender 
+{
+	//id checkboxes[10];
+	
+	checkboxes[0]=chckbx0;
+	checkboxes[1]=chckbx1;
+	checkboxes[2]=chckbx2;
+	checkboxes[3]=chckbx3;
+	checkboxes[4]=chckbx4;
+	checkboxes[5]=chckbx5;
+	checkboxes[6]=chckbx6;
+	checkboxes[7]=chckbx7;
+	checkboxes[8]=chckbx8;
+	checkboxes[9]=chckbx9;
+	
+	for(UInt i=0; i< 10;i++)
+	{
+		[checkboxes[i] setAlphaValue:0];
+	}
+	//[chckbx1 setAlphaValue:0];
+    NSArray *selectedPorts = [ports selectedObjects];
+	id port = [selectedPorts objectAtIndex:0];
+	NSLog(@"Port variants:");
+	for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
+	{
+		NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+		//[checkboxes[i] setTitle:[[port valueForKey:@"variants"] objectAtIndex:i]];
+		[checkboxes[i] setAlphaValue:1];
+		[checkboxes[i] setState:NSOffState];
+		NSAttributedString *tempString = [[NSAttributedString alloc]\
+										  initWithString:[[port valueForKey:@"variants"] objectAtIndex:i]\
+	attributes: [NSDictionary dictionaryWithObject: [NSColor whiteColor] forKey: NSForegroundColorAttributeName]];
+		[checkboxes[i] setAttributedTitle:tempString];
+		 
+	}
+	NSLog(@"End of Variants");
+	
+	
+	[variantsPanel makeKeyAndOrderFront:self];
+	//[chckbx2 setTitle:@"hehe"];
+	//[variantsPanel makeFirstResponder:[tableController mainWindow]];
 }
 
 - (IBAction)install:(id)sender {
@@ -321,6 +378,14 @@
 	NSIndexSet *tempIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [queueArray count])];
 	[queue removeObjectsAtArrangedObjectIndexes:tempIndex];
 	
+}
+
+-(id) init
+{
+	[variantsPanel setFloatingPanel:YES];
+	
+	[super init];
+    return self;
 }
 
 @end
