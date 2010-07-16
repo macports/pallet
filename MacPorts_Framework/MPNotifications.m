@@ -69,8 +69,8 @@
 	return self;
 }
 
-- (unsigned)retainCount {
-	return UINT_MAX;
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;  //denotes an object that cannot be released
 }
 
 -(void) release {

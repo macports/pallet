@@ -1575,7 +1575,7 @@ done:
     // asl, aslMsg, and kq.
     
     if (errStr != NULL) {
-        err = asl_log(asl, aslMsg, ASL_LEVEL_ERR, errStr);
+        err = asl_log(asl, aslMsg, ASL_LEVEL_ERR, "%s", errStr);
         assert(err == 0);
     }
     err = asl_log(asl, aslMsg, ASL_LEVEL_INFO, "Shutting down");
