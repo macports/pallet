@@ -25,73 +25,85 @@
 	[tableController open:nil];
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
-    for (id port in selectedPorts) {
-		
-		//NSLog(@"Lets see %@", [checkboxes[0] title]);
-		NSLog(@"Port variants:");
-		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
+	id port = [selectedPorts objectAtIndex:0];		
+	//NSLog(@"Lets see %@", [checkboxes[0] title]);
+	NSLog(@"Port variants:");
+	
+	NSMutableString *variantsString = [NSMutableString stringWithCapacity:50];
+	[variantsString appendString:[port name]];
+	for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
+	{
+		NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+		if ([checkboxes[i] state] == NSOnState)
 		{
-			NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
-			if ([checkboxes[i] state] == NSOnState)
-			{
-				NSLog(@"Checked");
-			}
-			else
-			{
-				NSLog(@"Unchecked");
-			}
+			[variantsString appendString:@"+"];
+			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
+			NSLog(@"Checked");
 		}
-		NSLog(@"End of Variants");
+		else
+		{
+			NSLog(@"Unchecked");
+		}
+	}
+	NSLog(@"End of Variants");
 		
-		
-		[self queueOperation:@"install+" portName:[port name] portObject:port];
-		NSLog(@"%@",[port name]);
-    }
+	[self queueOperation:@"install+" portName:variantsString portObject:port];
+	NSLog(@"%@",[port name]);
+
 	if (altWasPressed)
 		[self startQueue:nil];
 }
 
 - (IBAction)installWithVariantsChoose:(id)sender 
 {
-	//id checkboxes[10];
-	
-	checkboxes[0]=chckbx0;
-	checkboxes[1]=chckbx1;
-	checkboxes[2]=chckbx2;
-	checkboxes[3]=chckbx3;
-	checkboxes[4]=chckbx4;
-	checkboxes[5]=chckbx5;
-	checkboxes[6]=chckbx6;
-	checkboxes[7]=chckbx7;
-	checkboxes[8]=chckbx8;
-	checkboxes[9]=chckbx9;
-	
-	for(UInt i=0; i< 10;i++)
-	{
-		[checkboxes[i] setAlphaValue:0];
-	}
-	//[chckbx1 setAlphaValue:0];
-    NSArray *selectedPorts = [ports selectedObjects];
+	NSArray *selectedPorts = [ports selectedObjects];
 	id port = [selectedPorts objectAtIndex:0];
-	NSLog(@"Port variants:");
-	for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
+	
+	if([[port valueForKey:@"variants"] count] > 0)
 	{
-		NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
-		//[checkboxes[i] setTitle:[[port valueForKey:@"variants"] objectAtIndex:i]];
-		[checkboxes[i] setAlphaValue:1];
-		[checkboxes[i] setState:NSOffState];
-		NSAttributedString *tempString = [[NSAttributedString alloc]\
-										  initWithString:[[port valueForKey:@"variants"] objectAtIndex:i]\
-	attributes: [NSDictionary dictionaryWithObject: [NSColor whiteColor] forKey: NSForegroundColorAttributeName]];
-		[checkboxes[i] setAttributedTitle:tempString];
-		 
+		//id checkboxes[10];
+		checkboxes[0]=chckbx0;
+		checkboxes[1]=chckbx1;
+		checkboxes[2]=chckbx2;
+		checkboxes[3]=chckbx3;
+		checkboxes[4]=chckbx4;
+		checkboxes[5]=chckbx5;
+		checkboxes[6]=chckbx6;
+		checkboxes[7]=chckbx7;
+		checkboxes[8]=chckbx8;
+		checkboxes[9]=chckbx9;
+		
+		for(UInt i=0; i< 10;i++)
+		{
+			[checkboxes[i] setAlphaValue:0];
+		}
+		//[chckbx1 setAlphaValue:0];
+		NSLog(@"Variants count: %i", [[port valueForKey:@"variants"] count]);
+		NSLog(@"Port variants:");
+		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
+		{
+			NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+			//[checkboxes[i] setTitle:[[port valueForKey:@"variants"] objectAtIndex:i]];
+			[checkboxes[i] setAlphaValue:1];
+			[checkboxes[i] setState:NSOffState];
+			NSAttributedString *tempString = [[NSAttributedString alloc]\
+											  initWithString:[[port valueForKey:@"variants"] objectAtIndex:i]\
+		attributes: [NSDictionary dictionaryWithObject: [NSColor whiteColor] forKey: NSForegroundColorAttributeName]];
+			[checkboxes[i] setAttributedTitle:tempString];
+			 
+		}
+		NSLog(@"End of Variants");
+		
+		
+		[variantsPanel makeKeyAndOrderFront:self];
+		//[chckbx2 setTitle:@"hehe"];
+		//[variantsPanel makeFirstResponder:[tableController mainWindow]];
 	}
-	NSLog(@"End of Variants");
-	
-	
-	[variantsPanel makeKeyAndOrderFront:self];
-	//[chckbx2 setTitle:@"hehe"];
-	//[variantsPanel makeFirstResponder:[tableController mainWindow]];
+	else
+	{
+		[self install:nil];
+	}
+
 }
 
 - (IBAction)install:(id)sender {
