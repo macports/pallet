@@ -261,10 +261,16 @@
 		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
 	}
 	
+	NSLog(@"Variants String: %@", vrnts);
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:target withStatus:@"Started"];
 	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
+	
+	
+	NSLog(@"Interpreter string:\n%@",[NSString stringWithFormat:
+									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+									  [self valueForKey:@"porturl"], opts, vrnts, target]);
 	
     [interpreter evaluateStringWithPossiblePrivileges:
         [NSString stringWithFormat:
