@@ -30,19 +30,28 @@
 	//NSLog(@"Port variants:");
 	NSMutableString *variantsString = [NSMutableString stringWithCapacity:50];
 	[variantsString appendString:[port name]];
+	NSMutableArray *variants=[NSMutableArray arrayWithCapacity:10];
 	for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 	{
 		//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 		if ([checkboxes[i] state] == NSOnState)
 		{
+			[variants addObject:[[port valueForKey:@"variants"] objectAtIndex:i]];
 			[variantsString appendString:@"+"];
 			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
 		}
 	}
 	//NSLog(@"End of Variants");
 		
-	[self queueOperation:@"install+" portName:variantsString portObject:port];
-	//NSLog(@"%@",[port name]);
+	/*
+	for(UInt i=0; i<[variants count]; i++)
+	{
+		NSLog(@"variants array at #%i: %@", i, [variants objectAtIndex:i]);
+	}
+	 */
+	
+	[self queueOperation:@"install+" portName:variantsString portObject:port variants: variants];
+	NSLog(@"%@",[port name]);
 
 	if (altWasPressed)
 		[self startQueue:nil];
@@ -108,7 +117,7 @@
 	NSLog(@"Staring Installation");
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-		[self queueOperation:@"install" portName:[port name] portObject:port];
+		[self queueOperation:@"install" portName:[port name] portObject:port variants:0];
 		NSLog(@"%@",[port name]);
         //[[MPActionLauncher sharedInstance]
         //    performSelectorInBackground:@selector(installPort:) withObject:port];
@@ -127,7 +136,7 @@
 	[tableController open:nil];
     NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
- 		[self queueOperation:@"uninstall" portName:[port name] portObject:port];
+ 		[self queueOperation:@"uninstall" portName:[port name] portObject:port variants:0];
 		NSLog(@"%@",[port name]);
 		/*
        [[MPActionLauncher sharedInstance]
@@ -146,7 +155,7 @@
  	[tableController open:nil];
    NSArray *selectedPorts = [ports selectedObjects];
     for (id port in selectedPorts) {
-		[self queueOperation:@"upgrade" portName:[port name] portObject:port];
+		[self queueOperation:@"upgrade" portName:[port name] portObject:port variants:0];
 		NSLog(@"%@",[port name]);
 		/*
         [[MPActionLauncher sharedInstance]
@@ -163,7 +172,7 @@
 		[self clearQueue];
 	}	 
 	[tableController open:nil];
-	[self queueOperation:@"sync" portName:@"-" portObject:@"-"];
+	[self queueOperation:@"sync" portName:@"-" portObject:@"-" variants:0];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(sync) withObject:nil];
@@ -178,7 +187,7 @@
 		[self clearQueue];
 	}	 
 	[tableController open:nil];
-	[self queueOperation:@"selfupdate" portName:@"-" portObject:@"-"];
+	[self queueOperation:@"selfupdate" portName:@"-" portObject:@"-" variants:0];
 	/*
     [[MPActionLauncher sharedInstance]
         performSelectorInBackground:@selector(selfupdate) withObject:nil];
@@ -291,8 +300,10 @@
 		else if([[dict objectForKey:@"operation"] isEqualToString:@"install+"])
 		{
 			NSLog(@"We have installation with variants");
+			NSArray *variants = [dict objectForKey:@"variants"];
+			NSArray *portAndVariants = [NSArray arrayWithObjects:port, variants, nil];
 			[[MPActionLauncher sharedInstance]
-			 performSelectorInBackground:@selector(installPort:) withObject:port];		
+			 performSelectorInBackground:@selector(installPortWithVariants:) withObject:portAndVariants];		
 		}
 		else if([[dict objectForKey:@"operation"] isEqualToString:@"uninstall"])
 		{
@@ -333,7 +344,7 @@
 	
 }
 
--(void) queueOperation:(NSString*)operation portName:(NSString*)name portObject: (id) port
+-(void) queueOperation:(NSString*)operation portName:(NSString*)name portObject: (id) port variants: (NSMutableArray*) variants
 {
 	NSImage *image;
 	if ([operation isEqualToString:@"install"])
@@ -361,12 +372,20 @@
 		image = [NSImage imageNamed:@"TB_Selfupdate.icns"];
 	}
 	
+	
+	if(variants!=nil)
+	{
+		NSLog(@"yay");
+		for(UInt i=0; i<[variants count]; i++)
+		{
+			NSLog(@"variants array at #%i: %@", i, [variants objectAtIndex:i]);
+		}
+	}
+	
 	NSLog(@"Queueing our Operation");
-	//NSMutableDictionary *tempDict=[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"wtf", @"operation", @"le_port", @"port", nil];
-	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", image, @"image", nil]];
+	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", image, @"image", variants, @"variants", nil]];
 	//[queue addObject: tempDict];
 	//[queue retain];
-	
 }
 
 -(void) removeFromQueue:(id)sender

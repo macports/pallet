@@ -54,7 +54,7 @@ extern BOOL altWasPressed;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
 
-- (void) queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port;
+- (void) queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port variants: (NSMutableArray*) variants;
 
 -(IBAction) startQueue:(id) sender;
 -(IBAction) removeFromQueue:(id) sender;

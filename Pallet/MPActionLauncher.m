@@ -64,6 +64,24 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	
 }
 
+- (void)installPortWithVariants:(NSArray *) portAndVariants {
+	errorReceived=NO;
+    NSError * error;
+    NSArray *empty = [NSArray arrayWithObject: @""];
+	
+	MPPort* port = [portAndVariants objectAtIndex:0];
+	NSArray *variants = [portAndVariants objectAtIndex:1];
+    [port installWithOptions:empty variants:variants error:&error];
+	if(errorReceived)
+		[self sendGrowlNotification: GROWL_INSTALLFAILED];
+	else
+	{
+		[self sendGrowlNotification: GROWL_INSTALL];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+	}
+	
+}
+
 - (void)uninstallPort:(MPPort *)port {
 	errorReceived=NO;
     NSError * error;

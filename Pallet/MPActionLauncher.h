@@ -61,6 +61,13 @@
 - (void)installPort:(MPPort *)port;
 
 /*!
+ @brief Installs a single port with the selected variants in another thread
+ @param portAndVariands NSArray which includes the port to install and its variants
+ */
+
+- (void)installPortWithVariants:(NSArray *)portAndVariants;
+
+/*!
  @brief Uninstalls a single port in another thread
  @param port MPPort that represents the port to install
  */
