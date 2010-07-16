@@ -80,7 +80,6 @@
     }
     
     NSScrollView* tableScrollView = [portsTableView enclosingScrollView];
-    NSUInteger oldOutlineViewMask = [tableScrollView autoresizingMask];
     
     NSScrollView* predicateEditorScrollView = [predicateEditor enclosingScrollView];
     NSUInteger oldPredicateEditorViewMask = [predicateEditorScrollView autoresizingMask];
@@ -100,7 +99,7 @@
     [mainWindow setFrame:windowFrame display:YES animate:YES];
     
     
-    [tableScrollView setAutoresizingMask:oldOutlineViewMask];
+    [tableScrollView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [predicateEditorScrollView setAutoresizingMask:oldPredicateEditorViewMask];
     
     rowCount = newRowCount;
