@@ -27,28 +27,22 @@
     NSArray *selectedPorts = [ports selectedObjects];
 	id port = [selectedPorts objectAtIndex:0];		
 	//NSLog(@"Lets see %@", [checkboxes[0] title]);
-	NSLog(@"Port variants:");
-	
+	//NSLog(@"Port variants:");
 	NSMutableString *variantsString = [NSMutableString stringWithCapacity:50];
 	[variantsString appendString:[port name]];
 	for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 	{
-		NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+		//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 		if ([checkboxes[i] state] == NSOnState)
 		{
 			[variantsString appendString:@"+"];
 			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
-			NSLog(@"Checked");
-		}
-		else
-		{
-			NSLog(@"Unchecked");
 		}
 	}
-	NSLog(@"End of Variants");
+	//NSLog(@"End of Variants");
 		
 	[self queueOperation:@"install+" portName:variantsString portObject:port];
-	NSLog(@"%@",[port name]);
+	//NSLog(@"%@",[port name]);
 
 	if (altWasPressed)
 		[self startQueue:nil];
@@ -78,12 +72,11 @@
 			[checkboxes[i] setAlphaValue:0];
 		}
 		//[chckbx1 setAlphaValue:0];
-		NSLog(@"Variants count: %i", [[port valueForKey:@"variants"] count]);
-		NSLog(@"Port variants:");
+		//NSLog(@"Variants count: %i", [[port valueForKey:@"variants"] count]);
+		//NSLog(@"Port variants:");
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
-			NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
-			//[checkboxes[i] setTitle:[[port valueForKey:@"variants"] objectAtIndex:i]];
+			//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 			[checkboxes[i] setAlphaValue:1];
 			[checkboxes[i] setState:NSOffState];
 			NSAttributedString *tempString = [[NSAttributedString alloc]\
@@ -92,7 +85,7 @@
 			[checkboxes[i] setAttributedTitle:tempString];
 			 
 		}
-		NSLog(@"End of Variants");
+		//NSLog(@"End of Variants");
 		
 		
 		[variantsPanel makeKeyAndOrderFront:self];
