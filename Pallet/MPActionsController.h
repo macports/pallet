@@ -30,6 +30,9 @@ extern BOOL altWasPressed;
 	//Variants Panel
     IBOutlet NSPanel *variantsPanel;
 	
+	//Info Panel
+	IBOutlet NSPanel *infoPanel;
+	
 	id checkboxes[10];
 	
 	IBOutlet NSButton *chckbx0;
@@ -53,6 +56,7 @@ extern BOOL altWasPressed;
 - (IBAction)sync:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
+- (IBAction) toggleInfoPanel: (id) sender;
 
 - (void) queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port variants: (NSMutableArray*) variants;
 

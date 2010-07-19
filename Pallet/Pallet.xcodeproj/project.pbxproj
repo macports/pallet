@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D20FFD911F4F38000CCC4C6 /* TB_Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */; };
+		1D20FFDA11F4F38000CCC4C6 /* TB_Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */; };
 		1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
 		1D24FCAC11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
 		1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
@@ -177,6 +179,7 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Info.icns; sourceTree = "<group>"; };
 		1D24FC5F11CD1C770063E2A5 /* GrowlNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlNotifications.h; sourceTree = "<group>"; };
 		1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_InstallWithVar.icns; sourceTree = "<group>"; };
 		1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -358,6 +361,7 @@
 				21E74CA610403250006843E6 /* Application.icns */,
 				2172B84E103923FF0006138C /* TB_Cancel.icns */,
 				2172B84F103923FF0006138C /* TB_Selfupdate.icns */,
+				1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */,
 				21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */,
 				1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */,
 				21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */,
@@ -524,6 +528,7 @@
 				21900DD21095001700ED79CF /* Application.icns in Resources */,
 				1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 				1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */,
+				1D20FFDA11F4F38000CCC4C6 /* TB_Info.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +550,7 @@
 				2172B851103923FF0006138C /* TB_Selfupdate.icns in Resources */,
 				21E74CA710403250006843E6 /* Application.icns in Resources */,
 				1D24FCAC11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */,
+				1D20FFD911F4F38000CCC4C6 /* TB_Info.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

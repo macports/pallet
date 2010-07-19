@@ -201,6 +201,18 @@
     [[MPMacPorts sharedInstance] cancelCurrentCommand];
 }
 
+- (IBAction) toggleInfoPanel: (id) sender;
+{
+	if ([infoPanel isVisible]) {
+		[infoPanel close];
+		//[variantsPanel close];
+	} else {
+		[infoPanel makeKeyAndOrderFront:self];
+		//May need to make our MPTableView as the first responder
+		//[infoPanel makeFirstResponder:self];
+	}
+}
+
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {
     BOOL enable = ![activityController busy];
     if ([[toolbarItem itemIdentifier] isEqual:[cancel itemIdentifier]]) {
