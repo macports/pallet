@@ -36,7 +36,8 @@
 		//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 		if ([checkboxes[i] state] == NSOnState)
 		{
-			[variants addObject:[NSString stringWithFormat:@"+%@", [[port valueForKey:@"variants"] objectAtIndex:i]]];
+			[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
+			[variants addObject: [NSString stringWithString:@"+"]];
 			[variantsString appendString:@"+"];
 			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
 		}

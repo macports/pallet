@@ -247,31 +247,39 @@
 	variants:(NSArray *)variants 
 	   error:(NSError **)execError{
 	
-	NSString *opts; 
-	NSString *vrnts;
+	NSMutableString *opts; 
+	NSMutableString *vrnts;
 	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
-	vrnts = [NSString stringWithString:@" "];
+	opts = [NSMutableString stringWithCapacity:50];
+	[opts setString:@"{ "];
+	vrnts = [NSMutableString stringWithCapacity:50];
+	[vrnts setString:@"{ "];
 	interpreter = [MPInterpreter sharedInterpreter];
 	
+	
 	if (options != NULL) {
-		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
-	}
-	if (variants != NULL) {
-		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
+		[opts appendString: [NSString stringWithString:[options componentsJoinedByString:@" "]]];
 	}
 	
-	NSLog(@"Variants String: %@", vrnts);
+	[opts appendString: @" }"];
+
+	if (variants != NULL) {
+		[vrnts appendString: [NSString stringWithString:[variants componentsJoinedByString:@" "]]];
+	}
+	
+	[vrnts appendString: @" }"];
+	
+	//NSLog(@"Variants String: %@", vrnts);
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:target withStatus:@"Started"];
 	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
 	
-	
+	/*
 	NSLog(@"Interpreter string:\n%@",[NSString stringWithFormat:
 									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
 									  [self valueForKey:@"porturl"], opts, vrnts, target]);
-	
+	*/
     [interpreter evaluateStringWithPossiblePrivileges:
         [NSString stringWithFormat:
             @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
