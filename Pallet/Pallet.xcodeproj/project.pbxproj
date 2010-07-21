@@ -33,6 +33,8 @@
 		1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
 		1D9B73F911F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1D9B73FA11F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
+		1DA3219411F748330004ECB1 /* MPCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3219311F748330004ECB1 /* MPCheckbox.m */; };
+		1DA3219511F748330004ECB1 /* MPCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3219311F748330004ECB1 /* MPCheckbox.m */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
 		21351FB30FEC67780074ACFE /* MPActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21351FB20FEC67780074ACFE /* MPActionsController.m */; };
@@ -186,6 +188,8 @@
 		1D4B87BA11A54DE000AD9D33 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "Growl-1.2.1-Framework/Growl.framework"; sourceTree = "<group>"; };
 		1D9B73F711F0F6D6006013F5 /* MPQueueTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPQueueTableView.h; sourceTree = "<group>"; };
 		1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPQueueTableView.m; sourceTree = "<group>"; };
+		1DA3219211F748330004ECB1 /* MPCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCheckbox.h; sourceTree = "<group>"; };
+		1DA3219311F748330004ECB1 /* MPCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCheckbox.m; sourceTree = "<group>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2105F5071028ACBA00A28D1A /* ActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityController.h; sourceTree = "<group>"; };
 		2105F5081028ACBA00A28D1A /* ActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityController.m; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 				21EB8B10100CDD37007371EE /* MPPortTableView.m */,
 				1D9B73F711F0F6D6006013F5 /* MPQueueTableView.h */,
 				1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */,
+				1DA3219211F748330004ECB1 /* MPCheckbox.h */,
+				1DA3219311F748330004ECB1 /* MPCheckbox.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				21900DDD1095001700ED79CF /* MPPortTableView.m in Sources */,
 				21900DDE1095001700ED79CF /* ActivityController.m in Sources */,
 				1D9B73FA11F0F6D6006013F5 /* MPQueueTableView.m in Sources */,
+				1DA3219511F748330004ECB1 /* MPCheckbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +641,7 @@
 				21EB8B11100CDD37007371EE /* MPPortTableView.m in Sources */,
 				2105F5091028ACBA00A28D1A /* ActivityController.m in Sources */,
 				1D9B73F911F0F6D6006013F5 /* MPQueueTableView.m in Sources */,
+				1DA3219411F748330004ECB1 /* MPCheckbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

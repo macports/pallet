@@ -90,6 +90,12 @@
 	// tokenize the properties
 	// create sets of the depends_* tokenized properties that contain only the dependency name, not the dependency type
 	// make the descriptions readable
+	
+	if([string rangeOfString:@"default_variants"].location != NSNotFound)
+	{
+		NSLog(@"%@", string);
+	}
+
 	if ([self objectForKey:@"maintainers"] != nil) {
 		[self setObject:[self objectForKey:@"maintainers"] forKey:@"maintainersAsString"];		
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"maintainers"]] forKey:@"maintainers"];
@@ -116,6 +122,13 @@
 		[self setObject:[self objectForKey:@"depends_run"] forKey:@"depends_runAsString"];
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_run"]] forKey:@"depends_run"];
 		[self addDependencyAsPortName:@"depends_run"];
+	}
+	
+	//Code for fetching default variants
+	if ([self objectForKey:@"default_variants"] != nil) {
+		NSLog(@"Default Variants str: %@", string);
+		[self setObject:[self objectForKey:@"default_variants"] forKey:@"default_variantsAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"default_variants"]] forKey:@"default_variants"];
 	}
 	
 	@try {

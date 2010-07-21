@@ -36,11 +36,23 @@
 		//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 		if ([checkboxes[i] state] == NSOnState)
 		{
-			[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
-			[variants addObject: [NSString stringWithString:@"+"]];
+			if (![checkboxes[i] isDefault])
+			{
+				[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
+				[variants addObject: [NSString stringWithString:@"+"]];
+			}
+
 			[variantsString appendString:@"+"];
 			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
 		}
+		else if([checkboxes[i] isDefault])
+		{
+			[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
+			[variants addObject: [NSString stringWithString:@"-"]];
+			[variantsString appendString:@"-"];
+			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
+		}
+
 	}
 	//NSLog(@"End of Variants");
 		
@@ -65,7 +77,6 @@
 	
 	if([[port valueForKey:@"variants"] count] > 0)
 	{
-		//id checkboxes[10];
 		checkboxes[0]=chckbx0;
 		checkboxes[1]=chckbx1;
 		checkboxes[2]=chckbx2;
@@ -81,14 +92,27 @@
 		{
 			[checkboxes[i] setAlphaValue:0];
 		}
-		//[chckbx1 setAlphaValue:0];
-		//NSLog(@"Variants count: %i", [[port valueForKey:@"variants"] count]);
 		//NSLog(@"Port variants:");
+		
+		NSArray *defaultsArray = [port valueForKey:@"default_variants"];
+		//defaultsArray = [NSArray arrayWithObject:@"universal"];
+		NSLog(@"Default variants count: %i", [defaultsArray count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
 			//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+			if([defaultsArray indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
+			{
+				//NSLog(@"Default %@", [[port valueForKey:@"variants"] objectAtIndex:i]);
+				[checkboxes[i] setState:NSOnState];
+				[checkboxes[i] setIsDefault:YES];
+ 			}
+			else
+			{
+				[checkboxes[i] setState:NSOffState];
+				[checkboxes[i] setIsDefault:NO];
+			}
+
 			[checkboxes[i] setAlphaValue:1];
-			[checkboxes[i] setState:NSOffState];
 			NSAttributedString *tempString = [[NSAttributedString alloc]\
 											  initWithString:[[port valueForKey:@"variants"] objectAtIndex:i]\
 		attributes: [NSDictionary dictionaryWithObject: [NSColor whiteColor] forKey: NSForegroundColorAttributeName]];

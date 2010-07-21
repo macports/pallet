@@ -368,6 +368,11 @@ static NSString * tclInterpreterPkgPath = nil;
 	int tclCount;
 	int tclResult;
 	int i;
+	
+	if([list rangeOfString:@"depends_run"].location != NSNotFound)
+	{
+		//NSLog(@"%@", list);
+	}
 	const char **tclElements;
 	tclResult = Tcl_SplitList(_interpreter, [list UTF8String], &tclCount, &tclElements);
 	if (tclResult == TCL_OK) {

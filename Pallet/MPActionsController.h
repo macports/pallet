@@ -10,6 +10,7 @@
 #import "MPActionLauncher.h"
 #import "PortsTableController.h"
 #import "ActivityController.h"
+#import "MPCheckbox.h"
 
 #import "GrowlNotifications.h"
 
@@ -33,18 +34,18 @@ extern BOOL altWasPressed;
 	//Info Panel
 	IBOutlet NSPanel *infoPanel;
 	
-	id checkboxes[10];
+	MPCheckbox* checkboxes[10];
 	
-	IBOutlet NSButton *chckbx0;
-	IBOutlet NSButton *chckbx1;
-	IBOutlet NSButton *chckbx2;
-	IBOutlet NSButton *chckbx3;
-	IBOutlet NSButton *chckbx4;
-	IBOutlet NSButton *chckbx5;
-	IBOutlet NSButton *chckbx6;
-	IBOutlet NSButton *chckbx7;
-	IBOutlet NSButton *chckbx8;
-	IBOutlet NSButton *chckbx9;	
+	IBOutlet MPCheckbox *chckbx0;
+	IBOutlet MPCheckbox *chckbx1;
+	IBOutlet MPCheckbox *chckbx2;
+	IBOutlet MPCheckbox *chckbx3;
+	IBOutlet MPCheckbox *chckbx4;
+	IBOutlet MPCheckbox *chckbx5;
+	IBOutlet MPCheckbox *chckbx6;
+	IBOutlet MPCheckbox *chckbx7;
+	IBOutlet MPCheckbox *chckbx8;
+	IBOutlet MPCheckbox *chckbx9;	
 }
 
 - (IBAction)openPreferences:(id)sender;
