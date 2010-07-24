@@ -99,8 +99,10 @@
 		NSLog(@"Default variants count: %i", [defaultsArray count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
+
+
 			//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
-			if([defaultsArray indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
+			if(defaultsArray != nil && [defaultsArray indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
 			{
 				//NSLog(@"Default %@", [[port valueForKey:@"variants"] objectAtIndex:i]);
 				[checkboxes[i] setState:NSOnState];
@@ -109,8 +111,9 @@
 			else
 			{
 				[checkboxes[i] setState:NSOffState];
-				[checkboxes[i] setIsDefault:NO];
+				[checkboxes[i] setIsDefault:NO];\
 			}
+
 
 			[checkboxes[i] setAlphaValue:1];
 			NSAttributedString *tempString = [[NSAttributedString alloc]\
