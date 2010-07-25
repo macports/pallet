@@ -123,6 +123,16 @@
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_run"]] forKey:@"depends_run"];
 		[self addDependencyAsPortName:@"depends_run"];
 	}
+	if ([self objectForKey:@"depends_fetch"] != nil) {
+		[self setObject:[self objectForKey:@"depends_fetch"] forKey:@"depends_fetchAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_fetch"]] forKey:@"depends_fetch"];
+		[self addDependencyAsPortName:@"depends_fetch"];
+	}	
+	if ([self objectForKey:@"depends_extract"] != nil) {
+		[self setObject:[self objectForKey:@"depends_extract"] forKey:@"depends_extractAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_extract"]] forKey:@"depends_extract"];
+		[self addDependencyAsPortName:@"depends_extract"];
+	}	
 	
 	//Code for fetching default variants
 	if ([self objectForKey:@"default_variants"] != nil) {
