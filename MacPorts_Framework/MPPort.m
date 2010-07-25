@@ -126,10 +126,31 @@
 	
 	//Code for fetching default variants
 	if ([self objectForKey:@"default_variants"] != nil) {
-		NSLog(@"Default Variants str: %@", string);
+		//NSLog(@"Default Variants str: %@", string);
 		[self setObject:[self objectForKey:@"default_variants"] forKey:@"default_variantsAsString"];
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"default_variants"]] forKey:@"default_variants"];
 	}
+	 
+	NSMutableArray *default_variants= [NSMutableArray arrayWithCapacity:10];
+	char port_command[256];
+	strcpy(port_command, "port variants ");
+	strcat(port_command, [[self objectForKey:@"name"] cStringUsingEncoding: NSASCIIStringEncoding]);
+	strcat(port_command, " | grep \"\\[+]\" | sed 's/.*\\]//; s/:.*//' >> mpfw_default_variants");
+	
+	system(port_command);
+	FILE * file = fopen("mpfw_default_variants", "r");
+	char buffer[256];
+	while(!feof(file))
+	{
+		char * temp = fgets(buffer,256,file);
+		if(temp == NULL) continue;
+		buffer[strlen(buffer)-1]='\0';
+		//printf("default variants: %s\n", buffer);
+		[default_variants addObject:[NSString stringWithCString:buffer]];
+    }
+	[self setObject:default_variants forKey: @"default_variants"];
+	fclose(file);
+	//unlink("mpfw_default_variants");
 	
 	@try {
 		if ([[self valueForKey:@"description"] characterAtIndex:0] == '{') {
