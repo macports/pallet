@@ -94,15 +94,41 @@
 		}
 		//NSLog(@"Port variants:");
 		
-		NSArray *defaultsArray = [port valueForKey:@"default_variants"];
-		//defaultsArray = [NSArray arrayWithObject:@"universal"];
-		NSLog(@"Default variants count: %i", [defaultsArray count]);
+		//NSArray *defaultVariants = [port valueForKey:@"defaultVariants"];
+		NSMutableArray *defaultVariants= [NSMutableArray arrayWithCapacity:10];
+		char port_command[256];
+		
+		//Build the port variants command
+		strcpy(port_command, "port variants ");
+		strcat(port_command, [[port objectForKey:@"name"] cStringUsingEncoding: NSASCIIStringEncoding]);
+		strcat(port_command, " | grep \"\\[+]\" | sed 's/.*\\]//; s/:.*//' >> mpfw_default_variants");
+		
+		//Make the CLI call
+		system(port_command);
+		//Open the output file
+		FILE * file = fopen("mpfw_default_variants", "r");
+		
+		//Read all default_variants
+		char buffer[256];
+		while(!feof(file))
+		{
+			char * temp = fgets(buffer,256,file);
+			if(temp == NULL) continue;
+			buffer[strlen(buffer)-1]='\0';
+			//Add the variant in the Array
+			[defaultVariants addObject:[NSString stringWithCString:buffer]];
+		}
+		//Close and delete
+		fclose(file);
+		unlink("mpfw_default_variants");
+		
+		NSLog(@"Default variants count: %i", [defaultVariants count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
 
 
 			//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
-			if(defaultsArray != nil && [defaultsArray indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
+			if(defaultVariants != nil && [defaultVariants indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
 			{
 				//NSLog(@"Default %@", [[port valueForKey:@"variants"] objectAtIndex:i]);
 				[checkboxes[i] setState:NSOnState];
