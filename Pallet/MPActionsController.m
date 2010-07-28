@@ -91,6 +91,7 @@
 		//Testing code
 		//checkboxes[0].conflictsWith = @"universal";
 		
+		
 		for(UInt i=0; i< 10;i++)
 		{
 			[checkboxes[i] setAlphaValue:0];
@@ -153,6 +154,8 @@
 		}
 		//NSLog(@"End of Variants");
 		
+		[self checkConflicts:[port valueForKey:@"name"]];
+
 		
 		[variantsPanel makeKeyAndOrderFront:self];
 		//[chckbx2 setTitle:@"hehe"];
@@ -271,6 +274,7 @@
 
 -(IBAction)clickCheckbox:(id)sender
 {
+	
 	//Are we checking or unchecking the checkbox?
 	BOOL enableDisable;
 	if([sender state]==NSOnState)
@@ -281,14 +285,83 @@
 	{
 		enableDisable=YES;
 	}
-	//Enable/disable our conflicts depending on what we are doing
-	for(UInt i=0; i<10; i++)
+	
+	for(UInt j=0;j<[[sender conflictsWith] count]; j++)
 	{
-		if ([[checkboxes[i] title] isEqualToString:[sender conflictsWith]])
+		//Enable/disable our conflicts depending on what we are doing
+		for(UInt i=0; i<10; i++)
 		{
-			[checkboxes[i] setEnabled:enableDisable];
-		}
+			if ([[checkboxes[i] title] isEqualToString:[[sender conflictsWith] objectAtIndex:j]])
+			{
+				[checkboxes[i] setEnabled:enableDisable];
+				if (!enableDisable)
+				{
+					[checkboxes[i] setState:NSOffState];
+				}
+			}
+		}		
 	}
+	 
+}
+
+-(void)checkConflicts: (NSString *) portName
+{
+	
+	char *script= "pbpaste | python -c \"import re,sys;lines=sys.stdin.readlines();print '\\n'.join('%s,%s' % (re.sub(r'[\\W]','',lines[i-1].split()[0].rstrip(':')),','.join(l.strip().split()[3:])) for i, l in enumerate(lines) if l.strip().startswith('* conflicts'))\" >> mpfw_conflict";
+	//char *script="'''";
+	char command[256];
+	strcpy(command,"port variants ");
+	strcat(command, [portName UTF8String]);
+	strcat(command, "| pbcopy");
+	printf("\n%s\n%s\n", command, script);
+	system(command);
+	system(script);
+	
+	//Open the output file
+	FILE * file = fopen("mpfw_conflict", "r");
+	
+	//Read all default_variants
+	char buffer[256];
+	while(!feof(file))
+	{
+		char * temp = fgets(buffer,256,file);
+		if(temp == NULL) continue;
+		buffer[strlen(buffer)-1]='\0';
+		//Add the variant in the Array
+		printf("buffer:\n%s\n",buffer);
+		
+		char *token;
+		char *search = ",";
+		
+		token = strtok(buffer, search);
+		printf("token: %s\n",token);
+		
+		UInt i;
+		for(i=0; i<10; i++)
+		{
+			//NSLog(@"%@ %@",[checkboxes[i] title], [NSString stringWithCString:token]);
+
+			if ([[checkboxes[i] title] isEqualToString:[NSString stringWithCString:token]])
+			{
+				break;
+			}
+		}
+		[checkboxes[i] setConflictsWith:[NSMutableArray array]];
+		NSLog(@"checkbox: %i",i);
+		while ((token = strtok(NULL, search)) != NULL)
+		{
+			NSLog(@"token: %@",[NSString stringWithCString:token]);
+			[[checkboxes[i] conflictsWith] addObject:[NSString stringWithCString:token]];
+			//NSLog(@"count %i",[[checkboxes[i] conflictsWith] count]);
+		}
+		
+		//[defaultVariants addObject:[NSString stringWithCString:buffer]];
+	}
+	//Close and delete
+	fclose(file);
+	unlink("mpfw_conflict");
+
+	
 }
 
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {

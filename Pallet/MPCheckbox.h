@@ -14,10 +14,10 @@
 	
 	BOOL isDefault;
 	
-	NSString *conflictsWith;
+	NSMutableArray *conflictsWith;
 }
 
 @property (nonatomic) BOOL isDefault;
-@property (nonatomic, retain) NSString *conflictsWith;
+@property (nonatomic, retain) NSMutableArray *conflictsWith;
 
 @end
