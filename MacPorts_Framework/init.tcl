@@ -22,7 +22,7 @@ proc ui_isset {val} {
 proc ui_prefix {priority} {
     switch $priority {
         debug {
-        	return " "
+        	return ""
         }
         error {
         	return "Error: "
