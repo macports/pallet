@@ -346,8 +346,9 @@ static NSString * tclInterpreterPkgPath = nil;
     return self;
 }
 
-- (unsigned)retainCount {
-    return UINT_MAX;  //denotes an object that cannot be released
+- (NSUInteger)retainCount
+{
+    return NSUIntegerMax;  //denotes an object that cannot be released
 }
 
 - (void)release {
@@ -544,7 +545,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	
 	//In order to make the framework work normally by default ... we do a bare initialization
-	//of internalMacPortsAuthRef if the delegate hasn't iniitialzed it already
+	//of internalMacPortsAuthRef if the delegate hasn't initialzed it already
 	if (internalMacPortsAuthRef == NULL) {
 		OSStatus res = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &internalMacPortsAuthRef);
 		assert(res == noErr);

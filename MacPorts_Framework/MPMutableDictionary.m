@@ -41,7 +41,7 @@
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		embeddedDictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
+		embeddedDictionary = [(NSMutableDictionary *)[NSMutableDictionary alloc] initWithCapacity:0];
 	}
 	return self;
 }
@@ -49,7 +49,7 @@
 - (id)initWithCapacity:(unsigned)numItems {
 	self = [super init];
 	if (self != nil) {
-		embeddedDictionary = [[NSMutableDictionary alloc] initWithCapacity:numItems];
+		embeddedDictionary = [(NSMutableDictionary *)[NSMutableDictionary alloc] initWithCapacity:numItems];
 	}
 	return self;
 }

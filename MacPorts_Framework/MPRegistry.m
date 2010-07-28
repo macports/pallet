@@ -72,8 +72,8 @@
     return self;
 }
 
-- (unsigned)retainCount {
-    return UINT_MAX;  //denotes an object that cannot be released
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;  //denotes an object that cannot be released
 }
 
 - (void)release {
@@ -100,7 +100,7 @@
 	NSArray *versions;
 	id item;
 	raw = [self installedAsArray:name withVersion:version];
-	result = [[NSMutableDictionary alloc] initWithCapacity:[raw count]];
+	result = [(NSMutableDictionary *)[NSMutableDictionary alloc] initWithCapacity:[raw count]];
 	rawEnumerator = [raw objectEnumerator];
 	while (item = [rawEnumerator nextObject]) {
 		versions = [interpreter arrayFromTclListAsString:item];

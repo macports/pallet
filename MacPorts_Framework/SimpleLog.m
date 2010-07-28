@@ -26,12 +26,12 @@ int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, 
 		
 		if (tclResult == TCL_OK) {
 			if (tclCount > 0) {
-                NSLog([NSString stringWithUTF8String:tclElements[0]]);
+                NSLog(@"%@", [NSString stringWithUTF8String:tclElements[0]]);
 				data = [NSMutableString stringWithUTF8String:tclElements[0]];
 				[data appendString:MPSEPARATOR];
 				
 				if(tclCount > 1 && tclElements[1]) {
-                    NSLog([NSString stringWithUTF8String:tclElements[1]]);
+                    NSLog(@"%@", [NSString stringWithUTF8String:tclElements[1]]);
 					[data appendString:[NSString stringWithUTF8String:tclElements[1]]];
 					[data appendString:MPSEPARATOR];
 				}
@@ -41,7 +41,7 @@ int SimpleLog_Command(ClientData clientData, Tcl_Interp *interpreter, int objc, 
 				}
 				
 				if(tclCount > 2 && tclElements[2]) {
-                    NSLog([NSString stringWithUTF8String:tclElements[2]]);
+                    NSLog(@"%@", [NSString stringWithUTF8String:tclElements[2]]);
 					[data appendString:[NSString stringWithUTF8String:tclElements[2]]];
 					[data appendString:MPSEPARATOR];
 				}

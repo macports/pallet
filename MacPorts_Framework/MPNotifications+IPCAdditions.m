@@ -795,7 +795,7 @@ static Boolean ClientShout(ClientState *client, PacketShout *packet)
     result = ClientCheckPacketSize(client, &packet->fHeader, sizeof(PacketShout));
     if (result) {
         result = ClientCheckPacketID(client, &packet->fHeader, kPacketIDNone);
-		NSLog(@"Packetsize is OK");
+		//NSLog(@"Packetsize is OK");
     }
 	else
 		NSLog(@"Packetsize is NOT OK");
@@ -803,7 +803,7 @@ static Boolean ClientShout(ClientState *client, PacketShout *packet)
 	// The Shout packet is good.  Let's echo it to each listener.
 	
     if (result) {
-		NSLog(@"PacketID is ok");
+		//NSLog(@"PacketID is ok");
 		
 		
         ClientState  ** allClients;
