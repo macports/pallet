@@ -312,7 +312,7 @@
 	strcpy(command,"port variants ");
 	strcat(command, [portName UTF8String]);
 	strcat(command, script);
-	printf("\n%s\n", command);
+	//printf("\n%s\n", command);
 	system(command);
 	
 	//Open the output file
@@ -326,13 +326,13 @@
 		if(temp == NULL) continue;
 		buffer[strlen(buffer)-1]='\0';
 		//Add the variant in the Array
-		printf("buffer:\n%s\n",buffer);
+		//printf("buffer:\n%s\n",buffer);
 		
 		char *token;
 		char *search = ",";
 		
 		token = strtok(buffer, search);
-		printf("token: %s\n",token);
+		//printf("token: %s\n",token);
 		if(token == NULL) break;
 		
 		UInt i;
@@ -349,7 +349,7 @@
 		NSLog(@"checkbox: %i",i);
 		while ((token = strtok(NULL, search)) != NULL)
 		{
-			NSLog(@"token: %@",[NSString stringWithCString:token]);
+			//NSLog(@"token: %@",[NSString stringWithCString:token]);
 			[[checkboxes[i] conflictsWith] addObject:[NSString stringWithCString:token]];
 			//NSLog(@"count %i",[[checkboxes[i] conflictsWith] count]);
 		}
