@@ -307,18 +307,16 @@
 -(void)checkConflicts: (NSString *) portName
 {
 	
-	char *script= "pbpaste | python -c \"import re,sys;lines=sys.stdin.readlines();print '\\n'.join('%s,%s' % (re.sub(r'[\\W]','',lines[i-1].split()[0].rstrip(':')),','.join(l.strip().split()[3:])) for i, l in enumerate(lines) if l.strip().startswith('* conflicts'))\" >> mpfw_conflict";
-	//char *script="'''";
-	char command[256];
+	char *script= " | python -c \"import re,sys;lines=sys.stdin.readlines();print '\\n'.join('%s,%s' % (re.sub(r'[\\W]','',lines[i-1].split()[0].rstrip(':')),','.join(l.strip().split()[3:])) for i, l in enumerate(lines) if l.strip().startswith('* conflicts'))\" >> /tmp/mpfw_conflict";
+	char command[512];
 	strcpy(command,"port variants ");
 	strcat(command, [portName UTF8String]);
-	strcat(command, "| pbcopy");
-	printf("\n%s\n%s\n", command, script);
+	strcat(command, script);
+	printf("\n%s\n", command);
 	system(command);
-	system(script);
 	
 	//Open the output file
-	FILE * file = fopen("mpfw_conflict", "r");
+	FILE * file = fopen("/tmp/mpfw_conflict", "r");
 	
 	//Read all default_variants
 	char buffer[256];
@@ -359,7 +357,7 @@
 	}
 	//Close and delete
 	fclose(file);
-	unlink("mpfw_conflict");
+	unlink("/tmp/mpfw_conflict");
 
 	
 }
