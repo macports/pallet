@@ -333,6 +333,7 @@
 		
 		token = strtok(buffer, search);
 		printf("token: %s\n",token);
+		if(token == NULL) break;
 		
 		UInt i;
 		for(i=0; i<10; i++)
