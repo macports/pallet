@@ -11,6 +11,12 @@
 
 @implementation MPCheckbox
 
-@synthesize isDefault;
+@synthesize isDefault, conflictsWith;
 
+-(void) performClick: (id) sender
+{
+	NSLog(@"performing click");
+	[super performClick:sender];
+	NSLog(@"click performed");
+}
 @end

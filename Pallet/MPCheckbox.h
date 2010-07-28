@@ -13,7 +13,11 @@
 
 	
 	BOOL isDefault;
+	
+	NSString *conflictsWith;
 }
 
 @property (nonatomic) BOOL isDefault;
+@property (nonatomic, retain) NSString *conflictsWith;
+
 @end

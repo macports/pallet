@@ -57,13 +57,15 @@ extern BOOL altWasPressed;
 - (IBAction)sync:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
-- (IBAction) toggleInfoPanel: (id) sender;
+- (IBAction)toggleInfoPanel: (id) sender;
 
-- (void) queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port variants: (NSMutableArray*) variants;
+-(IBAction)clickCheckbox:(id)sender;
+
+- (void)queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port variants: (NSMutableArray*) variants;
 
 -(IBAction) startQueue:(id) sender;
 //-(IBAction) removeFromQueue:(id) sender;
--(void) clearQueue;
--(void) advanceQueue;
+-(void)clearQueue;
+-(void)advanceQueue;
 
 @end

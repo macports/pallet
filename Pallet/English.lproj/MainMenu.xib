@@ -13,8 +13,9 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="658"/>
-			<integer value="371"/>
+			<integer value="936"/>
 			<integer value="840"/>
+			<integer value="371"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1157,10 +1158,6 @@
 										<reference key="NSControlView" ref="1026904284"/>
 										<int key="NSButtonFlags">-2046279425</int>
 										<int key="NSButtonFlags2">70</int>
-										<object class="NSCustomResource" key="NSNormalImage" id="758986263">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">TB_Install</string>
-										</object>
 										<string key="NSAlternateContents"/>
 										<string key="NSKeyEquivalent"/>
 										<int key="NSPeriodicDelay">400</int>
@@ -1173,7 +1170,10 @@
 											<int key="NSKeyEquivModMask">1048576</int>
 											<int key="NSMnemonicLoc">2147483647</int>
 											<int key="NSState">1</int>
-											<reference key="NSImage" ref="758986263"/>
+											<object class="NSCustomResource" key="NSImage" id="910929705">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">TB_Install</string>
+											</object>
 											<reference key="NSOnImage" ref="35465992"/>
 											<reference key="NSMixedImage" ref="566991132"/>
 											<string key="NSAction">_popUpItemAction:</string>
@@ -1216,7 +1216,7 @@
 										<bool key="NSAltersState">YES</bool>
 									</object>
 								</object>
-								<reference key="NSToolbarItemImage" ref="758986263"/>
+								<reference key="NSToolbarItemImage" ref="910929705"/>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
 								<string key="NSToolbarItemMinSize">{32, 32}</string>
@@ -4008,7 +4008,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 162}, {537, 22}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="432075803">
 								<int key="NSCellFlags">68288064</int>
@@ -4037,7 +4036,6 @@
 							</object>
 							<string key="NSFrame">{{575, 166}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="301345659">
 								<int key="NSCellFlags">130560</int>
@@ -4054,7 +4052,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{204, 138}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="864596472">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4082,7 +4079,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 138}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="818925231">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4105,7 +4101,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 118}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1020278873">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4128,7 +4123,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{204, 118}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="644322806">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4151,7 +4145,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 98}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="865380386">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4174,7 +4167,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{204, 98}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="511982010">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4197,7 +4189,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 78}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="59227764">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4220,7 +4211,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{204, 78}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="386000867">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4243,7 +4233,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 58}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="61274906">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4266,7 +4255,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{204, 58}, {144, 18}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1061949477">
 								<int key="NSCellFlags">-2080244224</int>
@@ -4289,7 +4277,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 12}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="59672295"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="949798598">
 								<int key="NSCellFlags">67239424</int>
@@ -4308,7 +4295,6 @@
 					</object>
 					<string key="NSFrameSize">{366, 198}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1024, 578}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -5669,6 +5655,86 @@
 						</object>
 					</object>
 					<int key="connectionID">1052</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="596417819"/>
+					</object>
+					<int key="connectionID">1053</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="519462480"/>
+					</object>
+					<int key="connectionID">1054</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="24998687"/>
+					</object>
+					<int key="connectionID">1055</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="319810427"/>
+					</object>
+					<int key="connectionID">1056</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="377089720"/>
+					</object>
+					<int key="connectionID">1057</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="1062541729"/>
+					</object>
+					<int key="connectionID">1058</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="259245956"/>
+					</object>
+					<int key="connectionID">1059</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="827446577"/>
+					</object>
+					<int key="connectionID">1060</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="160311832"/>
+					</object>
+					<int key="connectionID">1061</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickCheckbox:</string>
+						<reference key="source" ref="800227439"/>
+						<reference key="destination" ref="296240922"/>
+					</object>
+					<int key="connectionID">1062</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -8446,7 +8512,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1052</int>
+			<int key="maxID">1062</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -8522,6 +8588,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cancel:</string>
+							<string>clickCheckbox:</string>
 							<string>install:</string>
 							<string>installWithVariantsChoose:</string>
 							<string>installWithVariantsPerform:</string>
@@ -8535,6 +8602,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -8553,6 +8621,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cancel:</string>
+							<string>clickCheckbox:</string>
 							<string>install:</string>
 							<string>installWithVariantsChoose:</string>
 							<string>installWithVariantsPerform:</string>
@@ -8568,6 +8637,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">cancel:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickCheckbox:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

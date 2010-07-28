@@ -88,6 +88,9 @@
 		checkboxes[8]=chckbx8;
 		checkboxes[9]=chckbx9;
 		
+		//Testing code
+		//checkboxes[0].conflictsWith = @"universal";
+		
 		for(UInt i=0; i< 10;i++)
 		{
 			[checkboxes[i] setAlphaValue:0];
@@ -125,7 +128,7 @@
 		NSLog(@"Default variants count: %i", [defaultVariants count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
-
+			//[checkboxes[1] setEnabled:NO];
 
 			//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 			if(defaultVariants != nil && [defaultVariants indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
@@ -263,6 +266,28 @@
 		[infoPanel makeKeyAndOrderFront:self];
 		//May need to make our MPTableView as the first responder
 		//[infoPanel makeFirstResponder:self];
+	}
+}
+
+-(IBAction)clickCheckbox:(id)sender
+{
+	//Are we checking or unchecking the checkbox?
+	BOOL enableDisable;
+	if([sender state]==NSOnState)
+	{
+		enableDisable=NO;
+	}
+	else
+	{
+		enableDisable=YES;
+	}
+	//Enable/disable our conflicts depending on what we are doing
+	for(UInt i=0; i<10; i++)
+	{
+		if ([[checkboxes[i] title] isEqualToString:[sender conflictsWith]])
+		{
+			[checkboxes[i] setEnabled:enableDisable];
+		}
 	}
 }
 
