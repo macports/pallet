@@ -97,34 +97,9 @@
 			[checkboxes[i] setAlphaValue:0];
 		}
 		//NSLog(@"Port variants:");
-		
-		//NSArray *defaultVariants = [port valueForKey:@"defaultVariants"];
-		NSMutableArray *defaultVariants= [NSMutableArray arrayWithCapacity:10];
-		char port_command[256];
-		
-		//Build the port variants command
-		strcpy(port_command, "port variants ");
-		strcat(port_command, [[port objectForKey:@"name"] cStringUsingEncoding: NSASCIIStringEncoding]);
-		strcat(port_command, " | grep \"\\[+]\" | sed 's/.*\\]//; s/:.*//' >> mpfw_default_variants");
-		
-		//Make the CLI call
-		system(port_command);
-		//Open the output file
-		FILE * file = fopen("mpfw_default_variants", "r");
-		
-		//Read all default_variants
-		char buffer[256];
-		while(!feof(file))
-		{
-			char * temp = fgets(buffer,256,file);
-			if(temp == NULL) continue;
-			buffer[strlen(buffer)-1]='\0';
-			//Add the variant in the Array
-			[defaultVariants addObject:[NSString stringWithCString:buffer]];
-		}
-		//Close and delete
-		fclose(file);
-		unlink("mpfw_default_variants");
+		//Call checkDefaults to compute the NSMutableArray for key default_variants
+		[port checkDefaults];		
+		NSMutableArray *defaultVariants= [port objectForKey:@"default_variants"];
 		
 		NSLog(@"Default variants count: %i", [defaultVariants count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
@@ -153,8 +128,7 @@
 			 
 		}
 		//NSLog(@"End of Variants");
-		
-		[self checkConflicts:[port valueForKey:@"name"]];
+		[self setConflicts:port];
 
 		
 		[variantsPanel makeKeyAndOrderFront:self];
@@ -304,63 +278,26 @@
 	 
 }
 
--(void)checkConflicts: (NSString *) portName
-{
-	
-	char *script= " | python -c \"import re,sys;lines=sys.stdin.readlines();print '\\n'.join('%s,%s' % (re.sub(r'[\\W]','',lines[i-1].split()[0].rstrip(':')),','.join(l.strip().split()[3:])) for i, l in enumerate(lines) if l.strip().startswith('* conflicts'))\" >> /tmp/mpfw_conflict";
-	char command[512];
-	strcpy(command,"port variants ");
-	strcat(command, [portName UTF8String]);
-	strcat(command, script);
-	//printf("\n%s\n", command);
-	system(command);
-	
-	//Open the output file
-	FILE * file = fopen("/tmp/mpfw_conflict", "r");
-	
-	//Read all default_variants
-	char buffer[256];
-	while(!feof(file))
-	{
-		char * temp = fgets(buffer,256,file);
-		if(temp == NULL) continue;
-		buffer[strlen(buffer)-1]='\0';
-		//Add the variant in the Array
-		//printf("buffer:\n%s\n",buffer);
-		
-		char *token;
-		char *search = ",";
-		
-		token = strtok(buffer, search);
-		//printf("token: %s\n",token);
-		if(token == NULL) break;
-		
-		UInt i;
-		for(i=0; i<10; i++)
-		{
-			//NSLog(@"%@ %@",[checkboxes[i] title], [NSString stringWithCString:token]);
+-(void)setConflicts: (MPPort *) port
+{	
+	//Initialize the conflicts NSMutableArray for the port, if it wasn't already initialized
+	[port checkConflicts];
 
-			if ([[checkboxes[i] title] isEqualToString:[NSString stringWithCString:token]])
+	NSArray *conflicts = [port objectForKey:@"conflicts"];
+	
+	for(UInt j=0; j< [conflicts count];j++)
+	{
+		UInt i;
+		for( i=0; i<10; i++)
+		{
+			if ([[conflicts objectAtIndex:j] objectForKey:[checkboxes[i] title]] != nil)
 			{
 				break;
 			}
-		}
-		[checkboxes[i] setConflictsWith:[NSMutableArray array]];
-		NSLog(@"checkbox: %i",i);
-		while ((token = strtok(NULL, search)) != NULL)
-		{
-			//NSLog(@"token: %@",[NSString stringWithCString:token]);
-			[[checkboxes[i] conflictsWith] addObject:[NSString stringWithCString:token]];
-			//NSLog(@"count %i",[[checkboxes[i] conflictsWith] count]);
-		}
-		
-		//[defaultVariants addObject:[NSString stringWithCString:buffer]];
+		 }
+		//NSLog(@"checkbox that conflicts: %@", [checkboxes[i] title]);
+		[checkboxes[i] setConflictsWith:[[conflicts objectAtIndex:j] objectForKey:[checkboxes[i] title]]];
 	}
-	//Close and delete
-	fclose(file);
-	unlink("/tmp/mpfw_conflict");
-
-	
 }
 
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem {

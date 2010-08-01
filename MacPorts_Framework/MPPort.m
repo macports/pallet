@@ -388,6 +388,104 @@
 - (void)upgradeWithError:(NSError **)mError {
 	[self execPortProc:@"mportupgrade" withOptions:nil version:@"" error:mError];
 }
+- (void)checkDefaults
+{
+	//Check for default variants only if this is the first time we are checking
+	if ([self objectForKey:@"default_variants"] == nil)
+	{
+		//NSArray *defaultVariants = [port valueForKey:@"defaultVariants"];
+		NSMutableArray *defaultVariants= [NSMutableArray arrayWithCapacity:10];
+		char port_command[256];
+		
+		//Build the port variants command
+		strcpy(port_command, "port variants ");
+		strcat(port_command, [[self objectForKey:@"name"] cStringUsingEncoding: NSASCIIStringEncoding]);
+		strcat(port_command, " | grep \"\\[+]\" | sed 's/.*\\]//; s/:.*//' >> mpfw_default_variants");
+		
+		//Make the CLI call
+		system(port_command);
+		//Open the output file
+		FILE * file = fopen("mpfw_default_variants", "r");
+		
+		//Read all default_variants
+		char buffer[256];
+		while(!feof(file))
+		{
+			char * temp = fgets(buffer,256,file);
+			if(temp == NULL) continue;
+			buffer[strlen(buffer)-1]='\0';
+			//Add the variant in the Array
+			[defaultVariants addObject:[NSString stringWithCString:buffer]];
+		}
+		//Close and delete
+		fclose(file);
+		unlink("mpfw_default_variants");
+		
+		NSLog(@"Default variants count: %i", [defaultVariants count]);
+		//Code for fetching default variants
+		[self setObject:[NSString stringWithString:[defaultVariants componentsJoinedByString:@" "]]  forKey:@"default_variantsAsString"];
+		[self setObject:defaultVariants forKey:@"default_variants"];		
+	}
+
+}
+
+- (void)checkConflicts;
+{
+	//Check for only if this is the first time we are checking
+	if ([self objectForKey:@"conflicts"] == nil)
+	{
+		
+		NSMutableArray *conflicts = [NSMutableArray arrayWithCapacity:20];
+		
+		char *script= " | python -c \"import re,sys;lines=sys.stdin.readlines();print '\\n'.join('%s,%s' % (re.sub(r'[\\W]','',lines[i-1].split()[0].rstrip(':')),','.join(l.strip().split()[3:])) for i, l in enumerate(lines) if l.strip().startswith('* conflicts'))\" >> /tmp/mpfw_conflict";
+		char command[512];
+		strcpy(command,"port variants ");
+		strcat(command, [[self name] UTF8String]);
+		strcat(command, script);
+		//printf("\n%s\n", command);
+		system(command);
+		
+		//Open the output file
+		FILE * file = fopen("/tmp/mpfw_conflict", "r");
+		
+		//Read all conflicts
+		char buffer[256];
+		while(!feof(file))
+		{
+			char * temp = fgets(buffer,256,file);
+			if(temp == NULL) continue;
+			buffer[strlen(buffer)-1]='\0';
+			//Add the variant in the Array
+			//printf("buffer:\n%s\n",buffer);
+			
+			char *token;
+			char *search = ",";
+			
+			token = strtok(buffer, search);
+			//printf("token: %s\n",token);
+			if(token == NULL) break;
+			
+			NSString *variant = [NSString stringWithCString:token];
+			NSMutableArray *conflictsWith=[NSMutableArray arrayWithCapacity:10];
+			NSLog(@"%@", variant);
+			while ((token = strtok(NULL, search)) != NULL)
+			{
+				NSLog(@"token: %@",[NSString stringWithCString:token]);
+				[conflictsWith addObject:[NSString stringWithCString:token]];
+				//NSLog(@"count %i",[[checkboxes[i] conflictsWith] count]);
+			}
+			
+			NSDictionary *variantConflictsWith = [NSDictionary dictionaryWithObject:conflictsWith forKey:variant];
+			[conflicts addObject:variantConflictsWith];
+			//[defaultVariants addObject:[NSString stringWithCString:buffer]];
+		}
+		//Close and delete
+		fclose(file);
+		unlink("/tmp/mpfw_conflict");		
+
+		[self setObject:conflicts forKey:@"conflicts"];
+	}		
+}
 
 -(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {
 	[self exec:@"configure" withOptions:options variants:variants error:mError];

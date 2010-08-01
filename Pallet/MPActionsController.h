@@ -60,7 +60,7 @@ extern BOOL altWasPressed;
 - (IBAction)toggleInfoPanel: (id) sender;
 
 -(IBAction)clickCheckbox:(id)sender;
--(void)checkConflicts: (NSString*) portName;
+-(void)setConflicts: (MPPort*) port;
 
 - (void)queueOperation: (NSString*) operation portName: (NSString*) name portObject: (id) port variants: (NSMutableArray*) variants;
 
