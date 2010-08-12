@@ -15,6 +15,7 @@
     [NSBundle loadNibNamed:@"Preferences" owner:self];
 }
 
+//After choosing the variants, this method is called when the user clicks on the Go button
 - (IBAction)installWithVariantsPerform:(id)sender {
 	if (altWasPressed)
 	{
@@ -34,6 +35,9 @@
 	for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 	{
 		//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
+		
+		//If the checkbox is checked, the variant is added on the list. If it is a default_variant, a '+' is added in the name,
+		//to comply with the mportopen arguments
 		if ([checkboxes[i] state] == NSOnState)
 		{
 			if (![checkboxes[i] isDefault])
@@ -47,6 +51,8 @@
 		}
 		else if([checkboxes[i] isDefault])
 		{
+			//If the checkbox is unchecked, we need to check if it is a default_variant, and if so, add it in the list with '-'
+			//in the name, to let macports know that we wish to not use it
 			[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
 			[variants addObject: [NSString stringWithString:@"-"]];
 			[variantsString appendString:@"-"];
@@ -55,13 +61,6 @@
 
 	}
 	//NSLog(@"End of Variants");
-		
-	/*
-	for(UInt i=0; i<[variants count]; i++)
-	{
-		NSLog(@"variants array at #%i: %@", i, [variants objectAtIndex:i]);
-	}
-	 */
 	
 	[self queueOperation:@"install+" portName:variantsString portObject:port variants: variants];
 	NSLog(@"%@",[port name]);
@@ -70,11 +69,13 @@
 		[self startQueue:nil];
 }
 
+//This method is called when the user clicks install with variants
 - (IBAction)installWithVariantsChoose:(id)sender 
 {
 	NSArray *selectedPorts = [ports selectedObjects];
 	id port = [selectedPorts objectAtIndex:0];
 	
+	//Only go through the fuss if there are variants, otherwise, perform a normal install
 	if([[port valueForKey:@"variants"] count] > 0)
 	{
 		checkboxes[0]=chckbx0;
@@ -88,10 +89,7 @@
 		checkboxes[8]=chckbx8;
 		checkboxes[9]=chckbx9;
 		
-		//Testing code
-		//checkboxes[0].conflictsWith = @"universal";
-		
-		
+		//Hide all checkboxes first
 		for(UInt i=0; i< 10;i++)
 		{
 			[checkboxes[i] setAlphaValue:0];
@@ -104,8 +102,7 @@
 		NSLog(@"Default variants count: %i", [defaultVariants count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
-			//[checkboxes[1] setEnabled:NO];
-
+			//If the variant is included in the default_variants, then check it. Otherwise leave it unchecked
 			//NSLog(@"%@",[[port valueForKey:@"variants"] objectAtIndex:i]);
 			if(defaultVariants != nil && [defaultVariants indexOfObject:[[port valueForKey:@"variants"] objectAtIndex:i]] != NSNotFound)
 			{
@@ -118,8 +115,7 @@
 				[checkboxes[i] setState:NSOffState];
 				[checkboxes[i] setIsDefault:NO];\
 			}
-
-
+			//Show all existing variants, and set their titles
 			[checkboxes[i] setAlphaValue:1];
 			NSAttributedString *tempString = [[NSAttributedString alloc]\
 											  initWithString:[[port valueForKey:@"variants"] objectAtIndex:i]\
@@ -128,11 +124,10 @@
 			 
 		}
 		//NSLog(@"End of Variants");
+		//Call setConflicts to initialize conflicting variants in the GUI
 		[self setConflicts:port];
 
-		
 		[variantsPanel makeKeyAndOrderFront:self];
-		//[chckbx2 setTitle:@"hehe"];
 		//[variantsPanel makeFirstResponder:[tableController mainWindow]];
 	}
 	else
@@ -262,7 +257,8 @@
 	
 	for(UInt j=0;j<[[sender conflictsWith] count]; j++)
 	{
-		//Enable/disable our conflicts depending on what we are doing
+		//If we are checking the checkbox, then disable and uncheck the conflicting ones
+		//If we are unchecking the checkbox, enable the conflicting ones
 		for(UInt i=0; i<10; i++)
 		{
 			if ([[checkboxes[i] title] isEqualToString:[[sender conflictsWith] objectAtIndex:j]])
@@ -284,7 +280,8 @@
 	[port checkConflicts];
 
 	NSArray *conflicts = [port objectForKey:@"conflicts"];
-	
+	//For each conflict in the array, check which checkbox/variant has the same name as the conflict, and
+	//call the setConflictsWith method to add the conflicting checkbox to the conflictsWith array
 	for(UInt j=0; j< [conflicts count];j++)
 	{
 		UInt i;
@@ -295,7 +292,6 @@
 				break;
 			}
 		 }
-		//NSLog(@"checkbox that conflicts: %@", [checkboxes[i] title]);
 		[checkboxes[i] setConflictsWith:[[conflicts objectAtIndex:j] objectForKey:[checkboxes[i] title]]];
 	}
 }
@@ -336,9 +332,9 @@
     }
 }
 
+//This is called when clicking on the 'start queue' button, or clicking on an operation while holding the alt key
 -(void) startQueue:(id) sender
 {
-	//[queue selectNext:nil];
 	NSLog(@"Starting Queue");
 	NSUInteger index;
 	index = [queueArray count]-1;
@@ -347,31 +343,17 @@
 	[queue setSelectionIndex: 0];
 	queueCounter=0;
 	
+	//We add ourselves as an observer in the Notification Center, and call advanceQueue whenever we receive an 'advanceQ' notification
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(advanceQueue)
 												 name:@"advanceQ" object:nil];
+	//We start the operations by advancing in the queue once. When that operation is completed, it will
+	//automatically advance to the next queue by sending an advanceQ notification.
 	[self advanceQueue];
-	
-	for(i=0; i<=index+10; i++)
-	{
-		/*
-		//We select each object from the array
-		[queue setSelectionIndex:i];
-		//We sleep the process for debugging puproses
-		sleep(3);
-		//We take the array of selected objects
-		NSArray *wtf = [queue selectedObjects];
-		//We then take the dictionary
-		NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[wtf objectAtIndex:0]];
-		//And we print the operations
-		NSLog(@"Port %@ Operation %@",[dict objectForKey:@"port"], [dict objectForKey:@"operation"]);
-		 */
-		
-	}
-	//[queue setSelectionIndex:index];
-	//[queue selectNext:nil];
 }
 
+//This method is called to move through the queue and perform all the operations one by one. Each time this method is called,
+//we advance one spot in the queue
 -(void) advanceQueue
 {
 	NSUInteger index=queueCounter;
@@ -432,6 +414,7 @@
 	}
 	else
 	{
+		//If we are done, we remove ourselves as an observer from the Notification Center, and we notify the user
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"advanceQ" object:nil];
 		
 		int allops=GROWL_ALLOPS;
@@ -444,8 +427,11 @@
 	
 }
 
+//This method is called when adding a new operation on the queue. Its inputs are the operation to be performed, the port name, the 
+//equivalent port object, and the variants
 -(void) queueOperation:(NSString*)operation portName:(NSString*)name portObject: (id) port variants: (NSMutableArray*) variants
 {
+	//We set the operation's icon
 	NSImage *image;
 	if ([operation isEqualToString:@"install"])
 	{
@@ -472,10 +458,9 @@
 		image = [NSImage imageNamed:@"TB_Selfupdate.icns"];
 	}
 	
-	
+	//If we have variants, print them out for debugging purposes
 	if(variants!=nil)
 	{
-		NSLog(@"yay");
 		for(UInt i=0; i<[variants count]; i++)
 		{
 			NSLog(@"variants array at #%i: %@", i, [variants objectAtIndex:i]);
@@ -483,9 +468,8 @@
 	}
 	
 	NSLog(@"Queueing our Operation");
+	//Add the operation to the queue
 	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", image, @"image", variants, @"variants", nil]];
-	//[queue addObject: tempDict];
-	//[queue retain];
 }
 
 /*
@@ -497,9 +481,9 @@
 }
 */
 
+//This is called when we have the alt key pressed, so that we clear the queue before adding and performing our new operation
 -(void) clearQueue
 {
-	//NSLog(@"We have the alt key pressed");
 	NSIndexSet *tempIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [queueArray count])];
 	[queue removeObjectsAtArrangedObjectIndexes:tempIndex];
 	

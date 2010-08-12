@@ -23,7 +23,6 @@
         ([[theEvent characters] characterAtIndex:0] == 27 && [quickLookPanel isVisible])) {
         if ([quickLookPanel isVisible]) {
             [quickLookPanel close];
-			//[variantsPanel close];
         } else {
             [quickLookPanel makeKeyAndOrderFront:self];
             [quickLookPanel makeFirstResponder:self];
@@ -33,9 +32,10 @@
     }
 }
 
-
+//flagsChanged is called every time a flag-changing key is pressed, like alt-ctrl-cmd etc
 -(void)flagsChanged:(NSEvent *)theEvent
 {
+	//We check if Alt is pressed
 	if([theEvent modifierFlags]&NSAlternateKeyMask)
 	{
 		NSLog(@"Alt is pressed");
@@ -43,6 +43,8 @@
 	}
 	else
 	{
+		//If not, then if it's no longer pressed, we update our value. Otherwise, it means that
+		//this has nothing to do with us, so we let the system handle the flag change
 		if(altWasPressed)
 		{
 			NSLog(@"Alt is released");

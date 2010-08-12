@@ -388,6 +388,8 @@
 - (void)upgradeWithError:(NSError **)mError {
 	[self execPortProc:@"mportupgrade" withOptions:nil version:@"" error:mError];
 }
+
+//This function is called to initialize the array for the'default_variants' key for a port, which we can't do for all ports when loading
 - (void)checkDefaults
 {
 	//Check for default variants only if this is the first time we are checking
@@ -429,6 +431,8 @@
 
 }
 
+//This function is called to initiate the conflicts for a specific port, which we can't do for all ports when loading, much like
+//the default_variants
 - (void)checkConflicts;
 {
 	//Check for only if this is the first time we are checking

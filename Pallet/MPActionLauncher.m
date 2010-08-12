@@ -54,6 +54,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
     NSError * error;
     NSArray *empty = [NSArray arrayWithObject: @""];
     [port installWithOptions:empty variants:empty error:&error];
+	//Check if we have received an error, send the apropriate notification, and if everything is fine
+	//send a notification to the main thread that we have completed our operation, and to advance the queue
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_INSTALLFAILED];
 	else
@@ -68,10 +70,13 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	errorReceived=NO;
     NSError * error;
     NSArray *empty = [NSArray arrayWithObject: @""];
-	
+	//Because we get the port and the variants mixed in an array, we copy the port to a local variable,
+	//and the variants array to a local array
 	MPPort* port = [portAndVariants objectAtIndex:0];
 	NSArray *variants = [portAndVariants objectAtIndex:1];
     [port installWithOptions:empty variants:variants error:&error];
+	//Check if we have received an error, send the apropriate notification, and if everything is fine
+	//send a notification to the main thread that we have completed our operation, and to advance the queue
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_INSTALLFAILED];
 	else
@@ -86,6 +91,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	errorReceived=NO;
     NSError * error;
     [port uninstallWithVersion:@"" error:&error];
+	//Check if we have received an error, send the apropriate notification, and if everything is fine
+	//send a notification to the main thread that we have completed our operation, and to advance the queue
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_UNINSTALLFAILED];
 	else
@@ -99,6 +106,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	errorReceived=NO;
     NSError * error;
     [port upgradeWithError:&error];
+	//Check if we have received an error, send the apropriate notification, and if everything is fine
+	//send a notification to the main thread that we have completed our operation, and to advance the queue
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_UPGRADEFAILED];
 	else
@@ -112,6 +121,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	errorReceived=NO;
     NSError * error;
     [[MPMacPorts sharedInstance] sync:&error];
+	//Check if we have received an error, send the apropriate notification, and if everything is fine
+	//send a notification to the main thread that we have completed our operation, and to advance the queue
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_SYNCFAILED];
 	else
@@ -125,9 +136,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	errorReceived=NO;
     NSError * error;
     [[MPMacPorts sharedInstance] selfUpdate:&error];
-	//NSLog(@"yay");
-	//NSInteger code = [error code];
-	//NSLog(@"Selfupdate Error Code %i", code);
+	//Check if we have received an error, send the apropriate notification, and if everything is fine
+	//send a notification to the main thread that we have completed our operation, and to advance the queue
 	if(errorReceived)
 		[self sendGrowlNotification: GROWL_SELFUPDATEFAILED];
 	else
@@ -142,8 +152,12 @@ static MPActionLauncher *sharedActionLauncher = nil;
     [[MPMacPorts sharedInstance] cancelCurrentCommand];
 }
 
+//sendGrowlNotification is the method used to send our Growl notifications, via the Growl framework. It takes one argument, which is the
+//type of notification we are sending, as defined in GrowlNotifications.h It initializes the strings we will be sending to the
+//Growl Framework that comprise our notification, and finaly sends the notification
 -(void) sendGrowlNotification:(int)type
 {
+	//The notification needs a title. We initialize an array containing the titles for each type of notification
 	NSString *growlTitles[GROWL_TYPES];
 	growlTitles[GROWL_INSTALL] = [NSString stringWithString: @"Installation Completed"];
 	growlTitles[GROWL_UNINSTALL] = [NSString stringWithString: @"Uninstall Completed"];
@@ -159,8 +173,8 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	growlTitles[GROWL_ALLOPS] = [NSString stringWithString: @"Operations Completed"];
 	growlTitles[GROWL_ALLOPSFAILED] = [NSString stringWithString: @"Operations Failed"];
 
-	NSString *growlDescriptions[GROWL_TYPES];
-	
+	//The notification also needs a description. We initialize an array containing the descriptions for each type of notification
+	NSString *growlDescriptions[GROWL_TYPES];	
 	growlDescriptions[GROWL_INSTALL] = [NSString stringWithString: @"Operation completed successfully"];
 	growlDescriptions[GROWL_UNINSTALL] = [NSString stringWithString: @"Operation completed successfully"];
 	growlDescriptions[GROWL_UPGRADE] = [NSString stringWithString: @"Operation completed successfully"];
@@ -175,8 +189,9 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	growlDescriptions[GROWL_ALLOPS] = [NSString stringWithString: @"All Operations Completed Succesfully"];
 	growlDescriptions[GROWL_ALLOPSFAILED] = [NSString stringWithString: @"Operations Failed"];
 
+	//And the notification also needs a name, which Growl uses to identify it. We initialize an array containing
+	//these names here
 	NSString *growlNotificationNames[GROWL_TYPES];
-	
 	growlNotificationNames[GROWL_INSTALL] = [NSString stringWithString: @"InstallCompleted"];
 	growlNotificationNames[GROWL_UNINSTALL] = [NSString stringWithString: @"UninstallCompleted"];
 	growlNotificationNames[GROWL_UPGRADE] = [NSString stringWithString: @"UpgradeCompleted"];
@@ -190,8 +205,13 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	
 	growlNotificationNames[GROWL_ALLOPS] = [NSString stringWithString: @"OperationsCompleted"];
 	growlNotificationNames[GROWL_ALLOPSFAILED] = [NSString stringWithString: @"OperationsFailed"];
-
+	
+	
+	/*#################	These initializations should be moved to [init], and only call the following functions 	#################*/
+	
+	//Before we can send our messages, we need to call setGrowlDelegate once, due to a bug with the Growl Framework
 	[GrowlApplicationBridge setGrowlDelegate:(id) @""];
+	//And finaly, we send our notification, by calling notifyWithTitle with the appropriate title/description/name 
 	[GrowlApplicationBridge notifyWithTitle: growlTitles[type] description: growlDescriptions[type]\
 						   notificationName:growlNotificationNames[type] iconData:nil priority: 0\
 								   isSticky: NO clickContext:nil];

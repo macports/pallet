@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+//MPCheckbox is a custom NSButton class, that we use for our variants checkboxes.
+//Each variant is represented by a checkbox. This checkbox also stores wether it is a default variant, and a list of conflicting variants
 @interface MPCheckbox : NSButton {
 
 	

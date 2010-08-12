@@ -34,8 +34,10 @@ extern BOOL altWasPressed;
 	//Info Panel
 	IBOutlet NSPanel *infoPanel;
 	
+	//To make our checkbox management easier, we hold our checkboxes in array 
 	MPCheckbox* checkboxes[10];
 	
+	//We set 10 checkboxes, that will hold our port variants
 	IBOutlet MPCheckbox *chckbx0;
 	IBOutlet MPCheckbox *chckbx1;
 	IBOutlet MPCheckbox *chckbx2;

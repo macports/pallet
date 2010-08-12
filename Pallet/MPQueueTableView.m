@@ -13,20 +13,6 @@
 
 
 -(void)keyDown:(NSEvent *)theEvent {
-	/*
-    if ([[theEvent characters] characterAtIndex:0] == NSDeleteCharacter || [[theEvent characters] characterAtIndex:0] == NSBackspaceCharacter && [variantsPanel isVisible])) {
-		NSLog(@"wtf1");
-        if ([variantsPanel isVisible]) {
-            [variantsPanel close];
-			//[variantsPanel close];
-        } else {
-            [variantsPanel makeKeyAndOrderFront:self];
-        }
-    } else {
-		NSLog(@"wtf2");
-        [super keyDown:theEvent];
-    }
-	 */
 	if ([[theEvent characters] characterAtIndex:0] == NSDeleteCharacter || [[theEvent characters] characterAtIndex:0] == NSBackspaceCharacter)
 	{
 		NSLog(@"Deleting our shit");
