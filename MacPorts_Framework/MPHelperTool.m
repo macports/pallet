@@ -59,6 +59,7 @@
 //I'll save that here when retrieving info.
 //fromt he request dictionary
 int notificationsFileDescriptor;
+static int hasInstalledSignalToSocket = 0;
 BOOL hasSetFileDescriptor = NO;
 NSString * ipcFilePath;
 
@@ -590,7 +591,7 @@ void initIPC (ConnectionRef iConn) {
     }
 	
     // Organise to have SIGINT delivered to a runloop callback.
-    if (err == 0) {
+    if (err == 0 && hasInstalledSignalToSocket == 0) {
         sigset_t    justSIGINT;
         
         (void) sigemptyset(&justSIGINT);
@@ -603,6 +604,7 @@ void initIPC (ConnectionRef iConn) {
 									SIGINTRunLoopCallback,
 									NULL
 									);
+        hasInstalledSignalToSocket = 1; 
 		//asl_NSLog(logClient , logMsg, ASL_LEVEL_DEBUG, @"MPHelperTool: IgnoreSigPipe Successful");
 		[ASLLogger logString:@"MPHelperTool: IgnoreSigPipe Successful"];
     }
@@ -657,7 +659,7 @@ void initIPC (ConnectionRef iConn) {
     }
 	
     // Organise to have SIGINT delivered to a runloop callback.
-    if (err == 0) {
+    if (err == 0 && hasInstalledSignalToSocket == 0) {
         sigset_t    justSIGINT;
         
         (void) sigemptyset(&justSIGINT);
@@ -670,6 +672,7 @@ void initIPC (ConnectionRef iConn) {
 									SIGINTRunLoopCallback,
 									NULL
 									);
+        hasInstalledSignalToSocket = 1;
 		[ASLLogger logString:@"MPHelperTool: IgnoreSigPipe Successful"];
     }
     
