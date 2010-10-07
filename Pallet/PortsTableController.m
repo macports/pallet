@@ -80,7 +80,6 @@
     }
     
     NSScrollView* tableScrollView = [portsTableView enclosingScrollView];
-    NSUInteger oldOutlineViewMask = [tableScrollView autoresizingMask];
     
     NSScrollView* predicateEditorScrollView = [predicateEditor enclosingScrollView];
     NSUInteger oldPredicateEditorViewMask = [predicateEditorScrollView autoresizingMask];
@@ -100,10 +99,26 @@
     [mainWindow setFrame:windowFrame display:YES animate:YES];
     
     
-    [tableScrollView setAutoresizingMask:oldOutlineViewMask];
+    [tableScrollView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [predicateEditorScrollView setAutoresizingMask:oldPredicateEditorViewMask];
     
     rowCount = newRowCount;
+}
+
+/****************** Drawer ******************/
+
+//These are the functions needed for our drawer. In addition to open/close, we implemented toggle as well
+- (IBAction)open:(id)sender {[drawer openOnEdge:NSMinXEdge];}
+
+- (IBAction)close:(id)sender {[drawer close];}
+
+- (IBAction)toggle:(id)sender {
+    NSDrawerState state = [drawer state];
+    if (NSDrawerOpeningState == state || NSDrawerOpenState == state) {
+        [drawer close];
+    } else {
+        [drawer openOnEdge:NSMinXEdge];
+    }
 }
 
 @end

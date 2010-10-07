@@ -13,7 +13,8 @@
 
 -(id)init {
     [quickLookPanel setFloatingPanel:YES];
-    [super init];
+    
+	[super init];
     return self;
 }
 
@@ -31,4 +32,25 @@
     }
 }
 
+//flagsChanged is called every time a flag-changing key is pressed, like alt-ctrl-cmd etc
+-(void)flagsChanged:(NSEvent *)theEvent
+{
+	//We check if Alt is pressed
+	if([theEvent modifierFlags]&NSAlternateKeyMask)
+	{
+		NSLog(@"Alt is pressed");
+		altWasPressed=YES;
+	}
+	else
+	{
+		//If not, then if it's no longer pressed, we update our value. Otherwise, it means that
+		//this has nothing to do with us, so we let the system handle the flag change
+		if(altWasPressed)
+		{
+			NSLog(@"Alt is released");
+			altWasPressed=NO;
+		}
+		else [super flagsChanged:theEvent];
+	}
+}
 @end

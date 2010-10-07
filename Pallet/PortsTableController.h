@@ -14,18 +14,24 @@
  available ports.
 */
 
+
 #import <Cocoa/Cocoa.h>
 #import "MPActionLauncher.h"
+
+//Importing doesnt work. Therefore, we include NSDrawer.h 
+#include <AppKit/NSDrawer.h>
 
 /*!
  @class PortsTableController
  @abstract Wrapper for MacPorts Framework actions
  @discussion Contains a shared per thread MacPorts Framework wrapper
  */
-@interface PortsTableController : NSObject {
+@interface PortsTableController : NSObject  {
     IBOutlet NSTableView *portsTableView;
     IBOutlet NSPredicateEditor *predicateEditor;
     IBOutlet NSWindow *mainWindow;
+	IBOutlet NSDrawer *drawer;
+	IBOutlet NSTableView *drawerTable;
 
     // NSPredicateEditor management
     NSPredicate *predicate;
@@ -52,6 +58,13 @@
 
 
 - (IBAction)hidePredicateEditor:(id)sender;
+
+
+//Drawer methods
+- (IBAction)open:(id)sender;
+- (IBAction)close:(id)sender;
+- (IBAction)toggle:(id)sender;
+
 
 @end
 
