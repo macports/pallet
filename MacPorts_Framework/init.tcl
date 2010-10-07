@@ -1,89 +1,14 @@
 package require macports
 package require notifications
 
-
-#Set ui_options to log all messages to stdout and notify system
-#filtering is done on the Obj-C side of things
-# set ui_options(ports_debug) "yes"
-set ui_options(ports_verbose) "yes"
-
-# ui_options accessor
-proc ui_isset {val} {
-	global ui_options
-	if {[info exists ui_options($val)]} {
-		if {$ui_options($val) == "yes"} {
-			return 1
-		}
-	}
-	return 0
-}
-
-# UI Callback
-proc ui_prefix {priority} {
-    switch $priority {
-        debug {
-        	return "DEBUG: "
-        }
-        error {
-        	return "Error: "
-        }
-        warn {
-        	return "Warning: "
-        }
-        default {
-        	return ""
-        }
-    }
-}
-
-proc ui_channels {priority} {
-    global logfd
-    switch $priority {
-        debug {
-            if {[ui_isset ports_debug]} {
-            	return {stderr}
-            } else {
-            	return {}
-            }
-        }
-        info {
-            if {[ui_isset ports_verbose]} {
-                return {stdout}
-            } else {
-                return {}
-            }
-        }
-        msg {
-            if {[ui_isset ports_quiet]} {
-              return {}
-            } else {
-              return {stdout}
-            }
-        }
-        error {
-        	return {stderr}
-        }
-        default {
-        	return {stdout}
-        }
-    }
-}
-
-
-
-
-#Modifying UI initialization to enable notifications
-#Redefine ui_$pritority to throw global notifications
-#This is currently under works ... a reasonable solution
-#should be coming up soon
-proc macports::ui_init {priority args} {
+proc ui_init {priority prefix channels message} {
     switch $priority {
   		msg {
   			set nottype "MPMsgNotification" 
   		}
   		debug {
   			set nottype "MPDebugNotification"
-  			puts "Recieved Debug"
+  			puts "Recieved Debug init"
   		}
   		warn {
   			set nottype "MPWarnNotification"
@@ -100,67 +25,20 @@ proc macports::ui_init {priority args} {
   			set nottype "MPDefaultNotification"
   		}	
   	}
-  
-    # Get the list of channels.
-    if {[llength [info commands ui_channels]] > 0} {
-        set channels [ui_channels $priority]
-    } else {
-        set channels [ui_channels_default $priority]
-    }
 
-    # Simplify ui_$priority.
-    set nbchans [llength $channels]
-    if {$nbchans == 0} {
-        proc ::ui_$priority {args} [subst {
-          notifications send $nottype "$chan $prefix" "\$str"
-        }]
-    } else {
-        if {[llength [info commands ui_prefix]] > 0} {
-            set prefix [ui_prefix $priority]
-        } else {
-            set prefix [ui_prefix_default $priority]
-        }
-
-        if {[llength [info commands ::ui_init]] > 0} {
-            eval ::ui_init $priority $prefix $channels $args
-        } else {
-            if {$nbchans == 1} {
-                set chan [lindex $channels 0]
-                proc ::ui_$priority {args} [subst {
-                  if {\[lindex \$args 0\] == "-nonewline"} {
-                    puts $chan "$prefix\[lindex \$args 1\]"
-                    notifications send $nottype "$chan $prefix" "\[lindex \$args 1\]"
-                  } else {
-                    puts -nonewline $chan "$prefix\[lindex \$args 1\]"
-                    notifications send $nottype "$chan $prefix" "\[lindex \$args 0\]"
-                  }
-                }]
-            } else {
-                proc ::ui_$priority {args} [subst {
-                    foreach chan \$channels {
-                      if {\[lindex \$args 0\] == "-nonewline"} {
-                        puts $chan "$prefix\[lindex \$args 1\]"
-                        notifications send $nottype "$chan $prefix" "\[lindex \$args 1\]"
-                      } else {
-                        puts -nonewline $chan "$prefix\[lindex \$args 1\]"
-                        notifications send $nottype "$chan $prefix" "\[lindex \$args 0\]"
-                      }
-                    }
-                }]
-            }
-        }
-
-        # Call ui_$priority
-        eval ::ui_$priority $args
-    }
+    proc ::ui_$priority {message} [subst {
+        notifications send $nottype "$channels($priority) $prefix" "\$message"
+        ui_message $priority $prefix "" "\$message"
+    }]
 }
+
 
 
 #Wrapping the following API routines to catch errors
 #and log error Information in a similar fashion to code
 #in macports.tcl.
 proc mportuninstall {portname {v ""} {optionslist ""}} {
-	if {[catch {portuninstall::uninstall $portname $v $optionslist} result]} {
+	if {[catch {registry_uninstall::uninstall $portname $v $optionslist} result]} {
 		
 			global errorInfo
 			ui_debug "$errorInfo"

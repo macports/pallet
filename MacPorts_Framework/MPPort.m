@@ -90,6 +90,12 @@
 	// tokenize the properties
 	// create sets of the depends_* tokenized properties that contain only the dependency name, not the dependency type
 	// make the descriptions readable
+	
+	if([string rangeOfString:@"default_variants"].location != NSNotFound)
+	{
+		NSLog(@"%@", string);
+	}
+
 	if ([self objectForKey:@"maintainers"] != nil) {
 		[self setObject:[self objectForKey:@"maintainers"] forKey:@"maintainersAsString"];		
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"maintainers"]] forKey:@"maintainers"];
@@ -117,6 +123,24 @@
 		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_run"]] forKey:@"depends_run"];
 		[self addDependencyAsPortName:@"depends_run"];
 	}
+	if ([self objectForKey:@"depends_fetch"] != nil) {
+		[self setObject:[self objectForKey:@"depends_fetch"] forKey:@"depends_fetchAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_fetch"]] forKey:@"depends_fetch"];
+		[self addDependencyAsPortName:@"depends_fetch"];
+	}	
+	if ([self objectForKey:@"depends_extract"] != nil) {
+		[self setObject:[self objectForKey:@"depends_extract"] forKey:@"depends_extractAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"depends_extract"]] forKey:@"depends_extract"];
+		[self addDependencyAsPortName:@"depends_extract"];
+	}	
+	
+	//Code for fetching default variants
+	if ([self objectForKey:@"default_variants"] != nil) {
+		//NSLog(@"Default Variants str: %@", string);
+		[self setObject:[self objectForKey:@"default_variants"] forKey:@"default_variantsAsString"];
+		[self setObject:[interpreter arrayFromTclListAsString:[self objectForKey:@"default_variants"]] forKey:@"default_variants"];
+	}
+	 
 	
 	@try {
 		if ([[self valueForKey:@"description"] characterAtIndex:0] == '{') {
@@ -247,25 +271,39 @@
 	variants:(NSArray *)variants 
 	   error:(NSError **)execError{
 	
-	NSString *opts; 
-	NSString *vrnts;
+	NSMutableString *opts; 
+	NSMutableString *vrnts;
 	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
-	vrnts = [NSString stringWithString:@" "];
+	opts = [NSMutableString stringWithCapacity:50];
+	[opts setString:@"{ "];
+	vrnts = [NSMutableString stringWithCapacity:50];
+	[vrnts setString:@"{ "];
 	interpreter = [MPInterpreter sharedInterpreter];
 	
+	
 	if (options != NULL) {
-		opts = [NSString stringWithString:[options componentsJoinedByString:@" "]];
-	}
-	if (variants != NULL) {
-		vrnts = [NSString stringWithString:[variants componentsJoinedByString:@" "]];
+		[opts appendString: [NSString stringWithString:[options componentsJoinedByString:@" "]]];
 	}
 	
+	[opts appendString: @" }"];
+
+	if (variants != NULL) {
+		[vrnts appendString: [NSString stringWithString:[variants componentsJoinedByString:@" "]]];
+	}
+	
+	[vrnts appendString: @" }"];
+	
+	//NSLog(@"Variants String: %@", vrnts);
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:target withStatus:@"Started"];
 	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
 	
+	/*
+	NSLog(@"Interpreter string:\n%@",[NSString stringWithFormat:
+									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
+									  [self valueForKey:@"porturl"], opts, vrnts, target]);
+	*/
     [interpreter evaluateStringWithPossiblePrivileges:
         [NSString stringWithFormat:
             @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
@@ -349,6 +387,108 @@
 
 - (void)upgradeWithError:(NSError **)mError {
 	[self execPortProc:@"mportupgrade" withOptions:nil version:@"" error:mError];
+}
+
+//This function is called to initialize the array for the'default_variants' key for a port, which we can't do for all ports when loading
+- (void)checkDefaults
+{
+	//Check for default variants only if this is the first time we are checking
+	if ([self objectForKey:@"default_variants"] == nil)
+	{
+		//NSArray *defaultVariants = [port valueForKey:@"defaultVariants"];
+		NSMutableArray *defaultVariants= [NSMutableArray arrayWithCapacity:10];
+		char port_command[256];
+		
+		//Build the port variants command
+		strcpy(port_command, "port variants ");
+		strcat(port_command, [[self objectForKey:@"name"] cStringUsingEncoding: NSASCIIStringEncoding]);
+		strcat(port_command, " | grep \"\\[+]\" | sed 's/.*\\]//; s/:.*//' >> mpfw_default_variants");
+		
+		//Make the CLI call
+		system(port_command);
+		//Open the output file
+		FILE * file = fopen("mpfw_default_variants", "r");
+		
+		//Read all default_variants
+		char buffer[256];
+		while(!feof(file))
+		{
+			char * temp = fgets(buffer,256,file);
+			if(temp == NULL) continue;
+			buffer[strlen(buffer)-1]='\0';
+			//Add the variant in the Array
+			[defaultVariants addObject:[NSString stringWithCString:buffer]];
+		}
+		//Close and delete
+		fclose(file);
+		unlink("mpfw_default_variants");
+		
+		NSLog(@"Default variants count: %i", [defaultVariants count]);
+		//Code for fetching default variants
+		[self setObject:[NSString stringWithString:[defaultVariants componentsJoinedByString:@" "]]  forKey:@"default_variantsAsString"];
+		[self setObject:defaultVariants forKey:@"default_variants"];		
+	}
+
+}
+
+//This function is called to initiate the conflicts for a specific port, which we can't do for all ports when loading, much like
+//the default_variants
+- (void)checkConflicts;
+{
+	//Check for only if this is the first time we are checking
+	if ([self objectForKey:@"conflicts"] == nil)
+	{
+		
+		NSMutableArray *conflicts = [NSMutableArray arrayWithCapacity:20];
+		
+		char *script= " | python -c \"import re,sys;lines=sys.stdin.readlines();print '\\n'.join('%s,%s' % (re.sub(r'[\\W]','',lines[i-1].split()[0].rstrip(':')),','.join(l.strip().split()[3:])) for i, l in enumerate(lines) if l.strip().startswith('* conflicts'))\" >> /tmp/mpfw_conflict";
+		char command[512];
+		strcpy(command,"port variants ");
+		strcat(command, [[self name] UTF8String]);
+		strcat(command, script);
+		//printf("\n%s\n", command);
+		system(command);
+		
+		//Open the output file
+		FILE * file = fopen("/tmp/mpfw_conflict", "r");
+		
+		//Read all conflicts
+		char buffer[256];
+		while(!feof(file))
+		{
+			char * temp = fgets(buffer,256,file);
+			if(temp == NULL) continue;
+			buffer[strlen(buffer)-1]='\0';
+			//Add the variant in the Array
+			//printf("buffer:\n%s\n",buffer);
+			
+			char *token;
+			char *search = ",";
+			
+			token = strtok(buffer, search);
+			//printf("token: %s\n",token);
+			if(token == NULL) break;
+			
+			NSString *variant = [NSString stringWithCString:token];
+			NSMutableArray *conflictsWith=[NSMutableArray arrayWithCapacity:10];
+			NSLog(@"%@", variant);
+			while ((token = strtok(NULL, search)) != NULL)
+			{
+				NSLog(@"token: %@",[NSString stringWithCString:token]);
+				[conflictsWith addObject:[NSString stringWithCString:token]];
+				//NSLog(@"count %i",[[checkboxes[i] conflictsWith] count]);
+			}
+			
+			NSDictionary *variantConflictsWith = [NSDictionary dictionaryWithObject:conflictsWith forKey:variant];
+			[conflicts addObject:variantConflictsWith];
+			//[defaultVariants addObject:[NSString stringWithCString:buffer]];
+		}
+		//Close and delete
+		fclose(file);
+		unlink("/tmp/mpfw_conflict");		
+
+		[self setObject:conflicts forKey:@"conflicts"];
+	}		
 }
 
 -(void)configureWithOptions:(NSArray *)options variants:(NSArray *)variants error:(NSError **)mError {

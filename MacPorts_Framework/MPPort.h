@@ -149,6 +149,16 @@
 
 
 /*!
+ @brief Computes the NSMutableArray object for key "defaults_variants" of the port
+ */
+- (void)checkDefaults;
+
+/*!
+ @brief Computes the conflicts of the port
+ */
+- (void)checkConflicts;
+
+/*!
  @brief Executes the specified target for this MPPort
  @param target NSString target to be executed for this MPPort
  @param options An NSArray of NSStrings for the various options for this target

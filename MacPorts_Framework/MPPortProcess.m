@@ -81,7 +81,6 @@ int main(int argc, char const * argv[]) {
     NSConnection *portProcessConnection; 
     portProcessConnection = [NSConnection defaultConnection];
     NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSUTF8StringEncoding];
-//    NSString *portProcessInitPath = [[NSString alloc] initWithCString:argv[2] encoding:NSUTF8StringEncoding];
     
     MPPortProcess *portProcess = [[MPPortProcess alloc] initWithPKGPath:PKGPath];
     
