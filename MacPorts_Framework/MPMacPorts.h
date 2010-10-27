@@ -99,7 +99,11 @@
  */
 - (void)selfUpdate:(NSError **)sError;
 
-
+/*!
+ @brief Returns an NSDictionary of all the ports in the indices.
+ @discussion Faster than search:MPPortsAll. Uses mpportlistall
+ */
+- (NSDictionary *)listAll;
 
 /*!
  @brief Returns an NSDictionary of ports. Calls [self search:query caseSensiitve:YES].   

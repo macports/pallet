@@ -164,6 +164,27 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_selfupdate_Finished" object:nil];
 }
 
+- (NSDictionary *)listAll{
+	
+	NSMutableDictionary *result, *newResult;
+	NSEnumerator *enumerator;
+	id key;
+	NSError * sError;
+	
+	result = [NSMutableDictionary dictionaryWithDictionary:
+			  [interpreter dictionaryFromTclListAsString:
+			   [interpreter evaluateStringAsString:@"return [mportlistall]"
+											 error:&sError]]];
+	
+	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
+	enumerator = [result keyEnumerator];
+	while (key = [enumerator nextObject]) {
+		[newResult setObject:[[MPPort alloc] initWithTclListAsString:[result objectForKey:key]] forKey:key];
+	}
+	
+    
+	return [NSDictionary dictionaryWithDictionary:newResult];
+}
 
 - (NSDictionary *)search:(NSString *)query {
 	return [self search:query caseSensitive:YES];
