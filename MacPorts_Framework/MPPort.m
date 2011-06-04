@@ -355,33 +355,37 @@
 }
 
 
+/* XXX  uninstallWithVersion, activateWithVersion, deactivateWithVersion all need
+   to accept separate version,revision,variants args rather than a (possibly ambiguous)
+   composite version spec */
+
 #pragma mark -
-# pragma mark Exec methods 
+# pragma mark Exec methods
 - (void)uninstallWithVersion:(NSString *)version error:(NSError **)mError {
 	if (version == nil) {
-		[self execPortProc:@"mportuninstall" withOptions:nil version:@"" error:mError];
+		[self execPortProc:@"mportuninstall_composite" withOptions:nil version:@"" error:mError];
 	}
 	else {
-		[self execPortProc:@"mportuninstall" withOptions:nil version:version error:mError];
+		[self execPortProc:@"mportuninstall_composite" withOptions:nil version:version error:mError];
 	}
 }
 
 - (void)activateWithVersion:(NSString *)version error:(NSError **)mError {
 	if (version == nil) {
-		[self execPortProc:@"mportactivate" withOptions:nil version:@"" error:mError];
+		[self execPortProc:@"mportactivate_composite" withOptions:nil version:@"" error:mError];
 	}
 	else {
-		[self execPortProc:@"mportactivate" withOptions:nil version:version error:mError];
+		[self execPortProc:@"mportactivate_composite" withOptions:nil version:version error:mError];
 	}
 		
 }
 
 - (void)deactivateWithVersion:(NSString *)version error:(NSError **)mError {
 	if (version == nil) {
-		[self execPortProc:@"mportdeactivate" withOptions:nil version:@"" error:mError];
+		[self execPortProc:@"mportdeactivate_composite" withOptions:nil version:@"" error:mError];
 	}
 	else {
-		[self execPortProc:@"mportdeactivate" withOptions:nil version:version error:mError];
+		[self execPortProc:@"mportdeactivate_composite" withOptions:nil version:version error:mError];
 	}
 }
 

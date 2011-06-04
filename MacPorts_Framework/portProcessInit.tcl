@@ -38,8 +38,17 @@ proc ui_init {priority prefix channels message} {
 #and log error Information in a similar fashion to code
 #in macports.tcl. Note optionslist is not being used for now
 set mp_empty_list [list]
-proc mportuninstall {portname {v ""} {optionslist ""} } {
-	if {[catch {registry_uninstall::uninstall $portname $v [array get options]} result]} {
+proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
+	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants [array get options]} result]} {
+		
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Uninstall $portname ${version}_${revision}${variants} failed: $result"
+			return 1
+	}
+}
+proc mportuninstall_composite {portname {v ""} {optionslist ""} } {
+	if {[catch {registry_uninstall::uninstall_composite $portname $v [array get options]} result]} {
 		
 			global errorInfo
 			ui_debug "$errorInfo"
@@ -48,8 +57,17 @@ proc mportuninstall {portname {v ""} {optionslist ""} } {
 	}
 }
 
-proc mportactivate {portname {v ""} {optionslist ""}} {
-	if {[catch {portimage::activate $portname $v $optionslist} result]} {
+proc mportactivate {portname {version ""} {revision ""} {variants 0} {optionslist ""}} {
+	if {[catch {portimage::activate $portname $version $revision $variants $optionslist} result]} {
+			
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Activate $portname ${version}_${revision}${variants} failed: $result"
+			return 1
+	}
+}
+proc mportactivate_composite {portname {v ""} {optionslist ""}} {
+	if {[catch {portimage::activate_composite $portname $v $optionslist} result]} {
 			
 			global errorInfo
 			ui_debug "$errorInfo"
@@ -58,8 +76,17 @@ proc mportactivate {portname {v ""} {optionslist ""}} {
 	}
 }
 
-proc mportdeactivate {portname {v ""} {optionslist ""} } {
-	if {[catch {portimage::deactivate $portname $v $optionslist} result]} {
+proc mportdeactivate {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
+	if {[catch {portimage::deactivate $portname $version $revision $variants $optionslist} result]} {
+			
+			global errorInfo
+			ui_debug "$errorInfo"
+			ui_error "Deactivate $portname ${version}_${revision}${variants} failed: $result"
+			return 1
+	}
+}
+proc mportdeactivate_composite {portname {v ""} {optionslist ""} } {
+	if {[catch {portimage::deactivate_composite $portname $v $optionslist} result]} {
 			
 			global errorInfo
 			ui_debug "$errorInfo"
