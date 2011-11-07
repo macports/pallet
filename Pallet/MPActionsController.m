@@ -313,7 +313,24 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *pkgPath = [defaults objectForKey:@"PKGPath"];
     if (pkgPath == nil) {
-        [self openPreferences:self];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        BOOL existsAsDirectory = NO;
+        BOOL containsMacPortsTcl = NO;
+        NSString *macportsDir;
+        NSString *macportsFile;
+        macportsDir = [[MPMacPorts PKGPath] stringByAppendingPathComponent:@"macports1.0"];
+        macportsFile = [macportsDir stringByAppendingPathComponent:@"macports.tcl"];
+        [fileManager fileExistsAtPath:macportsDir isDirectory:&existsAsDirectory];
+        if (existsAsDirectory) {
+		    containsMacPortsTcl = [fileManager fileExistsAtPath:macportsFile isDirectory:nil];
+	    }
+        if (containsMacPortsTcl) {
+            [defaults setObject:[MPMacPorts PKGPath] forKey:@"PKGPath"];
+            [[MPActionLauncher sharedInstance]
+                    performSelectorInBackground:@selector(loadPorts) withObject:nil];
+        } else {
+            [self openPreferences:self];
+        }
     } else {
         [MPMacPorts setPKGPath:pkgPath];
         [[MPActionLauncher sharedInstance]
