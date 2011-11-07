@@ -39,7 +39,8 @@
 #include "MPHelperCommon.h"
 #include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
-static NSString* PKGPath = @"/Library/Tcl";
+static NSString* GenericPKGPath = @"/Library/Tcl";
+static NSString* PKGPath = @"/opt/local/share/macports/Tcl";
 static NSTask* aTask;
 
 #pragma mark -
@@ -303,6 +304,18 @@ static NSString * tclInterpreterPkgPath = nil;
 
 #pragma mark API methods
 - (id) init {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	BOOL existsAsDirectory = NO;
+	BOOL containsMacPortsTcl = NO;
+	NSString *macportsDir = [PKGPath stringByAppendingPathComponent:@"macports1.0"];
+	NSString *macportsFile = [macportsDir stringByAppendingPathComponent:@"macports.tcl"];
+	[fileManager fileExistsAtPath:macportsDir isDirectory:&existsAsDirectory];
+	if (existsAsDirectory) {
+		containsMacPortsTcl = [fileManager fileExistsAtPath:macportsFile isDirectory:nil];
+	}
+	if (!containsMacPortsTcl) {
+		return [self initWithPkgPath:GenericPKGPath portOptions:nil];
+	}
 	return [self initWithPkgPath:PKGPath portOptions:nil];
 }
 
