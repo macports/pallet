@@ -15,7 +15,7 @@
 -(void)keyDown:(NSEvent *)theEvent {
 	if ([[theEvent characters] characterAtIndex:0] == NSDeleteCharacter || [[theEvent characters] characterAtIndex:0] == NSBackspaceCharacter)
 	{
-		NSLog(@"Deleting our shit");
+		NSLog(@"Deleting a queue entry");
 		NSLog(@"Selection: %i", [queue selectionIndex]);
 		if([queue selectionIndex]>=0) [queue removeObjectAtArrangedObjectIndex:[queue selectionIndex]];
 	}
