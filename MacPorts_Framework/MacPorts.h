@@ -33,12 +33,12 @@
  *	POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <MacPorts/MPIndex.h>;
-#import <MacPorts/MPInterpreter.h>;
-#import <MacPorts/MPMacPorts.h>;
-#import <MacPorts/MPPort.h>;
-#import <MacPorts/MPReceipt.h>;
-#import <MacPorts/MPRegistry.h>;
+#import <MacPorts/MPIndex.h>
+#import <MacPorts/MPInterpreter.h>
+#import <MacPorts/MPMacPorts.h>
+#import <MacPorts/MPPort.h>
+#import <MacPorts/MPReceipt.h>
+#import <MacPorts/MPRegistry.h>
 
 //Including this file for testing the Notifications listener
-#import <MacPorts/MPNotifications.h>;
+#import <MacPorts/MPNotifications.h>
