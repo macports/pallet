@@ -25,11 +25,11 @@ The installed MacPorts.Framework is located in /Library/Frameworks/.
 
 Alternatively, you can download the source code using svn and build it
 with Xcode 3.0 or later.
-"svn co https://svn.macosforge.org/repository/macports/contrib/MacPorts_Framework"
+"svn co https://svn.macports.org/repository/macports/contrib/MacPorts_Framework"
 
 Documentation for the Framework classes can also be obtained with svn:
-"svn co https://svn.macosforge.org/repository/macports/branches/gsoc08-framework/MacPorts_Framework_Documentation" or you can download a .zip version from
-https://svn.macosforge.org/repository/macports/branches/gsoc08-framework/MacPorts_Framework_Documentation/HTML.zip 
+"svn co https://svn.macports.org/repository/macports/branches/gsoc08-framework/MacPorts_Framework_Documentation" or you can download a .zip version from
+https://svn.macports.org/repository/macports/branches/gsoc08-framework/MacPorts_Framework_Documentation/HTML.zip 
 
 
 USAGE NOTES
