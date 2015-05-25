@@ -1,0 +1,17 @@
+TO DO LIST (because there seems to be too much to get done haha)
+
+-	Add Port option #define macros to MPInterpreter
+
+-	Modify MPInterpreter so that its init process is modularized into sub routines.
+	The main goal of this modification is to allow implementation of the method below.
+	MPInterpreter will be able to conveniently create and delete its internal Tcl_interp object
+	
+-	Modify MPMacPorts to have a setOptions:(NSArray *) method of various port options
+
+-	Move Authorizations functionality into a new MPAuthorization(s) class
+
+-	Modify MPNotifications to allow for possible hooks for Bindings
+
+-	Do an alternate GC compatible build?
+
+-	Move major port functionality from MPPort to MPMacPorts?
