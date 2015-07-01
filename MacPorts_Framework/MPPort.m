@@ -236,7 +236,7 @@
 	
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:procedure withStatus:@"Started"];
-	//NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
+	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
 	[[MPNotifications sharedListener] setPerformingTclCommand:procedure];
 	
 	if ([parentMacPortsInstance authorizationMode]) {
@@ -283,6 +283,7 @@
 	
 	if (options != NULL) {
 		[opts appendString: [NSString stringWithString:[options componentsJoinedByString:@" "]]];
+        NSLog(@"Opts: %@", opts);
 	}
 	
 	[opts appendString: @" }"];
@@ -293,23 +294,24 @@
 	
 	[vrnts appendString: @" }"];
 	
-	//NSLog(@"Variants String: %@", vrnts);
+	NSLog(@"Variants String: %@", vrnts);
 	//Send Global Notifications and update MPNotifications variable
+    if([target isEqual:@"install"])
+    {
+        NSLog(@"HUR");
+        target = @"activate";
+    }
+    
 	[self sendGlobalExecNotification:target withStatus:@"Started"];
-	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
+	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
-	
-	/*
+		
 	NSLog(@"Interpreter string:\n%@",[NSString stringWithFormat:
 									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
 									  [self valueForKey:@"porturl"], opts, vrnts, target]);
-	*/
-    [interpreter evaluateStringWithPossiblePrivileges:
-        [NSString stringWithFormat:
-            @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-            [self valueForKey:@"porturl"], opts, vrnts, target]
-        error:execError];
-	
+
+    NSString * test = [interpreter evaluateStringWithPossiblePrivileges:[NSString stringWithFormat:@"exit; set foo [mportopen  %@  %@  %@]; puts $foo; test", [self valueForKey:@"porturl"], opts, vrnts] error:execError];
+    NSLog(@"Pills: %@", test);
 	
 	[self setState:MPPortStateLearnState];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];

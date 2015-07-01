@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		2160109C1094C66300EE9CD0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA60E3E7E900026773D /* Cocoa.framework */; };
-		2160109F1094C6ED00EE9CD0 /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		216010A21094C6FD00EE9CD0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		216010A31094C6FD00EE9CD0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		216010C51094D34500EE9CD0 /* MPRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F811BE0CE4636A009630DE /* MPRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,11 +59,9 @@
 		216010E71094D34500EE9CD0 /* MPHelperNotificationsCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E8563B50E5DDF7000C1D73C /* MPHelperNotificationsCommon.c */; };
 		216010E81094D34500EE9CD0 /* MPNotifications+IPCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDCD0E6276AA00FB2115 /* MPNotifications+IPCAdditions.m */; };
 		216010EA1094D34500EE9CD0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED12AA60E3E7E900026773D /* Cocoa.framework */; };
-		216010EB1094D34500EE9CD0 /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		216010EC1094D34500EE9CD0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECD970D0E465C7800488335 /* Security.framework */; };
 		218DEE2610162091003B5A3B /* SimpleLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 218DED83101612F1003B5A3B /* SimpleLog.m */; };
 		21D95442100940FF00DEF58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
-		21D954431009411400DEF58A /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		21D954471009412F00DEF58A /* MPPortProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D954461009412F00DEF58A /* MPPortProcess.m */; };
 		21D954721009475200DEF58A /* portProcessInit.tcl in Resources */ = {isa = PBXBuildFile; fileRef = 21D954711009475200DEF58A /* portProcessInit.tcl */; };
 		21D9548C1009522100DEF58A /* MPPortProcess in Resources */ = {isa = PBXBuildFile; fileRef = 21D9543E100940EE00DEF58A /* MPPortProcess */; };
@@ -113,7 +110,6 @@
 		6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */; };
 		6ECD98110E484E8400488335 /* MPHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD98100E484E8400488335 /* MPHelperTool.m */; };
 		6ECD99C60E48B91B00488335 /* MPHelperToolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECD99C50E48B91B00488335 /* MPHelperToolTest.m */; };
-		6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA0F56E0DFEB55E00C15082 /* Tcl.framework */; };
 		6EE6DDA40E626D4A00FB2115 /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MacPorts.framework */; };
 		6EE6DDA70E626D5A00FB2115 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6FC900E45DEA80057962C /* Foundation.framework */; };
 		6EE6DDAB0E626DC900FB2115 /* MPHelperToolIPCTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DDAA0E626DC900FB2115 /* MPHelperToolIPCTester.m */; };
@@ -227,7 +223,6 @@
 		6E8563B70E5DDF7000C1D73C /* MPHelperNotificationsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelperNotificationsProtocol.h; sourceTree = "<group>"; };
 		6E88D1CA0DF4B90B00684E9F /* MPMacPortsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMacPortsTest.h; sourceTree = "<group>"; };
 		6E88D1CB0DF4B90B00684E9F /* MPMacPortsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMacPortsTest.m; sourceTree = "<group>"; };
-		6EA0F56E0DFEB55E00C15082 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		6EB6FC900E45DEA80057962C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EC260700E426FC80013BC48 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
 		6EC260710E426FC80013BC48 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
@@ -257,7 +252,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				216010EA1094D34500EE9CD0 /* Cocoa.framework in Frameworks */,
-				216010EB1094D34500EE9CD0 /* Tcl.framework in Frameworks */,
 				216010EC1094D34500EE9CD0 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,7 +261,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D95442100940FF00DEF58A /* Foundation.framework in Frameworks */,
-				21D954431009411400DEF58A /* Tcl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +284,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ED12AF10E3E9E210026773D /* Tcl.framework in Frameworks */,
 				6EC2609E0E42950C0013BC48 /* CoreFoundation.framework in Frameworks */,
 				6EB6FC910E45DEA80057962C /* Foundation.framework in Frameworks */,
 				216010A31094C6FD00EE9CD0 /* Security.framework in Frameworks */,
@@ -312,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2160109C1094C66300EE9CD0 /* Cocoa.framework in Frameworks */,
-				2160109F1094C6ED00EE9CD0 /* Tcl.framework in Frameworks */,
 				216010A21094C6FD00EE9CD0 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,7 +339,6 @@
 				4822AAD40D7EB39200C4D4D7 /* Documentation */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				6EA0F56E0DFEB55E00C15082 /* Tcl.framework */,
 				6ED12AA60E3E7E900026773D /* Cocoa.framework */,
 				6EC2609D0E42950C0013BC48 /* CoreFoundation.framework */,
 				6EB6FC900E45DEA80057962C /* Foundation.framework */,
@@ -791,7 +781,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/env ruby";
-			shellScript = "# This script just copies the framework to the build directory so that it can be found by Pallet\n# in any configuration.\nrequire 'fileutils'\n\nif File.directory? \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/MacPorts.framework\"\n  FileUtils.rm_rf \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/MacPorts.framework\"\nend\n\nFileUtils.cp_r \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/#{ENV['CONFIGURATION']}/MacPorts.framework\", \"#{ENV['SRCROOT']}/../MacPorts_Framework/build\"\n";
+			shellScript = "# This script just copies the framework to the build directory so that it can be found by Pallet\n# in any configuration.\n#require 'fileutils'\n\n#if File.directory? \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/MacPorts.framework\"\n# FileUtils.rm_rf \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/MacPorts.framework\"\n#end\n\n#FileUtils.cp_r \"#{ENV['SRCROOT']}/../MacPorts_Framework/build/#{ENV['CONFIGURATION']}/MacPorts.framework\", \"#{ENV['SRCROOT']}/../MacPorts_Framework/build\"\n";
 		};
 		489DD8F20C94365F00595506 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -987,9 +977,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"/opt/local/libexec/macports/lib/**",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = MacPorts;
 				SYMROOT = build;
 				WRAPPER_EXTENSION = framework;
@@ -1015,9 +1011,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"/opt/local/libexec/macports/lib/**",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = MacPorts;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
@@ -1094,6 +1096,12 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_VERSION = "";
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperTool;
 				SDKROOT = macosx10.8;
@@ -1120,9 +1128,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"/opt/local/libexec/macports/lib/**",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = MacPorts;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
@@ -1148,11 +1162,15 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
 					"-framework",
 					SenTestingKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
@@ -1194,6 +1212,9 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
@@ -1215,11 +1236,15 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_VERSION = "";
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPPortProcess;
@@ -1250,9 +1275,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"/opt/local/libexec/macports/lib/**",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = MacPorts;
 				SYMROOT = build;
 				WRAPPER_EXTENSION = framework;
@@ -1280,9 +1311,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"/opt/local/libexec/macports/lib/**",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = MacPorts;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
@@ -1310,9 +1347,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"/opt/local/libexec/macports/lib/**",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = MacPorts;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
@@ -1332,11 +1375,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPPortProcess;
@@ -1355,11 +1402,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPPortProcess;
@@ -1387,12 +1438,17 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				"LIBRARY_SEARCH_PATHS[sdk=macosx*]" = /opt/local/libexec/macports/lib;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
 					"-framework",
 					SenTestingKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
@@ -1420,11 +1476,16 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/local/libexec/macports/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
 					"-framework",
 					SenTestingKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
@@ -1481,6 +1542,12 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperTool;
 				SDKROOT = macosx10.8;
@@ -1497,6 +1564,12 @@
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				OTHER_LDFLAGS = (
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperTool;
 				SDKROOT = macosx10.8;
@@ -1523,6 +1596,9 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
@@ -1548,6 +1624,9 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-I/opt/local/libexec/macports/include",
+					"-L/opt/local/libexec/macports/lib",
+					"-ltcl8.5",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;

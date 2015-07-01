@@ -26,11 +26,6 @@
 		1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
 		1D24FCAC11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
 		1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
-		1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
-		1D4B87BB11A54DE000AD9D33 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
-		1D4B87BC11A54DE000AD9D33 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
-		1D4B87CE11A54FEF00AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
-		1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
 		1D9B73F911F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1D9B73FA11F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1DA3219411F748330004ECB1 /* MPCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3219311F748330004ECB1 /* MPCheckbox.m */; };
@@ -150,7 +145,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1D4B87CE11A54FEF00AD9D33 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +154,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +178,6 @@
 		1D24FC5F11CD1C770063E2A5 /* GrowlNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlNotifications.h; sourceTree = "<group>"; };
 		1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_InstallWithVar.icns; sourceTree = "<group>"; };
 		1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
-		1D4B87BA11A54DE000AD9D33 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "Growl-1.2.1-Framework/Growl.framework"; sourceTree = "<group>"; };
 		1D9B73F711F0F6D6006013F5 /* MPQueueTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPQueueTableView.h; sourceTree = "<group>"; };
 		1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPQueueTableView.m; sourceTree = "<group>"; };
 		1DA3219211F748330004ECB1 /* MPCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCheckbox.h; sourceTree = "<group>"; };
@@ -235,7 +227,6 @@
 			files = (
 				21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */,
 				21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */,
-				1D4B87BB11A54DE000AD9D33 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +236,6 @@
 			files = (
 				21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				1D4B87BC11A54DE000AD9D33 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				1D24FC5F11CD1C770063E2A5 /* GrowlNotifications.h */,
-				1D4B87BA11A54DE000AD9D33 /* Growl.framework */,
 				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
 				21F166FC0FE32DF000542AEE /* Models */,
 				21F167570FE3343600542AEE /* Controllers */,
@@ -552,7 +541,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */,
@@ -809,7 +797,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -820,6 +807,12 @@
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				OTHER_LDFLAGS = (
+					"-I$prefix/libexec/macports/include",
+					"-L$prefix/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = Pallet;
 				SDKROOT = macosx;
 			};
@@ -831,10 +824,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
@@ -844,6 +834,13 @@
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				OTHER_LDFLAGS = (
+					"-I$prefix/libexec/macports/include",
+					"-L$prefix/libexec/macports/lib",
+					"-ltcl8.5",
+				);
+				"OTHER_LDFLAGS[arch=*]" = "-ltcl8.5";
 				PRODUCT_NAME = Pallet;
 				SDKROOT = macosx;
 			};
@@ -859,7 +856,11 @@
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
+					"$(inherited)",
+					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
 				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
@@ -867,6 +868,12 @@
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				OTHER_LDFLAGS = (
+					"-I$prefix/libexec/macports/include",
+					"-L$prefix/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = Pallet;
 				SDKROOT = macosx;
 			};

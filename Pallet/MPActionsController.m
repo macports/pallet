@@ -435,8 +435,9 @@
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"advanceQ" object:nil];
 		
 		int allops=GROWL_ALLOPS;
-		[[MPActionLauncher sharedInstance]
-		 performSelectorInBackground:@selector(sendGrowlNotification:) withObject:(id) allops];		
+        //FIXME
+		//[[MPActionLauncher sharedInstance]
+		 //performSelectorInBackground:@selector(sendGrowlNotification:) withObject:(id) allops];
 		
 	}
 

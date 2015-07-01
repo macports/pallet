@@ -1,3 +1,6 @@
+
+#set auto_path [concat $auto_path "/opt/local/libexec/macports/lib/"]
+
 package require macports
 package require notifications
 
@@ -38,6 +41,7 @@ proc ui_init {priority prefix channels message} {
 #and log error Information in a similar fashion to code
 #in macports.tcl.
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""}} {
+    puts "IN THIS REALLY COOL SHIT NOW. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW"
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants $optionslist} result]} {
 		
 			global errorInfo
@@ -47,6 +51,7 @@ proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionsli
 	}
 }
 proc mportuninstall_composite {portname {v ""} {optionslist ""}} {
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!IN THIS REALLY COOL SHIT NOW. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW"
 	if {[catch {registry_uninstall::uninstall_composite $portname $v $optionslist} result]} {
 		
 			global errorInfo
@@ -104,7 +109,6 @@ proc mportupgrade {portname} {
 			return 1
 	}
 }
-
 
 # Initialize dport
 # This must be done following parse of global options, as some options are

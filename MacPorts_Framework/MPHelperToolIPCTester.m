@@ -92,6 +92,7 @@
 }
 
 -(BOOL) installUninstallManipulation:(NSString *)portName {
+    NSLog(@"FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 	BOOL ret = NO;
 	
 	MPRegistry * registry = [MPRegistry sharedRegistry];

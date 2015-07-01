@@ -73,7 +73,8 @@
 }
 
 + (MPMacPorts *)sharedInstance {
-	return [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
+    MPMacPorts * test = [self sharedInstanceWithPkgPath:[MPInterpreter PKGPath] portOptions:nil];
+    return test;
 }
 
 + (MPMacPorts *)sharedInstanceWithPkgPath:(NSString *)path portOptions:(NSArray *)options {
@@ -171,6 +172,13 @@
 	id key;
 	NSError * sError;
 	
+    result = [NSMutableDictionary dictionaryWithDictionary:
+			  [interpreter dictionaryFromTclListAsString:
+			   [interpreter evaluateStringAsString:@"puts \"((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((\""
+											 error:&sError]]];
+    
+    NSLog(@"Resulty De Dulty: %@", result);
+    
 	result = [NSMutableDictionary dictionaryWithDictionary:
 			  [interpreter dictionaryFromTclListAsString:
 			   [interpreter evaluateStringAsString:@"return [mportlistall]"
@@ -186,16 +194,20 @@
 	return [NSDictionary dictionaryWithDictionary:newResult];
 }
 
-- (NSDictionary *)search:(NSString *)query {
-	return [self search:query caseSensitive:YES];
+- (NSDictionary *)search:(NSString *)query
+{
+	NSDictionary * foo = [self search:query caseSensitive:YES];
+    return foo;
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)isCasesensitive {
-	return [self search:query caseSensitive:isCasesensitive matchStyle:@"regex"];
+    NSDictionary * foo = [self search:query caseSensitive:isCasesensitive matchStyle:@"regexp"];
+    return foo;
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style {
-	return [self search:query caseSensitive:sensitivity matchStyle:style field:@"name"];
+    NSDictionary * foo = [self search:query caseSensitive:sensitivity matchStyle:style field:@"name"];
+    return foo;
 }
 
 - (NSDictionary *)search:(NSString *)query caseSensitive:(BOOL)sensitivity matchStyle:(NSString *)style field:(NSString *)fieldName {
@@ -211,14 +223,14 @@
 	}
 
 	NSError * sError;
-	
-	result = [NSMutableDictionary dictionaryWithDictionary:
+    
+    result = [NSMutableDictionary dictionaryWithDictionary:
 			  [interpreter dictionaryFromTclListAsString:
 			   [interpreter evaluateStringAsString:
 				[NSString stringWithFormat:@"return [mportsearch %@ %@ %@ %@]",
 				 query, caseSensitivity, style, fieldName] 
 											 error:&sError]]];
-	
+    
 	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];
 	while (key = [enumerator nextObject]) {

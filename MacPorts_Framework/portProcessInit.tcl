@@ -39,6 +39,8 @@ proc ui_init {priority prefix channels message} {
 #in macports.tcl. Note optionslist is not being used for now
 set mp_empty_list [list]
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
+    puts "Test"
+    exit
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants [array get options]} result]} {
 		
 			global errorInfo
@@ -48,6 +50,8 @@ proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionsli
 	}
 }
 proc mportuninstall_composite {portname {v ""} {optionslist ""} } {
+    puts "Moo"
+    exit
 	if {[catch {registry_uninstall::uninstall_composite $portname $v [array get options]} result]} {
 		
 			global errorInfo

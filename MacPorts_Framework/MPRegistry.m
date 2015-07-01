@@ -100,6 +100,7 @@
 	NSArray *versions;
 	id item;
 	raw = [self installedAsArray:name withVersion:version];
+    NSLog(@"Raw = %@", raw);
 	result = [(NSMutableDictionary *)[NSMutableDictionary alloc] initWithCapacity:[raw count]];
 	rawEnumerator = [raw objectEnumerator];
 	while (item = [rawEnumerator nextObject]) {
@@ -121,8 +122,10 @@
 	NSString * result = [interpreter evaluateStringAsString:
 						 [NSString stringWithFormat:@"return [registry::installed %@ %@]", name, version]
 													  error:&anError];
+    
 	if (result == nil && anError) {
 		//Recover from error here
+        NSLog(@"Moo");
 		return nil;
 	}
 	

@@ -922,32 +922,42 @@ static OSStatus DoEvaluateTclString
 	
 	//Add simplelog tcl command
 	Tcl_CreateObjCommand(interpreter, "simplelog", SimpleLog_Command, NULL, NULL);
-	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {
+	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK)
+    {
 		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(interpreter));
 		retval = coreFoundationUnknownErr;
 		//For Dbg
 		CFDictionaryAddValue(response, CFSTR("simplelog"), CFSTR("NO"));
 	}
-	else {
+	else
+    {
 		CFDictionaryAddValue(response, CFSTR("simplelog"), CFSTR("YES"));
 	}
 	
 	
 	//Get path for and load interpInit.tcl file to Tcl Interpreter
 	NSString * interpInitFilePath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kInterpInitFilePath));
-	if (interpInitFilePath == nil) {
+	if(interpInitFilePath == nil)
+    {
 		CFDictionaryAddValue(response, CFSTR("interpInitFilePath"), CFSTR("NO"));
 		retval = coreFoundationUnknownErr;
 	}
 	else
+    {
 		CFDictionaryAddValue(response, CFSTR("interpInitFilePath"), (CFStringRef)interpInitFilePath);
-	if( Tcl_EvalFile(interpreter, [interpInitFilePath UTF8String]) == TCL_ERROR) {
+    }
+    
+    NSLog(@"FOO TEST 2");
+    
+	if(Tcl_EvalFile(interpreter, [interpInitFilePath UTF8String]) == TCL_ERROR)
+    {
 		NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
 		retval = coreFoundationUnknownErr;
 		CFDictionaryAddValue(response, CFSTR("interpInit.tcl Evaluation"), CFSTR("NO"));
 	}
-	else {
+	else
+    {
 		CFDictionaryAddValue(response, CFSTR("interpInit.tcl Evaluation"), CFSTR("YES"));
 	}
 	

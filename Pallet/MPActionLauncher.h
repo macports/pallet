@@ -15,7 +15,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MacPorts/MacPorts.h>
-#import <Growl/Growl.h>
+
 
 #import "GrowlNotifications.h"
 
@@ -24,7 +24,7 @@
  @abstract Wrapper for MacPorts Framework actions
  @discussion Contains a shared per thread MacPorts Framework wrapper
 */
-@interface MPActionLauncher : NSObject <GrowlApplicationBridgeDelegate> {
+@interface MPActionLauncher : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
     NSArray *ports;
     NSTask *actionTool;
     NSConnection *connectionToActionTool;
@@ -79,7 +79,6 @@
  */
 - (void)upgradePort:(MPPort *)port;
 
-
 /*!
  @brief Syncs the MacPorts installation in another thread
  */
@@ -92,6 +91,6 @@
 
 - (void)cancelPortProcess;
 
--(void) sendGrowlNotification: (int) type;
+-(void) sendNotification: (int) type;
 
 @end

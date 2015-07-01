@@ -40,7 +40,7 @@
 #include "MPHelperNotificationsProtocol.h"
 static AuthorizationRef internalMacPortsAuthRef;
 static NSString* GenericPKGPath = @"/Library/Tcl";
-static NSString* PKGPath = @"/opt/local/share/macports/Tcl";
+static NSString* PKGPath = @"/opt/local/libexec/macports/lib/";
 static NSTask* aTask;
 
 #pragma mark -
@@ -187,7 +187,7 @@ static NSString * tclInterpreterPkgPath = nil;
 -(BOOL) initTclInterpreter:(Tcl_Interp * *)interp withPath:(NSString *)path {
 	BOOL result = NO;
 	*interp = Tcl_CreateInterp();
-	
+    
 	if(*interp == NULL) {
 		NSLog(@"Error in Tcl_CreateInterp, aborting.");
 		return result;
@@ -202,26 +202,31 @@ static NSString * tclInterpreterPkgPath = nil;
 	if (path == nil)
 		path = PKGPath;
 	
-	
+	/*
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:path]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
 	if(Tcl_Eval(*interp, [mport_fastload UTF8String]) != TCL_OK) {
 		NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(*interp));
 		Tcl_DeleteInterp(*interp);
 		return result;
-	}
+	}*/
 	
 	
 	Tcl_CreateObjCommand(*interp, "notifications", Notifications_Command, NULL, NULL);
-	if (Tcl_PkgProvide(*interp, "notifications", "1.0") != TCL_OK) {
+	if(Tcl_PkgProvide(*interp, "notifications", "1.0") != TCL_OK)
+    {
 		NSLog(@"Error in Tcl_PkgProvide: %s", Tcl_GetStringResult(*interp));
 		Tcl_DeleteInterp(*interp);
 		return result;
 	}
-	
-	if( Tcl_EvalFile(*interp, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
+	if(Tcl_EvalFile(*interp, [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"] 
 								pathForResource:@"init" 
-								ofType:@"tcl"] UTF8String]) != TCL_OK) {
+								ofType:@"tcl"] UTF8String]) != TCL_OK)
+    {
+        const char * path = [[[NSBundle bundleWithIdentifier:@"org.macports.frameworks.macports"]
+                           pathForResource:@"init"
+                           ofType:@"tcl"] UTF8String];
+        //printf("Test: %s", path);
 		NSLog(@"Error in Tcl_EvalFile init.tcl: %s", Tcl_GetStringResult(*interp));
 		Tcl_DeleteInterp(*interp);
 		return result;
@@ -377,19 +382,26 @@ static NSString * tclInterpreterPkgPath = nil;
 #pragma Port Settings
 
 #pragma Utilities
-- (NSArray *)arrayFromTclListAsString:(NSString *)list {
+- (NSArray *)arrayFromTclListAsString:(NSString *)list
+{
 	NSMutableArray *array;
 	int tclCount;
 	int tclResult;
 	int i;
 	const char **tclElements;
+    const char * string = [list UTF8String];
 	tclResult = Tcl_SplitList(_interpreter, [list UTF8String], &tclCount, &tclElements);
-	if (tclResult == TCL_OK) {
+    
+	if (tclResult == TCL_OK)
+    {
 		array = [[NSMutableArray alloc] initWithCapacity:tclCount];
-		for (i = 0; i < tclCount; i++) {
+		for (i = 0; i < tclCount; i++)
+        {
 			[array addObject:[NSString stringWithUTF8String:tclElements[i]]];
 		}
-	} else {
+	}
+    else
+    {
 		array = [[[NSMutableArray alloc] init] autorelease];
 	}
 	Tcl_Free((char *)tclElements);
@@ -397,7 +409,8 @@ static NSString * tclInterpreterPkgPath = nil;
 }
 
 - (NSDictionary *)dictionaryFromTclListAsString:(NSString *)list {
-	return [NSDictionary dictionaryWithDictionary:[self  mutableDictionaryFromTclListAsString:list]];
+    NSDictionary * foo = [NSDictionary dictionaryWithDictionary:[self  mutableDictionaryFromTclListAsString:list]];
+    return foo;
 }
 
 - (NSMutableDictionary *)mutableDictionaryFromTclListAsString:(NSString *)list {
@@ -428,8 +441,8 @@ static NSString * tclInterpreterPkgPath = nil;
 
 - (NSString *)evaluateStringAsString:(NSString *)statement error:(NSError**)mportError{
 	//NSLog(@"Calling evaluateStringAsString with argument %@", statement);
-	
-	int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
+    NSLog(@"Statement: %@", statement);
+    int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
 	
 	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
 	if (return_code != TCL_OK) {
@@ -458,12 +471,14 @@ static NSString * tclInterpreterPkgPath = nil;
 							 NSUnderlyingErrorKey, nil];
 		errDict = [NSDictionary dictionaryWithObjects:objArray forKeys:keyArray];
 		if (mportError != NULL)
+        {
 			*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
 													  code:TCL_ERROR 
 												  userInfo:errDict] autorelease];
+        }
+        
 		return nil;
 	}
-	
 	return [NSString stringWithUTF8String:Tcl_GetStringResult(_interpreter)];
 }
 
@@ -517,6 +532,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	//if ([notificationObject respondsToSelector:@selector(startServerThread)]) {
 	NSThread * cThread = [NSThread currentThread];
+
 	NSLog(@"STARTING SERVER THREAD with previous thread %@", [cThread threadDictionary]);
 	
 	//This is important to note ... the tcl command being executed is saved in the
@@ -538,10 +554,6 @@ static NSString * tclInterpreterPkgPath = nil;
 	//Retrieving the path for interpInit.tcl for our helper tool
 	NSString * interpInitPath = [[NSBundle bundleForClass:[MPInterpreter class]] 
 								 pathForResource:@"interpInit" ofType:@"tcl"];
-	
-		
-	
-	
 	
 	request = [NSDictionary dictionaryWithObjectsAndKeys:
 			   @kMPHelperEvaluateTclCommand, @kBASCommandKey,
@@ -569,7 +581,8 @@ static NSString * tclInterpreterPkgPath = nil;
 					   (CFStringRef) bundleID, 
 					   NULL);
 	
-	//NSLog(@"BEFORE Tool Execution request is %@ , response is %@ \n\n", request, response);
+	NSLog(@"BEFORE Tool Execution request is %@ , response is %@ \n\n", request, response);
+    
 	err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 										kMPHelperCommandSet, 
 										(CFStringRef) bundleID, 
@@ -580,6 +593,7 @@ static NSString * tclInterpreterPkgPath = nil;
 			result = (NSString *) (CFStringRef) CFDictionaryGetValue(response, CFSTR(kTclStringEvaluationResult));
 	}
 	else { //Try to recover error
+        	NSLog(@"*****************************************");
 		failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (CFStringRef) bundleID);
 		
 		
@@ -649,7 +663,6 @@ static NSString * tclInterpreterPkgPath = nil;
     [aTask setLaunchPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"MPPortProcess" ofType:@""]];
     [aTask setArguments:args];
     [aTask launch];
-    
     NSConnection *notificationsConnection = [NSConnection defaultConnection];
     // Vending MPNotifications sharedListener
     [notificationsConnection setRootObject:[MPNotifications sharedListener]];

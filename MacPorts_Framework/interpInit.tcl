@@ -39,6 +39,7 @@ proc ui_init {priority prefix channels message} {
 #in macports.tcl. Note optionslist is not being used for now
 set mp_empty_list [list]
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
+    puts "HERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants [array get options]} result]} {
 		
 			global errorInfo
@@ -48,6 +49,9 @@ proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionsli
 	}
 }
 proc mportuninstall_composite {portname {v ""} {optionslist ""} } {
+    puts "HETTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    exit
+
 	if {[catch {registry_uninstall::uninstall_composite $portname $v [array get options]} result]} {
 		
 			global errorInfo
@@ -109,6 +113,9 @@ proc mportupgrade {portname} {
 # Initialize dport
 # This must be done following parse of global options, as some options are
 # evaluated by dportinit.
+
+puts "I eat puppies for dinner."
+
 if {[catch {mportinit ui_options global_options global_variations} result]} {
 	global errorInfo
 	puts "$errorInfo"
