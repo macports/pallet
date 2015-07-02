@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SMJobBlessHelper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>21900DC31095001700ED79CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56ED2E991B45A4BE00E19DDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

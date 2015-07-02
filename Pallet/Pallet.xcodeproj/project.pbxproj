@@ -25,7 +25,6 @@
 		1D20FFDA11F4F38000CCC4C6 /* TB_Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */; };
 		1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
 		1D24FCAC11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
-		1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
 		1D9B73F911F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1D9B73FA11F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1DA3219411F748330004ECB1 /* MPCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3219311F748330004ECB1 /* MPCheckbox.m */; };
@@ -74,6 +73,14 @@
 		21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226B0FE88A2A00B1E835 /* Installed.tiff */; };
 		21FC226E0FE88A2A00B1E835 /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226C0FE88A2A00B1E835 /* Outdated.tiff */; };
 		21FC233B0FE8AB0400B1E835 /* StatePredicateTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */; };
+		56ED2E9F1B45A4BE00E19DDF /* SMJobBlessHelper.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56ED2E9E1B45A4BE00E19DDF /* SMJobBlessHelper.1 */; };
+		56ED2EA41B45A4DA00E19DDF /* SMJobBlessHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 56ED2E8D1B45A36300E19DDF /* SMJobBlessHelper.c */; };
+		56ED2EA61B45A7DD00E19DDF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA51B45A7DD00E19DDF /* Security.framework */; };
+		56ED2EA81B45A7E700E19DDF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */; };
+		56ED2EAB1B45A81D00E19DDF /* SMJobBlessHelper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56ED2E9A1B45A4BE00E19DDF /* SMJobBlessHelper */; };
+		56ED2EAC1B45AB9800E19DDF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA51B45A7DD00E19DDF /* Security.framework */; };
+		56ED2EAD1B45ABA000E19DDF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */; };
+		56ED2EB01B45AC1100E19DDF /* SMJobBlessHelper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56ED2E9A1B45A4BE00E19DDF /* SMJobBlessHelper */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -136,24 +143,40 @@
 			remoteGlobalIDString = 6EE6DD9E0E626D2800FB2115;
 			remoteInfo = MPHelperToolIPCTester;
 		};
+		56ED2EA91B45A7F800E19DDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56ED2E991B45A4BE00E19DDF;
+			remoteInfo = SMJobBlessHelper;
+		};
+		56ED2EAE1B45ABE500E19DDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56ED2E991B45A4BE00E19DDF;
+			remoteInfo = SMJobBlessHelper;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1D4B87CC11A54F9B00AD9D33 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
 			files = (
+				56ED2EAB1B45A81D00E19DDF /* SMJobBlessHelper in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1D4B87D311A54FFC00AD9D33 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
 			files = (
+				56ED2EB01B45AC1100E19DDF /* SMJobBlessHelper in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +191,16 @@
 			name = "Copy Bundle Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56ED2E981B45A4BE00E19DDF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				56ED2E9F1B45A4BE00E19DDF /* SMJobBlessHelper.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -177,7 +210,6 @@
 		1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Info.icns; sourceTree = "<group>"; };
 		1D24FC5F11CD1C770063E2A5 /* GrowlNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlNotifications.h; sourceTree = "<group>"; };
 		1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_InstallWithVar.icns; sourceTree = "<group>"; };
-		1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		1D9B73F711F0F6D6006013F5 /* MPQueueTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPQueueTableView.h; sourceTree = "<group>"; };
 		1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPQueueTableView.m; sourceTree = "<group>"; };
 		1DA3219211F748330004ECB1 /* MPCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCheckbox.h; sourceTree = "<group>"; };
@@ -215,6 +247,12 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Pallet_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pallet_Prefix.pch; sourceTree = "<group>"; };
+		56ED2E8D1B45A36300E19DDF /* SMJobBlessHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SMJobBlessHelper.c; sourceTree = "<group>"; };
+		56ED2E9A1B45A4BE00E19DDF /* SMJobBlessHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SMJobBlessHelper; sourceTree = BUILT_PRODUCTS_DIR; };
+		56ED2E9C1B45A4BE00E19DDF /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		56ED2E9E1B45A4BE00E19DDF /* SMJobBlessHelper.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SMJobBlessHelper.1; sourceTree = "<group>"; };
+		56ED2EA51B45A7DD00E19DDF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		5E5D169111AE96F500451AD7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,8 +263,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56ED2EA81B45A7E700E19DDF /* ServiceManagement.framework in Frameworks */,
+				56ED2EA61B45A7DD00E19DDF /* Security.framework in Frameworks */,
 				21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */,
 				21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56ED2E971B45A4BE00E19DDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +281,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56ED2EAD1B45ABA000E19DDF /* ServiceManagement.framework in Frameworks */,
+				56ED2EAC1B45AB9800E19DDF /* Security.framework in Frameworks */,
 				21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
@@ -265,6 +314,7 @@
 			children = (
 				8D1107320486CEB800E47090 /* Pallet.app */,
 				21900DE81095001700ED79CF /* Pallet.app */,
+				56ED2E9A1B45A4BE00E19DDF /* SMJobBlessHelper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,6 +370,7 @@
 				1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */,
 				1DA3219211F748330004ECB1 /* MPCheckbox.h */,
 				1DA3219311F748330004ECB1 /* MPCheckbox.m */,
+				56ED2E8D1B45A36300E19DDF /* SMJobBlessHelper.c */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -334,6 +385,7 @@
 				21FC22620FE888F200B1E835 /* Helpers */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				56ED2E9B1B45A4BE00E19DDF /* SMJobBlessHelper */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				21900E021095030B00ED79CF /* MacPorts.framework */,
@@ -368,7 +420,6 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				21E2ADAF1002E428003F8885 /* Preferences.xib */,
-				1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -376,10 +427,21 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */,
+				56ED2EA51B45A7DD00E19DDF /* Security.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56ED2E9B1B45A4BE00E19DDF /* SMJobBlessHelper */ = {
+			isa = PBXGroup;
+			children = (
+				56ED2E9C1B45A4BE00E19DDF /* main.c */,
+				56ED2E9E1B45A4BE00E19DDF /* SMJobBlessHelper.1 */,
+			);
+			path = SMJobBlessHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +462,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				56ED2EAA1B45A7F800E19DDF /* PBXTargetDependency */,
 				21ACCE17109538410070F0DD /* PBXTargetDependency */,
 			);
 			name = "Pallet-standalone";
@@ -407,6 +470,23 @@
 			productName = Pallet;
 			productReference = 21900DE81095001700ED79CF /* Pallet.app */;
 			productType = "com.apple.product-type.application";
+		};
+		56ED2E991B45A4BE00E19DDF /* SMJobBlessHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56ED2EA01B45A4BE00E19DDF /* Build configuration list for PBXNativeTarget "SMJobBlessHelper" */;
+			buildPhases = (
+				56ED2E961B45A4BE00E19DDF /* Sources */,
+				56ED2E971B45A4BE00E19DDF /* Frameworks */,
+				56ED2E981B45A4BE00E19DDF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMJobBlessHelper;
+			productName = SMJobBlessHelper;
+			productReference = 56ED2E9A1B45A4BE00E19DDF /* SMJobBlessHelper */;
+			productType = "com.apple.product-type.tool";
 		};
 		8D1107260486CEB800E47090 /* Pallet */ = {
 			isa = PBXNativeTarget;
@@ -420,6 +500,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				56ED2EAF1B45ABE500E19DDF /* PBXTargetDependency */,
 			);
 			name = Pallet;
 			productInstallPath = "$(HOME)/Applications";
@@ -458,6 +539,7 @@
 				8D1107260486CEB800E47090 /* Pallet */,
 				21900DC31095001700ED79CF /* Pallet-standalone */,
 				21351F530FEC59520074ACFE /* Docs */,
+				56ED2E991B45A4BE00E19DDF /* SMJobBlessHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -531,7 +613,6 @@
 				21900DD01095001700ED79CF /* TB_Cancel.icns in Resources */,
 				21900DD11095001700ED79CF /* TB_Selfupdate.icns in Resources */,
 				21900DD21095001700ED79CF /* Application.icns in Resources */,
-				1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 				1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */,
 				1D20FFDA11F4F38000CCC4C6 /* TB_Info.icns in Resources */,
 			);
@@ -625,6 +706,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56ED2E961B45A4BE00E19DDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56ED2EA41B45A4DA00E19DDF /* SMJobBlessHelper.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -650,6 +739,16 @@
 			isa = PBXTargetDependency;
 			name = "MacPorts-embeddable";
 			targetProxy = 21ACCE16109538410070F0DD /* PBXContainerItemProxy */;
+		};
+		56ED2EAA1B45A7F800E19DDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56ED2E991B45A4BE00E19DDF /* SMJobBlessHelper */;
+			targetProxy = 56ED2EA91B45A7F800E19DDF /* PBXContainerItemProxy */;
+		};
+		56ED2EAF1B45ABE500E19DDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56ED2E991B45A4BE00E19DDF /* SMJobBlessHelper */;
+			targetProxy = 56ED2EAE1B45ABE500E19DDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -708,6 +807,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -732,6 +832,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -756,6 +857,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -776,6 +878,7 @@
 		21FC211D0FE84F7F00B1E835 /* Debug-InstallMacPorts */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -791,6 +894,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -808,6 +912,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-I$prefix/libexec/macports/include",
 					"-L$prefix/libexec/macports/lib",
@@ -818,10 +923,151 @@
 			};
 			name = "Debug-InstallMacPorts";
 		};
+		56ED2EA11B45A4BE00E19DDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SMJobBlessHelper/SMJobBlessHelper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"SMJobBlessHelper/SMJobBlessHelper-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"SMJobBlessHelper/SMJobBlessHelper-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		56ED2EA21B45A4BE00E19DDF /* Debug-InstallMacPorts */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SMJobBlessHelper/SMJobBlessHelper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"SMJobBlessHelper/SMJobBlessHelper-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"SMJobBlessHelper/SMJobBlessHelper-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = "Debug-InstallMacPorts";
+		};
+		56ED2EA31B45A4BE00E19DDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SMJobBlessHelper/SMJobBlessHelper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"SMJobBlessHelper/SMJobBlessHelper-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"SMJobBlessHelper/SMJobBlessHelper-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -835,6 +1081,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-I$prefix/libexec/macports/include",
 					"-L$prefix/libexec/macports/lib",
@@ -850,6 +1097,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -869,6 +1117,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-I$prefix/libexec/macports/include",
 					"-L$prefix/libexec/macports/lib",
@@ -882,6 +1131,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -896,6 +1146,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -926,6 +1177,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		56ED2EA01B45A4BE00E19DDF /* Build configuration list for PBXNativeTarget "SMJobBlessHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56ED2EA11B45A4BE00E19DDF /* Debug */,
+				56ED2EA21B45A4BE00E19DDF /* Debug-InstallMacPorts */,
+				56ED2EA31B45A4BE00E19DDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Pallet" */ = {
 			isa = XCConfigurationList;
