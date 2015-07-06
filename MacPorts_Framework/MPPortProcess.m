@@ -18,6 +18,7 @@
 @implementation MPPortProcess
 
 - (id)initWithPKGPath:(NSString*)pkgPath {
+    NSLog(@"Fool");
     PKGPath = pkgPath;
     [self initializeInterpreter];
     return self;
@@ -80,7 +81,7 @@ int main(int argc, char const * argv[]) {
     
     NSConnection *portProcessConnection; 
     portProcessConnection = [NSConnection defaultConnection];
-    NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSUTF8StringEncoding];
+    NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSASCIIStringEncoding];
     
     MPPortProcess *portProcess = [[MPPortProcess alloc] initWithPKGPath:PKGPath];
     

@@ -669,7 +669,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n  say \"Building MacPorts\"\n  PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n  --prefix=$PREFIX \\\n  --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n  make install\n\n  make clean\n  $PREFIX/bin/port selfupdate\n  say \"done\"\n\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n say \"Building MacPorts\"\n PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n --prefix=$PREFIX \\\n --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n make install\n\n  make clean\n  $PREFIX/bin/port selfupdate\n  say \"done\"\n\nfi";
 		};
 		21900DE31095001700ED79CF /* Create dmg */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -810,10 +810,7 @@
 				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
@@ -835,10 +832,7 @@
 				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
@@ -860,10 +854,7 @@
 				CODE_SIGN_IDENTITY = "Self-signed Applications";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -944,6 +935,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -992,6 +984,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1041,6 +1034,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1186,6 +1180,7 @@
 				56ED2EA31B45A4BE00E19DDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Pallet" */ = {
 			isa = XCConfigurationList;

@@ -43,7 +43,7 @@
 			if (![checkboxes[i] isDefault])
 			{
 				[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
-				[variants addObject: [NSString stringWithString:@"+"]];
+				[variants addObject: @"+"];
 			}
 
 			[variantsString appendString:@"+"];
@@ -54,7 +54,7 @@
 			//If the checkbox is unchecked, we need to check if it is a default_variant, and if so, add it in the list with '-'
 			//in the name, to let macports know that we wish to not use it
 			[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
-			[variants addObject: [NSString stringWithString:@"-"]];
+			[variants addObject: @"-"];
 			[variantsString appendString:@"-"];
 			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
 		}
@@ -99,7 +99,7 @@
 		[port checkDefaults];		
 		NSMutableArray *defaultVariants= [port objectForKey:@"default_variants"];
 		
-		NSLog(@"Default variants count: %i", [defaultVariants count]);
+		NSLog(@"Default variants count: %lu", (unsigned long)[defaultVariants count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
 			//If the variant is included in the default_variants, then check it. Otherwise leave it unchecked
@@ -355,7 +355,7 @@
 	NSLog(@"Starting Queue");
 	NSUInteger index;
 	index = [queueArray count]-1;
-	NSLog(@"Array Size is: %u", index);
+	NSLog(@"Array Size is: %lu", (unsigned long)index);
 	NSUInteger i;
 	[queue setSelectionIndex: 0];
 	queueCounter=0;
@@ -376,9 +376,9 @@
 	NSUInteger index=queueCounter;
 	if([queueArray count]>index)
 	{
-		NSLog(@"Advancing Queue for %u", index);
+		NSLog(@"Advancing Queue for %lu", (unsigned long)index);
 		//index = [queue selectionIndex];
-		NSLog(@"Index before: %u", index);
+		NSLog(@"Index before: %lu", (unsigned long)index);
 
 		//We select each object from the array
 		[queue setSelectionIndex:index];

@@ -71,7 +71,7 @@
 #pragma mark Private Methods
 
 - (void)changePredicateEditorSize:(NSInteger) newRowCount {
-    NSLog(@"ROWS: %d", newRowCount);
+    NSLog(@"ROWS: %ld", (long)newRowCount);
     if (newRowCount == rowCount)
         return;
     

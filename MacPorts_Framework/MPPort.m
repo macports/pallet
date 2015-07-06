@@ -201,7 +201,7 @@
 
 
 -(void)sendGlobalExecNotification:(NSString *)target withStatus:(NSString *)status {
-	NSString * notificationName = [NSString stringWithString:@"MacPorts"];
+	NSString * notificationName = @"MacPorts";
 	notificationName = [notificationName stringByAppendingString:target];
 	notificationName = [notificationName stringByAppendingString:status];
 	
@@ -221,7 +221,7 @@
 	
 	NSString *opts, *v;
 	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
+	opts = @" ";
 	//v = [NSString stringWithString:[self name]];
 	interpreter = [MPInterpreter sharedInterpreter];
 	
@@ -429,7 +429,7 @@
 		fclose(file);
 		unlink("mpfw_default_variants");
 		
-		NSLog(@"Default variants count: %i", [defaultVariants count]);
+		NSLog(@"Default variants count: %lu", (unsigned long)[defaultVariants count]);
 		//Code for fetching default variants
 		[self setObject:[NSString stringWithString:[defaultVariants componentsJoinedByString:@" "]]  forKey:@"default_variantsAsString"];
 		[self setObject:defaultVariants forKey:@"default_variants"];		

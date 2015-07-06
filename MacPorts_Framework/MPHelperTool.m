@@ -899,7 +899,7 @@ static OSStatus DoEvaluateTclString
 	//Get the tcl Interpreter pkg path
 	NSString * tclPkgPath = (NSString *) (CFStringRef) CFDictionaryGetValue(request, CFSTR(kTclInterpreterInitPath));
 	if (tclPkgPath == nil) {
-		retval == coreFoundationUnknownErr;
+		retval = coreFoundationUnknownErr;
 	}
 	else
 		CFDictionaryAddValue(response, CFSTR("TclPkgPath"), (CFStringRef)tclPkgPath);
@@ -907,7 +907,11 @@ static OSStatus DoEvaluateTclString
 	//Load macports1.0 package
 	NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:tclPkgPath]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
+    NSLog(@"FOO");
+    exit(2);
 	if(Tcl_Eval(interpreter, [mport_fastload UTF8String]) == TCL_ERROR) {
+        NSLog(@"HERE");
+        exit(2);
 		NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
 		retval = coreFoundationUnknownErr;

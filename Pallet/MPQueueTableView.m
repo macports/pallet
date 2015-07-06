@@ -16,8 +16,8 @@
 	if ([[theEvent characters] characterAtIndex:0] == NSDeleteCharacter || [[theEvent characters] characterAtIndex:0] == NSBackspaceCharacter)
 	{
 		NSLog(@"Deleting a queue entry");
-		NSLog(@"Selection: %i", [queue selectionIndex]);
-		if([queue selectionIndex]>=0) [queue removeObjectAtArrangedObjectIndex:[queue selectionIndex]];
+		NSLog(@"Selection: %lu", (unsigned long)[queue selectionIndex]);
+		[queue removeObjectAtArrangedObjectIndex:[queue selectionIndex]];
 	}
 	else
 	{
