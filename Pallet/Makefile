@@ -1,22 +1,13 @@
-CC = gcc
-SOURCES = $(wildcard *.m *.c)
-FRAMEWORKS = -framework Foundation -framework AppKit -framework Cocoa -framework SenTestingKit -framework MacPorts -framework Growl
-LIBRARIES = -lobjc
-INCLUDE_FLAGS = -I/Users/mrappleseed/GSoC/gsoc15-pallet/MacPorts_Framework/ -I/opt/local/libexec/macports/include -L/opt/local/libexec/macports/lib -ltcl8.5
-CFLAGS = -Wall -arch i386 -g -v $(SOURCES)
-LDFLAGS = $(LIBRARIES) $(FRAMEWORKS) $(INCLUDE_FLAGS)
-OUT = -o Build/main
+CC = xcodebuild
+BUILDDIR = build
+FLAGS = build -project Pallet.xcodeproj -scheme Pallet-standalone -derivedDataPath $(BUILDDIR)
 
-all: $(SOURCES) $(OUT)
-
-$(OUT): $(OBJECTS)
-	$(CC) -o $(OBJECTS) $@ $(CFLAGS) $(LDFLAGS) $(OUT)
-
-.m.o:
-	$(CC) -c -Wall $< -o $@
+all:
+	$(CC) $(FLAGS)
 
 clean: 
-	$(RM) *.o *.gch *.swp .DS_Store main interp
+	$(CC) clean
+	rm -rf $(BUILDDIR)
 
 
 
