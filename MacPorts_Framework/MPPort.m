@@ -310,7 +310,7 @@
 									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
 									  [self valueForKey:@"porturl"], opts, vrnts, target]);
 
-    NSString * test = [interpreter evaluateStringWithPossiblePrivileges:[NSString stringWithFormat:@"exit; set foo [mportopen  %@  %@  %@]; puts $foo; test", [self valueForKey:@"porturl"], opts, vrnts] error:execError];
+    NSString * test = [interpreter evaluateStringAsString:[NSString stringWithFormat:@"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", [self valueForKey:@"porturl"], opts, vrnts] error:execError];
     NSLog(@"Pills: %@", test);
 	
 	[self setState:MPPortStateLearnState];
@@ -324,7 +324,7 @@
 - (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError {
 	
 	//params can contain either NSStrings or NSArrays
-	NSString * sparams = [NSString stringWithString:@" "];
+	NSString * sparams = @" ";
 	NSEnumerator * penums = [params objectEnumerator];
 	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
 	
