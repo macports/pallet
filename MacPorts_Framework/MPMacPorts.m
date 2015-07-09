@@ -131,12 +131,39 @@
 
 #pragma MacPorts API
 
+- (id)reclaim:(NSError**)sError
+{
+    NSString * result = nil;
+    
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_reclaim_Started" object:nil];
+    [[MPNotifications sharedListener] setPerformingTclCommand:@"reclaim"];
+    
+    //FIXME
+    /*
+     if ([self authorizationMode])
+     {
+     result = [interpreter evaluateStringWithMPHelperTool:@"mportdiagnose" error:sError];
+     }
+     else
+     {
+     result = [interpreter evaluateStringWithPossiblePrivileges:@"mportdiagnose" error:sError];
+     }*/
+    
+    result = [interpreter evaluateStringAsString:@"reclaim::main \"\"" error:sError];
+    
+    [[MPNotifications sharedListener] setPerformingTclCommand:@""];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_reclaim_Finished" object:nil];
+    
+    return result;
+}
+
+
 - (id)diagnose:(NSError**)sError
 {
     NSString * result = nil;
     
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_diagnose_Started" object:nil];
-    [[MPNotifications sharedListener] setPerformingTclCommand:@"sync"];
+    [[MPNotifications sharedListener] setPerformingTclCommand:@"diagnose"];
     
     //FIXME
     /*

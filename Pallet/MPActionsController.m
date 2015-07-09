@@ -445,6 +445,11 @@
             NSLog(@"We have diagnose");
             [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(diagnose) withObject:nil];
         }
+        else if([[dict objectForKey:@"operation"] isEqualToString:@"reclaim"])
+        {
+            NSLog(@"We have reclaim");
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(reclaim) withObject:nil];
+        }
 	}
 	else
 	{

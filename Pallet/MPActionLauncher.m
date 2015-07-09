@@ -118,6 +118,22 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	}
 }
 
+- (void)reclaim
+{
+    errorReceived = NO;
+    NSError * error;
+    [[MPMacPorts sharedInstance] reclaim:&error];
+    if(errorReceived)
+    {
+        [self sendNotification:GROWL_RECLAIMFAILED];
+    }
+    else
+    {
+        [self sendNotification:GROWL_RECLAIM];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+    }
+}
+
 - (void)diagnose
 {
     errorReceived = NO;

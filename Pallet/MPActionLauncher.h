@@ -85,6 +85,11 @@
 - (void)diagnose;
 
 /*!
+ @brief Runs the reclaim command.
+ */
+- (void)reclaim;
+
+/*!
  @brief Syncs the MacPorts installation in another thread
  */
 - (void)sync;

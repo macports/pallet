@@ -95,6 +95,12 @@
 - (id)diagnose:(NSError**)sError;
 
 /*!
+ @brief Runs the reclaim command.
+ */
+- (id)reclaim:(NSError**)sError;
+
+
+/*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
  */
 - (id)sync:(NSError **)sError;
