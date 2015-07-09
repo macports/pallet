@@ -210,6 +210,18 @@
 		[self startQueue:nil];
 }
 
+- (IBAction)reclaim:(id)sender
+{
+    [tableController open:nil];
+    [self queueOperation:@"reclaim" portName:@"-" portObject:@"-" variants:0];
+}
+
+- (IBAction)diagnose:(id)sender
+{
+    [tableController open:nil];
+    [self queueOperation:@"diagnose" portName:@"-" portObject:@"-" variants:0];
+}
+
 - (IBAction)selfupdate:(id)sender {
 	if (altWasPressed)
 	{
@@ -475,6 +487,14 @@
 	{
 		image = [NSImage imageNamed:@"TB_Selfupdate.icns"];
 	}
+    else if([operation isEqualToString:@"diagnose"])
+    {
+        image = [NSImage imageNamed:@"NSAdvanced"];
+    }
+    else if([operation isEqualToString:@"reclaim"])
+    {
+        image = [NSImage imageNamed:@"NSTrashFull"];
+    }
 	
 	//If we have variants, print them out for debugging purposes
 	if(variants!=nil)

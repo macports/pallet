@@ -57,6 +57,8 @@ extern BOOL altWasPressed;
 - (IBAction)uninstall:(id)sender;
 - (IBAction)upgrade:(id)sender;
 - (IBAction)sync:(id)sender;
+- (IBAction)diagnose:(id)sender;
+- (IBAction)reclaim:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)toggleInfoPanel: (id) sender;
