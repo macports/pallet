@@ -118,6 +118,22 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	}
 }
 
+- (void)diagnose
+{
+    errorReceived = NO;
+    NSError * error;
+    [[MPMacPorts sharedInstance] diagnose:&error];
+    if(errorReceived)
+    {
+        [self sendNotification:GROWL_DIAGNOSEFAILED];
+    }
+    else
+    {
+        [self sendNotification:GROWL_DIAGNOSE];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+    }
+}
+
 - (void)sync {
 	errorReceived=NO;
     NSError * error;
@@ -174,11 +190,15 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	notificationTitles[GROWL_UNINSTALL]                 = @"Uninstall Completed";
 	notificationTitles[GROWL_UPGRADE]                   = @"Upgrade Completed";
 	notificationTitles[GROWL_SYNC]                      = @"Sync Completed";
+    notificationTitles[GROWL_DIAGNOSE]                  = @"Diagnose Completed";
+    notificationTitles[GROWL_RECLAIM]                   = @"Reclaim Completed";
 	notificationTitles[GROWL_SELFUPDATE]                = @"Selfupdate Completed";
 	notificationTitles[GROWL_INSTALLFAILED]             = @"Installation Failed";
 	notificationTitles[GROWL_UNINSTALLFAILED]           = @"Uninstall Failed";
 	notificationTitles[GROWL_UPGRADEFAILED]             = @"Upgrade Failed";
 	notificationTitles[GROWL_SYNCFAILED]                = @"Sync Failed";
+    notificationTitles[GROWL_DIAGNOSEFAILED]            = @"Diagnose Failed";
+    notificationTitles[GROWL_RECLAIMFAILED]             = @"Reclaim Failed";
 	notificationTitles[GROWL_SELFUPDATEFAILED]          = @"Selfupdate Failed";
 
 	notificationTitles[GROWL_ALLOPS]                    = @"Operations Completed";
@@ -190,11 +210,15 @@ static MPActionLauncher *sharedActionLauncher = nil;
 	notificationDescriptions[GROWL_UNINSTALL]           = @"Operation completed successfully";
 	notificationDescriptions[GROWL_UPGRADE]             = @"Operation completed successfully";
 	notificationDescriptions[GROWL_SYNC]                = @"Operation completed successfully";
+    notificationDescriptions[GROWL_DIAGNOSE]            = @"Operation completed successfully";
+    notificationDescriptions[GROWL_RECLAIM]             = @"Operation completed successfully";
 	notificationDescriptions[GROWL_SELFUPDATE]          = @"Operation completed successfully";
 	notificationDescriptions[GROWL_INSTALLFAILED]       = @"Operation Failed";
 	notificationDescriptions[GROWL_UNINSTALLFAILED]     = @"Operation Failed";
 	notificationDescriptions[GROWL_UPGRADEFAILED]       = @"Operation Failed";
 	notificationDescriptions[GROWL_SYNCFAILED]          = @"Operation Failed";
+    notificationDescriptions[GROWL_DIAGNOSEFAILED]      = @"Operation Failed";
+    notificationDescriptions[GROWL_RECLAIMFAILED]       = @"Operation Failed";
 	notificationDescriptions[GROWL_SELFUPDATEFAILED]    = @"Operation Failed";
 
 	notificationDescriptions[GROWL_ALLOPS]              = @"All Operations Completed Succesfully";

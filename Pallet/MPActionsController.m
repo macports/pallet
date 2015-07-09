@@ -440,6 +440,11 @@
 			[[MPActionLauncher sharedInstance]
 			 performSelectorInBackground:@selector(sync) withObject:nil];		
 		}
+        else if([[dict objectForKey:@"operation"] isEqualToString:@"diagnose"])
+        {
+            NSLog(@"We have diagnose");
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(diagnose) withObject:nil];
+        }
 	}
 	else
 	{
