@@ -90,6 +90,11 @@
 - (BOOL) setPortOptions:(NSArray *)options;
 
 /*!
+ @brief Runs the diagnose command.
+ */
+- (id)diagnose:(NSError**)sError;
+
+/*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
  */
 - (id)sync:(NSError **)sError;

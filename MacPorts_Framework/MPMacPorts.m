@@ -131,7 +131,31 @@
 
 #pragma MacPorts API
 
-
+- (id)diagnose:(NSError**)sError
+{
+    NSString * result = nil;
+    
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_diagnose_Started" object:nil];
+    [[MPNotifications sharedListener] setPerformingTclCommand:@"sync"];
+    
+    //FIXME
+    /*
+    if ([self authorizationMode])
+    {
+        result = [interpreter evaluateStringWithMPHelperTool:@"mportdiagnose" error:sError];
+    }
+    else
+    {
+        result = [interpreter evaluateStringWithPossiblePrivileges:@"mportdiagnose" error:sError];
+    }*/
+    
+    result = [interpreter evaluateStringAsString:@"diagnose::main \"--quiet\"" error:sError];
+    
+    [[MPNotifications sharedListener] setPerformingTclCommand:@""];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_diagnose_Finished" object:nil];
+    
+    return result;
+}
 
 - (id)sync:(NSError**)sError {
 	NSString * result = nil;

@@ -80,6 +80,11 @@
 - (void)upgradePort:(MPPort *)port;
 
 /*!
+ @brief Runs the diagnose command.
+ */
+- (void)diagnose;
+
+/*!
  @brief Syncs the MacPorts installation in another thread
  */
 - (void)sync;
