@@ -368,7 +368,6 @@
 	NSUInteger index;
 	index = [queueArray count]-1;
 	NSLog(@"Array Size is: %lu", (unsigned long)index);
-	NSUInteger i;
 	[queue setSelectionIndex: 0];
 	queueCounter=0;
 	
@@ -456,7 +455,7 @@
 		//If we are done, we remove ourselves as an observer from the Notification Center, and we notify the user
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"advanceQ" object:nil];
 		
-		int allops=GROWL_ALLOPS;
+		//int allops=GROWL_ALLOPS;
         //FIXME
 		//[[MPActionLauncher sharedInstance]
 		 //performSelectorInBackground:@selector(sendGrowlNotification:) withObject:(id) allops];

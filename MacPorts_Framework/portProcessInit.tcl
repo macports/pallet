@@ -50,8 +50,7 @@ proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionsli
 	}
 }
 proc mportuninstall_composite {portname {v ""} {optionslist ""} } {
-    puts "Moo"
-    exit
+    puts "I am here, hear me moo"
 	if {[catch {registry_uninstall::uninstall_composite $portname $v [array get options]} result]} {
 		
 			global errorInfo

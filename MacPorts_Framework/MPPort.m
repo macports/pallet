@@ -343,7 +343,13 @@
 			sparams = [sparams stringByAppendingString:@" "];
 		}
 	}
+    
+    NSLog(@"Interpreter string: %@", [NSString stringWithFormat:@"[%@ %@]", procedure,sparams]);
 	
+    [interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]
+                                          error:execError];
+    
+    /*
 	if( [parentMacPortsInstance authorizationMode] ) {
 		[interpreter evaluateStringWithMPHelperTool:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
 									  error:execError];
@@ -351,7 +357,7 @@
 	else {
 		[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
 									  error:execError];
-	}
+	}*/
 	
 	
 }

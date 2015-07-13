@@ -176,7 +176,9 @@
         result = [interpreter evaluateStringWithPossiblePrivileges:@"mportdiagnose" error:sError];
     }*/
     
-    result = [interpreter evaluateStringAsString:@"diagnose::main \"--quiet\"" error:sError];
+    result = [interpreter evaluateStringAsString:@"set foo diagnose::main \"--quiet\"; return $foo" error:sError];
+    
+    NSLog(@"RESULT: %@", result);
     
     [[MPNotifications sharedListener] setPerformingTclCommand:@""];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_diagnose_Finished" object:nil];
