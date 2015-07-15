@@ -176,7 +176,7 @@
         result = [interpreter evaluateStringWithPossiblePrivileges:@"mportdiagnose" error:sError];
     }*/
     
-    result = [interpreter evaluateStringAsString:@"set foo diagnose::main \"--quiet\"; return $foo" error:sError];
+    result = [interpreter evaluateStringAsString:@"diagnose::main \"--quiet\"" error:sError];
     
     NSLog(@"RESULT: %@", result);
     

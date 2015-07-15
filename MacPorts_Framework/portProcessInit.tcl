@@ -39,8 +39,6 @@ proc ui_init {priority prefix channels message} {
 #in macports.tcl. Note optionslist is not being used for now
 set mp_empty_list [list]
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
-    puts "Test"
-    exit
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants [array get options]} result]} {
 		
 			global errorInfo
@@ -99,6 +97,7 @@ proc mportdeactivate_composite {portname {v ""} {optionslist ""} } {
 }
 
 proc mportupgrade {portname} {
+    puts "I'm upgrading this stuff in portProcessInit.tcl, man."
     array set depscache {}
 	if {[catch {macports::upgrade $portname "port:$portname" [array get global_variations] [array get variations] [array get options] depscache} result]} {
 			
