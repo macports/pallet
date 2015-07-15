@@ -10,5 +10,7 @@
 
 int main(int argc, char *argv[])
 {
+    NSLog(@"Testing");
+    exit(1);
     return NSApplicationMain(argc,  (const char **) argv);
 }
