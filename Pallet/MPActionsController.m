@@ -321,8 +321,6 @@
 #pragma mark App Delegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    NSLog(@"Yet another print test.");
-    exit(1);
     [tableController hidePredicateEditor:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *pkgPath = [defaults objectForKey:@"PKGPath"];

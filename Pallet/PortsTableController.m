@@ -79,8 +79,6 @@
         [self setPredicate:[NSPredicate predicateWithFormat:@"name LIKE '*'"]];
     }
     
-    NSLog(@"HERE");
-    exit(1);
     NSScrollView* tableScrollView = [portsTableView enclosingScrollView];
     
     NSScrollView* predicateEditorScrollView = [predicateEditor enclosingScrollView];

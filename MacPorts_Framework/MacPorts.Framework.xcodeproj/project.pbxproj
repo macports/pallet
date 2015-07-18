@@ -1214,6 +1214,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_VERSION = "";
 				INSTALL_PATH = /usr/local/bin;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1225,7 +1226,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = "Release-Tiger";
@@ -1601,6 +1602,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1612,7 +1614,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1629,6 +1631,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1640,7 +1643,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
