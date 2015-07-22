@@ -1079,8 +1079,8 @@ int main(int argc, char const * argv[]) {
 	//asl_close(logClient);
 	
 	[notifier closeConnection];
-	[notifier release];
-	[ipcFilePath release];
+    notifier = nil;
+    ipcFilePath = nil;
 	
 	[pool release];
 	
