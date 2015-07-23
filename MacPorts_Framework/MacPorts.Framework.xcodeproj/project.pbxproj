@@ -959,7 +959,7 @@
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -997,7 +997,7 @@
 		1DEB91AF08733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1.2;
@@ -1031,7 +1031,7 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				DEBUG_INFORMATION_FORMAT = stabs;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1047,7 +1047,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1060,7 +1060,7 @@
 		216010B01094C7FC00EE9CD0 /* Release-Tiger */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1117,7 +1117,7 @@
 		216010B31094C7FC00EE9CD0 /* Release-Tiger */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1.2;
@@ -1189,7 +1189,7 @@
 		216010B51094C7FC00EE9CD0 /* Release-Tiger */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1205,7 +1205,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = Pallet;
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1265,7 +1265,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
@@ -1305,7 +1305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1341,7 +1341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1594,7 +1594,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = Pallet;
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1625,7 +1625,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
-				CODE_SIGN_IDENTITY = Pallet;
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1654,7 +1654,7 @@
 		DFE353660CFB8F0C003BACFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_GC = unsupported;
@@ -1666,7 +1666,7 @@
 		DFE353670CFB8F0C003BACFC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Self-signed Applications";
+				CODE_SIGN_IDENTITY = "Pallet-Certificate";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;

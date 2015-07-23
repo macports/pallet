@@ -1,32 +1,75 @@
 #!/bin/bash
 
-read -s -p "Enter root password: " password
+# Create the cert directory (where all cert information will be stored)
 
-# Generate a new CRT certificate, and a new private key, privateKey
-openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt
+security find-certificate -c Pallet-Certificate &>/dev/null 
+retval=$?
 
-# Convert the new CRT cert to a PEM cert
-openssl x509 -in certificate.crt -out certificate.pem -outform PEM -extensions codesign
+if [ $retval -eq 0 ]; then
+    echo "Certificate already exists."
+    exit 1
+else
+    echo "Certificate doesn't exist. Beginning generation."
+    if [ ! -d ./certs/ ]; then
 
-# Convert the PEM certificate to a new P12 certificate, to import it using security
-openssl pkcs12 -export -out certificate.p12 -inkey privateKey.key -in certificate.crt -certfile certificate.pem
+        echo "Directory, \"./certs/\" does not exist. Creating."
+        mkdir certs
+    else
+        echo "Directory, \"./certs/\" already exists. Skipping creation." 
+    fi
 
-# Unlock the default keychain 
-security unlock-keychain -p $password login.keychain 
+    # Generate the magical configuration file.
+    if [ ! -f ./certs/apple.conf ]; then
+        
+        echo "Configuration file, \"./certs/apple.conf\" does not exist. Creating."
 
-# Import the generated certificate to the default keychain
-security import ./certificate.p12 -k login.keychain -P test 
+        # THE FOLLOWING CONFIG INFORMATION IS MAGIC THAT WAS FOUND AFTER 14 HOURS ON GOOGLE. DO. NOT. TOUCH. 
+        touch ./certs/apple.conf
+        echo "[ req ]
+        distinguished_name = req_name
+        prompt = no
+        [ req_name ]
+        CN = Pallet-Certificate 
+        [ extensions ]
+        basicConstraints=critical,CA:false
+        keyUsage=critical,digitalSignature
+        extendedKeyUsage=codeSigning" >> ./certs/apple.conf
+    else
+         echo "Configuration file, \"./certs/apple.conf\" already exists. Skipping creation."
+    fi
 
-# Make it a trusted cert
-security add-trusted-cert -d -r trustRoot -p codeSign -k login.keychain ./certificate.crt
+    # Generate a new private key
+    if [ ! -f ./certs/apple.key ]; then
 
-# Lock the default keychain
-security lock-keychain login.keychain
+        echo "Private key, \"./certs/apple.key\" does not exist. Creating."
+        openssl genrsa -out ./certs/apple.key  2048
+    else
+        echo "Private key, \"./certs/apple.key\" already exists. Skipping creation."
+    fi
 
-# Remove the certs in the local directory
-rm certificate.*
+    # Generate a new cert (packed with information from apple.conf)
+    if [ ! -f ./certs/apple.crt ]; then
 
-# Remove the private key
-rm privateKey.key
+        echo "Certificate, \"./certs/apple.crt\" does not exist. Creating."
+        openssl req -x509 -new -config ./certs/apple.conf -nodes -key ./certs/apple.key -extensions extensions -sha256 -out ./certs/apple.crt
+    else
+        echo "Certificate, \"./certs/apple.crt\" already exists. Skipping creation."
+    fi
 
 
+    # Generate a new convert that cert to a P12 for importing
+    if [ ! -f ./certs/apple.p12 ]; then
+
+        echo "Certificate, \"./certs/apple.p12\" does not exist. Creating."
+        openssl pkcs12 -export -inkey ./certs/apple.key -in ./certs/apple.crt -out ./certs/apple.p12
+    else
+        echo "Certificate, \"./certs/apple.p12\" already exists. Skipping creation."
+    fi
+
+    # Import the the newly created P12 certificate into the login (default) keychain.
+    echo "Importing the certificate into the keychain."
+    read -s -p "Enter your root password: " password
+    security unlock-keychain -p $password login.keychain
+    security import ./certs/apple.p12 -k login.keychain -P test
+    security lock-keychain login.keychain 
+fi
