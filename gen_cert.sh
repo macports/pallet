@@ -61,15 +61,13 @@ else
     if [ ! -f ./certs/apple.p12 ]; then
 
         echo "Certificate, \"./certs/apple.p12\" does not exist. Creating."
-        openssl pkcs12 -export -inkey ./certs/apple.key -in ./certs/apple.crt -out ./certs/apple.p12
+        echo test | openssl pkcs12 -export -password test -inkey ./certs/apple.key -in ./certs/apple.crt -out ./certs/apple.p12 -password stdin
     else
         echo "Certificate, \"./certs/apple.p12\" already exists. Skipping creation."
     fi
 
     # Import the the newly created P12 certificate into the login (default) keychain.
     echo "Importing the certificate into the keychain."
-    read -s -p "Enter your root password: " password
-    security unlock-keychain -p $password login.keychain
+    security unlock-keychain -u login.keychain
     security import ./certs/apple.p12 -k login.keychain -P test
-    security lock-keychain login.keychain 
 fi
