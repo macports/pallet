@@ -1,7 +1,6 @@
 package require macports
 package require simplelog
 
-
 proc ui_init {priority prefix channels message} {
     switch $priority {
   		msg {
@@ -13,6 +12,7 @@ proc ui_init {priority prefix channels message} {
   		}
   		warn {
   			set nottype "MPWarnNotification"
+
   		}
   		error {
   			set nottype "MPErrorNotification"
@@ -30,6 +30,7 @@ proc ui_init {priority prefix channels message} {
     proc ::ui_$priority {message} [subst {
         simplelog "$nottype $channels($priority) $prefix" "\$message"
         ui_message $priority $prefix "" "\$message"
+        puts "**************************************************"
     }]
 }
 

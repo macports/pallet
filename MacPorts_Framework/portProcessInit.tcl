@@ -29,7 +29,9 @@ proc ui_init {priority prefix channels message} {
 
     proc ::ui_$priority {message} [subst {
         simplelog "$nottype $channels($priority) $prefix" "\$message"
-        ui_message $priority $prefix "" "\$message"
+        set $prefix "TEST"
+        ui_message $priority $prefix"" "\$message"
+        puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
     }]
 }
 
@@ -48,7 +50,7 @@ proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionsli
 	}
 }
 proc mportuninstall_composite {portname {v ""} {optionslist ""} } {
-    puts "I am here, hear me moo"
+    ui_msg "I am here, hear me moo"
 	if {[catch {registry_uninstall::uninstall_composite $portname $v [array get options]} result]} {
 		
 			global errorInfo

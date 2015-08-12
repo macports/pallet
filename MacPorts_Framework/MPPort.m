@@ -309,7 +309,7 @@
 	NSLog(@"Interpreter string:\n%@",[NSString stringWithFormat:
 									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
 									  [self valueForKey:@"porturl"], opts, vrnts, target]);
-
+    NSString * foo = [interpreter evaluateStringAsString:[NSString stringWithFormat:@"ui_msg \"Test\""] error:execError];
     NSString * test = [interpreter evaluateStringAsString:[NSString stringWithFormat:@"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", [self valueForKey:@"porturl"], opts, vrnts] error:execError];
     NSLog(@"Pills: %@", test);
 	

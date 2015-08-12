@@ -1,6 +1,3 @@
-
-#set auto_path [concat $auto_path "/opt/local/libexec/macports/lib/"]
-
 package require macports
 package require notifications
 
@@ -31,7 +28,10 @@ proc ui_init {priority prefix channels message} {
 
     proc ::ui_$priority {message} [subst {
         notifications send $nottype "$channels($priority) $prefix" "\$message"
+        set $prefix "TEST"
+
         ui_message $priority $prefix "" "\$message"
+        puts "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
     }]
 }
 
