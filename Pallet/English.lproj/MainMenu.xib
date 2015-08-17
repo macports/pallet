@@ -70,20 +70,20 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="82" userLabel="9">
+                            <menuItem title="New" hidden="YES" enabled="NO" keyEquivalent="n" id="82" userLabel="9">
                                 <connections>
                                     <action selector="newDocument:" target="-1" id="373"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open…" keyEquivalent="o" id="72">
+                            <menuItem title="Open…" hidden="YES" enabled="NO" keyEquivalent="o" id="72">
                                 <connections>
                                     <action selector="openDocument:" target="-1" id="374"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open Recent" id="124">
+                            <menuItem title="Open Recent" hidden="YES" enabled="NO" id="124">
                                 <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                     <items>
-                                        <menuItem title="Clear Menu" id="126">
+                                        <menuItem title="Clear Menu" hidden="YES" enabled="NO" id="126">
                                             <connections>
                                                 <action selector="clearRecentDocuments:" target="-1" id="127"/>
                                             </connections>
@@ -91,7 +91,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="79" userLabel="7">
+                            <menuItem isSeparatorItem="YES" hidden="YES" id="79" userLabel="7">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Close" keyEquivalent="w" id="73" userLabel="1">
@@ -99,33 +99,33 @@
                                     <action selector="performClose:" target="-1" id="193"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save" keyEquivalent="s" id="75" userLabel="3">
+                            <menuItem title="Save" hidden="YES" enabled="NO" keyEquivalent="s" id="75" userLabel="3">
                                 <connections>
                                     <action selector="saveDocument:" target="-1" id="362"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save As…" keyEquivalent="S" id="80" userLabel="8">
+                            <menuItem title="Save As…" hidden="YES" enabled="NO" keyEquivalent="S" id="80" userLabel="8">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="363"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Revert to Saved" id="112" userLabel="10">
+                            <menuItem title="Revert to Saved" hidden="YES" enabled="NO" id="112" userLabel="10">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="revertDocumentToSaved:" target="-1" id="364"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="74" userLabel="2">
+                            <menuItem isSeparatorItem="YES" hidden="YES" id="74" userLabel="2">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Page Setup..." keyEquivalent="P" id="77" userLabel="5">
+                            <menuItem title="Page Setup..." hidden="YES" enabled="NO" keyEquivalent="P" id="77" userLabel="5">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="runPageLayout:" target="-1" id="87"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Print…" keyEquivalent="p" id="78" userLabel="6">
+                            <menuItem title="Print…" hidden="YES" enabled="NO" keyEquivalent="p" id="78" userLabel="6">
                                 <connections>
                                     <action selector="print:" target="-1" id="86"/>
                                 </connections>
@@ -525,7 +525,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="401">
-                                    <rect key="frame" x="756" y="17" width="16" height="381"/>
+                                    <rect key="frame" x="757" y="17" width="15" height="381"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="404">
@@ -731,7 +731,7 @@
                         <popUpButton key="view" tag="-1" id="895">
                             <rect key="frame" x="0.0" y="14" width="60" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TB_Install" imagePosition="above" alignment="right" lineBreakMode="truncatingTail" state="on" borderStyle="bezel" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="898" id="896">
+                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="above" alignment="right" lineBreakMode="truncatingTail" state="on" borderStyle="bezel" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="898" id="896">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
                                 <menu key="menu" title="OtherViews" id="897">
