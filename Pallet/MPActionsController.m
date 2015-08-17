@@ -209,6 +209,11 @@
 	if (altWasPressed)
 		[self startQueue:nil];
 }
+- (IBAction)revupgrade:(id)sender
+{
+    [tableController open:nil];
+    [self queueOperation:@"revupgrade" portName:@"-" portObject:@"-" variants:0];
+}
 
 - (IBAction)reclaim:(id)sender
 {
@@ -449,6 +454,11 @@
             NSLog(@"We have reclaim");
             [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(reclaim) withObject:nil];
         }
+        else if([[dict objectForKey:@"operation"] isEqualToString:@"revupgrade"])
+        {
+            NSLog(@"We have revupgrade");
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(revupgrade) withObject:nil];
+        }
 	}
 	else
 	{
@@ -503,6 +513,10 @@
     else if([operation isEqualToString:@"reclaim"])
     {
         image = [NSImage imageNamed:@"NSTrashFull"];
+    }
+    else if([operation isEqualToString:@"revupgrade"])
+    {
+        image = [NSImage imageNamed:@"NSCaution"];
     }
 	
 	//If we have variants, print them out for debugging purposes

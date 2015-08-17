@@ -90,6 +90,11 @@
 - (void)reclaim;
 
 /*!
+ @brief Runs the revupgrade command.
+ */
+- (void)revupgrade;
+
+/*!
  @brief Syncs the MacPorts installation in another thread
  */
 - (void)sync;

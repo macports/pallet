@@ -99,6 +99,11 @@
  */
 - (id)reclaim:(NSError**)sError;
 
+/*!
+ @brief Runs the rev-upgrade command.
+ */
+- (id)revupgrade:(NSError**)sError;
+
 
 /*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.

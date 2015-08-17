@@ -59,6 +59,7 @@ extern BOOL altWasPressed;
 - (IBAction)sync:(id)sender;
 - (IBAction)diagnose:(id)sender;
 - (IBAction)reclaim:(id)sender;
+- (IBAction)revupgrade:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)toggleInfoPanel: (id) sender;

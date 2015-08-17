@@ -131,6 +131,32 @@
 
 #pragma MacPorts API
 
+- (id)revupgrade:(NSError **)sError
+{
+    NSString * result = nil;
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_revupgrade_Started" object:nil];
+    [[MPNotifications sharedListener] setPerformingTclCommand:@"revupgrade"];
+    
+    //FIXME
+    /*
+     if ([self authorizationMode])
+     {
+     result = [interpreter evaluateStringWithMPHelperTool:@"mportdiagnose" error:sError];
+     }
+     else
+     {
+     result = [interpreter evaluateStringWithPossiblePrivileges:@"mportdiagnose" error:sError];
+     }*/
+    
+    result = [interpreter evaluateStringAsString:@"macports::revupgrade \"\"" error:sError];
+    
+    [[MPNotifications sharedListener] setPerformingTclCommand:@""];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"MacPorts_revupgrade_Finished" object:nil];
+    
+    return result;
+
+}
+
 - (id)reclaim:(NSError**)sError
 {
     NSString * result = nil;
