@@ -1113,7 +1113,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperTool;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = "Release-Tiger";
@@ -1185,7 +1185,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1232,7 +1232,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = "Release-Tiger";
@@ -1473,7 +1473,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1511,7 +1511,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1575,7 +1575,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperTool;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1598,7 +1598,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperTool;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1630,7 +1630,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
-				SDKROOT = "";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1660,7 +1660,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MPHelperToolIPCTester;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;

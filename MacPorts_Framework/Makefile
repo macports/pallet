@@ -1,6 +1,6 @@
 CC = gcc
 SOURCES = $(*.m *.c)
-FRAMEWORKS = -framework Foundation -framework AppKit -framework Cocoa -framework SenTestingKit -framework MacPorts -framework Growl
+FRAMEWORKS = -framework Foundation -framework AppKit -framework Cocoa -framework MacPorts -framework Growl
 LIBRARIES = -lobjc
 INCLUDE_FLAGS = -I/opt/local/libexec/macports/include -L/opt/local/libexec/macports/lib -ltcl8.5
 CFLAGS = -Wall -arch i386 -g -v $(SOURCES)
