@@ -90,6 +90,22 @@
 - (BOOL) setPortOptions:(NSArray *)options;
 
 /*!
+ @brief Runs the diagnose command.
+ */
+- (id)diagnose:(NSError**)sError;
+
+/*!
+ @brief Runs the reclaim command.
+ */
+- (id)reclaim:(NSError**)sError;
+
+/*!
+ @brief Runs the rev-upgrade command.
+ */
+- (id)revupgrade:(NSError**)sError;
+
+
+/*!
  @brief Synchronizes the ports tree without checking for upgrades to the MacPorts base.
  */
 - (id)sync:(NSError **)sError;

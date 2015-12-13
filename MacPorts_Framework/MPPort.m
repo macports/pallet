@@ -201,7 +201,7 @@
 
 
 -(void)sendGlobalExecNotification:(NSString *)target withStatus:(NSString *)status {
-	NSString * notificationName = [NSString stringWithString:@"MacPorts"];
+	NSString * notificationName = @"MacPorts";
 	notificationName = [notificationName stringByAppendingString:target];
 	notificationName = [notificationName stringByAppendingString:status];
 	
@@ -221,7 +221,7 @@
 	
 	NSString *opts, *v;
 	MPInterpreter *interpreter;
-	opts = [NSString stringWithString:@" "];
+	opts = @" ";
 	//v = [NSString stringWithString:[self name]];
 	interpreter = [MPInterpreter sharedInterpreter];
 	
@@ -236,7 +236,7 @@
 	
 	//Send Global Notifications and update MPNotifications variable
 	[self sendGlobalExecNotification:procedure withStatus:@"Started"];
-	//NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
+	NSString * tclCmd = [@"YES_" stringByAppendingString:procedure];
 	[[MPNotifications sharedListener] setPerformingTclCommand:procedure];
 	
 	if ([parentMacPortsInstance authorizationMode]) {
@@ -283,6 +283,7 @@
 	
 	if (options != NULL) {
 		[opts appendString: [NSString stringWithString:[options componentsJoinedByString:@" "]]];
+        NSLog(@"Opts: %@", opts);
 	}
 	
 	[opts appendString: @" }"];
@@ -293,23 +294,24 @@
 	
 	[vrnts appendString: @" }"];
 	
-	//NSLog(@"Variants String: %@", vrnts);
+	NSLog(@"Variants String: %@", vrnts);
 	//Send Global Notifications and update MPNotifications variable
+    if([target isEqual:@"install"])
+    {
+        NSLog(@"HUR");
+        target = @"activate";
+    }
+    
 	[self sendGlobalExecNotification:target withStatus:@"Started"];
-	//NSString * tclCmd = [@"YES_" stringByAppendingString:target];
+	NSString * tclCmd = [@"YES_" stringByAppendingString:target];
 	[[MPNotifications sharedListener] setPerformingTclCommand:target];
-	
-	/*
+		
 	NSLog(@"Interpreter string:\n%@",[NSString stringWithFormat:
 									  @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
 									  [self valueForKey:@"porturl"], opts, vrnts, target]);
-	*/
-    [interpreter evaluateStringWithPossiblePrivileges:
-        [NSString stringWithFormat:
-            @"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", 
-            [self valueForKey:@"porturl"], opts, vrnts, target]
-        error:execError];
-	
+    NSString * foo = [interpreter evaluateStringAsString:[NSString stringWithFormat:@"ui_msg \"Test\""] error:execError];
+    NSString * test = [interpreter evaluateStringAsString:[NSString stringWithFormat:@"set portHandle [mportopen  %@  %@  %@]; mportexec  $portHandle %@; mportclose $portHandle", [self valueForKey:@"porturl"], opts, vrnts] error:execError];
+    NSLog(@"Pills: %@", test);
 	
 	[self setState:MPPortStateLearnState];
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
@@ -322,7 +324,7 @@
 - (void)execPortProc:(NSString *)procedure withParams:(NSArray *)params error:(NSError **)execError {
 	
 	//params can contain either NSStrings or NSArrays
-	NSString * sparams = [NSString stringWithString:@" "];
+	NSString * sparams = @" ";
 	NSEnumerator * penums = [params objectEnumerator];
 	MPInterpreter *interpreter = [MPInterpreter sharedInterpreter];
 	
@@ -341,7 +343,13 @@
 			sparams = [sparams stringByAppendingString:@" "];
 		}
 	}
+    
+    NSLog(@"Interpreter string: %@", [NSString stringWithFormat:@"[%@ %@]", procedure,sparams]);
 	
+    [interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams]
+                                          error:execError];
+    
+    /*
 	if( [parentMacPortsInstance authorizationMode] ) {
 		[interpreter evaluateStringWithMPHelperTool:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
 									  error:execError];
@@ -349,7 +357,7 @@
 	else {
 		[interpreter evaluateStringAsString:[NSString stringWithFormat:@"[%@ %@]" , procedure, sparams] 
 									  error:execError];
-	}
+	}*/
 	
 	
 }
@@ -427,7 +435,7 @@
 		fclose(file);
 		unlink("mpfw_default_variants");
 		
-		NSLog(@"Default variants count: %i", [defaultVariants count]);
+		NSLog(@"Default variants count: %lu", (unsigned long)[defaultVariants count]);
 		//Code for fetching default variants
 		[self setObject:[NSString stringWithString:[defaultVariants componentsJoinedByString:@" "]]  forKey:@"default_variantsAsString"];
 		[self setObject:defaultVariants forKey:@"default_variants"];		

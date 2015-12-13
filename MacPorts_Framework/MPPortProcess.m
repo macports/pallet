@@ -18,6 +18,7 @@
 @implementation MPPortProcess
 
 - (id)initWithPKGPath:(NSString*)pkgPath {
+    NSLog(@"Fool");
     PKGPath = pkgPath;
     [self initializeInterpreter];
     return self;
@@ -54,12 +55,13 @@
 		Tcl_DeleteInterp(interpreter);
 	}
     // Load macports_fastload.tcl from PKGPath/macports1.0
+    /*
     NSString * mport_fastload = [[@"source [file join \"" stringByAppendingString:PKGPath]
 								 stringByAppendingString:@"\" macports1.0 macports_fastload.tcl]"];
 	if(Tcl_Eval(interpreter, [mport_fastload UTF8String]) == TCL_ERROR) {
 		NSLog(@"Error in Tcl_EvalFile macports_fastload.tcl: %s", Tcl_GetStringResult(interpreter));
 		Tcl_DeleteInterp(interpreter);
-	}
+	}*/
     // Load notifications methods
     Tcl_CreateObjCommand(interpreter, "simplelog", SimpleLog_Command, NULL, NULL);
 	if (Tcl_PkgProvide(interpreter, "simplelog", "1.0") != TCL_OK) {
@@ -80,7 +82,7 @@ int main(int argc, char const * argv[]) {
     
     NSConnection *portProcessConnection; 
     portProcessConnection = [NSConnection defaultConnection];
-    NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSUTF8StringEncoding];
+    NSString *PKGPath = [[NSString alloc] initWithCString:argv[1] encoding:NSASCIIStringEncoding];
     
     MPPortProcess *portProcess = [[MPPortProcess alloc] initWithPKGPath:PKGPath];
     

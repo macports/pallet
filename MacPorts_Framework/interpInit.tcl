@@ -1,7 +1,6 @@
 package require macports
 package require simplelog
 
-
 proc ui_init {priority prefix channels message} {
     switch $priority {
   		msg {
@@ -13,6 +12,7 @@ proc ui_init {priority prefix channels message} {
   		}
   		warn {
   			set nottype "MPWarnNotification"
+
   		}
   		error {
   			set nottype "MPErrorNotification"
@@ -38,6 +38,9 @@ proc ui_init {priority prefix channels message} {
 #and log error Information in a similar fashion to code
 #in macports.tcl. Note optionslist is not being used for now
 set mp_empty_list [list]
+proc test {} {
+    puts "TEST"
+}
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants [array get options]} result]} {
 		
@@ -109,6 +112,7 @@ proc mportupgrade {portname} {
 # Initialize dport
 # This must be done following parse of global options, as some options are
 # evaluated by dportinit.
+
 if {[catch {mportinit ui_options global_options global_variations} result]} {
 	global errorInfo
 	puts "$errorInfo"

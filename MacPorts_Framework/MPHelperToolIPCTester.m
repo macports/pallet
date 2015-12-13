@@ -172,6 +172,7 @@ int main(int argc, char const * argv[]) {
 	if([pm installUninstallManipulation:@"pngcrush"]) {
 		NSLog(@"pngcrush INSTALLATION SUCCESSFUL");
 	}
+    /*
 	else {
 		NSLog(@"pngcrush INSTALLATION UNSUCCESSFUL");
 	}
@@ -181,7 +182,7 @@ int main(int argc, char const * argv[]) {
 	}
 	else {
 		NSLog(@"SELFUPDATE UNSUCCESSFUL");
-	}
+	}*/
 	
 	
 	return 0;

@@ -29,5 +29,9 @@
 		<key>x86_64</key>
 		<string>10.6.0</string>
 	</dict>
+	<key>SMAuthorizedClients</key>
+	<array>
+		<string>identifier org.macports.framework.macports and certificate leaf = H&quot;6a52be62749c0ff3d3192d010737a433423c0513&quot;</string>
+	</array>
 </dict>
 </plist>

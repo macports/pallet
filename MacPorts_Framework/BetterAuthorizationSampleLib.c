@@ -1737,7 +1737,6 @@ extern OSStatus BASExecuteRequestInHelperTool(
     #endif
 
     // Create the socket and tell it to not generate SIGPIPE.
-    
 	if (retval == noErr) {
 		fd = socket(AF_UNIX, SOCK_STREAM, 0);
 		if (fd == -1) { 
@@ -1776,7 +1775,9 @@ extern OSStatus BASExecuteRequestInHelperTool(
     // Attempt to connect.
     
     if (retval == noErr) {
+        printf("FD: %d Sizeof\n", fd);
 		if (connect(fd, (struct sockaddr *) &addr, sizeof(addr)) == -1) {
+            printf("Here: %d", errno);
 			retval = BASErrnoToOSStatus(errno);
 		}
 	}
@@ -1786,13 +1787,13 @@ extern OSStatus BASExecuteRequestInHelperTool(
     if (retval == noErr) {
         retval = AuthorizationMakeExternalForm(auth, &extAuth);
     }
-	if (retval == noErr) {	
+	if (retval == noErr) {
 		retval = BASErrnoToOSStatus( BASWrite(fd, &extAuth, sizeof(extAuth), NULL) );
 	}
 	
     // Write the request.
     
-	if (retval == noErr) {	
+	if (retval == noErr) {
 		retval = BASErrnoToOSStatus( BASWriteDictionary(request, fd) );
 	}
 	

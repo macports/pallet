@@ -116,7 +116,6 @@
  */
 - (NSArray *)depends;
 
-
 /*!
  @brief Deactivates and uninstalls this MPPort from the MacPorts system
  @param version An NSString indicating which version of this port to uninstall
