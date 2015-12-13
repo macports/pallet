@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>org.macports.SMJobBlessHelper</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>SMJobBlessHelper</string>
+	<key>CFBundleVersion</key>
+	<string>5</string>
+	<key>SMAuthorizedClients</key>
+	<array>
+		<string>identifier org.macports.SMJobBlessHelper and certificate leaf = H&quot;6a52be62749c0ff3d3192d010737a433423c0513&quot;</string>
+	</array>
+</dict>
+</plist>

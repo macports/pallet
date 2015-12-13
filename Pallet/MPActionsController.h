@@ -23,7 +23,7 @@ extern BOOL altWasPressed;
     
     IBOutlet NSToolbarItem *cancel;
 	IBOutlet NSButton *startQueueButton;
-	IBOutlet NSButton *removeFromQueueButton;
+	//IBOutlet NSButton *removeFromQueueButton;
 	IBOutlet NSMutableArray *queueArray;
     IBOutlet NSArrayController *queue;
 	NSUInteger queueCounter;
@@ -57,6 +57,9 @@ extern BOOL altWasPressed;
 - (IBAction)uninstall:(id)sender;
 - (IBAction)upgrade:(id)sender;
 - (IBAction)sync:(id)sender;
+- (IBAction)diagnose:(id)sender;
+- (IBAction)reclaim:(id)sender;
+- (IBAction)revupgrade:(id)sender;
 - (IBAction)selfupdate:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)toggleInfoPanel: (id) sender;
@@ -70,5 +73,6 @@ extern BOOL altWasPressed;
 //-(IBAction) removeFromQueue:(id) sender;
 -(void)clearQueue;
 -(void)advanceQueue;
+-(void)removeFromQueue;
 
 @end

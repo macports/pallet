@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -25,12 +25,6 @@
 		1D20FFDA11F4F38000CCC4C6 /* TB_Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */; };
 		1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
 		1D24FCAC11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */; };
-		1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
-		1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */; };
-		1D4B87BB11A54DE000AD9D33 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
-		1D4B87BC11A54DE000AD9D33 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
-		1D4B87CE11A54FEF00AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
-		1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D4B87BA11A54DE000AD9D33 /* Growl.framework */; };
 		1D9B73F911F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1D9B73FA11F0F6D6006013F5 /* MPQueueTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */; };
 		1DA3219411F748330004ECB1 /* MPCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3219311F748330004ECB1 /* MPCheckbox.m */; };
@@ -64,7 +58,7 @@
 		21900DDE1095001700ED79CF /* ActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2105F5081028ACBA00A28D1A /* ActivityController.m */; };
 		21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F165510FE2C04300542AEE /* MacPorts.framework */; };
 		21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21900E021095030B00ED79CF /* MacPorts.framework */; };
+		21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21900E021095030B00ED79CF /* MacPorts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		21ACCE0B109537F90070F0DD /* MacPorts.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = 21900DB71095000200ED79CF /* MacPorts.framework */; };
 		21B6A38E0FEDCBD5001DF976 /* TB_Install.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38A0FEDCBD5001DF976 /* TB_Install.icns */; };
 		21B6A38F0FEDCBD5001DF976 /* TB_Sync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 21B6A38B0FEDCBD5001DF976 /* TB_Sync.icns */; };
@@ -79,6 +73,10 @@
 		21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226B0FE88A2A00B1E835 /* Installed.tiff */; };
 		21FC226E0FE88A2A00B1E835 /* Outdated.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FC226C0FE88A2A00B1E835 /* Outdated.tiff */; };
 		21FC233B0FE8AB0400B1E835 /* StatePredicateTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC233A0FE8AB0400B1E835 /* StatePredicateTemplate.m */; };
+		56ED2EA61B45A7DD00E19DDF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA51B45A7DD00E19DDF /* Security.framework */; };
+		56ED2EA81B45A7E700E19DDF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */; };
+		56ED2EAC1B45AB9800E19DDF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA51B45A7DD00E19DDF /* Security.framework */; };
+		56ED2EAD1B45ABA000E19DDF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -147,20 +145,18 @@
 		1D4B87CC11A54F9B00AD9D33 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
 			files = (
-				1D4B87CE11A54FEF00AD9D33 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1D4B87D311A54FFC00AD9D33 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
 			files = (
-				1D4B87D411A5500100AD9D33 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,8 +180,6 @@
 		1D20FFD811F4F38000CCC4C6 /* TB_Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_Info.icns; sourceTree = "<group>"; };
 		1D24FC5F11CD1C770063E2A5 /* GrowlNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlNotifications.h; sourceTree = "<group>"; };
 		1D24FCAA11CD32090063E2A5 /* TB_InstallWithVar.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TB_InstallWithVar.icns; sourceTree = "<group>"; };
-		1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
-		1D4B87BA11A54DE000AD9D33 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "Growl-1.2.1-Framework/Growl.framework"; sourceTree = "<group>"; };
 		1D9B73F711F0F6D6006013F5 /* MPQueueTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPQueueTableView.h; sourceTree = "<group>"; };
 		1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPQueueTableView.m; sourceTree = "<group>"; };
 		1DA3219211F748330004ECB1 /* MPCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCheckbox.h; sourceTree = "<group>"; };
@@ -223,6 +217,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Pallet_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pallet_Prefix.pch; sourceTree = "<group>"; };
+		56ED2E8D1B45A36300E19DDF /* SMJobBlessHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SMJobBlessHelper.c; sourceTree = "<group>"; };
+		56ED2E9C1B45A4BE00E19DDF /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		56ED2E9E1B45A4BE00E19DDF /* SMJobBlessHelper.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SMJobBlessHelper.1; sourceTree = "<group>"; };
+		56ED2EA51B45A7DD00E19DDF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		5E5D169111AE96F500451AD7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,9 +232,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56ED2EA81B45A7E700E19DDF /* ServiceManagement.framework in Frameworks */,
+				56ED2EA61B45A7DD00E19DDF /* Security.framework in Frameworks */,
 				21900DE01095001700ED79CF /* MacPorts.framework in Frameworks */,
 				21900DE11095001700ED79CF /* Cocoa.framework in Frameworks */,
-				1D4B87BB11A54DE000AD9D33 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +243,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56ED2EAD1B45ABA000E19DDF /* ServiceManagement.framework in Frameworks */,
+				56ED2EAC1B45AB9800E19DDF /* Security.framework in Frameworks */,
 				21900E031095030B00ED79CF /* MacPorts.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				1D4B87BC11A54DE000AD9D33 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +331,7 @@
 				1D9B73F811F0F6D6006013F5 /* MPQueueTableView.m */,
 				1DA3219211F748330004ECB1 /* MPCheckbox.h */,
 				1DA3219311F748330004ECB1 /* MPCheckbox.m */,
+				56ED2E8D1B45A36300E19DDF /* SMJobBlessHelper.c */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -338,13 +340,13 @@
 			isa = PBXGroup;
 			children = (
 				1D24FC5F11CD1C770063E2A5 /* GrowlNotifications.h */,
-				1D4B87BA11A54DE000AD9D33 /* Growl.framework */,
 				21F165400FE2C04300542AEE /* MacPorts.Framework.xcodeproj */,
 				21F166FC0FE32DF000542AEE /* Models */,
 				21F167570FE3343600542AEE /* Controllers */,
 				21FC22620FE888F200B1E835 /* Helpers */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				56ED2E9B1B45A4BE00E19DDF /* SMJobBlessHelper */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				21900E021095030B00ED79CF /* MacPorts.framework */,
@@ -379,7 +381,6 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				21E2ADAF1002E428003F8885 /* Preferences.xib */,
-				1D4B877E11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -387,10 +388,21 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56ED2EA71B45A7E700E19DDF /* ServiceManagement.framework */,
+				56ED2EA51B45A7DD00E19DDF /* Security.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56ED2E9B1B45A4BE00E19DDF /* SMJobBlessHelper */ = {
+			isa = PBXGroup;
+			children = (
+				56ED2E9C1B45A4BE00E19DDF /* main.c */,
+				56ED2E9E1B45A4BE00E19DDF /* SMJobBlessHelper.1 */,
+			);
+			path = SMJobBlessHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,8 +455,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pallet" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -539,7 +554,6 @@
 				21900DD01095001700ED79CF /* TB_Cancel.icns in Resources */,
 				21900DD11095001700ED79CF /* TB_Selfupdate.icns in Resources */,
 				21900DD21095001700ED79CF /* Application.icns in Resources */,
-				1D4B877F11A5496B00AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 				1D24FCAB11CD32090063E2A5 /* TB_InstallWithVar.icns in Resources */,
 				1D20FFDA11F4F38000CCC4C6 /* TB_Info.icns in Resources */,
 			);
@@ -549,7 +563,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D4B878011A5498200AD9D33 /* Growl Registration Ticket.growlRegDict in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				21FC226D0FE88A2A00B1E835 /* Installed.tiff in Resources */,
@@ -597,7 +610,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n  say \"Building MacPorts\"\n  PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n  --prefix=$PREFIX \\\n  --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n  make install\n\n  make clean\n  $PREFIX/bin/port selfupdate\n  say \"done\"\n\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" = \"Debug-InstallMacPorts\" ]; then\n say \"Building MacPorts\"\n PREFIX=$BUILT_PRODUCTS_DIR/macports-1.8\n\n  cd $PROJECT_DIR/../base\n\n  PATH=/bin:/sbin:/usr/bin:/usr/sbin \\\n  ./configure \\\n --prefix=$PREFIX \\\n --with-tclpackage=$PREFIX/Library/Tcl \\\n  --with-no-root-privileges\n\n  make\n\n make install\n\n  make clean\n  $PREFIX/bin/port selfupdate\n  say \"done\"\n\nfi";
 		};
 		21900DE31095001700ED79CF /* Create dmg */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -687,6 +700,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				PRODUCT_NAME = Docs;
 			};
@@ -695,6 +709,7 @@
 		21351F550FEC59520074ACFE /* Debug-InstallMacPorts */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_ENABLE_OBJC_GC = unsupported;
 				PRODUCT_NAME = Docs;
 			};
 			name = "Debug-InstallMacPorts";
@@ -705,6 +720,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				PRODUCT_NAME = Docs;
 				ZERO_LINK = NO;
 			};
@@ -714,21 +730,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_NAME = Pallet;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -736,21 +753,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_NAME = Pallet;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = "Debug-InstallMacPorts";
 		};
@@ -758,34 +776,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_MODEL_TUNING = G5;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../MacPorts_Framework/build\"";
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_NAME = Pallet;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		21FC211D0FE84F7F00B1E835 /* Debug-InstallMacPorts */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = "Debug-InstallMacPorts";
 		};
@@ -793,23 +809,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = (
+					"-I$prefix/libexec/macports/include",
+					"-L$prefix/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = Pallet;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = "Debug-InstallMacPorts";
 		};
@@ -817,21 +839,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = (
+					"-I$prefix/libexec/macports/include",
+					"-L$prefix/libexec/macports/lib",
+					"-ltcl8.5",
+				);
+				"OTHER_LDFLAGS[arch=*]" = "-ltcl8.5";
 				PRODUCT_NAME = Pallet;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -839,48 +866,55 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
 					"$(inherited)",
 					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
-					"\"$(SRCROOT)/Growl-1.2.1-Framework\"",
 				);
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_MODEL_TUNING = G5;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"\"$(SRCROOT)/../MacPorts_Framework/build\"",
+					"$(inherited)",
+					"\"$(SRCROOT)/../MacPorts_Framework/build/Release\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pallet_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "/opt/local/libexec/macports/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = (
+					"-I$prefix/libexec/macports/include",
+					"-L$prefix/libexec/macports/lib",
+					"-ltcl8.5",
+				);
 				PRODUCT_NAME = Pallet;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

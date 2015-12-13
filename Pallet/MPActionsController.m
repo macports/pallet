@@ -43,7 +43,7 @@
 			if (![checkboxes[i] isDefault])
 			{
 				[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
-				[variants addObject: [NSString stringWithString:@"+"]];
+				[variants addObject: @"+"];
 			}
 
 			[variantsString appendString:@"+"];
@@ -54,7 +54,7 @@
 			//If the checkbox is unchecked, we need to check if it is a default_variant, and if so, add it in the list with '-'
 			//in the name, to let macports know that we wish to not use it
 			[variants addObject: [[port valueForKey:@"variants"] objectAtIndex:i]];
-			[variants addObject: [NSString stringWithString:@"-"]];
+			[variants addObject: @"-"];
 			[variantsString appendString:@"-"];
 			[variantsString appendString:[[port valueForKey:@"variants"] objectAtIndex:i]];			
 		}
@@ -99,7 +99,7 @@
 		[port checkDefaults];		
 		NSMutableArray *defaultVariants= [port objectForKey:@"default_variants"];
 		
-		NSLog(@"Default variants count: %i", [defaultVariants count]);
+		NSLog(@"Default variants count: %lu", (unsigned long)[defaultVariants count]);
 		for(UInt i=0; i<[[port valueForKey:@"variants"] count];i++)
 		{
 			//If the variant is included in the default_variants, then check it. Otherwise leave it unchecked
@@ -208,6 +208,23 @@
 	 */
 	if (altWasPressed)
 		[self startQueue:nil];
+}
+- (IBAction)revupgrade:(id)sender
+{
+    [tableController open:nil];
+    [self queueOperation:@"revupgrade" portName:@"-" portObject:@"-" variants:0];
+}
+
+- (IBAction)reclaim:(id)sender
+{
+    [tableController open:nil];
+    [self queueOperation:@"reclaim" portName:@"-" portObject:@"-" variants:0];
+}
+
+- (IBAction)diagnose:(id)sender
+{
+    [tableController open:nil];
+    [self queueOperation:@"diagnose" portName:@"-" portObject:@"-" variants:0];
 }
 
 - (IBAction)selfupdate:(id)sender {
@@ -355,8 +372,7 @@
 	NSLog(@"Starting Queue");
 	NSUInteger index;
 	index = [queueArray count]-1;
-	NSLog(@"Array Size is: %u", index);
-	NSUInteger i;
+	NSLog(@"Array Size is: %lu", (unsigned long)index);
 	[queue setSelectionIndex: 0];
 	queueCounter=0;
 	
@@ -376,9 +392,9 @@
 	NSUInteger index=queueCounter;
 	if([queueArray count]>index)
 	{
-		NSLog(@"Advancing Queue for %u", index);
+		NSLog(@"Advancing Queue for %lu", (unsigned long)index);
 		//index = [queue selectionIndex];
-		NSLog(@"Index before: %u", index);
+		NSLog(@"Index before: %lu", (unsigned long)index);
 
 		//We select each object from the array
 		[queue setSelectionIndex:index];
@@ -428,15 +444,31 @@
 			[[MPActionLauncher sharedInstance]
 			 performSelectorInBackground:@selector(sync) withObject:nil];		
 		}
+        else if([[dict objectForKey:@"operation"] isEqualToString:@"diagnose"])
+        {
+            NSLog(@"We have diagnose");
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(diagnose:) withObject:port];
+        }
+        else if([[dict objectForKey:@"operation"] isEqualToString:@"reclaim"])
+        {
+            NSLog(@"We have reclaim");
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(reclaim:) withObject:nil];
+        }
+        else if([[dict objectForKey:@"operation"] isEqualToString:@"revupgrade"])
+        {
+            NSLog(@"We have revupgrade");
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(revupgrade) withObject:nil];
+        }
 	}
 	else
 	{
 		//If we are done, we remove ourselves as an observer from the Notification Center, and we notify the user
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"advanceQ" object:nil];
 		
-		int allops=GROWL_ALLOPS;
-		[[MPActionLauncher sharedInstance]
-		 performSelectorInBackground:@selector(sendGrowlNotification:) withObject:(id) allops];		
+		//int allops=GROWL_ALLOPS;
+        //FIXME
+		//[[MPActionLauncher sharedInstance]
+		 //performSelectorInBackground:@selector(sendGrowlNotification:) withObject:(id) allops];
 		
 	}
 
@@ -474,6 +506,18 @@
 	{
 		image = [NSImage imageNamed:@"TB_Selfupdate.icns"];
 	}
+    else if([operation isEqualToString:@"diagnose"])
+    {
+        image = [NSImage imageNamed:@"NSAdvanced"];
+    }
+    else if([operation isEqualToString:@"reclaim"])
+    {
+        image = [NSImage imageNamed:@"NSTrashFull"];
+    }
+    else if([operation isEqualToString:@"revupgrade"])
+    {
+        image = [NSImage imageNamed:@"NSCaution"];
+    }
 	
 	//If we have variants, print them out for debugging purposes
 	if(variants!=nil)
@@ -489,21 +533,19 @@
 	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", image, @"image", variants, @"variants", nil]];
 }
 
-/*
--(void) removeFromQueue:(id)sender
+-(void) removeFromQueue
 {
 	UInt index = [queue selectionIndex];
-	[queue removeObject: [[queue selectedObjects] objectAtIndex:0]];
+	[queue removeObjectAtArrangedObjectIndex:0];
 	[queue setSelectionIndex: index];
 }
-*/
+
 
 //This is called when we have the alt key pressed, so that we clear the queue before adding and performing our new operation
 -(void) clearQueue
 {
 	NSIndexSet *tempIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [queueArray count])];
 	[queue removeObjectsAtArrangedObjectIndexes:tempIndex];
-	
 }
 
 -(id) init

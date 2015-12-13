@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>791B1300-B4BA-4DE5-8CA4-CE031501435D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Pallet</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A24F6765-E078-437A-8120-A4370B360BF0</key>
+		<string>https://svn.macports.org/repository/macports/branches/gsoc15-pallet</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Pallet/Pallet.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A24F6765-E078-437A-8120-A4370B360BF0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>A24F6765-E078-437A-8120-A4370B360BF0</key>
+		<string>https://svn.macports.org/repository/macports</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://svn.macports.org/repository/macports/branches/gsoc15-pallet/Pallet/Pallet.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A24F6765-E078-437A-8120-A4370B360BF0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A24F6765-E078-437A-8120-A4370B360BF0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>gsoc15-pallet</string>
+		</dict>
+	</array>
+</dict>
+</plist>
