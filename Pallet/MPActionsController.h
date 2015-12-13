@@ -23,7 +23,7 @@ extern BOOL altWasPressed;
     
     IBOutlet NSToolbarItem *cancel;
 	IBOutlet NSButton *startQueueButton;
-	IBOutlet NSButton *removeFromQueueButton;
+	//IBOutlet NSButton *removeFromQueueButton;
 	IBOutlet NSMutableArray *queueArray;
     IBOutlet NSArrayController *queue;
 	NSUInteger queueCounter;
@@ -73,5 +73,6 @@ extern BOOL altWasPressed;
 //-(IBAction) removeFromQueue:(id) sender;
 -(void)clearQueue;
 -(void)advanceQueue;
+-(void)removeFromQueue;
 
 @end

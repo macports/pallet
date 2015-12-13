@@ -30,7 +30,6 @@ proc ui_init {priority prefix channels message} {
     proc ::ui_$priority {message} [subst {
         simplelog "$nottype $channels($priority) $prefix" "\$message"
         ui_message $priority $prefix "" "\$message"
-        puts "**************************************************"
     }]
 }
 
@@ -39,6 +38,9 @@ proc ui_init {priority prefix channels message} {
 #and log error Information in a similar fashion to code
 #in macports.tcl. Note optionslist is not being used for now
 set mp_empty_list [list]
+proc test {} {
+    puts "TEST"
+}
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""} } {
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants [array get options]} result]} {
 		

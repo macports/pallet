@@ -1,6 +1,5 @@
 CC = xcodebuild
-BUILDDIR = build
-FLAGS = build -project Pallet.xcodeproj -scheme Pallet-standalone -derivedDataPath $(BUILDDIR)
+FLAGS = build -project Pallet.xcodeproj -scheme Pallet-standalone -derivedDataPath $(DESTDIR)
 
 all:
 	$(CC) $(FLAGS)

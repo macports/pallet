@@ -1,21 +1,23 @@
 package require macports
 package require notifications
 
-proc ui_init {priority prefix channels message} {
+proc ui_init {priority prefix channels args} {
+    global display_message
+
     switch $priority {
   		msg {
   			set nottype "MPMsgNotification" 
   		}
   		debug {
   			set nottype "MPDebugNotification"
-  			puts "Recieved Debug init"
+            puts "Debug: $args"
   		}
   		warn {
   			set nottype "MPWarnNotification"
   		}
   		error {
   			set nottype "MPErrorNotification"
-  			puts "Recieved Error"
+  			puts "Error: $args"
   		}
   		info {
   			set nottype "MPInfoNotification"
@@ -27,11 +29,8 @@ proc ui_init {priority prefix channels message} {
   	}
 
     proc ::ui_$priority {message} [subst {
-        notifications send $nottype "$channels($priority) $prefix" "\$message"
-        set $prefix "TEST"
-
+        notifications send $nottype "$prefix" "\$message"
         ui_message $priority $prefix "" "\$message"
-        puts "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
     }]
 }
 
@@ -40,8 +39,11 @@ proc ui_init {priority prefix channels message} {
 #Wrapping the following API routines to catch errors
 #and log error Information in a similar fashion to code
 #in macports.tcl.
+proc test {} {
+    puts "TEST"
+}
+
 proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionslist ""}} {
-    puts "IN THIS REALLY COOL SHIT NOW. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW"
 	if {[catch {registry_uninstall::uninstall $portname $version $revision $variants $optionslist} result]} {
 		
 			global errorInfo
@@ -51,7 +53,6 @@ proc mportuninstall {portname {version ""} {revision ""} {variants 0} {optionsli
 	}
 }
 proc mportuninstall_composite {portname {v ""} {optionslist ""}} {
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!IN THIS REALLY COOL SHIT NOW. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW"
 	if {[catch {registry_uninstall::uninstall_composite $portname $v $optionslist} result]} {
 		
 			global errorInfo
@@ -113,6 +114,8 @@ proc mportupgrade {portname} {
 # Initialize dport
 # This must be done following parse of global options, as some options are
 # evaluated by dportinit.
+global display_message
+set display_message 0
 if {[catch {mportinit ui_options global_options global_variations} result]} {
 	global errorInfo
 	puts "$errorInfo"

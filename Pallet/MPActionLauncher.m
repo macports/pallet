@@ -7,6 +7,7 @@
 //
 
 #import "MPActionLauncher.h"
+#import "MPActionsController.h"
 
 extern BOOL errorReceived;
 
@@ -147,10 +148,11 @@ static MPActionLauncher *sharedActionLauncher = nil;
     {
         [self sendNotification:GROWL_RECLAIM];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"advanceQ" object:nil userInfo:nil];
+        
     }
 }
 
-- (void)diagnose
+- (void)diagnose:(MPPort *)port
 {
     errorReceived = NO;
     NSError * error;

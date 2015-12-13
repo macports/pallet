@@ -447,12 +447,12 @@
         else if([[dict objectForKey:@"operation"] isEqualToString:@"diagnose"])
         {
             NSLog(@"We have diagnose");
-            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(diagnose) withObject:nil];
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(diagnose:) withObject:port];
         }
         else if([[dict objectForKey:@"operation"] isEqualToString:@"reclaim"])
         {
             NSLog(@"We have reclaim");
-            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(reclaim) withObject:nil];
+            [[MPActionLauncher sharedInstance] performSelectorInBackground:@selector(reclaim:) withObject:nil];
         }
         else if([[dict objectForKey:@"operation"] isEqualToString:@"revupgrade"])
         {
@@ -533,21 +533,19 @@
 	[queue addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:operation, @"operation", name, @"port", port, @"object", image, @"image", variants, @"variants", nil]];
 }
 
-/*
--(void) removeFromQueue:(id)sender
+-(void) removeFromQueue
 {
 	UInt index = [queue selectionIndex];
-	[queue removeObject: [[queue selectedObjects] objectAtIndex:0]];
+	[queue removeObjectAtArrangedObjectIndex:0];
 	[queue setSelectionIndex: index];
 }
-*/
+
 
 //This is called when we have the alt key pressed, so that we clear the queue before adding and performing our new operation
 -(void) clearQueue
 {
 	NSIndexSet *tempIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [queueArray count])];
 	[queue removeObjectsAtArrangedObjectIndexes:tempIndex];
-	
 }
 
 -(id) init

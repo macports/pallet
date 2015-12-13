@@ -82,7 +82,7 @@
 /*!
  @brief Runs the diagnose command.
  */
-- (void)diagnose;
+- (void)diagnose:(MPPort *)port;
 
 /*!
  @brief Runs the reclaim command.
