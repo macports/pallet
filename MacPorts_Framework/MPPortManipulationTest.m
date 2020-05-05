@@ -131,7 +131,7 @@
 
 	PortManipulator * pm = [[PortManipulator alloc] init];
 	STAssertTrue([pm installUninstallManipulation:@"pngcrush"] , @"This test should always return true on success");
-	[pm release];
+//	[pm release];
     
 }
 

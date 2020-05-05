@@ -77,9 +77,9 @@
 	return self;
 }
 
-- (void) dealloc {
-	[super dealloc];
-}
+//- (void) dealloc {
+//	[super dealloc];
+//}
 
 - (void) setPortWithTclListAsString:(NSString *)string {
 	MPInterpreter *interpreter;

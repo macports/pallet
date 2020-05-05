@@ -17,7 +17,7 @@
     [openPanel setCanChooseDirectories:YES];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger result = [openPanel runModalForDirectory:[defaults objectForKey:@"NSNavLastCurrentDirectory"] file:nil types:nil];
-    if(result == NSOKButton) {
+    if(result == NSModalResponseOK) {
         NSString *path = [[openPanel filenames] objectAtIndex:0];
         // Validate Directory
         NSFileManager *fileManager = [NSFileManager defaultManager];

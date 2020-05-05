@@ -54,9 +54,9 @@
 	return self;
 }
 
-- (void)dealloc {
-	[super dealloc];
-}
+//- (void)dealloc {
+//	[super dealloc];
+//}
 
 /*
  * We enumerate the list of ports, adding each port object to our own dictionary instead of simply copying the

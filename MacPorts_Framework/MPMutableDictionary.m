@@ -54,10 +54,10 @@
 	return self;
 }
 
-- (void) dealloc {
-	[embeddedDictionary release];
-	[super dealloc];
-}
+//- (void) dealloc {
+//	[embeddedDictionary release];
+//	[super dealloc];
+//}
 
 - (unsigned)count {
 	return [embeddedDictionary count];

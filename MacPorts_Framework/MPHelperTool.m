@@ -1005,8 +1005,10 @@ NULL
 };
 
 int main(int argc, char const * argv[]) {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	
+//	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    int result;
+    @autoreleasepool {
+
 	//assert(logClient != NULL);
 	
 //	
@@ -1071,7 +1073,7 @@ int main(int argc, char const * argv[]) {
 	notifier = [[NotificationsClient alloc] init];
 	
 	
-	int result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
+    result = BASHelperToolMain(kMPHelperCommandSet, kMPHelperCommandProcs);
 	
 	// Clean up.
 	//DoQuit(globalConn);
@@ -1082,7 +1084,8 @@ int main(int argc, char const * argv[]) {
     notifier = nil;
     ipcFilePath = nil;
 	
-	[pool release];
+//	[pool release];
+}
 	
 	return result;
 }

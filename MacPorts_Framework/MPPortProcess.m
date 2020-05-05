@@ -78,7 +78,8 @@
 @end
 
 int main(int argc, char const * argv[]) {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
     NSConnection *portProcessConnection; 
     portProcessConnection = [NSConnection defaultConnection];
@@ -100,6 +101,7 @@ int main(int argc, char const * argv[]) {
     
     // Wait for any message
     [[NSRunLoop currentRunLoop] run];
-  	[pool release];
+    }
+//  	[pool release];
     return 0;
 }

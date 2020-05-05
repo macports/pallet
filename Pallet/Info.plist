@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Application.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.macports.${PRODUCT_NAME:identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -22,10 +22,6 @@
 	<string>1.0</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6.0</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 	<key>LSMinimumSystemVersionByArchitecture</key>
 	<dict>
 		<key>i386</key>
@@ -33,5 +29,9 @@
 		<key>x86_64</key>
 		<string>10.6.0</string>
 	</dict>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 </dict>
 </plist>

@@ -270,7 +270,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
     notification.soundName                              = NSUserNotificationDefaultSoundName;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    [notification release];
+//    [notification release];
     
 }
 

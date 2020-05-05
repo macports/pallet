@@ -54,9 +54,9 @@
 	return self;
 }
 
-- (void) dealloc {
-	[super dealloc];
-}
+//- (void) dealloc {
+//	[super dealloc];
+//}
 
 #pragma MPMutableDictionary Protocal
 

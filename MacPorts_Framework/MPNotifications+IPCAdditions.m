@@ -1350,7 +1350,9 @@ static void PrintUsage(const char *argv0)
 }
 
 -(void) startIPCServerThread:(NSDictionary *)serverInfo {
-	NSAutoreleasePool * sPool = [[NSAutoreleasePool alloc] init];
+//	NSAutoreleasePool * sPool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
+
 	
 	NSLog(@"INSIDE SERVER THREAD");
 	
@@ -1487,7 +1489,8 @@ static void PrintUsage(const char *argv0)
 	CFRunLoopStop([currentLoop getCFRunLoop]);
 	
 	[[MPNotifications sharedListener] setPerformingTclCommand:@""];
-	[sPool release];
+    }
+//	[sPool release];
 }
 
 -(void) prepareIPCServerThread {

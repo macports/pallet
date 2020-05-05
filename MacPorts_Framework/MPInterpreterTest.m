@@ -44,7 +44,7 @@
 }
 
 - (void)tearDown {
-	[interp release];
+//	[interp release];
 }
 
 - (void)testInitialization {

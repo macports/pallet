@@ -112,22 +112,22 @@
     return self;
 }
 
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release {
-    //do nothing
-}
-
-- (id)autorelease {
-    return self;
-}
+//- (id)retain {
+//    return self;
+//}
+//
+//- (NSUInteger)retainCount
+//{
+//    return NSUIntegerMax;  //denotes an object that cannot be released
+//}
+//
+//- (void)release {
+//    //do nothing
+//}
+//
+//- (id)autorelease {
+//    return self;
+//}
 
 #pragma MacPorts API
 
@@ -352,7 +352,7 @@
 
 - (NSArray *)sources:(BOOL)refresh {
 	if (refresh) {
-		[sources release];
+//		[sources release];
 		sources = nil;
 	}
 	return [self sources];
@@ -400,8 +400,8 @@
 }
 
 -(void) setDelegate:(id)aDelegate {
-	[aDelegate retain];
-	[macportsDelegate release];
+//	[aDelegate retain];
+//	[macportsDelegate release];
 	macportsDelegate = aDelegate;
 }
 
@@ -409,7 +409,7 @@
 - (void) setAuthorizationRef { 
 	if ([[self delegate] respondsToSelector:@selector(getAuthorizationRef)]) {
 		
-		AuthorizationRef clientRef = (AuthorizationRef) [[self delegate] performSelector:@selector(getAuthorizationRef)];
+        AuthorizationRef clientRef = (__bridge AuthorizationRef) [[self delegate] performSelector:@selector(getAuthorizationRef)];
 		[interpreter setAuthorizationRef:clientRef];
 	}
 }

@@ -42,7 +42,7 @@
 }
 
 - (void) tearDown {
-	[testPort release];
+//	[testPort release];
 }
 
 

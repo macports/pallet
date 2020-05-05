@@ -172,7 +172,7 @@ static NSString * tclInterpreterPkgPath = nil;
 
 +(void) setPKGPath:(NSString*)newPath {
     if([PKGPath isNotEqualTo:newPath]) {
-        [PKGPath release];
+//        [PKGPath release];
         PKGPath = [newPath copy];
         //I should check if interp is nil. *not needed now
         MPInterpreter *interp = (MPInterpreter*) [[[NSThread currentThread] threadDictionary] objectForKey:@"sharedMPInterpreter"];
@@ -360,22 +360,22 @@ static NSString * tclInterpreterPkgPath = nil;
     return self;
 }
 
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release {
-	
-}
-
-- (id)autorelease {
-    return self;
-}
+//- (id)retain {
+//    return self;
+//}
+//
+//- (NSUInteger)retainCount
+//{
+//    return NSUIntegerMax;  //denotes an object that cannot be released
+//}
+//
+//- (void)release {
+//	
+//}
+//
+//- (id)autorelease {
+//    return self;
+//}
 
 #pragma Port Operations
 
@@ -578,15 +578,15 @@ static NSString * tclInterpreterPkgPath = nil;
 	
 	BASSetDefaultRules(internalMacPortsAuthRef, 
 					   kMPHelperCommandSet, 
-					   (CFStringRef) bundleID, 
+                       (__bridge CFStringRef) bundleID,
 					   NULL);
 	
 	NSLog(@"BEFORE Tool Execution request is %@ , response is %@ \n\n", request, response);
     
 	err = BASExecuteRequestInHelperTool(internalMacPortsAuthRef, 
 										kMPHelperCommandSet, 
-										(CFStringRef) bundleID, 
-										(CFDictionaryRef) request, 
+                                        (__bridge CFStringRef) bundleID,
+                                        (__bridge CFDictionaryRef) request,
 										&response);
 	if (err == noErr){// retrieve result here if available
 		if( response != NULL)
@@ -594,7 +594,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	}
 	else { //Try to recover error
         	NSLog(@"*****************************************");
-		failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (CFStringRef) bundleID);
+        failCode = BASDiagnoseFailure(internalMacPortsAuthRef, (__bridge CFStringRef) bundleID);
 		
 		
 		//Need to pass in URL's to helper and install tools since I
@@ -612,9 +612,9 @@ static NSString * tclInterpreterPkgPath = nil;
 		assert(helperToolURL != nil);
 		
 		err = BASFixFailure(internalMacPortsAuthRef, 
-							(CFStringRef) bundleID, 
-							(CFURLRef) installToolURL,
-							(CFURLRef) helperToolURL,
+                            (__bridge CFStringRef) bundleID,
+                            (__bridge CFURLRef) installToolURL,
+                            (__bridge CFURLRef) helperToolURL,
 							failCode);
 		
 		
@@ -718,7 +718,7 @@ static NSString * tclInterpreterPkgPath = nil;
 
     BASSetDefaultRules(internalMacPortsAuthRef, 
                         kMPHelperCommandSet, 
-                        (CFStringRef) bundleID, 
+                       (__bridge CFStringRef) bundleID,
                         NULL);
     BASTerminateCommand(internalMacPortsAuthRef, 
                         [bundleID UTF8String], 
@@ -754,7 +754,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	[task launch];
 	[task waitUntilExit];
 	int status = [task terminationStatus];
-	[task release];
+//	[task release];
 	return status;
 }
 

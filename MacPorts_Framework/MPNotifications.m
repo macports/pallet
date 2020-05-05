@@ -65,21 +65,21 @@
 	return self;
 }
 
-- (id)retain {
-	return self;
-}
+//- (id)retain {
+//	return self;
+//}
+//
+//- (NSUInteger)retainCount {
+//    return NSUIntegerMax;  //denotes an object that cannot be released
+//}
 
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
+//-(void) release {
+//	//do nothing
+//}
 
--(void) release {
-	//do nothing
-}
-
-- (id) autorelease {
-	return self;
-}
+//- (id) autorelease {
+//	return self;
+//}
 
 - (id)init {
 	if (self = [super init]) {
@@ -95,9 +95,9 @@
 }
 
 
-- (void)dealloc {
-	[super dealloc];
-}
+//- (void)dealloc {
+//	[super dealloc];
+//}
 
 //Should I raise an exception for invalid blockOptions that are
 //passed to this method?

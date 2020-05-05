@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>org.macports.frameworks.macports</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -20,8 +20,6 @@
 	<string>Randall Wood</string>
 	<key>CFBundleVersion</key>
 	<string>1.1</string>
-	<key>NSPrincipalClass</key>
-	<string></string>
 	<key>LSMinimumSystemVersionByArchitecture</key>
 	<dict>
 		<key>i386</key>
@@ -29,9 +27,11 @@
 		<key>x86_64</key>
 		<string>10.6.0</string>
 	</dict>
+	<key>NSPrincipalClass</key>
+	<string></string>
 	<key>SMAuthorizedClients</key>
 	<array>
-		<string>identifier org.macports.framework.macports and certificate leaf = H&quot;6a52be62749c0ff3d3192d010737a433423c0513&quot;</string>
+		<string>identifier org.macports.framework.macports and certificate leaf = H"6a52be62749c0ff3d3192d010737a433423c0513"</string>
 	</array>
 </dict>
 </plist>
