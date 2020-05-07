@@ -30,7 +30,7 @@ proc ui_init {priority prefix channels args} {
 
     proc ::ui_$priority {message} [subst {
         notifications send $nottype "$prefix" "\$message"
-        ui_message $priority $prefix "" "\$message"
+        ui_message $priority $prefix { " nonewline" "\$message" }
     }]
 }
 

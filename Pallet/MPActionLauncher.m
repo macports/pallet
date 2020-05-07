@@ -36,7 +36,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
 }
 
 - (void)loadPorts {
-    [self setIsLoading:YES];
+//    [self setIsLoading:YES];
     NSDictionary *allPorts = [[MPMacPorts sharedInstance] search:MPPortsAll];
     NSDictionary *installedPorts = [[MPRegistry sharedRegistry] installed];
     
@@ -45,7 +45,7 @@ static MPActionLauncher *sharedActionLauncher = nil;
         [[allPorts objectForKey:port] setStateFromReceipts:[installedPorts objectForKey:port]];
     }
     ports = [allPorts allValues];
-    [self didChangeValueForKey:@"ports"];
+//    [self didChangeValueForKey:@"ports"];
     
     [self setIsLoading:NO];
 }

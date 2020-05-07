@@ -29,7 +29,7 @@ proc ui_init {priority prefix channels message} {
 
     proc ::ui_$priority {message} [subst {
         simplelog "$nottype $channels($priority) $prefix" "\$message"
-        ui_message $priority $prefix"" "\$message"
+        ui_message $priority $prefix { " nonewline" "\$message" }
     }]
 }
 

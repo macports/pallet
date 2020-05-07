@@ -310,12 +310,15 @@
 
 	NSError * sError;
     
+    NSString *swf = [NSString stringWithFormat:@"return [mportsearch %@ %@ %@ %@]",
+           query, caseSensitivity, style, fieldName];
+    NSString *evas = [interpreter evaluateStringAsString:
+    swf
+                                         error:&sError];
+    NSDictionary *md = [interpreter dictionaryFromTclListAsString:
+    evas];
     result = [NSMutableDictionary dictionaryWithDictionary:
-			  [interpreter dictionaryFromTclListAsString:
-			   [interpreter evaluateStringAsString:
-				[NSString stringWithFormat:@"return [mportsearch %@ %@ %@ %@]",
-				 query, caseSensitivity, style, fieldName] 
-											 error:&sError]]];
+			  md];
     
 	newResult = [NSMutableDictionary dictionaryWithCapacity:[result count]];
 	enumerator = [result keyEnumerator];

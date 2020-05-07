@@ -402,7 +402,7 @@ static NSString * tclInterpreterPkgPath = nil;
 	}
     else
     {
-		array = [[[NSMutableArray alloc] init] autorelease];
+        array = [[NSMutableArray alloc] init];// autorelease];
 	}
 	Tcl_Free((char *)tclElements);
 	return [NSArray arrayWithArray:array];
@@ -443,7 +443,8 @@ static NSString * tclInterpreterPkgPath = nil;
 	//NSLog(@"Calling evaluateStringAsString with argument %@", statement);
     NSLog(@"Statement: %@", statement);
     int return_code = Tcl_Eval(_interpreter, [statement UTF8String]);
-	
+    NSLog(@"return code is: %d", return_code);
+//    return_code=TCL_OK;
 	//Should I check for (return_code != TCL_Ok && return_code != TCL_RETURN) instead ?
 	if (return_code != TCL_OK) {
 		
@@ -462,9 +463,9 @@ static NSString * tclInterpreterPkgPath = nil;
 		//For now all error codes are TCL_ERROR
 		
 		//Create underlying error - For now I'll create the underlying Posix Error
-		NSError *undError = [[[NSError alloc] initWithDomain:NSPOSIXErrorDomain
+		NSError *undError = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
 														code:errCode 
-													userInfo:nil] autorelease];
+                                                   userInfo:nil];// autorelease];
 		//Create and return custom domain error
 		NSArray *objArray = [NSArray arrayWithObjects:descrip, undError, nil];
 		NSArray *keyArray = [NSArray arrayWithObjects:NSLocalizedDescriptionKey,
@@ -472,9 +473,9 @@ static NSString * tclInterpreterPkgPath = nil;
 		errDict = [NSDictionary dictionaryWithObjects:objArray forKeys:keyArray];
 		if (mportError != NULL)
         {
-			*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
+			*mportError = [[NSError alloc] initWithDomain:MPFrameworkErrorDomain
 													  code:TCL_ERROR 
-												  userInfo:errDict] autorelease];
+                                                 userInfo:errDict];// autorelease;];
         }
         
 		return nil;
@@ -628,14 +629,14 @@ static NSString * tclInterpreterPkgPath = nil;
 			if (mportError != NULL) {
 				//I'm not sure of exactly how to report this error ... 
 				//Do we need some error codes for our domain? I'll define one
-				NSError * undError = [[[NSError alloc] initWithDomain:NSOSStatusErrorDomain 
+				NSError * undError = [[NSError alloc] initWithDomain:NSOSStatusErrorDomain
 																 code:err 
 															 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																	   NSLocalizedString(@"Check error code for OSStatus returned",@""), 
 																	   NSLocalizedDescriptionKey,
-																	   nil]] autorelease];
+                                                                       nil]];// autorelease];
 				
-				*mportError = [[[NSError alloc] initWithDomain:MPFrameworkErrorDomain 
+				*mportError = [[NSError alloc] initWithDomain:MPFrameworkErrorDomain
 														  code:MPHELPINSTFAILED 
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																NSLocalizedString(@"Unable to fix faliure for MPHelperTool execution", @""), 
@@ -643,7 +644,7 @@ static NSString * tclInterpreterPkgPath = nil;
 																undError, NSUnderlyingErrorKey,
 																NSLocalizedString(@"BASFixFaliure routine wasn't completed successfuly", @""),
 																NSLocalizedFailureReasonErrorKey,
-																nil]] autorelease];
+                                                                nil]];// autorelease];
 			}
 		}
 	}
